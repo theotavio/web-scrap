@@ -1,0 +1,21 @@
+# Ambientes Virtuais e Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Dados SQLite e Binários
+dados/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs de Execução
+logs/
+*.log
+
+# Documentação Interna, Apresentação e Relatórios
+pre_projeto/
+relatorios/

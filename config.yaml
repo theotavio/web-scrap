@@ -1,0 +1,530 @@
+geral:
+  nome_projeto: "Quantificacao Multidimensional da Cobertura Jornalistica"
+  autor: "Otavio Alves Lima"
+  banco_dados: "dados/jornalismo.db"
+  diretorio_logs: "logs"
+  diretorio_relatorios: "relatorios"
+  data_inicio: "2015-01-01"
+  data_fim: "2025-12-31"
+  anos_eleitorais: [2016, 2018, 2020, 2022, 2024]
+  anos_nao_eleitorais: [2015, 2017, 2019, 2021, 2023, 2025]
+
+banco:
+  cache_size_kb: 64000
+  mmap_size_bytes: 268435456
+
+rede:
+  user_agent_academico: "ProjetoPesquisaJornalismoUFC/1.0 (pesquisa.academica; contato: otavioal2907@gmail.com)"
+  user_agent_googlebot: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+  timeout_requisicao: 30
+  max_tentativas: 3
+  delay_entre_requisicoes: 0.05
+  max_threads_coleta: 6
+  max_threads_extracao: 8
+  respeitar_robots: true
+
+cdx:
+  url_base: "https://web.archive.org/cdx/search/cdx"
+  url_base_https: "https://web.archive.org/cdx/search/cdx"
+  url_wayback_raw: "http://web.archive.org/web/{timestamp}id_/{url}"
+  limite_por_requisicao: 1000
+  pausa_segundos: 0.05
+  backoff_inicial: 0.5
+  max_backoff: 4.0
+
+veiculos:
+  folha:
+    nome: "Folha de S.Paulo"
+    dominio: "folha.uol.com.br"
+    tipo: "tradicional"
+    ano_fundacao: 1921
+    ano_inicio: 2015
+    sitemaps:
+      - "https://feeds.folha.uol.com.br/poder/rss091.xml"
+      - "https://feeds.folha.uol.com.br/mercado/rss091.xml"
+      - "https://feeds.folha.uol.com.br/mundo/rss091.xml"
+      - "https://feeds.folha.uol.com.br/cotidiano/rss091.xml"
+      - "https://www1.folha.uol.com.br/poder/"
+      - "https://www1.folha.uol.com.br/mercado/"
+    prefixos_cdx:
+      - "folha.uol.com.br/poder"
+      - "folha.uol.com.br/mercado"
+      - "folha.uol.com.br/mundo"
+      - "folha.uol.com.br/cotidiano"
+      - "folha.uol.com.br/colunas"
+      - "www1.folha.uol.com.br/poder"
+      - "www1.folha.uol.com.br/mercado"
+      - "www1.folha.uol.com.br/mundo"
+      - "www1.folha.uol.com.br/cotidiano"
+      - "painel.blogfolha.uol.com.br"
+      - "eleicoes.folha.uol.com.br"
+    padroes_incluir:
+      - "/poder/"
+      - "/mercado/"
+      - "/mundo/"
+      - "/cotidiano/"
+      - "/colunas/"
+
+  estadao:
+    nome: "Estadão"
+    dominio: "estadao.com.br"
+    tipo: "tradicional"
+    ano_fundacao: 1875
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.estadao.com.br/arc/outboundfeeds/sitemap-index-by-day/?outputType=xml"
+      - "https://www.estadao.com.br/sitemaps/custom/www.estadao"
+      - "https://www.estadao.com.br/politica/"
+      - "https://www.estadao.com.br/economia/"
+      - "https://www.estadao.com.br/brasil/"
+      - "https://www.estadao.com.br/internacional/"
+    prefixos_cdx:
+      - "politica.estadao.com.br"
+      - "economia.estadao.com.br"
+      - "brasil.estadao.com.br"
+      - "internacional.estadao.com.br"
+      - "blogs.estadao.com.br"
+      - "www.estadao.com.br/politica"
+      - "www.estadao.com.br/economia"
+      - "www.estadao.com.br/brasil"
+      - "www.estadao.com.br/internacional"
+      - "estadao.com.br/politica"
+      - "estadao.com.br/economia"
+    padroes_incluir:
+      - "/politica/"
+      - "/economia/"
+      - "/internacional/"
+      - "/brasil/"
+
+  oglobo:
+    nome: "O Globo"
+    dominio: "oglobo.globo.com"
+    tipo: "tradicional"
+    ano_fundacao: 1925
+    ano_inicio: 2015
+    sitemaps:
+      - "https://oglobo.globo.com/sitemap/oglobo/news.xml"
+      - "https://oglobo.globo.com/politica/"
+      - "https://oglobo.globo.com/economia/"
+      - "https://oglobo.globo.com/brasil/"
+    prefixos_cdx:
+      - "oglobo.globo.com/politica"
+      - "oglobo.globo.com/economia"
+      - "oglobo.globo.com/brasil"
+      - "oglobo.globo.com/mundo"
+      - "oglobo.globo.com/opiniao"
+      - "oglobo.globo.com/fato-ou-fake"
+      - "blogs.oglobo.globo.com"
+    padroes_incluir:
+      - "/politica/"
+      - "/economia/"
+      - "/brasil/"
+      - "/pais/"
+      - "/mundo/"
+
+  gazetadopovo:
+    nome: "Gazeta do Povo"
+    dominio: "gazetadopovo.com.br"
+    tipo: "tradicional"
+    ano_fundacao: 1919
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.gazetadopovo.com.br/sitemap-news.xml"
+      - "https://www.gazetadopovo.com.br/feed/rss/republica.xml"
+      - "https://www.gazetadopovo.com.br/republica/"
+      - "https://www.gazetadopovo.com.br/economia/"
+    prefixos_cdx:
+      - "gazetadopovo.com.br/republica"
+      - "gazetadopovo.com.br/economia"
+      - "gazetadopovo.com.br/mundo"
+      - "gazetadopovo.com.br/politica"
+      - "gazetadopovo.com.br/vozes"
+      - "gazetadopovo.com.br/opiniao"
+      - "gazetadopovo.com.br/eleicoes"
+    padroes_incluir:
+      - "/republica/"
+      - "/economia/"
+      - "/mundo/"
+      - "/vozes/"
+      - "/politica/"
+      - "/opiniao/"
+
+  correiobraziliense:
+    nome: "Correio Braziliense"
+    dominio: "correiobraziliense.com.br"
+    tipo: "tradicional"
+    ano_fundacao: 1960
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.correiobraziliense.com.br/sitemap.xml"
+      - "https://www.correiobraziliense.com.br/politica/"
+      - "https://www.correiobraziliense.com.br/economia/"
+      - "https://www.correiobraziliense.com.br/brasil/"
+      - "https://www.correiobraziliense.com.br/cidades-df/"
+    prefixos_cdx:
+      - "correiobraziliense.com.br/politica"
+      - "correiobraziliense.com.br/economia"
+      - "correiobraziliense.com.br/brasil"
+      - "correiobraziliense.com.br/mundo"
+      - "correiobraziliense.com.br/cidades-df"
+      - "correiobraziliense.com.br/opiniao"
+      - "blogs.correiobraziliense.com.br"
+    padroes_incluir:
+      - "/politica/"
+      - "/economia/"
+      - "/brasil/"
+      - "/mundo/"
+      - "/cidades-df/"
+      - "/opiniao/"
+
+  metropoles:
+    nome: "Metrópoles"
+    dominio: "metropoles.com"
+    tipo: "digital_nativo"
+    ano_fundacao: 2015
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.metropoles.com/sitemap_index.xml"
+      - "https://www.metropoles.com/feed"
+      - "https://www.metropoles.com/brasil/politica-brasil"
+      - "https://www.metropoles.com/brasil/economia-brasil"
+    prefixos_cdx:
+      - "metropoles.com/brasil/politica-brasil"
+      - "metropoles.com/brasil/economia-brasil"
+      - "metropoles.com/distrito-federal/politica-df"
+      - "metropoles.com/mundo"
+      - "metropoles.com/colunas"
+      - "metropoles.com/brasil"
+    padroes_incluir:
+      - "/brasil/politica-brasil/"
+      - "/brasil/economia-brasil/"
+      - "/distrito-federal/politica-df/"
+      - "/brasil/"
+      - "/colunas/"
+      - "/mundo/"
+
+  poder360:
+    nome: "Poder360"
+    dominio: "poder360.com.br"
+    tipo: "digital_nativo"
+    ano_fundacao: 2015
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.poder360.com.br/feed/"
+      - "https://www.poder360.com.br/governo/"
+      - "https://www.poder360.com.br/congresso/"
+      - "https://www.poder360.com.br/economia/"
+    prefixos_cdx:
+      - "poder360.com.br/governo"
+      - "poder360.com.br/congresso"
+      - "poder360.com.br/economia"
+      - "poder360.com.br/brasil"
+      - "poder360.com.br/eleicoes"
+      - "poder360.com.br/justica"
+      - "poder360.com.br/opiniao"
+      - "www.poder360.com.br/governo"
+      - "www.poder360.com.br/congresso"
+      - "www.poder360.com.br/economia"
+    padroes_incluir:
+      - "/governo/"
+      - "/congresso/"
+      - "/economia/"
+      - "/justica/"
+      - "/brasil/"
+      - "/eleicoes/"
+
+  oantagonista:
+    nome: "O Antagonista"
+    dominio: "oantagonista.com.br"
+    tipo: "digital_nativo"
+    ano_fundacao: 2015
+    ano_inicio: 2015
+    sitemaps:
+      - "https://oantagonista.com.br/sitemap_index.xml"
+      - "https://oantagonista.com.br/feed/"
+      - "https://oantagonista.com.br/brasil/"
+      - "https://oantagonista.com.br/economia/"
+    prefixos_cdx:
+      - "oantagonista.com/brasil"
+      - "oantagonista.com/economia"
+      - "oantagonista.com/politica"
+      - "oantagonista.com.br/brasil"
+      - "oantagonista.com.br/economia"
+      - "oantagonista.com.br/politica"
+      - "www.oantagonista.com.br/brasil"
+    padroes_incluir:
+      - "/brasil/"
+      - "/economia/"
+      - "/mundo/"
+      - "/sociedade/"
+      - "/politica/"
+
+  brasil247:
+    nome: "Brasil 247"
+    dominio: "brasil247.com"
+    tipo: "digital_nativo"
+    ano_fundacao: 2011
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.brasil247.com/sitemap.xml"
+      - "https://www.brasil247.com/feed"
+      - "https://www.brasil247.com/brasil"
+      - "https://www.brasil247.com/poder"
+      - "https://www.brasil247.com/economia"
+    prefixos_cdx:
+      - "brasil247.com/brasil"
+      - "brasil247.com/poder"
+      - "brasil247.com/economia"
+      - "brasil247.com/mundo"
+      - "brasil247.com/blog"
+      - "www.brasil247.com/brasil"
+      - "www.brasil247.com/poder"
+      - "www.brasil247.com/economia"
+    padroes_incluir:
+      - "/brasil/"
+      - "/poder/"
+      - "/economia/"
+      - "/mundo/"
+      - "/entrevistas/"
+      - "/midia/"
+
+  nexo:
+    nome: "Nexo Jornal"
+    dominio: "nexojornal.com.br"
+    tipo: "digital_nativo"
+    ano_fundacao: 2015
+    ano_inicio: 2015
+    sitemaps:
+      - "https://www.nexojornal.com.br/sitemap_index.xml"
+      - "https://www.nexojornal.com.br/sitemap.xml"
+      - "https://www.nexojornal.com.br/rss.xml"
+      - "https://www.nexojornal.com.br/feed/"
+      - "https://www.nexojornal.com.br/expresso/"
+      - "https://www.nexojornal.com.br/ensaio/"
+      - "https://www.nexojornal.com.br/grafico/"
+      - "https://www.nexojornal.com.br/tema/"
+    prefixos_cdx:
+      - "nexojornal.com.br/expresso"
+      - "nexojornal.com.br/ensaio"
+      - "nexojornal.com.br/tema"
+      - "nexojornal.com.br/grafico"
+      - "nexojornal.com.br/colunistas"
+      - "nexojornal.com.br/externo"
+      - "www.nexojornal.com.br/expresso"
+      - "www.nexojornal.com.br/ensaio"
+      - "www.nexojornal.com.br/tema"
+      - "www.nexojornal.com.br/grafico"
+      - "www.nexojornal.com.br/colunistas"
+    padroes_incluir:
+      - "/expresso/"
+      - "/ensaio/"
+      - "/tema/"
+      - "/grafico/"
+      - "/colunistas/"
+      - "/ponto-de-vista/"
+
+filtros:
+  padroes_excluir:
+    - "/tag/"
+    - "/tags/"
+    - "/autor/"
+    - "/autores/"
+    - "/categoria/"
+    - "/categorias/"
+    - "/category/"
+    - "/ao-vivo"
+    - "/ao-vivo.html"
+    - "/fotos/"
+    - "/videos/"
+    - "/podcast/"
+    - "/podcasts/"
+    - "/horoscopo/"
+    - "/receitas/"
+    - "/tempo/"
+    - "/loterias/"
+    - "/comercial/"
+    - "/patrocinado/"
+    - "/login"
+    - "/assine"
+    - "/cadastro"
+    - ".pdf"
+    - ".jpg"
+    - ".png"
+    - ".mp4"
+    - ".gif"
+    - ".jpeg"
+    - ".css"
+    - ".js"
+    - ".svg"
+    - ".woff"
+    - ".xml"
+  min_tamanho_corpo: 150
+  eixos_tematicos:
+    politico:
+      - "governo"
+      - "presidente"
+      - "eleicao"
+      - "eleicoes"
+      - "congresso"
+      - "senado"
+      - "camara"
+      - "stf"
+      - "stj"
+      - "tse"
+      - "lula"
+      - "bolsonaro"
+      - "temer"
+      - "dilma"
+      - "ministro"
+      - "partido"
+      - "cpi"
+      - "voto"
+      - "urna"
+      - "deputado"
+      - "senador"
+      - "prefeito"
+      - "governador"
+    economico:
+      - "inflacao"
+      - "pib"
+      - "juros"
+      - "selic"
+      - "banco central"
+      - "dolar"
+      - "cambio"
+      - "fazenda"
+      - "orcamento"
+      - "deficit"
+      - "superavit"
+      - "imposto"
+      - "tributaria"
+      - "petrobras"
+      - "mercado"
+      - "bolsa"
+      - "ibovespa"
+    social:
+      - "saude"
+      - "educacao"
+      - "seguranca"
+      - "violencia"
+      - "policia"
+      - "sus"
+      - "escola"
+      - "universidade"
+      - "enem"
+      - "pobreza"
+      - "fome"
+      - "bolsa familia"
+      - "auxilio"
+      - "indigena"
+      - "quilombola"
+      - "direitos humanos"
+    esportivo:
+      - "futebol"
+      - "copa do mundo"
+      - "olimpiadas"
+      - "olimpiada"
+      - "cbf"
+      - "libertadores"
+      - "brasileirao"
+      - "fifa"
+      - "selecao brasileira"
+      - "estadio"
+    ambiental:
+      - "meio ambiente"
+      - "desmatamento"
+      - "amazonia"
+      - "pantanal"
+      - "queimadas"
+      - "ibama"
+      - "icmbio"
+      - "clima"
+      - "aquecimento global"
+      - "sustentabilidade"
+    internacional:
+      - "eua"
+      - "estados unidos"
+      - "china"
+      - "russia"
+      - "ucrania"
+      - "israel"
+      - "palestina"
+      - "onu"
+      - "g20"
+      - "brics"
+      - "uniao europeia"
+
+clickbait:
+  gatilhos_sensacionalistas:
+    - "urgente"
+    - "veja"
+    - "veja o video"
+    - "choca"
+    - "chocante"
+    - "chocou"
+    - "bomba"
+    - "revela"
+    - "revelou"
+    - "escandalo"
+    - "segredo"
+    - "inacreditavel"
+    - "flagrado"
+    - "surpreende"
+    - "surpreendente"
+    - "absurdo"
+    - "polemica"
+    - "polemico"
+    - "nao vai acreditar"
+    - "o que ninguem te conta"
+    - "entenda o motivo"
+    - "bastidores"
+    - "detona"
+    - "detonou"
+    - "dispara"
+    - "disparou"
+    - "rasga o verbo"
+    - "massacra"
+    - "humilha"
+
+nlp:
+  modelo_embeddings: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  modelo_spacy: "pt_core_news_lg"
+  batch_size: 64
+  tamanho_janela_contexto_entidade: 30
+
+clustering:
+  janela_dias: 5
+  min_cluster_size: 2
+  min_samples: 1
+  similaridade_minima: 0.65
+  cluster_selection_epsilon: 0.35
+
+estatistica:
+  nivel_significancia: 0.05
+  metodo_correlacao: "spearman"
+
+classificacao_tematica:
+  metodo: "ancoras_semanticas"
+  ancoras:
+    politico:
+      - "eleições, votação, congresso nacional, senado federal, câmara dos deputados e partidos"
+      - "governo federal, presidente da república, ministros, palácio do planalto e articulação política"
+      - "decisões judiciais do supremo tribunal federal, stf, cpi e investigações parlamentares"
+    economico:
+      - "taxa de juros selic, comitê de política monetária copom e banco central"
+      - "inflação, índice de preços ao consumidor ipca, custo de vida e poder de compra"
+      - "mercado financeiro, bolsa de valores ibovespa, cotação do dólar, pib e arrecadação da fazenda"
+    social:
+      - "saúde pública, hospitais, sistema único de saúde sus, vacinação e atendimento médico"
+      - "educação básica, escolas públicas, universidades federais, enem e professores"
+      - "segurança pública, violência urbana, operações policiais, presídios e direitos humanos"
+      - "programas sociais de combate à pobreza, fome e transferência de renda"
+    ambiental:
+      - "desmatamento ilegal na floresta amazônica, queimadas no pantanal e fiscalização do ibama"
+      - "mudanças climáticas, aquecimento global, sustentabilidade, biodiversidade e transição energética"
+    internacional:
+      - "geopolítica global, diplomacia, relações exteriores, onu, g20 e brics"
+      - "guerras, conflitos internacionais, tratados multilaterais e política externa dos estados unidos, rússia e china"
+    esportivo:
+      - "campeonato brasileiro de futebol, libertadores, copa do mundo e clubes esportivos"
+      - "jogos olímpicos, atletas, competições esportivas e seleções nacionais"
