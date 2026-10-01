@@ -549,6 +549,57 @@ class BancoDados:
                 anos_stats[a] = {"cdx": 0, "sitemaps": 0, "total_urls": 0, "materias": 0}
             anos_stats[a]["materias"] = m_cnt
 
+        cur.execute("""
+            SELECT 
+                COALESCE(eixo_tematico, 'Indefinido') as eixo,
+                SUM(CASE WHEN fonte_coleta LIKE '%cdx%' THEN 1 ELSE 0 END) as cdx,
+                SUM(CASE WHEN fonte_coleta NOT LIKE '%cdx%' THEN 1 ELSE 0 END) as sitemap,
+                COUNT(*) as total
+            FROM urls_coletadas
+            GROUP BY eixo
+            ORDER BY total DESC
+        """)
+        eixos_geral_rows = cur.fetchall()
+        eixos_stats = {}
+        for r in eixos_geral_rows:
+            eixos_stats[r[0]] = {
+                "cdx": r[1] or 0,
+                "sitemaps": r[2] or 0,
+                "total": r[3] or 0,
+                "materias": 0
+            }
+
+        cur.execute("""
+            SELECT COALESCE(eixo_tematico, 'Indefinido') as eixo, COUNT(*)
+            FROM materias
+            GROUP BY eixo
+        """)
+        for r_mat in cur.fetchall():
+            e_k = r_mat[0]
+            if e_k in eixos_stats:
+                eixos_stats[e_k]["materias"] = r_mat[1]
+            else:
+                eixos_stats[e_k] = {"cdx": 0, "sitemaps": 0, "total": 0, "materias": r_mat[1]}
+
+        cur.execute("""
+            SELECT 
+                v.nome,
+                COALESCE(u.eixo_tematico, 'Indefinido') as eixo,
+                COUNT(u.id) as total
+            FROM veiculos v
+            LEFT JOIN urls_coletadas u ON v.id = u.veiculo_id
+            GROUP BY v.nome, eixo
+        """)
+        for r_veic_eixo in cur.fetchall():
+            nome_v = r_veic_eixo[0]
+            eixo_k = r_veic_eixo[1]
+            cnt_k = r_veic_eixo[2] or 0
+            if nome_v in veiculos_map:
+                if "eixos" not in veiculos_map[nome_v]:
+                    veiculos_map[nome_v]["eixos"] = {}
+                if cnt_k > 0:
+                    veiculos_map[nome_v]["eixos"][eixo_k] = cnt_k
+
         veiculos_stats = list(veiculos_map.values())
         materias_por_veiculo = {v["nome"]: v["total_materias"] for v in veiculos_stats}
         urls_por_veiculo = {v["nome"]: v["total_urls"] for v in veiculos_stats}
@@ -565,6 +616,7 @@ class BancoDados:
             "total_eventos": total_eventos,
             "veiculos_stats": veiculos_stats,
             "anos_stats": anos_stats,
+            "eixos_stats": eixos_stats,
             "materias_por_veiculo": materias_por_veiculo,
             "urls_por_veiculo": urls_por_veiculo,
             "materias_por_ano": materias_por_ano,

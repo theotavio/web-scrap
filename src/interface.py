@@ -149,6 +149,97 @@ class InterfaceConsole:
 
             self.console.print(tabela_anos_p2)
 
+            eixos_ordem = ["politico", "economico", "internacional", "social", "ambiental", "esportivo"]
+            eixos_nomes = {
+                "politico": "Político",
+                "economico": "Econômico",
+                "internacional": "Internacional",
+                "social": "Social",
+                "ambiental": "Ambiental",
+                "esportivo": "Esportivo",
+                "Indefinido": "Indefinido"
+            }
+
+            tabela_veic_eixos = Table(
+                title="[bold cyan]Detalhamento de Eixos Temáticos por Veículo[/bold cyan]",
+                border_style="cyan"
+            )
+            tabela_veic_eixos.add_column("Veículo", style="bold white", no_wrap=True)
+            for ek in eixos_ordem:
+                tabela_veic_eixos.add_column(eixos_nomes.get(ek, ek), justify="right")
+            tabela_veic_eixos.add_column("Total Geral", justify="right", style="bold white")
+
+            soma_eixos = {ek: 0 for ek in eixos_ordem}
+            soma_eixos_total = 0
+
+            for v in veiculos_stats:
+                nome = v.get("nome", "")
+                eixos_v = v.get("eixos", {})
+                valores_e = [eixos_v.get(ek, 0) for ek in eixos_ordem]
+                tot_v = v.get("total_urls", 0)
+
+                for ek, val_e in zip(eixos_ordem, valores_e):
+                    soma_eixos[ek] += val_e
+                soma_eixos_total += tot_v
+
+                tabela_veic_eixos.add_row(
+                    nome,
+                    *[self._fmt_num(val) if val > 0 else "-" for val in valores_e],
+                    self._fmt_num(tot_v)
+                )
+
+            tabela_veic_eixos.add_section()
+            tabela_veic_eixos.add_row(
+                "[bold]TOTAL GERAL[/bold]",
+                *[f"[bold]{self._fmt_num(soma_eixos[ek])}[/bold]" for ek in eixos_ordem],
+                f"[bold green]{self._fmt_num(soma_eixos_total)}[/bold green]"
+            )
+
+            self.console.print(tabela_veic_eixos)
+
+        eixos_stats = stats.get("eixos_stats", {})
+        if eixos_stats:
+            tabela_eixos_geral = Table(
+                title="[bold cyan]Distribuição de Notícias por Eixo Temático Estipulado[/bold cyan]",
+                border_style="cyan"
+            )
+            tabela_eixos_geral.add_column("Eixo Temático Estipulado", style="bold white")
+            tabela_eixos_geral.add_column("URLs CDX", justify="right", style="yellow")
+            tabela_eixos_geral.add_column("URLs Sitemaps", justify="right", style="blue")
+            tabela_eixos_geral.add_column("Total URLs", justify="right", style="bold white")
+            tabela_eixos_geral.add_column("Matérias Extraídas", justify="right", style="magenta")
+            tabela_eixos_geral.add_column("Proporção (%)", justify="right", style="green")
+
+            tot_geral_urls = stats.get("total_urls", 1) or 1
+            eixos_nomes = {
+                "politico": "Político",
+                "economico": "Econômico",
+                "internacional": "Internacional",
+                "social": "Social",
+                "ambiental": "Ambiental",
+                "esportivo": "Esportivo",
+                "Indefinido": "Indefinido"
+            }
+
+            for ek, info_e in eixos_stats.items():
+                nome_formatado = eixos_nomes.get(ek, ek.capitalize())
+                u_cdx = info_e.get("cdx", 0)
+                u_sm = info_e.get("sitemaps", 0)
+                u_tot = info_e.get("total", 0)
+                m_qtd = info_e.get("materias", 0)
+                pct = f"{(u_tot / tot_geral_urls * 100):.1f}%" if tot_geral_urls > 0 else "-"
+
+                tabela_eixos_geral.add_row(
+                    nome_formatado,
+                    self._fmt_num(u_cdx),
+                    self._fmt_num(u_sm),
+                    self._fmt_num(u_tot),
+                    self._fmt_num(m_qtd),
+                    pct
+                )
+
+            self.console.print(tabela_eixos_geral)
+
         anos_stats = stats.get("anos_stats", {})
         if anos_stats:
             tabela_anos_geral = Table(
