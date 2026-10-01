@@ -444,6 +444,16 @@ class BancoDados:
         cur.execute("SELECT COUNT(*) FROM urls_coletadas")
         total_urls = cur.fetchone()[0]
 
+        cur.execute("""
+            SELECT 
+                SUM(CASE WHEN fonte_coleta LIKE '%cdx%' THEN 1 ELSE 0 END),
+                SUM(CASE WHEN fonte_coleta NOT LIKE '%cdx%' THEN 1 ELSE 0 END)
+            FROM urls_coletadas
+        """)
+        row_fontes = cur.fetchone()
+        total_urls_cdx = row_fontes[0] or 0
+        total_urls_sitemaps = row_fontes[1] or 0
+
         cur.execute("SELECT status_extracao, COUNT(*) FROM urls_coletadas GROUP BY status_extracao")
         status_urls = {row[0]: row[1] for row in cur.fetchall()}
 
@@ -457,16 +467,75 @@ class BancoDados:
         total_eventos = cur.fetchone()[0]
 
         cur.execute("""
-            SELECT v.nome, v.codigo, v.tipo,
-                   (SELECT COUNT(*) FROM urls_coletadas u WHERE u.veiculo_id = v.id) as total_urls,
+            SELECT v.id, v.nome, v.codigo, v.tipo,
                    (SELECT COUNT(*) FROM materias m WHERE m.veiculo_id = v.id) as total_materias
             FROM veiculos v
             ORDER BY v.tipo, v.nome
         """)
-        veiculos_stats = [dict(row) for row in cur.fetchall()]
+        veiculos_base = [dict(row) for row in cur.fetchall()]
 
-        materias_por_veiculo = {row["nome"]: row["total_materias"] for row in veiculos_stats}
-        urls_por_veiculo = {row["nome"]: row["total_urls"] for row in veiculos_stats}
+        cur.execute("""
+            SELECT 
+                v.nome,
+                CASE 
+                    WHEN u.data_prevista LIKE '201%' OR u.data_prevista LIKE '202%' THEN substr(u.data_prevista, 1, 4)
+                    WHEN u.timestamp_cdx LIKE '201%' OR u.timestamp_cdx LIKE '202%' THEN substr(u.timestamp_cdx, 1, 4)
+                    WHEN u.url LIKE '%/2015/%' THEN '2015'
+                    WHEN u.url LIKE '%/2016/%' THEN '2016'
+                    WHEN u.url LIKE '%/2017/%' THEN '2017'
+                    WHEN u.url LIKE '%/2018/%' THEN '2018'
+                    WHEN u.url LIKE '%/2019/%' THEN '2019'
+                    WHEN u.url LIKE '%/2020/%' THEN '2020'
+                    WHEN u.url LIKE '%/2021/%' THEN '2021'
+                    WHEN u.url LIKE '%/2022/%' THEN '2022'
+                    WHEN u.url LIKE '%/2023/%' THEN '2023'
+                    WHEN u.url LIKE '%/2024/%' THEN '2024'
+                    WHEN u.url LIKE '%/2025/%' THEN '2025'
+                    ELSE 'Indefinido'
+                END as ano,
+                SUM(CASE WHEN u.fonte_coleta LIKE '%cdx%' THEN 1 ELSE 0 END) as cdx,
+                SUM(CASE WHEN u.fonte_coleta NOT LIKE '%cdx%' AND u.id IS NOT NULL THEN 1 ELSE 0 END) as sitemap,
+                COUNT(u.id) as total
+            FROM veiculos v
+            LEFT JOIN urls_coletadas u ON v.id = u.veiculo_id
+            GROUP BY v.nome, ano
+        """)
+        agregados = cur.fetchall()
+
+        veiculos_map = {}
+        for vb in veiculos_base:
+            veiculos_map[vb["nome"]] = {
+                "id": vb["id"],
+                "nome": vb["nome"],
+                "codigo": vb["codigo"],
+                "tipo": vb["tipo"],
+                "total_materias": vb["total_materias"],
+                "total_urls": 0,
+                "urls_cdx": 0,
+                "urls_sitemaps": 0,
+                "anos": {}
+            }
+
+        anos_stats = {}
+        for row in agregados:
+            nome_v = row[0]
+            ano = str(row[1]) if row[1] else "Indefinido"
+            cdx_cnt = row[2] or 0
+            sm_cnt = row[3] or 0
+            tot_cnt = row[4] or 0
+
+            if nome_v in veiculos_map:
+                veiculos_map[nome_v]["total_urls"] += tot_cnt
+                veiculos_map[nome_v]["urls_cdx"] += cdx_cnt
+                veiculos_map[nome_v]["urls_sitemaps"] += sm_cnt
+                if tot_cnt > 0:
+                    veiculos_map[nome_v]["anos"][ano] = tot_cnt
+
+            if ano not in anos_stats:
+                anos_stats[ano] = {"cdx": 0, "sitemaps": 0, "total_urls": 0, "materias": 0}
+            anos_stats[ano]["cdx"] += cdx_cnt
+            anos_stats[ano]["sitemaps"] += sm_cnt
+            anos_stats[ano]["total_urls"] += tot_cnt
 
         cur.execute("""
             SELECT ano, COUNT(*)
@@ -474,41 +543,28 @@ class BancoDados:
             GROUP BY ano
             ORDER BY ano ASC
         """)
-        materias_por_ano = {row[0]: row[1] for row in cur.fetchall()}
+        materias_por_ano = {str(row[0]): row[1] for row in cur.fetchall()}
+        for a, m_cnt in materias_por_ano.items():
+            if a not in anos_stats:
+                anos_stats[a] = {"cdx": 0, "sitemaps": 0, "total_urls": 0, "materias": 0}
+            anos_stats[a]["materias"] = m_cnt
 
-        cur.execute("""
-            SELECT 
-                CASE 
-                    WHEN data_prevista LIKE '201%' OR data_prevista LIKE '202%' THEN substr(data_prevista, 1, 4)
-                    WHEN timestamp_cdx LIKE '201%' OR timestamp_cdx LIKE '202%' THEN substr(timestamp_cdx, 1, 4)
-                    WHEN url LIKE '%/2015/%' THEN '2015'
-                    WHEN url LIKE '%/2016/%' THEN '2016'
-                    WHEN url LIKE '%/2017/%' THEN '2017'
-                    WHEN url LIKE '%/2018/%' THEN '2018'
-                    WHEN url LIKE '%/2019/%' THEN '2019'
-                    WHEN url LIKE '%/2020/%' THEN '2020'
-                    WHEN url LIKE '%/2021/%' THEN '2021'
-                    WHEN url LIKE '%/2022/%' THEN '2022'
-                    WHEN url LIKE '%/2023/%' THEN '2023'
-                    WHEN url LIKE '%/2024/%' THEN '2024'
-                    WHEN url LIKE '%/2025/%' THEN '2025'
-                    ELSE 'Indefinido'
-                END as ano_calc,
-                COUNT(*)
-            FROM urls_coletadas
-            GROUP BY ano_calc
-            ORDER BY ano_calc ASC
-        """)
-        urls_por_ano = {row[0]: row[1] for row in cur.fetchall()}
+        veiculos_stats = list(veiculos_map.values())
+        materias_por_veiculo = {v["nome"]: v["total_materias"] for v in veiculos_stats}
+        urls_por_veiculo = {v["nome"]: v["total_urls"] for v in veiculos_stats}
+        urls_por_ano = {a: d["total_urls"] for a, d in anos_stats.items()}
 
         con.close()
         return {
             "total_urls": total_urls,
+            "total_urls_cdx": total_urls_cdx,
+            "total_urls_sitemaps": total_urls_sitemaps,
             "status_urls": status_urls,
             "total_materias": total_materias,
             "total_embeddings": total_embeddings,
             "total_eventos": total_eventos,
             "veiculos_stats": veiculos_stats,
+            "anos_stats": anos_stats,
             "materias_por_veiculo": materias_por_veiculo,
             "urls_por_veiculo": urls_por_veiculo,
             "materias_por_ano": materias_por_ano,
