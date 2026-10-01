@@ -153,7 +153,7 @@ O ponto de entrada principal do pipeline é o arquivo [`main.py`], que oferece e
 
 ### 1. Coleta de URLs (`--etapa coletar`)
 
-O módulo de coleta permite filtrar a origem das URLs através do argumento `--fonte`:
+O módulo de coleta suporta filtros granulares por fonte, veículo específico e intervalo de anos para evitar consultas redundantes e focar exatamente nas lacunas necessárias:
 
 ```bash
 # Coleta completa (Sitemaps dos portais + API CDX do Wayback Machine)
@@ -165,8 +165,17 @@ python main.py --etapa coletar --fonte cdx
 # Coleta focada exclusivamente nos Sitemaps XML e RSS diretos dos portais
 python main.py --etapa coletar --fonte sitemaps
 
-# Coleta com limite de URLs por veículo (ideal para amostragens e testes rápidos)
-python main.py --etapa coletar --fonte cdx --limite 500
+# Coleta direcionada a um veículo específico (ex: veículo de interesse)
+python main.py --etapa coletar --veiculo codigo_veiculo --fonte cdx
+
+# Coleta filtrada por um único ano (ex: 2025)
+python main.py --etapa coletar --ano 2025 --fonte cdx
+
+# Coleta filtrada por intervalo de anos (ex: 2023 a 2025)
+python main.py --etapa coletar --ano-inicio 2023 --ano-fim 2025 --fonte cdx
+
+# Coleta combinada com limite por veículo (ideal para testes rápidos)
+python main.py --etapa coletar --veiculo codigo_veiculo --ano 2024 --limite 100 --fonte cdx
 ```
 
 ### 2. Extração de Conteúdo e Deduplicação (`--etapa extrair`)
@@ -240,7 +249,7 @@ python main.py --etapa tudo --limite 200
 ### 9. Comandos Utilitários de Diagnóstico e Banco de Dados
 
 ```bash
-# Exibir painel com o status e métricas atuais do banco de dados SQLite
+# Exibir painel com o status detalhado (separação CDX vs Sitemaps, matriz anual por jornal e eixos temáticos)
 python main.py --status
 
 # Limpar arquivos de logs de execuções anteriores
