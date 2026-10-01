@@ -32,7 +32,9 @@ class MotorColeta:
         veiculo_id: int,
         info_veiculo: Dict[str, Any],
         limite_por_veiculo: Optional[int] = None,
-        fonte: str = "todas"
+        fonte: str = "todas",
+        ano_inicio: Optional[int] = None,
+        ano_fim: Optional[int] = None
     ) -> Tuple[str, int, int]:
         total_cdx = 0
         total_sitemap = 0
@@ -82,7 +84,9 @@ class MotorColeta:
 
         if fonte in ("cdx", "todas"):
             prefixos = info_veiculo.get("prefixos_cdx", [])
-            ano_ini_veic = int(info_veiculo.get("ano_inicio", self.ano_inicio))
+            ano_ini_padrao = int(info_veiculo.get("ano_inicio", self.ano_inicio))
+            ano_ini_veic = ano_inicio if ano_inicio is not None else ano_ini_padrao
+            ano_fim_veic = ano_fim if ano_fim is not None else self.ano_fim
             lim_por_prefixo = None
             if limite_por_veiculo is not None:
                 lim_por_prefixo = max(50, limite_por_veiculo // max(1, len(prefixos)))
@@ -94,7 +98,7 @@ class MotorColeta:
                 urls_cdx = self.coletor_cdx.coletar_urls_prefixo(
                     prefixo=prefixo,
                     ano_inicio=ano_ini_veic,
-                    ano_fim=self.ano_fim,
+                    ano_fim=ano_fim_veic,
                     limite_total=lim_por_prefixo,
                     callback_lote=callback_sitemap_lote
                 )
@@ -121,7 +125,7 @@ class MotorColeta:
                 urls_sm_hist = self.coletor_sitemaps.coletar_sitemaps_historicos_cdx(
                     sitemap_url=sm_url,
                     ano_inicio=ano_ini_veic,
-                    ano_fim=self.ano_fim,
+                    ano_fim=ano_fim_veic,
                     limite_total=lim_por_sm
                 )
                 for item in urls_sm_hist:
@@ -150,18 +154,46 @@ class MotorColeta:
         )
         return cod_veiculo, total_encontradas, total_inseridos
 
-    def executar(self, limite_por_veiculo: Optional[int] = None, fonte: str = "todas") -> Dict[str, Any]:
+    def executar(
+        self,
+        limite_por_veiculo: Optional[int] = None,
+        fonte: str = "todas",
+        veiculo: Optional[str] = None,
+        ano_inicio: Optional[int] = None,
+        ano_fim: Optional[int] = None
+    ) -> Dict[str, Any]:
         mapa_veiculos = self._obter_mapa_veiculos()
         veiculos_cfg = self.config.obter("veiculos", {})
-        resumo = {}
 
+        if veiculo:
+            if veiculo in veiculos_cfg:
+                veiculos_cfg = {veiculo: veiculos_cfg[veiculo]}
+            else:
+                cod_match = None
+                for k, v in veiculos_cfg.items():
+                    if veiculo.lower() in k.lower() or veiculo.lower() in v.get("nome", "").lower():
+                        cod_match = k
+                        break
+                if cod_match:
+                    veiculos_cfg = {cod_match: veiculos_cfg[cod_match]}
+
+        resumo = {}
         tarefas = []
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_threads) as executor:
             for cod, info in veiculos_cfg.items():
                 v_id = mapa_veiculos.get(cod)
                 if v_id is None:
                     continue
-                tarefa = executor.submit(self._coletar_veiculo, cod, v_id, info, limite_por_veiculo, fonte)
+                tarefa = executor.submit(
+                    self._coletar_veiculo,
+                    cod,
+                    v_id,
+                    info,
+                    limite_por_veiculo,
+                    fonte,
+                    ano_inicio,
+                    ano_fim
+                )
                 tarefas.append(tarefa)
 
             for tarefa in concurrent.futures.as_completed(tarefas):

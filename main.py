@@ -18,11 +18,34 @@ from src.visualizacao.graficos import GeradorGraficos
 from src.visualizacao.relatorio import GeradorRelatorio
 
 
-def etapa_coletar(banco: BancoDados, limite_veiculo: Optional[int], fonte: str, ui: InterfaceConsole) -> None:
+def etapa_coletar(
+    banco: BancoDados,
+    limite_veiculo: Optional[int],
+    fonte: str,
+    veiculo: Optional[str],
+    ano_inicio: Optional[int],
+    ano_fim: Optional[int],
+    ui: InterfaceConsole
+) -> None:
     msg_limite = f"limite por veículo: {limite_veiculo}" if limite_veiculo else "modo contínuo sem limites"
-    ui.exibir_mensagem(f"Iniciando coleta de URLs (fonte: {fonte}, {msg_limite})...", "cyan")
+    detalhes = []
+    if veiculo:
+        detalhes.append(f"veículo: {veiculo}")
+    if ano_inicio or ano_fim:
+        ini = ano_inicio or 2015
+        fim = ano_fim or 2025
+        detalhes.append(f"período: {ini}-{fim}")
+    detalhes_str = f" [{', '.join(detalhes)}]" if detalhes else ""
+
+    ui.exibir_mensagem(f"Iniciando coleta de URLs (fonte: {fonte}, {msg_limite}){detalhes_str}...", "cyan")
     motor = MotorColeta(banco)
-    resumo = motor.executar(limite_por_veiculo=limite_veiculo, fonte=fonte)
+    resumo = motor.executar(
+        limite_por_veiculo=limite_veiculo,
+        fonte=fonte,
+        veiculo=veiculo,
+        ano_inicio=ano_inicio,
+        ano_fim=ano_fim
+    )
     for veic, dados in resumo.items():
         ui.exibir_mensagem(f"{veic}: {dados['encontradas']} encontradas, {dados['inseridas']} novas registradas.")
 
@@ -167,6 +190,30 @@ def main():
         default="todas",
         help="Fonte de coleta de URLs (sitemaps: direto dos jornais | cdx: Wayback Machine | todas: ambas)"
     )
+    parser.add_argument(
+        "--veiculo",
+        type=str,
+        default=None,
+        help="Filtrar por veículo específico (ex: nexo, brasil247, metropoles, folha, estadao, etc.)"
+    )
+    parser.add_argument(
+        "--ano",
+        type=int,
+        default=None,
+        help="Filtrar coleta por um ano específico (ex: 2025, 2020)"
+    )
+    parser.add_argument(
+        "--ano-inicio",
+        type=int,
+        default=None,
+        help="Ano inicial para a coleta (padrão: 2015)"
+    )
+    parser.add_argument(
+        "--ano-fim",
+        type=int,
+        default=None,
+        help="Ano final para a coleta (padrão: 2025)"
+    )
 
     args = parser.parse_args()
     ui = InterfaceConsole()
@@ -201,9 +248,20 @@ def main():
         )
         return
 
+    ano_ini = args.ano if args.ano else args.ano_inicio
+    ano_fim = args.ano if args.ano else args.ano_fim
+
     etapa = args.etapa
     if etapa in ("coletar", "tudo"):
-        etapa_coletar(banco, limite_veiculo=args.limite, fonte=args.fonte, ui=ui)
+        etapa_coletar(
+            banco,
+            limite_veiculo=args.limite,
+            fonte=args.fonte,
+            veiculo=args.veiculo,
+            ano_inicio=ano_ini,
+            ano_fim=ano_fim,
+            ui=ui
+        )
 
     if etapa in ("extrair", "tudo"):
         limite_ext = (args.limite * 10) if args.limite else None
