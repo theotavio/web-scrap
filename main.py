@@ -25,13 +25,16 @@ def etapa_coletar(
     veiculo: Optional[str],
     ano_inicio: Optional[int],
     ano_fim: Optional[int],
+    lista_anos: Optional[list],
     ui: InterfaceConsole
 ) -> None:
     msg_limite = f"limite por veículo: {limite_veiculo}" if limite_veiculo else "modo contínuo sem limites"
     detalhes = []
     if veiculo:
-        detalhes.append(f"veículo: {veiculo}")
-    if ano_inicio or ano_fim:
+        detalhes.append(f"veículo(s): {veiculo}")
+    if lista_anos:
+        detalhes.append(f"ano(s): {', '.join(map(str, lista_anos))}")
+    elif ano_inicio or ano_fim:
         ini = ano_inicio or 2015
         fim = ano_fim or 2025
         detalhes.append(f"período: {ini}-{fim}")
@@ -44,7 +47,8 @@ def etapa_coletar(
         fonte=fonte,
         veiculo=veiculo,
         ano_inicio=ano_inicio,
-        ano_fim=ano_fim
+        ano_fim=ano_fim,
+        lista_anos=lista_anos
     )
     for veic, dados in resumo.items():
         ui.exibir_mensagem(f"{veic}: {dados['encontradas']} encontradas, {dados['inseridas']} novas registradas.")
@@ -194,13 +198,13 @@ def main():
         "--veiculo",
         type=str,
         default=None,
-        help="Filtrar por veículo específico (ex: nexo, brasil247, metropoles, folha, estadao, etc.)"
+        help="Filtrar por veículo(s) (ex: nexo | poder360,folha,estadao | tradicional | digital)"
     )
     parser.add_argument(
         "--ano",
-        type=int,
+        type=str,
         default=None,
-        help="Filtrar coleta por um ano específico (ex: 2025, 2020)"
+        help="Filtrar por ano(s) (ex: 2020 | 2018,2020,2022 | 2018-2022)"
     )
     parser.add_argument(
         "--ano-inicio",
@@ -248,8 +252,21 @@ def main():
         )
         return
 
-    ano_ini = args.ano if args.ano else args.ano_inicio
-    ano_fim = args.ano if args.ano else args.ano_fim
+    ano_ini = args.ano_inicio
+    ano_fim = args.ano_fim
+    lista_anos = None
+
+    if args.ano:
+        ano_str = str(args.ano).strip()
+        if "-" in ano_str and "," not in ano_str:
+            partes = ano_str.split("-")
+            if len(partes) == 2 and partes[0].isdigit() and partes[1].isdigit():
+                ano_ini = int(partes[0])
+                ano_fim = int(partes[1])
+        elif "," in ano_str:
+            lista_anos = [int(a.strip()) for a in ano_str.split(",") if a.strip().isdigit()]
+        elif ano_str.isdigit():
+            lista_anos = [int(ano_str)]
 
     etapa = args.etapa
     if etapa in ("coletar", "tudo"):
@@ -260,6 +277,7 @@ def main():
             veiculo=args.veiculo,
             ano_inicio=ano_ini,
             ano_fim=ano_fim,
+            lista_anos=lista_anos,
             ui=ui
         )
 

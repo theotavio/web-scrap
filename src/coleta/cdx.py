@@ -242,13 +242,15 @@ class ColetorCDX:
         prefixo: str,
         ano_inicio: int = 2015,
         ano_fim: int = 2025,
+        lista_anos: Optional[List[int]] = None,
         limite_total: Optional[int] = None,
         callback_lote: Optional[Any] = None
     ) -> List[Dict[str, Any]]:
         resultados: List[Dict[str, Any]] = []
         urls_vistas: Set[str] = set()
 
-        for ano in range(ano_inicio, ano_fim + 1):
+        anos = lista_anos if lista_anos else list(range(ano_inicio, ano_fim + 1))
+        for ano in anos:
             if limite_total is not None and len(resultados) >= limite_total:
                 break
 

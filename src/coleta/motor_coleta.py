@@ -34,7 +34,8 @@ class MotorColeta:
         limite_por_veiculo: Optional[int] = None,
         fonte: str = "todas",
         ano_inicio: Optional[int] = None,
-        ano_fim: Optional[int] = None
+        ano_fim: Optional[int] = None,
+        lista_anos: Optional[List[int]] = None
     ) -> Tuple[str, int, int]:
         total_cdx = 0
         total_sitemap = 0
@@ -99,6 +100,7 @@ class MotorColeta:
                     prefixo=prefixo,
                     ano_inicio=ano_ini_veic,
                     ano_fim=ano_fim_veic,
+                    lista_anos=lista_anos,
                     limite_total=lim_por_prefixo,
                     callback_lote=callback_sitemap_lote
                 )
@@ -160,22 +162,30 @@ class MotorColeta:
         fonte: str = "todas",
         veiculo: Optional[str] = None,
         ano_inicio: Optional[int] = None,
-        ano_fim: Optional[int] = None
+        ano_fim: Optional[int] = None,
+        lista_anos: Optional[List[int]] = None
     ) -> Dict[str, Any]:
         mapa_veiculos = self._obter_mapa_veiculos()
         veiculos_cfg = self.config.obter("veiculos", {})
 
         if veiculo:
-            if veiculo in veiculos_cfg:
-                veiculos_cfg = {veiculo: veiculos_cfg[veiculo]}
-            else:
-                cod_match = None
-                for k, v in veiculos_cfg.items():
-                    if veiculo.lower() in k.lower() or veiculo.lower() in v.get("nome", "").lower():
-                        cod_match = k
-                        break
-                if cod_match:
-                    veiculos_cfg = {cod_match: veiculos_cfg[cod_match]}
+            termos = [t.strip().lower() for t in veiculo.split(",") if t.strip()]
+            veiculos_filtrados = {}
+            for t in termos:
+                if t in ("tradicional", "tradicionais"):
+                    for k, v in veiculos_cfg.items():
+                        if v.get("tipo") == "tradicional":
+                            veiculos_filtrados[k] = v
+                elif t in ("digital", "digitais", "digital_nativo", "digitais_nativos"):
+                    for k, v in veiculos_cfg.items():
+                        if v.get("tipo") == "digital_nativo":
+                            veiculos_filtrados[k] = v
+                else:
+                    for k, v in veiculos_cfg.items():
+                        if t == k.lower() or t in k.lower() or t in v.get("nome", "").lower():
+                            veiculos_filtrados[k] = v
+            if veiculos_filtrados:
+                veiculos_cfg = veiculos_filtrados
 
         resumo = {}
         tarefas = []
@@ -192,7 +202,8 @@ class MotorColeta:
                     limite_por_veiculo,
                     fonte,
                     ano_inicio,
-                    ano_fim
+                    ano_fim,
+                    lista_anos
                 )
                 tarefas.append(tarefa)
 
