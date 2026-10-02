@@ -132,6 +132,8 @@ class BancoDados:
         """)
 
         cur.execute("CREATE INDEX IF NOT EXISTS idx_urls_veiculo_status ON urls_coletadas(veiculo_id, status_extracao);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_urls_status_id ON urls_coletadas(status_extracao, id);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_urls_veic_status_id ON urls_coletadas(veiculo_id, status_extracao, id);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_urls_url ON urls_coletadas(url);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_veiculo ON materias(veiculo_id);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_data ON materias(data_publicacao);")
@@ -183,7 +185,18 @@ class BancoDados:
         con.close()
         return inseridos
 
-    def obter_urls_pendentes(self, limite: Optional[int] = None) -> List[Dict[str, Any]]:
+    def contar_urls_pendentes(self, veiculo_id: Optional[int] = None) -> int:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        if veiculo_id:
+            cur.execute("SELECT COUNT(*) FROM urls_coletadas WHERE status_extracao = 'pendente' AND veiculo_id = ?", (veiculo_id,))
+        else:
+            cur.execute("SELECT COUNT(*) FROM urls_coletadas WHERE status_extracao = 'pendente'")
+        total = cur.fetchone()[0]
+        con.close()
+        return int(total)
+
+    def obter_urls_pendentes(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None) -> List[Dict[str, Any]]:
         con = self.obter_conexao()
         cur = con.cursor()
         query = """
@@ -192,11 +205,15 @@ class BancoDados:
             FROM urls_coletadas u
             JOIN veiculos v ON u.veiculo_id = v.id
             WHERE u.status_extracao = 'pendente'
-            ORDER BY u.id ASC
         """
+        params = []
+        if veiculo_id:
+            query += " AND u.veiculo_id = ?"
+            params.append(veiculo_id)
+        query += " ORDER BY u.id ASC"
         if limite:
             query += f" LIMIT {limite}"
-        cur.execute(query)
+        cur.execute(query, params)
         linhas = [dict(row) for row in cur.fetchall()]
         con.close()
         return linhas

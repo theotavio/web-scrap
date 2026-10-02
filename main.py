@@ -54,14 +54,33 @@ def etapa_coletar(
         ui.exibir_mensagem(f"{veic}: {dados['encontradas']} encontradas, {dados['inseridas']} novas registradas.")
 
 
-def etapa_extrair(banco: BancoDados, limite: Optional[int], ui: InterfaceConsole) -> None:
-    ui.exibir_mensagem("Iniciando extração e limpeza de matérias com cascata anti-paywall...", "cyan")
+def etapa_extrair(
+    banco: BancoDados,
+    limite: Optional[int],
+    veiculo: Optional[str],
+    ui: InterfaceConsole
+) -> None:
+    msg_detalhes = []
+    if veiculo:
+        msg_detalhes.append(f"veículo: {veiculo}")
+    if limite:
+        msg_detalhes.append(f"limite: {limite}")
+    detalhes_str = f" [{', '.join(msg_detalhes)}]" if msg_detalhes else ""
+
+    ui.exibir_mensagem(f"Iniciando extração e limpeza de matérias com cascata anti-paywall{detalhes_str}...", "cyan")
     motor = MotorExtracao(banco)
-    pendentes = banco.obter_urls_pendentes(limite=limite)
-    total = len(pendentes)
-    if total == 0:
+
+    veiculo_id = None
+    if veiculo:
+        mapa = motor._obter_mapa_veiculos()
+        veiculo_id = mapa.get(veiculo.lower())
+
+    total_pendentes = banco.contar_urls_pendentes(veiculo_id=veiculo_id)
+    if total_pendentes == 0:
         ui.exibir_mensagem("Nenhuma URL pendente para extração.", "yellow")
         return
+
+    total = min(limite, total_pendentes) if limite else total_pendentes
 
     with Progress(
         SpinnerColumn(),
@@ -73,7 +92,11 @@ def etapa_extrair(banco: BancoDados, limite: Optional[int], ui: InterfaceConsole
         console=ui.console
     ) as progress:
         tarefa = progress.add_task("[green]Extraindo matérias...", total=total)
-        res = motor.executar(limite=limite, callback_progresso=lambda n: progress.update(tarefa, advance=n))
+        res = motor.executar(
+            limite=limite,
+            veiculo=veiculo,
+            callback_progresso=lambda n: progress.update(tarefa, advance=n)
+        )
 
     ui.exibir_mensagem(
         f"Extração concluída: {res['sucesso']} sucessos, {res['descartados']} descartados, "
@@ -282,8 +305,7 @@ def main():
         )
 
     if etapa in ("extrair", "tudo"):
-        limite_ext = (args.limite * 10) if args.limite else None
-        etapa_extrair(banco, limite=limite_ext, ui=ui)
+        etapa_extrair(banco, limite=args.limite, veiculo=args.veiculo, ui=ui)
 
     if etapa in ("nlp", "features", "tudo"):
         etapa_nlp(banco, ui=ui)

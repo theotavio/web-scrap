@@ -49,34 +49,70 @@ class MotorExtracao:
 
         return url_id, "sucesso", materia_id
 
-    def executar(self, limite: Optional[int] = None, callback_progresso=None) -> Dict[str, int]:
-        urls_pendentes = self.banco.obter_urls_pendentes(limite=limite)
-        total = len(urls_pendentes)
-        if total == 0:
-            return {"total": 0, "sucesso": 0, "falha": 0, "descartados": 0}
+    def _obter_mapa_veiculos(self) -> Dict[str, int]:
+        con = self.banco.obter_conexao()
+        cur = con.cursor()
+        cur.execute("SELECT codigo, id FROM veiculos")
+        mapa = {row[0].lower(): row[1] for row in cur.fetchall()}
+        con.close()
+        return mapa
 
-        estatisticas = {"total": total, "sucesso": 0, "falha": 0, "descartados": 0, "duplicados": 0}
+    def executar(
+        self,
+        limite: Optional[int] = None,
+        veiculo: Optional[str] = None,
+        callback_progresso=None
+    ) -> Dict[str, int]:
+        import gc
+
+        veiculo_id = None
+        if veiculo:
+            mapa = self._obter_mapa_veiculos()
+            veiculo_id = mapa.get(veiculo.lower())
+
+        total_pendente = self.banco.contar_urls_pendentes(veiculo_id=veiculo_id)
+        if total_pendente == 0:
+            return {"total": 0, "sucesso": 0, "falha": 0, "descartados": 0, "duplicados": 0}
+
+        total_a_processar = min(limite, total_pendente) if limite else total_pendente
+        estatisticas = {"total": total_a_processar, "sucesso": 0, "falha": 0, "descartados": 0, "duplicados": 0}
+
+        tamanho_lote = 500
+        processados = 0
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_threads) as executor:
-            futuros = {executor.submit(self._processar_url, item): item for item in urls_pendentes}
+            while processados < total_a_processar:
+                restante = total_a_processar - processados
+                lote_tam = min(tamanho_lote, restante)
 
-            for futuro in concurrent.futures.as_completed(futuros):
-                try:
-                    _, status, _ = futuro.result()
-                    if status == "sucesso":
-                        estatisticas["sucesso"] += 1
-                    elif status in ("descartado_incompleto", "bloqueado_robots"):
-                        estatisticas["descartados"] += 1
-                    elif status == "duplicado":
-                        estatisticas["duplicados"] += 1
-                    else:
+                lote_urls = self.banco.obter_urls_pendentes(limite=lote_tam, veiculo_id=veiculo_id)
+                if not lote_urls:
+                    break
+
+                futuros = {executor.submit(self._processar_url, item): item for item in lote_urls}
+
+                for futuro in concurrent.futures.as_completed(futuros):
+                    try:
+                        _, status, _ = futuro.result()
+                        if status == "sucesso":
+                            estatisticas["sucesso"] += 1
+                        elif status in ("descartado_incompleto", "bloqueado_robots"):
+                            estatisticas["descartados"] += 1
+                        elif status == "duplicado":
+                            estatisticas["duplicados"] += 1
+                        else:
+                            estatisticas["falha"] += 1
+                    except Exception as e:
+                        self.logger.error(f"Excecao no processamento de URL em thread: {e}")
                         estatisticas["falha"] += 1
-                except Exception as e:
-                    self.logger.error(f"Excecao no processamento de URL em thread: {e}")
-                    estatisticas["falha"] += 1
 
-                if callback_progresso:
-                    callback_progresso(1)
+                    processados += 1
+                    if callback_progresso:
+                        callback_progresso(1)
+
+                del lote_urls
+                del futuros
+                gc.collect()
 
         self.logger.info(f"Extracao finalizada: {estatisticas}")
         return estatisticas
