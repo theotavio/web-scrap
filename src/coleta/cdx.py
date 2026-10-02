@@ -168,10 +168,14 @@ class ColetorCDX:
                     )
                 break
 
+            texto_resp = resp.text.strip() if resp.text else ""
+            if not texto_resp:
+                break
+
             try:
                 linhas = resp.json()
             except Exception as e:
-                self.logger.error(f"CDX erro ao decodificar JSON para {prefixo} ({data_de}-{data_ate}): {e}")
+                self.logger.warning(f"CDX retorno nao JSON para {prefixo} ({data_de}-{data_ate}): {e}")
                 break
 
             if not linhas or len(linhas) <= 1:
