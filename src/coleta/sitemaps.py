@@ -111,6 +111,7 @@ class ColetorSitemaps:
         limite_total: Optional[int] = None
     ) -> List[Dict[str, Any]]:
         from src.coleta.cdx import ColetorCDX
+        import random
         import time
 
         resultados: List[Dict[str, Any]] = []
@@ -130,9 +131,15 @@ class ColetorSitemaps:
         try:
             with ColetorCDX._lock:
                 agora = time.time()
+                if agora < ColetorCDX._cooldown_ate:
+                    espera_cd = ColetorCDX._cooldown_ate - agora
+                    time.sleep(espera_cd)
+                    agora = time.time()
+
                 decorrido = agora - ColetorCDX._ultimo_acesso
-                if decorrido < 1.5:
-                    time.sleep(1.5 - decorrido)
+                intervalo = 3.2 + random.uniform(0.3, 0.8)
+                if decorrido < intervalo:
+                    time.sleep(intervalo - decorrido)
                 ColetorCDX._ultimo_acesso = time.time()
 
                 resp_cdx = self.sessao.get(
@@ -155,9 +162,14 @@ class ColetorSitemaps:
                 url_wayback_sitemap = f"https://web.archive.org/web/{ts}id_/{sitemap_url}"
                 with ColetorCDX._lock:
                     agora = time.time()
+                    if agora < ColetorCDX._cooldown_ate:
+                        time.sleep(ColetorCDX._cooldown_ate - agora)
+                        agora = time.time()
+
                     decorrido = agora - ColetorCDX._ultimo_acesso
-                    if decorrido < 1.5:
-                        time.sleep(1.5 - decorrido)
+                    intervalo = 3.2 + random.uniform(0.3, 0.8)
+                    if decorrido < intervalo:
+                        time.sleep(intervalo - decorrido)
                     ColetorCDX._ultimo_acesso = time.time()
                     res_sm = self.coletar_urls_sitemap(url_wayback_sitemap, limite_total)
 

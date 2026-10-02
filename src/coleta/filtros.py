@@ -44,12 +44,13 @@ class FiltroUrls:
 
         indicadores_noticia = [
             "/noticia/", "/politica/", "/economia/", "/mundo/", "/brasil/",
-            "/poder/", "/mercado/", "/cotidiano/", "/republica/", "/governo/",
+            "/poder/", "/poder-", "/mercado/", "/cotidiano/", "/republica/", "/governo/",
             "/congresso/", "/justica/", "/eleicoes/", "/internacional/",
             "/colunas/", "/coluna/", "/opiniao/", "/artigo/", "/nacional/",
-            "/vozes/", "/materias/", "/post/", "/analise/", "/ultimas-noticias/",
+            "/vozes/", "/materias/", "/materia/", "/post/", "/analise/", "/ultimas-noticias/",
             "/natureza/", "/educacao/", "/saude/", "/expresso/", "/ensaio/",
-            "/grafico/", "/tema/", "/ponto-de-vista/", "/blogs/", "/blog/",
+            "/grafico/", "/tema/", "/ponto-de-vista/", "/entrevista/", "/academico/",
+            "/externo/", "/extra/", "/midia/", "/europa/", "/blogs/", "/blog/",
             "/cidades-df/", "/distrito-federal/", "/reportagem/", "/especial/",
             ".ghtml", ".shtml", ".html",
             "/2015/", "/2016/", "/2017/", "/2018/", "/2019/", "/2020/",

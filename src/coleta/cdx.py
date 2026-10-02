@@ -13,12 +13,13 @@ from src.coleta.filtros import FiltroUrls
 class ColetorCDX:
     _lock = threading.Lock()
     _ultimo_acesso = 0.0
+    _cooldown_ate = 0.0
 
     def __init__(self):
         self.config = obter_configuracao()
         self.logger = obter_logger("coleta")
         self.filtro = FiltroUrls()
-        self.url_base = self.config.obter("cdx.url_base", "http://web.archive.org/cdx/search/cdx")
+        self.url_base = self.config.obter("cdx.url_base", "https://web.archive.org/cdx/search/cdx")
         self.url_base_https = self.config.obter("cdx.url_base_https", "https://web.archive.org/cdx/search/cdx")
         self.user_agent = self.config.obter(
             "rede.user_agent_academico",
@@ -26,7 +27,7 @@ class ColetorCDX:
         )
         self.timeout = self.config.obter("rede.timeout_requisicao", 45)
         self.limite_requisicao = self.config.obter("cdx.limite_por_requisicao", 1000)
-        self.pausa = self.config.obter("cdx.pausa_segundos", 0.05)
+        self.pausa = self.config.obter("cdx.pausa_segundos", 0.2)
         self.sessao = self._criar_sessao()
 
     def _criar_sessao(self) -> requests.Session:
@@ -47,14 +48,20 @@ class ColetorCDX:
         headers: Dict[str, str]
     ) -> Optional[requests.Response]:
         endpoint_tentativa = endpoint
-        backoff_lista = [5, 10, 20, 40, 80, 120]
+        backoff_lista = [8, 15, 30, 60, 90, 120]
 
         for tentativa in range(6):
             with ColetorCDX._lock:
                 agora = time.time()
+                if agora < ColetorCDX._cooldown_ate:
+                    espera_cd = ColetorCDX._cooldown_ate - agora
+                    time.sleep(espera_cd)
+                    agora = time.time()
+
                 decorrido = agora - ColetorCDX._ultimo_acesso
-                if decorrido < 2.5:
-                    time.sleep(2.5 - decorrido)
+                intervalo_base = 3.2 + random.uniform(0.3, 0.8)
+                if decorrido < intervalo_base:
+                    time.sleep(intervalo_base - decorrido)
                 ColetorCDX._ultimo_acesso = time.time()
 
                 try:
@@ -80,21 +87,27 @@ class ColetorCDX:
                     )
                     return None
 
-                tempo_espera = backoff_lista[min(tentativa, len(backoff_lista) - 1)] + random.uniform(0.5, 2.0)
+                tempo_espera = backoff_lista[min(tentativa, len(backoff_lista) - 1)] + random.uniform(1.0, 3.0)
+                with ColetorCDX._lock:
+                    ColetorCDX._cooldown_ate = max(ColetorCDX._cooldown_ate, time.time() + tempo_espera)
+
                 self.logger.warning(
                     f"CDX {endpoint_tentativa} retornou HTTP {resp.status_code} na tentativa {tentativa + 1}/6. "
-                    f"Aguardando {tempo_espera:.1f}s de backoff antes de re-tentar..."
+                    f"Ativando cooldown global de {tempo_espera:.1f}s..."
                 )
                 time.sleep(tempo_espera)
-                endpoint_tentativa = self.url_base_https if endpoint_tentativa == self.url_base else self.url_base
+                endpoint_tentativa = "http://web.archive.org/cdx/search/cdx" if "https:" in endpoint_tentativa else "https://web.archive.org/cdx/search/cdx"
             else:
-                tempo_espera = backoff_lista[min(tentativa, len(backoff_lista) - 1)] + random.uniform(0.5, 2.0)
+                tempo_espera = backoff_lista[min(tentativa, len(backoff_lista) - 1)] + random.uniform(1.0, 3.0)
+                with ColetorCDX._lock:
+                    ColetorCDX._cooldown_ate = max(ColetorCDX._cooldown_ate, time.time() + tempo_espera)
+
                 self.logger.warning(
-                    f"CDX excecao de conexao {endpoint_tentativa} na tentativa {tentativa + 1}/6: {erro_conexao}. "
-                    f"Aguardando {tempo_espera:.1f}s..."
+                    f"CDX conexao falhou {endpoint_tentativa} na tentativa {tentativa + 1}/6: {erro_conexao}. "
+                    f"Ativando cooldown global de {tempo_espera:.1f}s..."
                 )
                 time.sleep(tempo_espera)
-                endpoint_tentativa = self.url_base_https if endpoint_tentativa == self.url_base else self.url_base
+                endpoint_tentativa = "http://web.archive.org/cdx/search/cdx" if "https:" in endpoint_tentativa else "https://web.archive.org/cdx/search/cdx"
 
         self.logger.error(
             f"CDX falha definitiva apos 6 tentativas para url={parametros.get('url')} "
