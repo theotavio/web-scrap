@@ -124,6 +124,8 @@ class MotorColeta:
             salvar_buffer()
 
             for sm_url in sitemaps:
+                if not any(ext in sm_url.lower() for ext in [".xml", "sitemap", "feed", "rss"]):
+                    continue
                 urls_sm_hist = self.coletor_sitemaps.coletar_sitemaps_historicos_cdx(
                     sitemap_url=sm_url,
                     ano_inicio=ano_ini_veic,

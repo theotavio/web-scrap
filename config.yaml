@@ -44,8 +44,6 @@ veiculos:
       - "https://feeds.folha.uol.com.br/mercado/rss091.xml"
       - "https://feeds.folha.uol.com.br/mundo/rss091.xml"
       - "https://feeds.folha.uol.com.br/cotidiano/rss091.xml"
-      - "https://www1.folha.uol.com.br/poder/"
-      - "https://www1.folha.uol.com.br/mercado/"
     prefixos_cdx:
       - "folha.uol.com.br/poder"
       - "folha.uol.com.br/mercado"
@@ -74,10 +72,6 @@ veiculos:
     sitemaps:
       - "https://www.estadao.com.br/arc/outboundfeeds/sitemap-index-by-day/?outputType=xml"
       - "https://www.estadao.com.br/sitemaps/custom/www.estadao"
-      - "https://www.estadao.com.br/politica/"
-      - "https://www.estadao.com.br/economia/"
-      - "https://www.estadao.com.br/brasil/"
-      - "https://www.estadao.com.br/internacional/"
     prefixos_cdx:
       - "politica.estadao.com.br"
       - "economia.estadao.com.br"
@@ -104,9 +98,6 @@ veiculos:
     ano_inicio: 2015
     sitemaps:
       - "https://oglobo.globo.com/sitemap/oglobo/news.xml"
-      - "https://oglobo.globo.com/politica/"
-      - "https://oglobo.globo.com/economia/"
-      - "https://oglobo.globo.com/brasil/"
     prefixos_cdx:
       - "oglobo.globo.com/politica"
       - "oglobo.globo.com/economia"
@@ -131,8 +122,6 @@ veiculos:
     sitemaps:
       - "https://www.gazetadopovo.com.br/sitemap-news.xml"
       - "https://www.gazetadopovo.com.br/feed/rss/republica.xml"
-      - "https://www.gazetadopovo.com.br/republica/"
-      - "https://www.gazetadopovo.com.br/economia/"
     prefixos_cdx:
       - "gazetadopovo.com.br/republica"
       - "gazetadopovo.com.br/economia"
@@ -157,10 +146,6 @@ veiculos:
     ano_inicio: 2015
     sitemaps:
       - "https://www.correiobraziliense.com.br/sitemap.xml"
-      - "https://www.correiobraziliense.com.br/politica/"
-      - "https://www.correiobraziliense.com.br/economia/"
-      - "https://www.correiobraziliense.com.br/brasil/"
-      - "https://www.correiobraziliense.com.br/cidades-df/"
     prefixos_cdx:
       - "correiobraziliense.com.br/politica"
       - "correiobraziliense.com.br/economia"
@@ -168,6 +153,18 @@ veiculos:
       - "correiobraziliense.com.br/mundo"
       - "correiobraziliense.com.br/cidades-df"
       - "correiobraziliense.com.br/opiniao"
+      - "correiobraziliense.com.br/app/noticia"
+      - "correiobraziliense.com.br/holofote"
+      - "correiobraziliense.com.br/direito-e-justica"
+      - "www.correiobraziliense.com.br/politica"
+      - "www.correiobraziliense.com.br/economia"
+      - "www.correiobraziliense.com.br/brasil"
+      - "www.correiobraziliense.com.br/mundo"
+      - "www.correiobraziliense.com.br/cidades-df"
+      - "www.correiobraziliense.com.br/opiniao"
+      - "www.correiobraziliense.com.br/app/noticia"
+      - "www.correiobraziliense.com.br/holofote"
+      - "www.correiobraziliense.com.br/direito-e-justica"
       - "blogs.correiobraziliense.com.br"
     padroes_incluir:
       - "/politica/"
@@ -176,6 +173,9 @@ veiculos:
       - "/mundo/"
       - "/cidades-df/"
       - "/opiniao/"
+      - "/app/noticia/"
+      - "/holofote/"
+      - "/direito-e-justica/"
 
   metropoles:
     nome: "Metrópoles"
@@ -186,8 +186,6 @@ veiculos:
     sitemaps:
       - "https://www.metropoles.com/sitemap_index.xml"
       - "https://www.metropoles.com/feed"
-      - "https://www.metropoles.com/brasil/politica-brasil"
-      - "https://www.metropoles.com/brasil/economia-brasil"
     prefixos_cdx:
       - "metropoles.com/brasil/politica-brasil"
       - "metropoles.com/brasil/economia-brasil"

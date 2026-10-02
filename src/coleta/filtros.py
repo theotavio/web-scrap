@@ -52,6 +52,7 @@ class FiltroUrls:
             "/grafico/", "/tema/", "/ponto-de-vista/", "/entrevista/", "/academico/",
             "/externo/", "/extra/", "/midia/", "/europa/", "/blogs/", "/blog/",
             "/cidades-df/", "/distrito-federal/", "/reportagem/", "/especial/",
+            "/app/noticia/", "/holofote/", "/direito-e-justica/",
             ".ghtml", ".shtml", ".html",
             "/2015/", "/2016/", "/2017/", "/2018/", "/2019/", "/2020/",
             "/2021/", "/2022/", "/2023/", "/2024/", "/2025/"

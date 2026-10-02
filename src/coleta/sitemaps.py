@@ -28,9 +28,9 @@ class ColetorSitemaps:
     def _criar_sessao(self) -> requests.Session:
         sessao = requests.Session()
         retries = Retry(
-            total=2,
-            backoff_factor=0.4,
-            status_forcelist=[500, 502, 503, 504],
+            total=3,
+            backoff_factor=1.0,
+            status_forcelist=[429, 500, 502, 503, 504],
             raise_on_status=False
         )
         adapter = HTTPAdapter(max_retries=retries, pool_connections=20, pool_maxsize=20)
@@ -77,6 +77,9 @@ class ColetorSitemaps:
         try:
             resp = self.sessao.get(sitemap_url, headers=headers, timeout=self.timeout)
             if resp.status_code != 200:
+                if resp.status_code == 429:
+                    import time
+                    time.sleep(10.0)
                 self.logger.warning(
                     f"Sitemap {sitemap_url} retornou status HTTP {resp.status_code} ({resp.reason})"
                 )
