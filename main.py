@@ -58,13 +58,17 @@ def etapa_extrair(
     banco: BancoDados,
     limite: Optional[int],
     veiculo: Optional[str],
-    ui: InterfaceConsole
+    reprocessar_erros: bool = False,
+    ui: InterfaceConsole = None
 ) -> None:
+    status_alvo = "erro_download" if reprocessar_erros else "pendente"
     msg_detalhes = []
     if veiculo:
         msg_detalhes.append(f"veículo: {veiculo}")
     if limite:
         msg_detalhes.append(f"limite: {limite}")
+    if reprocessar_erros:
+        msg_detalhes.append("reprocessando erro_download")
     detalhes_str = f" [{', '.join(msg_detalhes)}]" if msg_detalhes else ""
 
     ui.exibir_mensagem(f"Iniciando extração e limpeza de matérias com cascata anti-paywall{detalhes_str}...", "cyan")
@@ -75,9 +79,9 @@ def etapa_extrair(
         mapa = motor._obter_mapa_veiculos()
         veiculo_id = mapa.get(veiculo.lower())
 
-    total_pendentes = banco.contar_urls_pendentes(veiculo_id=veiculo_id)
+    total_pendentes = banco.contar_urls_pendentes(veiculo_id=veiculo_id, status=status_alvo)
     if total_pendentes == 0:
-        ui.exibir_mensagem("Nenhuma URL pendente para extração.", "yellow")
+        ui.exibir_mensagem(f"Nenhuma URL com status '{status_alvo}' para extração.", "yellow")
         return
 
     total = min(limite, total_pendentes) if limite else total_pendentes
@@ -95,6 +99,7 @@ def etapa_extrair(
         res = motor.executar(
             limite=limite,
             veiculo=veiculo,
+            status_origem=status_alvo,
             callback_progresso=lambda n: progress.update(tarefa, advance=n)
         )
 
@@ -241,6 +246,16 @@ def main():
         default=None,
         help="Ano final para a coleta (padrão: 2025)"
     )
+    parser.add_argument(
+        "--reprocessar-erros",
+        action="store_true",
+        help="Reprocessa na etapa de extração apenas as URLs que falharam com erro_download"
+    )
+    parser.add_argument(
+        "--reset-erros",
+        action="store_true",
+        help="Redefine todas as URLs com erro_download de volta para pendente no banco"
+    )
 
     args = parser.parse_args()
     ui = InterfaceConsole()
@@ -250,7 +265,7 @@ def main():
         from src.registro import limpar_logs
         limpar_logs()
         ui.exibir_mensagem("Arquivos de log limpos com sucesso.", "bold green")
-        if not args.etapa and not args.reset_db and not args.status:
+        if not args.etapa and not args.reset_db and not args.status and not args.reset_erros:
             return
 
     banco = BancoDados()
@@ -258,6 +273,17 @@ def main():
     if args.reset_db:
         banco.resetar()
         ui.exibir_mensagem("Banco de dados SQLite resetado com sucesso.", "bold red")
+        if not args.etapa:
+            return
+
+    if args.reset_erros:
+        veiculo_id = None
+        if args.veiculo:
+            motor_temp = MotorExtracao(banco)
+            mapa = motor_temp._obter_mapa_veiculos()
+            veiculo_id = mapa.get(args.veiculo.lower())
+        total_reset = banco.resetar_status_urls(status_origem="erro_download", status_destino="pendente", veiculo_id=veiculo_id)
+        ui.exibir_mensagem(f"{total_reset} URLs com 'erro_download' foram redefinidas para 'pendente' com sucesso.", "bold green")
         if not args.etapa:
             return
 
@@ -305,7 +331,13 @@ def main():
         )
 
     if etapa in ("extrair", "tudo"):
-        etapa_extrair(banco, limite=args.limite, veiculo=args.veiculo, ui=ui)
+        etapa_extrair(
+            banco,
+            limite=args.limite,
+            veiculo=args.veiculo,
+            reprocessar_erros=args.reprocessar_erros,
+            ui=ui
+        )
 
     if etapa in ("nlp", "features", "tudo"):
         etapa_nlp(banco, ui=ui)

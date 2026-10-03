@@ -61,6 +61,7 @@ class MotorExtracao:
         self,
         limite: Optional[int] = None,
         veiculo: Optional[str] = None,
+        status_origem: str = "pendente",
         callback_progresso=None
     ) -> Dict[str, int]:
         import gc
@@ -70,7 +71,7 @@ class MotorExtracao:
             mapa = self._obter_mapa_veiculos()
             veiculo_id = mapa.get(veiculo.lower())
 
-        total_pendente = self.banco.contar_urls_pendentes(veiculo_id=veiculo_id)
+        total_pendente = self.banco.contar_urls_pendentes(veiculo_id=veiculo_id, status=status_origem)
         if total_pendente == 0:
             return {"total": 0, "sucesso": 0, "falha": 0, "descartados": 0, "duplicados": 0}
 
@@ -85,7 +86,7 @@ class MotorExtracao:
                 restante = total_a_processar - processados
                 lote_tam = min(tamanho_lote, restante)
 
-                lote_urls = self.banco.obter_urls_pendentes(limite=lote_tam, veiculo_id=veiculo_id)
+                lote_urls = self.banco.obter_urls_pendentes(limite=lote_tam, veiculo_id=veiculo_id, status=status_origem)
                 if not lote_urls:
                     break
 

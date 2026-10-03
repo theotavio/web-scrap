@@ -185,18 +185,18 @@ class BancoDados:
         con.close()
         return inseridos
 
-    def contar_urls_pendentes(self, veiculo_id: Optional[int] = None) -> int:
+    def contar_urls_pendentes(self, veiculo_id: Optional[int] = None, status: str = "pendente") -> int:
         con = self.obter_conexao()
         cur = con.cursor()
         if veiculo_id:
-            cur.execute("SELECT COUNT(*) FROM urls_coletadas WHERE status_extracao = 'pendente' AND veiculo_id = ?", (veiculo_id,))
+            cur.execute("SELECT COUNT(*) FROM urls_coletadas WHERE status_extracao = ? AND veiculo_id = ?", (status, veiculo_id))
         else:
-            cur.execute("SELECT COUNT(*) FROM urls_coletadas WHERE status_extracao = 'pendente'")
+            cur.execute("SELECT COUNT(*) FROM urls_coletadas WHERE status_extracao = ?", (status,))
         total = cur.fetchone()[0]
         con.close()
         return int(total)
 
-    def obter_urls_pendentes(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None) -> List[Dict[str, Any]]:
+    def obter_urls_pendentes(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, status: str = "pendente") -> List[Dict[str, Any]]:
         con = self.obter_conexao()
         cur = con.cursor()
         query = """
@@ -204,9 +204,9 @@ class BancoDados:
                    v.codigo as veiculo_codigo, v.dominio as veiculo_dominio
             FROM urls_coletadas u
             JOIN veiculos v ON u.veiculo_id = v.id
-            WHERE u.status_extracao = 'pendente'
+            WHERE u.status_extracao = ?
         """
-        params = []
+        params = [status]
         if veiculo_id:
             query += " AND u.veiculo_id = ?"
             params.append(veiculo_id)
@@ -217,6 +217,18 @@ class BancoDados:
         linhas = [dict(row) for row in cur.fetchall()]
         con.close()
         return linhas
+
+    def resetar_status_urls(self, status_origem: str = "erro_download", status_destino: str = "pendente", veiculo_id: Optional[int] = None) -> int:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        if veiculo_id:
+            cur.execute("UPDATE urls_coletadas SET status_extracao = ? WHERE status_extracao = ? AND veiculo_id = ?", (status_destino, status_origem, veiculo_id))
+        else:
+            cur.execute("UPDATE urls_coletadas SET status_extracao = ? WHERE status_extracao = ?", (status_destino, status_origem))
+        afetados = cur.rowcount
+        con.commit()
+        con.close()
+        return afetados
 
     def atualizar_status_url(self, url_id: int, status: str) -> None:
         con = self.obter_conexao()

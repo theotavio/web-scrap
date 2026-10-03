@@ -188,6 +188,12 @@ python main.py --etapa extrair
 
 # Extração com limite de matérias por veículo
 python main.py --etapa extrair --limite 100
+
+# Reprocessar apenas URLs que falharam anteriormente com erro_download
+python main.py --etapa extrair --reprocessar-erros
+
+# Reprocessar erros de um veículo específico com limite
+python main.py --etapa extrair --veiculo codigo_veiculo --reprocessar-erros --limite 100
 ```
 
 ### 3. Processamento de Linguagem Natural (`--etapa nlp`)
@@ -251,6 +257,12 @@ python main.py --etapa tudo --limite 200
 ```bash
 # Exibir painel com o status detalhado (separação CDX vs Sitemaps, matriz anual por jornal e eixos temáticos)
 python main.py --status
+
+# Redefinir todas as URLs com status erro_download de volta para pendente
+python main.py --reset-erros
+
+# Redefinir erro_download para pendente apenas de um veículo específico
+python main.py --reset-erros --veiculo codigo_veiculo
 
 # Limpar arquivos de logs de execuções anteriores
 python main.py --limpar-logs
