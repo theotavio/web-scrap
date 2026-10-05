@@ -16,17 +16,17 @@ banco:
 rede:
   user_agent_academico: "ProjetoPesquisaJornalismoUFC/1.0 (pesquisa.academica; contato: otavioal2907@gmail.com)"
   user_agent_googlebot: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-  timeout_requisicao: 30
+  timeout_requisicao: 12
   max_tentativas: 3
   delay_entre_requisicoes: 0.05
   max_threads_coleta: 6
-  max_threads_extracao: 8
+  max_threads_extracao: 16
   respeitar_robots: true
 
 cdx:
   url_base: "https://web.archive.org/cdx/search/cdx"
   url_base_https: "https://web.archive.org/cdx/search/cdx"
-  url_wayback_raw: "http://web.archive.org/web/{timestamp}id_/{url}"
+  url_wayback_raw: "https://web.archive.org/web/{timestamp}id_/{url}"
   limite_por_requisicao: 1000
   pausa_segundos: 0.05
   backoff_inicial: 0.5

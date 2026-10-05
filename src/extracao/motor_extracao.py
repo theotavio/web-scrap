@@ -10,25 +10,32 @@ from src.anti_paywall import BypassCascataPaywall
 from src.extracao.extrator import ExtratorArtigo
 
 
+_worker_robots = None
+_worker_paywall = None
+_worker_extrator = None
+
+
 def processar_url_trabalhador(item_url: Dict[str, Any]) -> Tuple[int, str, Optional[Dict[str, Any]]]:
-    robots = VerificadorRobots()
-    paywall = BypassCascataPaywall()
-    extrator = ExtratorArtigo()
+    global _worker_robots, _worker_paywall, _worker_extrator
+    if _worker_robots is None:
+        _worker_robots = VerificadorRobots()
+        _worker_paywall = BypassCascataPaywall()
+        _worker_extrator = ExtratorArtigo()
 
     url_id = item_url["id"]
     url = item_url["url"]
     veiculo_id = item_url["veiculo_id"]
     ts_cdx = item_url.get("timestamp_cdx")
 
-    if not robots.pode_coletar(url):
+    if not _worker_robots.pode_coletar(url):
         return url_id, "bloqueado_robots", None
 
-    html, _, metadados = paywall.baixar_conteudo(url, timestamp_cdx=ts_cdx)
+    html, _, metadados = _worker_paywall.baixar_conteudo(url, timestamp_cdx=ts_cdx)
     if not html:
         return url_id, "erro_download", None
 
     dados_ld = metadados.get("dados_json_ld")
-    artigo = extrator.extrair(html, url, dados_json_ld=dados_ld)
+    artigo = _worker_extrator.extrair(html, url, dados_json_ld=dados_ld)
     if not artigo:
         return url_id, "descartado_incompleto", None
 

@@ -112,7 +112,7 @@ class BypassCascataPaywall:
         sessao = self._obter_sessao()
 
         if timestamp_cdx:
-            url_wayback = f"http://web.archive.org/web/{timestamp_cdx}id_/{url}"
+            url_wayback = f"https://web.archive.org/web/{timestamp_cdx}id_/{url}"
             try:
                 r = sessao.get(url_wayback, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
                 if r.status_code == 200 and len(r.text) > 500:
