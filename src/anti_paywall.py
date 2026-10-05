@@ -1,5 +1,6 @@
 import json
 import re
+import threading
 from typing import Any, Dict, Optional, Tuple
 from bs4 import BeautifulSoup
 import requests
@@ -22,20 +23,22 @@ class BypassCascataPaywall:
             "rede.user_agent_googlebot",
             "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
         )
-        self.sessao = self._criar_sessao()
+        self._local = threading.local()
 
-    def _criar_sessao(self) -> requests.Session:
-        sessao = requests.Session()
-        retries = Retry(
-            total=3,
-            backoff_factor=0.5,
-            status_forcelist=[429, 500, 502, 503, 504],
-            raise_on_status=False
-        )
-        adapter = HTTPAdapter(max_retries=retries, pool_connections=20, pool_maxsize=20)
-        sessao.mount("http://", adapter)
-        sessao.mount("https://", adapter)
-        return sessao
+    def _obter_sessao(self) -> requests.Session:
+        if not hasattr(self._local, "sessao"):
+            sessao = requests.Session()
+            retries = Retry(
+                total=3,
+                backoff_factor=0.5,
+                status_forcelist=[429, 500, 502, 503, 504],
+                raise_on_status=False
+            )
+            adapter = HTTPAdapter(max_retries=retries, pool_connections=5, pool_maxsize=5)
+            sessao.mount("http://", adapter)
+            sessao.mount("https://", adapter)
+            self._local.sessao = sessao
+        return self._local.sessao
 
     def _obter_headers_bypass(self, modo: str = "googlebot") -> Dict[str, str]:
         if modo == "googlebot":
@@ -106,11 +109,12 @@ class BypassCascataPaywall:
 
     def baixar_conteudo(self, url: str, timestamp_cdx: Optional[str] = None) -> Tuple[Optional[str], Optional[str], Dict[str, Any]]:
         metadados: Dict[str, Any] = {"metodo": "desconhecido", "tamanho": 0}
+        sessao = self._obter_sessao()
 
         if timestamp_cdx:
             url_wayback = f"http://web.archive.org/web/{timestamp_cdx}id_/{url}"
             try:
-                r = self.sessao.get(url_wayback, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
+                r = sessao.get(url_wayback, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
                 if r.status_code == 200 and len(r.text) > 500:
                     metadados["metodo"] = "web_archive_cdx"
                     metadados["tamanho"] = len(r.text)
@@ -119,7 +123,7 @@ class BypassCascataPaywall:
                 pass
 
         try:
-            r = self.sessao.get(url, headers=self._obter_headers_bypass("googlebot"), timeout=self.timeout)
+            r = sessao.get(url, headers=self._obter_headers_bypass("googlebot"), timeout=self.timeout)
             if r.status_code == 200 and len(r.text) > 500:
                 json_ld = self._extrair_json_ld(r.text)
                 if json_ld:
@@ -133,7 +137,7 @@ class BypassCascataPaywall:
             pass
 
         try:
-            r = self.sessao.get(url, headers=self._obter_headers_bypass("navegador"), timeout=self.timeout)
+            r = sessao.get(url, headers=self._obter_headers_bypass("navegador"), timeout=self.timeout)
             if r.status_code == 200 and len(r.text) > 500:
                 metadados["metodo"] = "navegador_padrao"
                 metadados["tamanho"] = len(r.text)
@@ -142,7 +146,7 @@ class BypassCascataPaywall:
             pass
 
         try:
-            r = self.sessao.get(url, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
+            r = sessao.get(url, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
             if r.status_code == 200 and len(r.text) > 500:
                 metadados["metodo"] = "academico_padrao"
                 metadados["tamanho"] = len(r.text)

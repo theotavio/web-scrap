@@ -1,3 +1,4 @@
+import threading
 import urllib.robotparser
 from typing import Dict
 from urllib.parse import urlparse
@@ -8,12 +9,14 @@ from src.registro import obter_logger
 
 class VerificadorRobots:
     _instancia = None
+    _lock = threading.Lock()
     _parsers: Dict[str, urllib.robotparser.RobotFileParser] = {}
 
     def __new__(cls):
-        if cls._instancia is None:
-            cls._instancia = super(VerificadorRobots, cls).__new__(cls)
-        return cls._instancia
+        with cls._lock:
+            if cls._instancia is None:
+                cls._instancia = super(VerificadorRobots, cls).__new__(cls)
+            return cls._instancia
 
     def __init__(self):
         self.config = obter_configuracao()
@@ -27,8 +30,9 @@ class VerificadorRobots:
     def _obter_parser(self, url: str) -> urllib.robotparser.RobotFileParser:
         parsed = urlparse(url)
         dominio = parsed.netloc
-        if dominio in self._parsers:
-            return self._parsers[dominio]
+        with self._lock:
+            if dominio in self._parsers:
+                return self._parsers[dominio]
 
         rp = urllib.robotparser.RobotFileParser()
         robots_url = f"{parsed.scheme}://{dominio}/robots.txt"
@@ -44,7 +48,8 @@ class VerificadorRobots:
         except Exception:
             rp.allow_all = True
 
-        self._parsers[dominio] = rp
+        with self._lock:
+            self._parsers[dominio] = rp
         return rp
 
     def pode_coletar(self, url: str) -> bool:
