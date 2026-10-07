@@ -20,8 +20,13 @@ rede:
   max_tentativas: 3
   delay_entre_requisicoes: 0.05
   max_threads_coleta: 6
-  max_threads_extracao: 16
+  max_threads_extracao: 8
   respeitar_robots: true
+  timeout_conexao_wayback: 4
+  timeout_leitura_wayback: 15
+  intervalo_wayback_segundos: 1.5
+  pausa_wayback_indisponivel: 120
+  pausa_wayback_maxima: 1800
 
 cdx:
   url_base: "https://web.archive.org/cdx/search/cdx"

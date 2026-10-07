@@ -1,7 +1,9 @@
 import json
 import re
 import threading
+import time
 from typing import Any, Dict, Optional, Tuple
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from bs4 import BeautifulSoup
 import requests
 from requests.adapters import HTTPAdapter
@@ -15,6 +17,13 @@ class BypassCascataPaywall:
         self.config = obter_configuracao()
         self.logger = obter_logger("paywall")
         self.timeout = self.config.obter("rede.timeout_requisicao", 15)
+        self.timeout_wayback = (
+            self.config.obter("rede.timeout_conexao_wayback", 4),
+            self.config.obter("rede.timeout_leitura_wayback", 15),
+        )
+        self.intervalo_wayback = self.config.obter("rede.intervalo_wayback_segundos", 1.5)
+        self.pausa_base_wayback = self.config.obter("rede.pausa_wayback_indisponivel", 120)
+        self.pausa_max_wayback = self.config.obter("rede.pausa_wayback_maxima", 1800)
         self.ua_academico = self.config.obter(
             "rede.user_agent_academico",
             "ProjetoPesquisaJornalismoUFC/1.0"
@@ -24,6 +33,9 @@ class BypassCascataPaywall:
             "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
         )
         self._local = threading.local()
+        self._wayback_bloqueado_ate = 0.0
+        self._wayback_falhas_seguidas = 0
+        self._wayback_ultimo_acesso = 0.0
 
     def _obter_sessao(self) -> requests.Session:
         if not hasattr(self._local, "sessao"):
@@ -39,6 +51,53 @@ class BypassCascataPaywall:
             sessao.mount("https://", adapter)
             self._local.sessao = sessao
         return self._local.sessao
+
+    def _obter_sessao_wayback(self) -> requests.Session:
+        if not hasattr(self._local, "sessao_wayback"):
+            sessao = requests.Session()
+            retries = Retry(total=0, connect=0, read=0, status=0, redirect=5, raise_on_status=False)
+            adapter = HTTPAdapter(max_retries=retries, pool_connections=2, pool_maxsize=2)
+            sessao.mount("https://", adapter)
+            sessao.mount("http://", adapter)
+            self._local.sessao_wayback = sessao
+        return self._local.sessao_wayback
+
+    def _wayback_disponivel(self) -> bool:
+        return time.monotonic() >= self._wayback_bloqueado_ate
+
+    def _registrar_falha_wayback(self) -> None:
+        self._wayback_falhas_seguidas += 1
+        pausa = min(
+            self.pausa_base_wayback * (2 ** (self._wayback_falhas_seguidas - 1)),
+            self.pausa_max_wayback
+        )
+        self._wayback_bloqueado_ate = time.monotonic() + pausa
+        self.logger.warning(
+            f"Wayback indisponivel; pausando consultas ao Wayback por {int(pausa)}s "
+            f"(falhas seguidas: {self._wayback_falhas_seguidas})"
+        )
+
+    def _registrar_sucesso_wayback(self) -> None:
+        self._wayback_falhas_seguidas = 0
+
+    def _respeitar_intervalo_wayback(self) -> None:
+        espera = self._wayback_ultimo_acesso + self.intervalo_wayback - time.monotonic()
+        if espera > 0:
+            time.sleep(espera)
+        self._wayback_ultimo_acesso = time.monotonic()
+
+    @staticmethod
+    def _normalizar_url_ao_vivo(url: str) -> str:
+        partes = urlsplit(url)
+        host = partes.netloc
+        if host.endswith(":80") or host.endswith(":443"):
+            host = host.rsplit(":", 1)[0]
+        consulta = [
+            (k, v) for k, v in parse_qsl(partes.query, keep_blank_values=True)
+            if k.lower() not in ("amp", "ref") and not k.lower().startswith("utm_")
+        ]
+        esquema = "https" if partes.scheme == "http" else partes.scheme
+        return urlunsplit((esquema, host, partes.path, urlencode(consulta), ""))
 
     def _obter_headers_bypass(self, modo: str = "googlebot") -> Dict[str, str]:
         if modo == "googlebot":
@@ -107,23 +166,50 @@ class BypassCascataPaywall:
             pass
         return None
 
+    def _baixar_wayback(self, url: str, timestamp_cdx: str) -> Optional[str]:
+        if not self._wayback_disponivel():
+            return None
+        self._respeitar_intervalo_wayback()
+        url_wayback = f"https://web.archive.org/web/{timestamp_cdx}id_/{url}"
+        try:
+            r = self._obter_sessao_wayback().get(
+                url_wayback,
+                headers=self._obter_headers_bypass("academico"),
+                timeout=self.timeout_wayback
+            )
+        except (requests.exceptions.ConnectTimeout, requests.exceptions.ConnectionError):
+            self._registrar_falha_wayback()
+            return None
+        except Exception:
+            return None
+
+        if r.status_code in (403, 429, 503):
+            self._registrar_falha_wayback()
+            return None
+
+        self._registrar_sucesso_wayback()
+        if r.status_code == 200 and len(r.text) > 500:
+            return r.text
+        return None
+
     def baixar_conteudo(self, url: str, timestamp_cdx: Optional[str] = None) -> Tuple[Optional[str], Optional[str], Dict[str, Any]]:
         metadados: Dict[str, Any] = {"metodo": "desconhecido", "tamanho": 0}
         sessao = self._obter_sessao()
 
         if timestamp_cdx:
-            url_wayback = f"https://web.archive.org/web/{timestamp_cdx}id_/{url}"
-            try:
-                r = sessao.get(url_wayback, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
-                if r.status_code == 200 and len(r.text) > 500:
-                    metadados["metodo"] = "web_archive_cdx"
-                    metadados["tamanho"] = len(r.text)
-                    return r.text, "wayback", metadados
-            except Exception:
-                pass
+            html_wayback = self._baixar_wayback(url, timestamp_cdx)
+            if html_wayback:
+                metadados["metodo"] = "web_archive_cdx"
+                metadados["tamanho"] = len(html_wayback)
+                return html_wayback, "wayback", metadados
+
+        url_viva = self._normalizar_url_ao_vivo(url)
 
         try:
-            r = sessao.get(url, headers=self._obter_headers_bypass("googlebot"), timeout=self.timeout)
+            r = sessao.get(url_viva, headers=self._obter_headers_bypass("googlebot"), timeout=self.timeout)
+            if r.status_code in (404, 410):
+                self.logger.warning(f"Pagina inexistente ({r.status_code}) para {url}")
+                return None, None, metadados
             if r.status_code == 200 and len(r.text) > 500:
                 json_ld = self._extrair_json_ld(r.text)
                 if json_ld:
@@ -137,7 +223,9 @@ class BypassCascataPaywall:
             pass
 
         try:
-            r = sessao.get(url, headers=self._obter_headers_bypass("navegador"), timeout=self.timeout)
+            r = sessao.get(url_viva, headers=self._obter_headers_bypass("navegador"), timeout=self.timeout)
+            if r.status_code in (404, 410):
+                return None, None, metadados
             if r.status_code == 200 and len(r.text) > 500:
                 metadados["metodo"] = "navegador_padrao"
                 metadados["tamanho"] = len(r.text)
@@ -146,7 +234,7 @@ class BypassCascataPaywall:
             pass
 
         try:
-            r = sessao.get(url, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
+            r = sessao.get(url_viva, headers=self._obter_headers_bypass("academico"), timeout=self.timeout)
             if r.status_code == 200 and len(r.text) > 500:
                 metadados["metodo"] = "academico_padrao"
                 metadados["tamanho"] = len(r.text)
