@@ -18,7 +18,7 @@ class BypassCascataPaywall:
         self.logger = obter_logger("paywall")
         self.timeout = self.config.obter("rede.timeout_requisicao", 15)
         self.timeout_wayback = (
-            self.config.obter("rede.timeout_conexao_wayback", 4),
+            self.config.obter("rede.timeout_conexao_wayback", 8),
             self.config.obter("rede.timeout_leitura_wayback", 15),
         )
         self.intervalo_wayback = self.config.obter("rede.intervalo_wayback_segundos", 1.5)

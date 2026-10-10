@@ -22,7 +22,7 @@ rede:
   max_threads_coleta: 6
   max_threads_extracao: 8
   respeitar_robots: true
-  timeout_conexao_wayback: 4
+  timeout_conexao_wayback: 8
   timeout_leitura_wayback: 15
   intervalo_wayback_segundos: 1.5
   pausa_wayback_indisponivel: 120
