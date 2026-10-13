@@ -217,45 +217,6 @@ class InterfaceConsole:
 
             self.console.print(tabela_nlp)
 
-            top_ents = nlp_stats.get("top_entidades", [])
-            if top_ents:
-                tabela_ents = Table(
-                    title="[bold blue]Agentes Políticos e Institucionais Mais Mencionados (NER & Atribuição)[/bold blue]",
-                    border_style="blue"
-                )
-                tabela_ents.add_column("Entidade / Agente", style="bold white")
-                tabela_ents.add_column("Categoria", style="cyan")
-                tabela_ents.add_column("Menções Registradas", justify="right", style="magenta")
-                tabela_ents.add_column("Sentimento Médio Associado", justify="right")
-
-                tipos_map = {
-                    "PER": "Pessoa / Autoridade",
-                    "ORG": "Organização / Partido / Tribunal",
-                    "LOC": "Local / Instituição"
-                }
-
-                for ent in top_ents:
-                    nome_ent = ent.get("texto_entidade", "")
-                    tipo_ent = tipos_map.get(ent.get("tipo_entidade"), ent.get("tipo_entidade", "Geral"))
-                    cnt_ent = ent.get("total", 0)
-                    pol_ent = ent.get("pol_media", 0.0)
-
-                    if pol_ent > 0.05:
-                        pol_fmt = f"[green]{pol_ent:+.4f} (Positivo)[/green]"
-                    elif pol_ent < -0.05:
-                        pol_fmt = f"[red]{pol_ent:+.4f} (Negativo)[/red]"
-                    else:
-                        pol_fmt = f"[yellow]{pol_ent:+.4f} (Neutro)[/yellow]"
-
-                    tabela_ents.add_row(
-                        nome_ent,
-                        tipo_ent,
-                        self._fmt_num(cnt_ent),
-                        pol_fmt
-                    )
-
-                self.console.print(tabela_ents)
-
     def exibir_mensagem(self, texto: str, estilo: str = "green") -> None:
         self.console.print(f"[{estilo}]● {texto}[/{estilo}]")
 

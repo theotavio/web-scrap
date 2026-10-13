@@ -637,15 +637,6 @@ class BancoDados:
         nlp_stats["total_mencoes_entidades"] = row_ents[0] or 0
         nlp_stats["total_entidades_unicas"] = row_ents[1] or 0
 
-        cur.execute("""
-            SELECT texto_entidade, tipo_entidade, SUM(contagem) as total, AVG(polaridade_atribuicao) as pol_media
-            FROM entidades_mencoes
-            GROUP BY texto_entidade, tipo_entidade
-            ORDER BY total DESC
-            LIMIT 6
-        """)
-        nlp_stats["top_entidades"] = [dict(r) for r in cur.fetchall()]
-
         con.close()
         return {
             "total_urls": total_urls,
