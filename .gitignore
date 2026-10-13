@@ -19,3 +19,6 @@ logs/
 # Documentação Interna, Apresentação e Relatórios
 pre_projeto/
 relatorios/
+
+# Base Limpa e Exportações Zenodo/Mendeley
+base_limpa/

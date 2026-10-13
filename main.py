@@ -109,28 +109,48 @@ def etapa_extrair(
     )
 
 
-def etapa_nlp(banco: BancoDados, ui: InterfaceConsole) -> None:
-    ui.exibir_mensagem("Iniciando processamento NLP (Embeddings, Sentimento, Clickbait, NER)...", "cyan")
-    motor = MotorNLP(banco)
-    sem_emb = banco.obter_materias_sem_embedding()
-    sem_feat = banco.obter_materias_para_nlp()
+def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional[str] = None, ui: Optional[InterfaceConsole] = None) -> None:
+    if ui:
+        ui.exibir_mensagem("Iniciando processamento NLP (Embeddings, Sentimento, Clickbait, NER)...", "cyan")
 
-    total_ops = len(sem_emb) + len(sem_feat)
+    veiculo_id = None
+    if veiculo:
+        veiculos_cadastrados = banco.obter_veiculos()
+        mapa = {v["codigo"].lower(): v["id"] for v in veiculos_cadastrados}
+        veiculo_id = mapa.get(veiculo.lower())
+
+    if limite is not None:
+        total_ops = limite * 2
+    else:
+        pendentes_emb = banco.contar_materias_sem_embedding(veiculo_id=veiculo_id)
+        pendentes_feat = banco.contar_materias_para_nlp(veiculo_id=veiculo_id)
+        total_ops = pendentes_emb + pendentes_feat
+
     if total_ops == 0:
-        ui.exibir_mensagem("Todas as matérias já possuem embeddings e features calculadas.", "yellow")
+        if ui:
+            ui.exibir_mensagem("Todas as matérias já possuem embeddings e features calculadas.", "yellow")
         return
+
+    motor = MotorNLP(banco)
 
     with Progress(
         SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
         BarColumn(),
         TaskProgressColumn(),
-        console=ui.console
+        TimeElapsedColumn(),
+        TimeRemainingColumn(),
+        console=ui.console if ui else None
     ) as progress:
         tarefa = progress.add_task("[magenta]Calculando vetores e features...", total=total_ops)
-        res = motor.executar(callback_progresso=lambda n: progress.update(tarefa, advance=n))
+        res = motor.executar(
+            limite=limite,
+            veiculo_id=veiculo_id,
+            callback_progresso=lambda n: progress.update(tarefa, advance=n)
+        )
 
-    ui.exibir_mensagem(f"NLP concluído: {res['embeddings']} embeddings e {res['features']} features gerados.")
+    if ui:
+        ui.exibir_mensagem(f"NLP concluído: {res['embeddings']} embeddings e {res['features']} features gerados.")
 
 
 def etapa_clusterizar(banco: BancoDados, ui: InterfaceConsole) -> None:
@@ -340,7 +360,7 @@ def main():
         )
 
     if etapa in ("nlp", "features", "tudo"):
-        etapa_nlp(banco, ui=ui)
+        etapa_nlp(banco, limite=args.limite, veiculo=args.veiculo, ui=ui)
 
     if etapa in ("clusterizar", "tudo"):
         etapa_clusterizar(banco, ui=ui)

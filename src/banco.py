@@ -170,6 +170,14 @@ class BancoDados:
             self.caminho.unlink()
         self.inicializar()
 
+    def obter_veiculos(self) -> List[Dict[str, Any]]:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.execute("SELECT id, codigo, nome, dominio, tipo, ano_fundacao FROM veiculos")
+        linhas = [dict(row) for row in cur.fetchall()]
+        con.close()
+        return linhas
+
     def inserir_urls_em_lote(self, urls_dados: List[Tuple[int, str, str, Optional[str], Optional[str], Optional[str]]]) -> int:
         if not urls_dados:
             return 0
@@ -421,30 +429,78 @@ class BancoDados:
         con.commit()
         con.close()
 
-    def obter_materias_para_nlp(self) -> List[Dict[str, Any]]:
+    def contar_materias_sem_embedding(self, veiculo_id: Optional[int] = None) -> int:
         con = self.obter_conexao()
         cur = con.cursor()
-        cur.execute("""
+        query = """
+            SELECT COUNT(*)
+            FROM materias m
+            LEFT JOIN embeddings e ON m.id = e.materia_id
+            WHERE e.materia_id IS NULL AND m.tamanho_texto >= 150
+        """
+        params = []
+        if veiculo_id:
+            query += " AND m.veiculo_id = ?"
+            params.append(veiculo_id)
+        cur.execute(query, params)
+        total = cur.fetchone()[0]
+        con.close()
+        return int(total)
+
+    def contar_materias_para_nlp(self, veiculo_id: Optional[int] = None) -> int:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        query = """
+            SELECT COUNT(*)
+            FROM materias
+            WHERE (score_clickbait = 0.0 AND sentimento_polaridade = 0.0 AND sentimento_neu = 0.0) AND tamanho_texto >= 150
+        """
+        params = []
+        if veiculo_id:
+            query += " AND veiculo_id = ?"
+            params.append(veiculo_id)
+        cur.execute(query, params)
+        total = cur.fetchone()[0]
+        con.close()
+        return int(total)
+
+    def obter_materias_para_nlp(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None) -> List[Dict[str, Any]]:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        query = """
             SELECT id, titulo, corpo, resumo, data_publicacao, veiculo_id, eixo_tematico
             FROM materias
-            WHERE (score_clickbait = 0.0 AND sentimento_polaridade = 0.0 AND sentimento_neu = 0.0)
-               OR id NOT IN (SELECT DISTINCT materia_id FROM entidades_mencoes)
-            ORDER BY id ASC
-        """)
+            WHERE (score_clickbait = 0.0 AND sentimento_polaridade = 0.0 AND sentimento_neu = 0.0) AND tamanho_texto >= 150
+        """
+        params = []
+        if veiculo_id:
+            query += " AND veiculo_id = ?"
+            params.append(veiculo_id)
+        query += " ORDER BY id ASC"
+        if limite:
+            query += f" LIMIT {limite}"
+        cur.execute(query, params)
         linhas = [dict(row) for row in cur.fetchall()]
         con.close()
         return linhas
 
-    def obter_materias_sem_embedding(self) -> List[Dict[str, Any]]:
+    def obter_materias_sem_embedding(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None) -> List[Dict[str, Any]]:
         con = self.obter_conexao()
         cur = con.cursor()
-        cur.execute("""
+        query = """
             SELECT m.id, m.titulo, m.corpo
             FROM materias m
             LEFT JOIN embeddings e ON m.id = e.materia_id
             WHERE e.materia_id IS NULL AND m.tamanho_texto >= 150
-            ORDER BY m.id ASC
-        """)
+        """
+        params = []
+        if veiculo_id:
+            query += " AND m.veiculo_id = ?"
+            params.append(veiculo_id)
+        query += " ORDER BY m.id ASC"
+        if limite:
+            query += f" LIMIT {limite}"
+        cur.execute(query, params)
         linhas = [dict(row) for row in cur.fetchall()]
         con.close()
         return linhas
