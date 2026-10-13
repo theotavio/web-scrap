@@ -50,6 +50,20 @@ class InterfaceConsole:
         tabela_geral.add_row("  └─ URLs com Conteúdo Duplicado (SHA-256)", f"[dim]{self._fmt_num(duplicadas)}[/dim]")
         tabela_geral.add_row("Total de Matérias Únicas no Banco", f"[bold green]{self._fmt_num(total_materias)}[/bold green]")
 
+        nlp_stats = stats.get("nlp_stats", {})
+        total_emb = stats.get("total_embeddings", 0)
+        total_feat = nlp_stats.get("total_features", 0)
+        total_mencoes = nlp_stats.get("total_mencoes_entidades", 0)
+        total_unicas = nlp_stats.get("total_entidades_unicas", 0)
+
+        pct_emb = f"{(total_emb / total_materias * 100):.1f}%" if total_materias > 0 else "0.0%"
+        pct_feat = f"{(total_feat / total_materias * 100):.1f}%" if total_materias > 0 else "0.0%"
+
+        tabela_geral.add_row("Etapa de Inteligência Artificial & NLP", "")
+        tabela_geral.add_row("  ├─ Embeddings Vetoriais Salvos", f"[bold cyan]{self._fmt_num(total_emb)}[/bold cyan] [dim]({pct_emb})[/dim]")
+        tabela_geral.add_row("  ├─ Matérias com Features (Sentimento/Clickbait)", f"[magenta]{self._fmt_num(total_feat)}[/magenta] [dim]({pct_feat})[/dim]")
+        tabela_geral.add_row("  └─ Menções de Entidades (NER spaCy)", f"[yellow]{self._fmt_num(total_mencoes)}[/yellow] [dim]({self._fmt_num(total_unicas)} únicas)[/dim]")
+
         self.console.print(tabela_geral)
 
         veiculos_stats = stats.get("veiculos_stats", [])
@@ -65,11 +79,13 @@ class InterfaceConsole:
             tabela_veic.add_column("Total URLs", justify="right", style="bold white")
             tabela_veic.add_column("Matérias Extraídas", justify="right", style="magenta")
             tabela_veic.add_column("Aproveitamento", justify="right", style="green")
+            tabela_veic.add_column("Embeddings NLP", justify="right", style="cyan")
 
             soma_cdx = 0
             soma_sm = 0
             soma_tot = 0
             soma_mat = 0
+            soma_emb = 0
 
             for v in veiculos_stats:
                 nome = v.get("nome", "")
@@ -78,12 +94,15 @@ class InterfaceConsole:
                 u_sm = v.get("urls_sitemaps", 0)
                 u_cnt = v.get("total_urls", 0)
                 m_cnt = v.get("total_materias", 0)
+                v_emb = v.get("total_embeddings", 0)
                 taxa = f"{(m_cnt / u_cnt * 100):.1f}%" if u_cnt > 0 else "-"
+                taxa_emb = f"{(v_emb / m_cnt * 100):.1f}%" if m_cnt > 0 else "-"
 
                 soma_cdx += u_cdx
                 soma_sm += u_sm
                 soma_tot += u_cnt
                 soma_mat += m_cnt
+                soma_emb += v_emb
 
                 tabela_veic.add_row(
                     nome,
@@ -92,10 +111,12 @@ class InterfaceConsole:
                     self._fmt_num(u_sm),
                     self._fmt_num(u_cnt),
                     self._fmt_num(m_cnt),
-                    taxa
+                    taxa,
+                    f"{self._fmt_num(v_emb)} [dim]({taxa_emb})[/dim]"
                 )
 
             taxa_global = f"{(soma_mat / soma_tot * 100):.1f}%" if soma_tot > 0 else "-"
+            taxa_global_emb = f"{(soma_emb / soma_mat * 100):.1f}%" if soma_mat > 0 else "-"
             tabela_veic.add_section()
             tabela_veic.add_row(
                 "[bold]TOTAL GERAL[/bold]",
@@ -104,7 +125,8 @@ class InterfaceConsole:
                 f"[bold blue]{self._fmt_num(soma_sm)}[/bold blue]",
                 f"[bold white]{self._fmt_num(soma_tot)}[/bold white]",
                 f"[bold magenta]{self._fmt_num(soma_mat)}[/bold magenta]",
-                f"[bold green]{taxa_global}[/bold green]"
+                f"[bold green]{taxa_global}[/bold green]",
+                f"[bold cyan]{self._fmt_num(soma_emb)}[/bold cyan] [dim]({taxa_global_emb})[/dim]"
             )
 
             self.console.print(tabela_veic)
@@ -151,6 +173,88 @@ class InterfaceConsole:
                 )
 
             self.console.print(tabela_eixos_geral)
+
+        if nlp_stats and (total_emb > 0 or total_feat > 0):
+            tabela_nlp = Table(
+                title="[bold magenta]Métricas da Etapa de NLP (Deep Learning & Linguística)[/bold magenta]",
+                border_style="magenta"
+            )
+            tabela_nlp.add_column("Indicador Linguístico / Semântico", style="bold white")
+            tabela_nlp.add_column("Métrica Calculada", justify="right", style="cyan")
+            tabela_nlp.add_column("Interpretação e Contexto", style="yellow")
+
+            tot_feat = nlp_stats.get("total_features", 0)
+            avg_cb = nlp_stats.get("avg_clickbait", 0.0)
+            avg_pol = nlp_stats.get("avg_polaridade", 0.0)
+            pos_cnt = nlp_stats.get("total_positivas", 0)
+            neg_cnt = nlp_stats.get("total_negativas", 0)
+            neu_cnt = nlp_stats.get("total_neutras", 0)
+
+            interp_cb = "[green]Títulos sóbrios e descritivos[/green]" if avg_cb < 0.25 else ("[yellow]Sensacionalismo moderado[/yellow]" if avg_cb < 0.50 else "[red]Alto teor de clickbait[/red]")
+
+            if avg_pol > 0.05:
+                interp_pol = "[green]Predomínio de tom otimista / favorável[/green]"
+            elif avg_pol < -0.05:
+                interp_pol = "[red]Predomínio de tom crítico / desfavorável[/red]"
+            else:
+                interp_pol = "[yellow]Tom equilibrado / predominantemente neutro[/yellow]"
+
+            dist_sent = f"[green]{pos_cnt} Pos[/green] | [yellow]{neu_cnt} Neu[/yellow] | [red]{neg_cnt} Neg[/red]" if tot_feat > 0 else "-"
+
+            tabela_nlp.add_row("Índice Médio de Sensacionalismo (Clickbait)", f"{avg_cb:.4f}", interp_cb)
+            tabela_nlp.add_row("Polaridade Média Geral (Sentimento)", f"{avg_pol:+.4f}", interp_pol)
+            tabela_nlp.add_row("Distribuição de Tom Noticioso", dist_sent, f"{self._fmt_num(tot_feat)} matérias avaliadas")
+            tabela_nlp.add_row(
+                "Acervo Vetorial Semântico",
+                f"{self._fmt_num(total_emb)} vetores",
+                f"MiniLM-L12 (384 dimensões) [{pct_emb} do acervo]"
+            )
+            tabela_nlp.add_row(
+                "Agentes e Entidades Catalogados",
+                f"{self._fmt_num(total_mencoes)} citações",
+                f"{self._fmt_num(total_unicas)} entidades distintas detectadas via spaCy"
+            )
+
+            self.console.print(tabela_nlp)
+
+            top_ents = nlp_stats.get("top_entidades", [])
+            if top_ents:
+                tabela_ents = Table(
+                    title="[bold blue]Agentes Políticos e Institucionais Mais Mencionados (NER & Atribuição)[/bold blue]",
+                    border_style="blue"
+                )
+                tabela_ents.add_column("Entidade / Agente", style="bold white")
+                tabela_ents.add_column("Categoria", style="cyan")
+                tabela_ents.add_column("Menções Registradas", justify="right", style="magenta")
+                tabela_ents.add_column("Sentimento Médio Associado", justify="right")
+
+                tipos_map = {
+                    "PER": "Pessoa / Autoridade",
+                    "ORG": "Organização / Partido / Tribunal",
+                    "LOC": "Local / Instituição"
+                }
+
+                for ent in top_ents:
+                    nome_ent = ent.get("texto_entidade", "")
+                    tipo_ent = tipos_map.get(ent.get("tipo_entidade"), ent.get("tipo_entidade", "Geral"))
+                    cnt_ent = ent.get("total", 0)
+                    pol_ent = ent.get("pol_media", 0.0)
+
+                    if pol_ent > 0.05:
+                        pol_fmt = f"[green]{pol_ent:+.4f} (Positivo)[/green]"
+                    elif pol_ent < -0.05:
+                        pol_fmt = f"[red]{pol_ent:+.4f} (Negativo)[/red]"
+                    else:
+                        pol_fmt = f"[yellow]{pol_ent:+.4f} (Neutro)[/yellow]"
+
+                    tabela_ents.add_row(
+                        nome_ent,
+                        tipo_ent,
+                        self._fmt_num(cnt_ent),
+                        pol_fmt
+                    )
+
+                self.console.print(tabela_ents)
 
     def exibir_mensagem(self, texto: str, estilo: str = "green") -> None:
         self.console.print(f"[{estilo}]● {texto}[/{estilo}]")

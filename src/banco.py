@@ -142,6 +142,7 @@ class BancoDados:
         cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_evento ON materias(evento_id);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_entidades_materia ON entidades_mencoes(materia_id);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_entidades_texto ON entidades_mencoes(texto_entidade);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_nlp_processadas ON materias(id) WHERE sentimento_neu > 0;")
 
         con.commit()
         con.close()
@@ -600,6 +601,51 @@ class BancoDados:
             else:
                 eixos_stats[e_k] = {"cdx": 0, "sitemaps": 0, "total": 0, "materias": r_mat[1]}
 
+        cur.execute("""
+            SELECT m.veiculo_id, COUNT(*) as qtd
+            FROM embeddings e
+            JOIN materias m ON e.materia_id = m.id
+            GROUP BY m.veiculo_id
+        """)
+        mapa_emb_veic = {r[0]: r[1] for r in cur.fetchall()}
+        for v in veiculos_stats:
+            v["total_embeddings"] = mapa_emb_veic.get(v["id"], 0)
+
+        cur.execute("""
+            SELECT 
+                COUNT(*) as total,
+                AVG(score_clickbait) as avg_clickbait,
+                AVG(sentimento_polaridade) as avg_polaridade,
+                SUM(CASE WHEN sentimento_polaridade > 0.05 THEN 1 ELSE 0 END) as pos,
+                SUM(CASE WHEN sentimento_polaridade < -0.05 THEN 1 ELSE 0 END) as neg,
+                SUM(CASE WHEN sentimento_polaridade BETWEEN -0.05 AND 0.05 THEN 1 ELSE 0 END) as neu
+            FROM materias 
+            WHERE sentimento_neu > 0
+        """)
+        row_feat = cur.fetchone()
+        nlp_stats = {
+            "total_features": row_feat[0] or 0,
+            "avg_clickbait": row_feat[1] or 0.0,
+            "avg_polaridade": row_feat[2] or 0.0,
+            "total_positivas": row_feat[3] or 0,
+            "total_negativas": row_feat[4] or 0,
+            "total_neutras": row_feat[5] or 0,
+        }
+
+        cur.execute("SELECT COUNT(*), COUNT(DISTINCT texto_entidade) FROM entidades_mencoes")
+        row_ents = cur.fetchone()
+        nlp_stats["total_mencoes_entidades"] = row_ents[0] or 0
+        nlp_stats["total_entidades_unicas"] = row_ents[1] or 0
+
+        cur.execute("""
+            SELECT texto_entidade, tipo_entidade, SUM(contagem) as total, AVG(polaridade_atribuicao) as pol_media
+            FROM entidades_mencoes
+            GROUP BY texto_entidade, tipo_entidade
+            ORDER BY total DESC
+            LIMIT 6
+        """)
+        nlp_stats["top_entidades"] = [dict(r) for r in cur.fetchall()]
+
         con.close()
         return {
             "total_urls": total_urls,
@@ -613,4 +659,5 @@ class BancoDados:
             "eixos_stats": eixos_stats,
             "materias_por_veiculo": materias_por_veiculo,
             "urls_por_veiculo": urls_por_veiculo,
+            "nlp_stats": nlp_stats,
         }
