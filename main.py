@@ -133,24 +133,28 @@ def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional
 
     motor = MotorNLP(banco)
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        BarColumn(),
-        TaskProgressColumn(),
-        TimeElapsedColumn(),
-        TimeRemainingColumn(),
-        console=ui.console if ui else None
-    ) as progress:
-        tarefa = progress.add_task("[magenta]Calculando vetores e features...", total=total_ops)
-        res = motor.executar(
-            limite=limite,
-            veiculo_id=veiculo_id,
-            callback_progresso=lambda n: progress.update(tarefa, advance=n)
-        )
+    try:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TaskProgressColumn(),
+            TimeElapsedColumn(),
+            TimeRemainingColumn(),
+            console=ui.console if ui else None
+        ) as progress:
+            tarefa = progress.add_task("[magenta]Calculando vetores e features...", total=total_ops)
+            res = motor.executar(
+                limite=limite,
+                veiculo_id=veiculo_id,
+                callback_progresso=lambda n: progress.update(tarefa, advance=n)
+            )
 
-    if ui:
-        ui.exibir_mensagem(f"NLP concluído: {res['embeddings']} embeddings e {res['features']} features gerados.")
+        if ui:
+            ui.exibir_mensagem(f"NLP concluído: {res['embeddings']} embeddings e {res['features']} features gerados.")
+    except KeyboardInterrupt:
+        if ui:
+            ui.exibir_mensagem("Processamento de NLP pausado pelo usuário (Ctrl + C). Todo o progresso salvo até o momento foi mantido no banco.", "yellow")
 
 
 def etapa_clusterizar(banco: BancoDados, ui: InterfaceConsole) -> None:
