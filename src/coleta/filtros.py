@@ -61,9 +61,45 @@ class FiltroUrls:
         return tem_segmento_noticia
 
     def classificar_eixo_tematico(self, url: str, texto: Optional[str] = None) -> str:
-        conteudo = url.lower()
+        url_baixa = url.lower()
+        indicadores_politica = [
+            "/politica/", "/politica-brasil/", "/congresso/", "/eleicoes/", "/eleicao/",
+            "/poder/", "/governo/", "/stf/", "/planalto/", "/senado/", "/camara/",
+            "/judiciario/", "/legislativo/", "/distrito-federal/politica/"
+        ]
+        if any(ind in url_baixa for ind in indicadores_politica):
+            return "politico"
+
+        indicadores_economia = ["/economia/", "/mercado/", "/financas/", "/negocios/", "/dinheiro/"]
+        if any(ind in url_baixa for ind in indicadores_economia):
+            return "economico"
+
+        indicadores_internacional = ["/mundo/", "/internacional/", "/exterior/", "/geopolitica/"]
+        if any(ind in url_baixa for ind in indicadores_internacional):
+            return "internacional"
+
+        indicadores_esporte = ["/esporte/", "/esportes/", "/futebol/", "/tabelas/", "/ge/"]
+        if any(ind in url_baixa for ind in indicadores_esporte):
+            return "esportivo"
+
+        indicadores_ambiental = ["/meio-ambiente/", "/ambiente/", "/amazonia/", "/sustentabilidade/", "/clima/"]
+        if any(ind in url_baixa for ind in indicadores_ambiental):
+            return "ambiental"
+
+        indicadores_social = ["/saude/", "/educacao/", "/seguranca/", "/direitos-humanos/"]
+        if any(ind in url_baixa for ind in indicadores_social):
+            return "social"
+
+        conteudo = url_baixa
         if texto:
             conteudo += " " + texto.lower()
+
+        termos_guarda_politica = [
+            "bolsonaro", "lula", "stf", "supremo", "congresso", "senado", "deputado",
+            "senador", "ministro", "governo", "partido", "eleicao", "eleicoes",
+            "planalto", "palacio", "cpi", "tse", "lava jato", "pgr"
+        ]
+        tem_politica_forte = any(w in conteudo for w in termos_guarda_politica)
 
         pontos_eixo = {}
         for eixo, termos in self.eixos.items():
@@ -75,15 +111,19 @@ class FiltroUrls:
 
         melhor_eixo = max(pontos_eixo, key=pontos_eixo.get)
         if pontos_eixo[melhor_eixo] > 0:
+            if melhor_eixo == "esportivo" and tem_politica_forte:
+                return "politico"
             return melhor_eixo
 
-        if any(w in conteudo for w in ["politica", "governo", "poder", "congresso", "senado", "stf", "camara"]):
+        if tem_politica_forte or any(w in conteudo for w in ["politica", "governo", "poder", "congresso", "senado", "stf", "camara"]):
             return "politico"
         if any(w in conteudo for w in ["economia", "mercado", "financas", "inflacao", "dolar", "selic", "pib"]):
             return "economico"
         if any(w in conteudo for w in ["mundo", "internacional", "guerra", "exterior", "global"]):
             return "internacional"
         if any(w in conteudo for w in ["esporte", "futebol", "copa", "atleta", "time"]):
+            if tem_politica_forte:
+                return "politico"
             return "esportivo"
         if any(w in conteudo for w in ["ambiente", "amazonia", "pantanal", "clima", "natureza", "queimada"]):
             return "ambiental"

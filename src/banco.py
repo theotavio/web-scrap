@@ -489,7 +489,7 @@ class BancoDados:
         con = self.obter_conexao()
         cur = con.cursor()
         query = """
-            SELECT m.id, m.titulo, m.corpo
+            SELECT m.id, m.titulo, m.corpo, m.url, m.eixo_tematico
             FROM materias m
             LEFT JOIN embeddings e ON m.id = e.materia_id
             WHERE e.materia_id IS NULL AND m.tamanho_texto >= 150
@@ -505,6 +505,87 @@ class BancoDados:
         linhas = [dict(row) for row in cur.fetchall()]
         con.close()
         return linhas
+
+    def contar_materias_sem_entidades(self, veiculo_id: Optional[int] = None) -> int:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        query = """
+            SELECT COUNT(*)
+            FROM materias
+            WHERE ner_processado = 0 AND tamanho_texto >= 150
+        """
+        params = []
+        if veiculo_id:
+            query += " AND veiculo_id = ?"
+            params.append(veiculo_id)
+        cur.execute(query, params)
+        total = cur.fetchone()[0]
+        con.close()
+        return int(total)
+
+    def obter_materias_sem_entidades(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None) -> List[Dict[str, Any]]:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        query = """
+            SELECT id, titulo, corpo
+            FROM materias
+            WHERE ner_processado = 0 AND tamanho_texto >= 150
+        """
+        params = []
+        if veiculo_id:
+            query += " AND veiculo_id = ?"
+            params.append(veiculo_id)
+        query += " ORDER BY id ASC"
+        if limite:
+            query += f" LIMIT {limite}"
+        cur.execute(query, params)
+        linhas = [dict(row) for row in cur.fetchall()]
+        con.close()
+        return linhas
+
+    def marcar_ner_processado_em_lote(self, ids_materias: List[int]) -> None:
+        if not ids_materias:
+            return
+        con = self.obter_conexao()
+        cur = con.cursor()
+        placeholders = ",".join("?" * len(ids_materias))
+        cur.execute(f"UPDATE materias SET ner_processado = 1 WHERE id IN ({placeholders})", ids_materias)
+        con.commit()
+        con.close()
+
+    def restaurar_eixos_tematicos_editoriais(self) -> Dict[str, int]:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.execute("""
+            UPDATE materias
+            SET eixo_tematico = (
+                SELECT u.eixo_tematico 
+                FROM urls_coletadas u 
+                WHERE u.id = materias.url_id
+            )
+            WHERE url_id IS NOT NULL 
+              AND EXISTS (
+                  SELECT 1 FROM urls_coletadas u 
+                  WHERE u.id = materias.url_id 
+                    AND u.eixo_tematico IN ('politico', 'economico', 'internacional', 'esportivo', 'ambiental', 'social')
+                    AND u.eixo_tematico != materias.eixo_tematico
+              );
+        """)
+        r1 = cur.rowcount
+        cur.execute("""
+            UPDATE materias
+            SET eixo_tematico = 'politico'
+            WHERE (eixo_tematico = 'esportivo' OR eixo_tematico IS NULL)
+              AND (
+                  url LIKE '%/politica/%' OR url LIKE '%/politica-brasil/%' OR 
+                  url LIKE '%/congresso/%' OR url LIKE '%/poder/%' OR 
+                  url LIKE '%/governo/%' OR url LIKE '%/stf/%' OR url LIKE '%/eleicoes/%'
+              );
+        """)
+        r2 = cur.rowcount
+        con.commit()
+        con.close()
+        return {"restaurados_coleta": r1, "corrigidos_url": r2}
 
     def obter_todas_materias_com_embedding(self) -> List[Dict[str, Any]]:
         con = self.obter_conexao()

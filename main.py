@@ -109,9 +109,16 @@ def etapa_extrair(
     )
 
 
-def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional[str] = None, ui: Optional[InterfaceConsole] = None) -> None:
+def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional[str] = None, modo: str = "tudo", ui: Optional[InterfaceConsole] = None) -> None:
+    mensagens_modo = {
+        "embeddings": "Iniciando cálculo de Embeddings Semânticos e Eixos...",
+        "sentimento": "Iniciando Análise de Sentimento (pysentimiento) e Clickbait...",
+        "entidades": "Iniciando Extração de Entidades Nomeadas (spaCy NER) e Atribuição...",
+        "tudo": "Iniciando processamento NLP completo (Embeddings, Sentimento, Clickbait, NER)..."
+    }
+    msg_ini = mensagens_modo.get(modo, mensagens_modo["tudo"])
     if ui:
-        ui.exibir_mensagem("Iniciando processamento NLP (Embeddings, Sentimento, Clickbait, NER)...", "cyan")
+        ui.exibir_mensagem(msg_ini, "cyan")
 
     veiculo_id = None
     if veiculo:
@@ -119,16 +126,21 @@ def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional
         mapa = {v["codigo"].lower(): v["id"] for v in veiculos_cadastrados}
         veiculo_id = mapa.get(veiculo.lower())
 
-    if limite is not None:
-        total_ops = limite * 2
-    else:
-        pendentes_emb = banco.contar_materias_sem_embedding(veiculo_id=veiculo_id)
-        pendentes_feat = banco.contar_materias_para_nlp(veiculo_id=veiculo_id)
-        total_ops = pendentes_emb + pendentes_feat
+    pendentes_emb = 0
+    pendentes_sent = 0
+    pendentes_ner = 0
 
+    if modo in ("embeddings", "tudo", "nlp"):
+        pendentes_emb = limite if limite else banco.contar_materias_sem_embedding(veiculo_id=veiculo_id)
+    if modo in ("sentimento", "features", "tudo", "nlp"):
+        pendentes_sent = limite if limite else banco.contar_materias_para_nlp(veiculo_id=veiculo_id)
+    if modo in ("entidades", "tudo", "nlp"):
+        pendentes_ner = limite if limite else banco.contar_materias_sem_entidades(veiculo_id=veiculo_id)
+
+    total_ops = pendentes_emb + pendentes_sent + pendentes_ner
     if total_ops == 0:
         if ui:
-            ui.exibir_mensagem("Todas as matérias já possuem embeddings e features calculadas.", "yellow")
+            ui.exibir_mensagem(f"Todas as matérias já possuem processamento concluído para o modo '{modo}'.", "yellow")
         return
 
     motor = MotorNLP(banco)
@@ -143,15 +155,24 @@ def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional
             TimeRemainingColumn(),
             console=ui.console if ui else None
         ) as progress:
-            tarefa = progress.add_task("[magenta]Calculando vetores e features...", total=total_ops)
+            tarefa = progress.add_task("[magenta]Processando linguagem natural...", total=total_ops)
             res = motor.executar(
                 limite=limite,
                 veiculo_id=veiculo_id,
+                modo=modo,
                 callback_progresso=lambda n: progress.update(tarefa, advance=n)
             )
 
         if ui:
-            ui.exibir_mensagem(f"NLP concluído: {res['embeddings']} embeddings e {res['features']} features gerados.")
+            detalhes_conclusao = []
+            if res.get("embeddings", 0) > 0:
+                detalhes_conclusao.append(f"{res['embeddings']} embeddings")
+            if res.get("sentimento", 0) > 0:
+                detalhes_conclusao.append(f"{res['sentimento']} sentimentos")
+            if res.get("entidades", 0) > 0:
+                detalhes_conclusao.append(f"{res['entidades']} entidades (NER)")
+            res_str = ", ".join(detalhes_conclusao) if detalhes_conclusao else "0 registros"
+            ui.exibir_mensagem(f"NLP concluído: {res_str} processados com sucesso.")
     except KeyboardInterrupt:
         if ui:
             ui.exibir_mensagem("Processamento de NLP pausado pelo usuário (Ctrl + C). Todo o progresso salvo até o momento foi mantido no banco.", "yellow")
@@ -216,8 +237,13 @@ def main():
     )
     parser.add_argument(
         "--etapa",
-        choices=["coletar", "extrair", "nlp", "features", "clusterizar", "grafos", "estatisticas", "relatorio", "tudo"],
+        choices=["coletar", "extrair", "nlp", "features", "embeddings", "sentimento", "entidades", "clusterizar", "grafos", "estatisticas", "relatorio", "tudo"],
         help="Etapa específica a ser executada"
+    )
+    parser.add_argument(
+        "--restaurar-eixos",
+        action="store_true",
+        help="Restaura eixos temáticos editoriais baseando-se nas URLs originais de coleta"
     )
     parser.add_argument(
         "--limite",
@@ -311,6 +337,17 @@ def main():
         if not args.etapa:
             return
 
+    if args.restaurar_eixos:
+        ui.exibir_mensagem("Restaurando eixos temáticos editoriais baseados nas URLs originais...", "cyan")
+        res_eixos = banco.restaurar_eixos_tematicos_editoriais()
+        ui.exibir_mensagem(
+            f"Eixos restaurados: {res_eixos['restaurados_coleta']} sincronizados da coleta, "
+            f"{res_eixos['corrigidos_url']} corrigidos por padrões de URL.",
+            "bold green"
+        )
+        if not args.etapa and not args.status:
+            return
+
     if args.status:
         stats = banco.obter_estatisticas_gerais()
         ui.exibir_status(stats)
@@ -320,7 +357,7 @@ def main():
         stats = banco.obter_estatisticas_gerais()
         ui.exibir_status(stats)
         ui.exibir_mensagem(
-            "Nenhuma etapa especificada. Use --etapa [coletar|extrair|nlp|clusterizar|grafos|estatisticas|relatorio|tudo].",
+            "Nenhuma etapa especificada. Use --etapa [coletar|extrair|embeddings|sentimento|entidades|nlp|clusterizar|grafos|estatisticas|relatorio|tudo].",
             "yellow"
         )
         return
@@ -363,8 +400,15 @@ def main():
             ui=ui
         )
 
-    if etapa in ("nlp", "features", "tudo"):
-        etapa_nlp(banco, limite=args.limite, veiculo=args.veiculo, ui=ui)
+    if etapa in ("nlp", "features", "embeddings", "sentimento", "entidades", "tudo"):
+        modo_nlp = "tudo"
+        if etapa == "embeddings":
+            modo_nlp = "embeddings"
+        elif etapa in ("sentimento", "features"):
+            modo_nlp = "sentimento"
+        elif etapa == "entidades":
+            modo_nlp = "entidades"
+        etapa_nlp(banco, limite=args.limite, veiculo=args.veiculo, modo=modo_nlp, ui=ui)
 
     if etapa in ("clusterizar", "tudo"):
         etapa_clusterizar(banco, ui=ui)

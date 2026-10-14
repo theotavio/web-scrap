@@ -542,6 +542,8 @@ classificacao_tematica:
       - "eleições, votação, congresso nacional, senado federal, câmara dos deputados e partidos"
       - "governo federal, presidente da república, ministros, palácio do planalto e articulação política"
       - "decisões judiciais do supremo tribunal federal, stf, cpi e investigações parlamentares"
+      - "presidente jair bolsonaro, presidente lula, michel temer, pronunciamentos e atos do poder executivo e legislativo"
+      - "deputados federais, senadores, bancada partidária, medidas provisórias, projetos de lei e disputa política nacional"
     economico:
       - "taxa de juros selic, comitê de política monetária copom e banco central"
       - "inflação, índice de preços ao consumidor ipca, custo de vida e poder de compra"

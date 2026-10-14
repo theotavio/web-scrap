@@ -97,6 +97,59 @@ class ClassificadorTematicoSemantico:
         indices_max = np.argmax(matriz_sim, axis=1)
         return [self.rotulos[idx] for idx in indices_max]
 
+    def classificar_lote_com_guardas(self, materias: List[Dict[str, Any]], vetores: np.ndarray) -> List[str]:
+        if self.matriz_ancoras is None or len(self.rotulos) == 0 or len(vetores) == 0:
+            return ["politico"] * len(materias)
+
+        normas = np.linalg.norm(vetores, axis=1, keepdims=True)
+        normas[normas == 0] = 1.0
+        vetores_norm = vetores / normas
+
+        matriz_sim = np.dot(vetores_norm, self.matriz_ancoras.T)
+        indices_max = np.argmax(matriz_sim, axis=1)
+
+        termos_politicos = (
+            "bolsonaro", "lula", "stf", "supremo", "congresso", "senado", "deputado",
+            "senador", "ministro", "governo", "partido", "eleicao", "eleicoes",
+            "planalto", "cpi", "tse", "lava jato", "pgr", "camara"
+        )
+
+        indicadores_politica_url = (
+            "/politica/", "/politica-brasil/", "/congresso/", "/eleicoes/", "/eleicao/",
+            "/poder/", "/governo/", "/stf/", "/planalto/", "/senado/", "/camara/",
+            "/judiciario/", "/legislativo/"
+        )
+
+        resultados = []
+        for i, m in enumerate(materias):
+            url_baixa = m.get("url", "").lower()
+
+            if any(ind in url_baixa for ind in indicadores_politica_url):
+                resultados.append("politico")
+                continue
+
+            if "/economia/" in url_baixa or "/mercado/" in url_baixa:
+                resultados.append("economico")
+                continue
+
+            if "/mundo/" in url_baixa or "/internacional/" in url_baixa:
+                resultados.append("internacional")
+                continue
+
+            if "/meio-ambiente/" in url_baixa or "/ambiente/" in url_baixa:
+                resultados.append("ambiental")
+                continue
+
+            rotulo_predito = self.rotulos[indices_max[i]]
+            texto_completo = f"{m.get('titulo', '')} {m.get('corpo', '')[:400]}".lower()
+
+            if rotulo_predito == "esportivo" and any(tp in texto_completo for tp in termos_politicos):
+                rotulo_predito = "politico"
+
+            resultados.append(rotulo_predito)
+
+        return resultados
+
     def classificar_texto(self, texto: str) -> str:
         vetor = self.gerador.gerar_vetor(texto)
         return self.classificar_vetor(vetor)
