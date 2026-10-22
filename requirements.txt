@@ -18,4 +18,6 @@ sentence-transformers>=2.6.0
 transformers>=4.40.0
 spacy>=3.7.0
 pysentimiento>=0.7.0
+onnxruntime>=1.18.0
+onnx>=1.16.0
 pyvis>=0.3.2

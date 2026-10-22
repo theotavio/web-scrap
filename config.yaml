@@ -523,6 +523,7 @@ nlp:
   modelo_spacy: "pt_core_news_lg"
   batch_size: 64
   tamanho_janela_contexto_entidade: 30
+  motor_sentimento: "onnx_int8"
 
 clustering:
   janela_dias: 5

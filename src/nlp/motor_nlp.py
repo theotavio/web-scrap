@@ -73,8 +73,7 @@ class MotorNLP:
     def liberar_modelos_sentimento(self) -> None:
         self._analisador_sentimento = None
         self._detector_clickbait = None
-        AnalisadorSentimento._instancia = None
-        AnalisadorSentimento._analisador = None
+        AnalisadorSentimento.liberar()
         gc.collect()
 
     def liberar_modelos_entidades(self) -> None:

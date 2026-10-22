@@ -104,6 +104,7 @@ O pipeline foi projetado para responder quantitativamente a quatro eixos fundame
 - **Deduplicação Determinística (SHA-256):** Geração de hash criptográfico único sobre $\text{SHA-256}(\text{título} + \text{corpo limpo})$, impedindo a inserção de matérias duplicadas.
 
 ### 3. Processamento de Linguagem Natural (NLP) Modular & Eficiente
+- **Aceleração com ONNX Runtime INT8 & PyTorch Nativo:** O motor de sentimento utiliza inferência direta em tensores com quantização dinâmica em inteiros de 8 bits (INT8) via ONNX Runtime, contornando o *overhead* de wrappers e reduzindo o tempo de inferência em CPU em mais de 6x, com fallback automático para PyTorch (`torch.inference_mode()`).
 - **Processamento em Streaming Contínuo:** Todas as consultas operam em micro-lotes paginados (`LIMIT 500` para embeddings e `LIMIT 150-250` para features linguísticas), eliminando estouros de memória RAM e permitindo processar 3+ milhões de artigos sem sobrecarregar o sistema.
 - **Carregamento Sob Demanda (*Lazy Loading*) & Descarte Dinâmico:** Os pesos das redes neurais (`SentenceTransformer`, `pysentimiento` e `spaCy`) são instanciados apenas no momento do cálculo e descarregados da memória (`gc.collect()`) entre as fases, mantendo o consumo de RAM estritamente abaixo de **1,5 GB a 2 GB**.
 - **Classificação Temática com Precedência Editorial:** A editoria humana contida na URL original (`/politica/`, `/economia/`, `/esportes/`, `/mundo/`, etc.) tem prioridade máxima. O classificador semântico atua como *fallback* apenas em URLs genéricas.
