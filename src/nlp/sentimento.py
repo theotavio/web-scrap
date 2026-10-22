@@ -170,6 +170,7 @@ class AnalisadorSentimento:
             return []
 
         textos_truncados = [t[:512] if t else "" for t in textos]
+        max_tokens = min(getattr(self._tokenizer, "model_max_length", 128) or 128, 128)
 
         if self._sessao_ort is not None and self._tokenizer is not None:
             try:
@@ -177,7 +178,7 @@ class AnalisadorSentimento:
                     textos_truncados,
                     padding=True,
                     truncation=True,
-                    max_length=512,
+                    max_length=max_tokens,
                     return_tensors="np"
                 )
                 ort_inputs = {
@@ -211,7 +212,7 @@ class AnalisadorSentimento:
                         textos_truncados,
                         padding=True,
                         truncation=True,
-                        max_length=512,
+                        max_length=max_tokens,
                         return_tensors="pt"
                     )
                     outputs = self._modelo_torch(**inputs)
