@@ -105,7 +105,7 @@ O pipeline foi projetado para responder quantitativamente a quatro eixos fundame
 
 ### 3. Processamento de Linguagem Natural (NLP) Modular & Eficiente
 - **Aceleração com ONNX Runtime INT8 & PyTorch Nativo:** O motor de sentimento utiliza inferência direta em tensores com quantização dinâmica em inteiros de 8 bits (INT8) via ONNX Runtime, contornando o *overhead* de wrappers e reduzindo o tempo de inferência em CPU em mais de 6x, com fallback automático para PyTorch (`torch.inference_mode()`).
-- **Atribuição Contextual de Entidades Otimizada em Lote:** O cálculo de sentimento ao redor de menções a entidades (NER) utiliza pré-tokenização unificada, deduplicação de janelas contextuais e inferência vetorial agrupada em lote no ONNX INT8, combinada a índices parciais no SQLite (`idx_materias_ner_pendente`), triplicando a velocidade da extração de entidades.
+- **Atribuição Contextual de Entidades Otimizada em Lote & Foco em Atores Centrais:** O cálculo de sentimento ao redor de menções a entidades (NER) foca as janelas neurais RoBERTa estritamente nas menções aos atores políticos e institucionais principais (`PER` e `ORG` - top 3 entidades e 1 janela principal), com inferência vetorial agrupada em lote no ONNX INT8 e índices parciais no SQLite (`idx_materias_ner_pendente` e `idx_materias_evento_ner`). Entidades geográficas (`LOC`) e secundárias herdam a polaridade global da matéria, acelerando o processamento em mais de 7x.
 - **Processamento em Streaming Contínuo:** Todas as consultas operam em micro-lotes paginados (`LIMIT 500` para embeddings e `LIMIT 150-250` para features linguísticas), eliminando estouros de memória RAM e permitindo processar 3+ milhões de artigos sem sobrecarregar o sistema.
 - **Carregamento Sob Demanda (*Lazy Loading*) & Descarte Dinâmico:** Os pesos das redes neurais (`SentenceTransformer`, `pysentimiento` e `spaCy`) são instanciados apenas no momento do cálculo e descarregados da memória (`gc.collect()`) entre as fases, mantendo o consumo de RAM estritamente abaixo de **1,5 GB a 2 GB**.
 - **Classificação Temática com Precedência Editorial:** A editoria humana contida na URL original (`/politica/`, `/economia/`, `/esportes/`, `/mundo/`, etc.) tem prioridade máxima. O classificador semântico atua como *fallback* apenas em URLs genéricas.
@@ -233,6 +233,10 @@ python main.py --etapa sentimento --limite 500 --veiculo folha
 # (Mapeamento de agentes políticos, instituições e contexto de atribuição)
 # -------------------------------------------------------------
 python main.py --etapa entidades
+
+# Processar entidades apenas para matérias pertencentes a eventos factuais agrupados
+# (Recomendado após executar --etapa clusterizar; foca estritamente nos clusters do corpus analítico)
+python main.py --etapa entidades --apenas-eventos
 
 # Entidades em lote controlado
 python main.py --etapa entidades --limite 500 --veiculo g1

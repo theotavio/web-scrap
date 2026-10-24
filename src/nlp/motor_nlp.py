@@ -189,7 +189,7 @@ class MotorNLP:
         self.logger.info(f"Processamento de sentimento concluido: {total_processado} processados.")
         return total_processado
 
-    def processar_entidades(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, callback_progresso=None) -> int:
+    def processar_entidades(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, apenas_eventos: bool = False, callback_progresso=None) -> int:
         total_processado = 0
         tamanho_lote = min(self.tamanho_lote_banco, 150)
         while True:
@@ -200,7 +200,7 @@ class MotorNLP:
                     break
                 qtd_buscar = min(tamanho_lote, restante)
 
-            materias = self.banco.obter_materias_sem_entidades(limite=qtd_buscar, veiculo_id=veiculo_id)
+            materias = self.banco.obter_materias_sem_entidades(limite=qtd_buscar, veiculo_id=veiculo_id, apenas_eventos=apenas_eventos)
             if not materias:
                 break
 
@@ -233,14 +233,14 @@ class MotorNLP:
         self.logger.info(f"Processamento de entidades (NER) concluido: {total_processado} processados.")
         return total_processado
 
-    def processar_features_linguisticas(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, callback_progresso=None) -> int:
+    def processar_features_linguisticas(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, apenas_eventos: bool = False, callback_progresso=None) -> int:
         tot_sent = self.processar_sentimento(limite=limite, veiculo_id=veiculo_id, callback_progresso=callback_progresso)
         self.liberar_modelos_sentimento()
-        tot_ents = self.processar_entidades(limite=limite, veiculo_id=veiculo_id, callback_progresso=callback_progresso)
+        tot_ents = self.processar_entidades(limite=limite, veiculo_id=veiculo_id, apenas_eventos=apenas_eventos, callback_progresso=callback_progresso)
         self.liberar_modelos_entidades()
         return tot_sent
 
-    def executar(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, modo: str = "tudo", callback_progresso=None) -> Dict[str, int]:
+    def executar(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, modo: str = "tudo", apenas_eventos: bool = False, callback_progresso=None) -> Dict[str, int]:
         total_emb = 0
         total_sent = 0
         total_ents = 0
@@ -254,7 +254,7 @@ class MotorNLP:
             self.liberar_modelos_sentimento()
 
         if modo in ("entidades", "tudo", "nlp"):
-            total_ents = self.processar_entidades(limite=limite, veiculo_id=veiculo_id, callback_progresso=callback_progresso)
+            total_ents = self.processar_entidades(limite=limite, veiculo_id=veiculo_id, apenas_eventos=apenas_eventos, callback_progresso=callback_progresso)
             self.liberar_modelos_entidades()
 
         return {"embeddings": total_emb, "sentimento": total_sent, "entidades": total_ents, "features": total_sent}

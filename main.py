@@ -109,7 +109,14 @@ def etapa_extrair(
     )
 
 
-def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional[str] = None, modo: str = "tudo", ui: Optional[InterfaceConsole] = None) -> None:
+def etapa_nlp(
+    banco: BancoDados,
+    limite: Optional[int] = None,
+    veiculo: Optional[str] = None,
+    modo: str = "tudo",
+    apenas_eventos: bool = False,
+    ui: Optional[InterfaceConsole] = None
+) -> None:
     mensagens_modo = {
         "embeddings": "Iniciando cálculo de Embeddings Semânticos e Eixos...",
         "sentimento": "Iniciando Análise de Sentimento (pysentimiento) e Clickbait...",
@@ -135,7 +142,7 @@ def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional
     if modo in ("sentimento", "features", "tudo", "nlp"):
         pendentes_sent = limite if limite else banco.contar_materias_para_nlp(veiculo_id=veiculo_id)
     if modo in ("entidades", "tudo", "nlp"):
-        pendentes_ner = limite if limite else banco.contar_materias_sem_entidades(veiculo_id=veiculo_id)
+        pendentes_ner = limite if limite else banco.contar_materias_sem_entidades(veiculo_id=veiculo_id, apenas_eventos=apenas_eventos)
 
     total_ops = pendentes_emb + pendentes_sent + pendentes_ner
     if total_ops == 0:
@@ -160,6 +167,7 @@ def etapa_nlp(banco: BancoDados, limite: Optional[int] = None, veiculo: Optional
                 limite=limite,
                 veiculo_id=veiculo_id,
                 modo=modo,
+                apenas_eventos=apenas_eventos,
                 callback_progresso=lambda n: progress.update(tarefa, advance=n)
             )
 
@@ -306,6 +314,11 @@ def main():
         action="store_true",
         help="Redefine todas as URLs com erro_download de volta para pendente no banco"
     )
+    parser.add_argument(
+        "--apenas-eventos",
+        action="store_true",
+        help="Na etapa de entidades, processa apenas matérias vinculadas a clusters de eventos (evento_id > -1)"
+    )
 
     args = parser.parse_args()
     ui = InterfaceConsole()
@@ -408,7 +421,14 @@ def main():
             modo_nlp = "sentimento"
         elif etapa == "entidades":
             modo_nlp = "entidades"
-        etapa_nlp(banco, limite=args.limite, veiculo=args.veiculo, modo=modo_nlp, ui=ui)
+        etapa_nlp(
+            banco,
+            limite=args.limite,
+            veiculo=args.veiculo,
+            modo=modo_nlp,
+            apenas_eventos=args.apenas_eventos,
+            ui=ui
+        )
 
     if etapa in ("clusterizar", "tudo"):
         etapa_clusterizar(banco, ui=ui)

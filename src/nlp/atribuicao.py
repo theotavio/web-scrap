@@ -8,8 +8,8 @@ class CalculadorAtribuicao:
     def __init__(self):
         config = obter_configuracao()
         self.tamanho_janela = config.obter("nlp.tamanho_janela_contexto_entidade", 30)
-        self.max_janelas = config.obter("nlp.max_janelas_por_entidade", 2)
-        self.max_entidades = config.obter("nlp.max_entidades_atribuicao", 5)
+        self.max_janelas = config.obter("nlp.max_janelas_por_entidade", 1)
+        self.max_entidades = config.obter("nlp.max_entidades_atribuicao", 3)
         self.analisador_sentimento = AnalisadorSentimento()
 
     def _extrair_janelas_contexto(self, texto: str, entidade: str, max_janelas: Optional[int] = None) -> List[str]:
@@ -66,7 +66,7 @@ class CalculadorAtribuicao:
 
         for idx_ent, (nome_ent, tipo_ent, contagem) in enumerate(entidades):
             janelas = []
-            if idx_ent < self.max_entidades:
+            if tipo_ent in ("PER", "ORG") and idx_ent < self.max_entidades:
                 entidade_tokens_lower = [t.lower() for t in re.findall(r"\w+|[^\w\s]", nome_ent)]
                 tamanho_ent = len(entidade_tokens_lower)
                 if tamanho_ent > 0 and num_palavras > 0:
@@ -118,7 +118,7 @@ class CalculadorAtribuicao:
             ent_dados = []
             for idx_ent, (nome_ent, tipo_ent, contagem) in enumerate(ents):
                 janelas = []
-                if idx_ent < self.max_entidades:
+                if tipo_ent in ("PER", "ORG") and idx_ent < self.max_entidades:
                     entidade_tokens_lower = [t.lower() for t in re.findall(r"\w+|[^\w\s]", nome_ent)]
                     tamanho_ent = len(entidade_tokens_lower)
                     if tamanho_ent > 0 and num_palavras > 0:

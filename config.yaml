@@ -524,8 +524,8 @@ nlp:
   batch_size: 64
   tamanho_janela_contexto_entidade: 30
   motor_sentimento: "onnx_int8"
-  max_janelas_por_entidade: 2
-  max_entidades_atribuicao: 5
+  max_janelas_por_entidade: 1
+  max_entidades_atribuicao: 3
 
 clustering:
   janela_dias: 5

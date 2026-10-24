@@ -144,6 +144,7 @@ class BancoDados:
         cur.execute("CREATE INDEX IF NOT EXISTS idx_entidades_texto ON entidades_mencoes(texto_entidade);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_nlp_processadas ON materias(id) WHERE sentimento_neu > 0;")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_ner_pendente ON materias(id) WHERE ner_processado = 0;")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_evento_ner ON materias(id) WHERE ner_processado = 0 AND evento_id > -1;")
 
         con.commit()
         con.close()
@@ -507,7 +508,7 @@ class BancoDados:
         con.close()
         return linhas
 
-    def contar_materias_sem_entidades(self, veiculo_id: Optional[int] = None) -> int:
+    def contar_materias_sem_entidades(self, veiculo_id: Optional[int] = None, apenas_eventos: bool = False) -> int:
         con = self.obter_conexao()
         cur = con.cursor()
         query = """
@@ -516,6 +517,8 @@ class BancoDados:
             WHERE ner_processado = 0 AND tamanho_texto >= 150
         """
         params = []
+        if apenas_eventos:
+            query += " AND evento_id > -1"
         if veiculo_id:
             query += " AND veiculo_id = ?"
             params.append(veiculo_id)
@@ -524,7 +527,7 @@ class BancoDados:
         con.close()
         return int(total)
 
-    def obter_materias_sem_entidades(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None) -> List[Dict[str, Any]]:
+    def obter_materias_sem_entidades(self, limite: Optional[int] = None, veiculo_id: Optional[int] = None, apenas_eventos: bool = False) -> List[Dict[str, Any]]:
         con = self.obter_conexao()
         cur = con.cursor()
         query = """
@@ -533,6 +536,8 @@ class BancoDados:
             WHERE ner_processado = 0 AND tamanho_texto >= 150
         """
         params = []
+        if apenas_eventos:
+            query += " AND evento_id > -1"
         if veiculo_id:
             query += " AND veiculo_id = ?"
             params.append(veiculo_id)
