@@ -186,14 +186,39 @@ def etapa_nlp(
             ui.exibir_mensagem("Processamento de NLP pausado pelo usuário (Ctrl + C). Todo o progresso salvo até o momento foi mantido no banco.", "yellow")
 
 
-def etapa_clusterizar(banco: BancoDados, ui: InterfaceConsole) -> None:
-    ui.exibir_mensagem("Iniciando clustering temporal de eventos com HDBSCAN...", "cyan")
+def etapa_clusterizar(banco: BancoDados, ui: Optional[InterfaceConsole] = None) -> None:
+    if ui:
+        ui.exibir_mensagem("Iniciando clustering temporal de eventos com HDBSCAN...", "cyan")
+
+    total_materias = banco.contar_materias()
+    if total_materias == 0:
+        if ui:
+            ui.exibir_mensagem("Nenhuma matéria cadastrada para clusterização.", "yellow")
+        return
+
     agrupador = AgrupadorEventos(banco)
-    res = agrupador.executar()
-    ui.exibir_mensagem(
-        f"Clustering concluído: {res['total_clusters']} clusters factuais criados, "
-        f"{res['materias_agrupadas']} matérias associadas a eventos."
-    )
+
+    try:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TaskProgressColumn(),
+            TimeElapsedColumn(),
+            TimeRemainingColumn(),
+            console=ui.console if ui else None
+        ) as progress:
+            tarefa = progress.add_task("[magenta]Agrupando eventos temporais...", total=total_materias)
+            res = agrupador.executar(callback_progresso=lambda n: progress.update(tarefa, advance=n))
+
+        if ui:
+            ui.exibir_mensagem(
+                f"Clustering concluído: {res['total_clusters']} clusters factuais criados, "
+                f"{res['materias_agrupadas']} matérias associadas a eventos."
+            )
+    except KeyboardInterrupt:
+        if ui:
+            ui.exibir_mensagem("Clustering pausado pelo usuário (Ctrl + C). Todo o progresso salvo até o momento foi mantido no banco.", "yellow")
 
 
 def etapa_grafos(banco: BancoDados, ui: InterfaceConsole) -> None:

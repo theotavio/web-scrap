@@ -114,8 +114,8 @@ O pipeline foi projetado para responder quantitativamente a quatro eixos fundame
 - **Pausa Graciosa (`Ctrl + C`):** Qualquer etapa pode ser interrompida a qualquer momento sem corrupção de banco; o progresso concluído é gravado imediatamente e a execução pode ser retomada de onde parou.
 
 ### 4. Clusterização Espaço-Temporal de Eventos
-- **Bloqueio Temporal (*Time-Window Blocking*):** Segmentação do corpus em janelas deslizantes de **5 dias** (ciclo clássico de vida de notícias factuais). Impede o agrupamento indevido de notícias de momentos diferentes e viabiliza a comparação equilibrada entre mídia digital (imediata) e tradicional (reflexiva).
-- **HDBSCAN Adaptativo:** Agrupamento por densidade espacial não paramétrico sobre a matriz de distâncias de cosseno, isolando ruídos (outliers $-1$).
+- **Bloqueio Temporal em Streaming (*Time-Window Streaming*):** Segmentação do corpus em janelas temporais de **5 dias** processadas incrementalmente em micro-lotes no banco. Impede o carregamento excessivo de vetores na memória RAM (consumo mantido estritamente abaixo de **1 GB**) e exibe barra de progresso Rich com tempo estimado (ETA) em tempo real.
+- **HDBSCAN Adaptativo com Salvamento Atômico:** Agrupamento por densidade espacial não paramétrico sobre a matriz de distâncias de cosseno, gravando resumos dos eventos e vinculando matérias com persistência transacional por janela e isolamento de ruídos (outliers $-1$).
 
 ### 5. Modelagem em Grafos de Redes Complexas
 - **Grafo Bipartido $G_{bipartido}$:** Rede com dois conjuntos de nós (Veículos e Eventos Factuais), com arestas ponderadas por sentimento e volume de cobertura.

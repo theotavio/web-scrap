@@ -422,6 +422,34 @@ class BancoDados:
         con.commit()
         con.close()
 
+    def salvar_resumos_clusters_em_lote(self, lista_clusters: List[Tuple]) -> None:
+        if not lista_clusters:
+            return
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.executemany("""
+            INSERT INTO clusters_eventos (id, nome_evento, data_inicio, data_fim, total_materias, total_veiculos, eixo_predominante, divergencia_sentimento)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(id) DO UPDATE SET
+                nome_evento=excluded.nome_evento,
+                data_inicio=excluded.data_inicio,
+                data_fim=excluded.data_fim,
+                total_materias=excluded.total_materias,
+                total_veiculos=excluded.total_veiculos,
+                eixo_predominante=excluded.eixo_predominante,
+                divergencia_sentimento=excluded.divergencia_sentimento;
+        """, lista_clusters)
+        con.commit()
+        con.close()
+
+    def limpar_clusters_eventos(self) -> None:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.execute("DELETE FROM clusters_eventos")
+        cur.execute("UPDATE materias SET evento_id = -1 WHERE evento_id != -1")
+        con.commit()
+        con.close()
+
     def salvar_resultado_estatistico(self, pergunta: str, chave: str, valor: Optional[float], detalhes: Dict[str, Any]) -> None:
         con = self.obter_conexao()
         cur = con.cursor()
@@ -593,19 +621,33 @@ class BancoDados:
         con.close()
         return {"restaurados_coleta": r1, "corrigidos_url": r2}
 
-    def obter_todas_materias_com_embedding(self) -> List[Dict[str, Any]]:
+    def contar_materias(self) -> int:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.execute("SELECT COUNT(*) FROM materias")
+        total = cur.fetchone()[0]
+        con.close()
+        return int(total)
+
+    def obter_datas_distintas_materias(self) -> List[str]:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.execute("SELECT DISTINCT data_publicacao FROM materias ORDER BY data_publicacao ASC")
+        datas = [r[0] for r in cur.fetchall()]
+        con.close()
+        return datas
+
+    def obter_materias_para_clusterizacao_por_janela(self, dt_ini: str, dt_fim: str) -> List[Dict[str, Any]]:
         con = self.obter_conexao()
         cur = con.cursor()
         cur.execute("""
-            SELECT m.id, m.veiculo_id, m.titulo, m.corpo, m.data_publicacao, m.ano, m.ano_eleitoral,
-                   m.eixo_tematico, m.score_clickbait, m.sentimento_polaridade, m.sentimento_pos,
-                   m.sentimento_neg, m.sentimento_neu, m.evento_id, v.codigo as veiculo_codigo,
-                   v.nome as veiculo_nome, v.tipo as veiculo_tipo, e.vetor
+            SELECT m.id, m.veiculo_id, m.titulo, m.data_publicacao, m.eixo_tematico,
+                   m.sentimento_polaridade, e.vetor
             FROM materias m
-            JOIN veiculos v ON m.veiculo_id = v.id
             JOIN embeddings e ON m.id = e.materia_id
-            ORDER BY m.data_publicacao ASC
-        """)
+            WHERE m.data_publicacao >= ? AND m.data_publicacao <= ?
+            ORDER BY m.data_publicacao ASC, m.id ASC
+        """, (dt_ini, dt_fim))
         linhas = [dict(row) for row in cur.fetchall()]
         con.close()
         return linhas
