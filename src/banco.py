@@ -143,6 +143,7 @@ class BancoDados:
         cur.execute("CREATE INDEX IF NOT EXISTS idx_entidades_materia ON entidades_mencoes(materia_id);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_entidades_texto ON entidades_mencoes(texto_entidade);")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_nlp_processadas ON materias(id) WHERE sentimento_neu > 0;")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_materias_ner_pendente ON materias(id) WHERE ner_processado = 0;")
 
         con.commit()
         con.close()
@@ -527,7 +528,7 @@ class BancoDados:
         con = self.obter_conexao()
         cur = con.cursor()
         query = """
-            SELECT id, titulo, corpo
+            SELECT id, titulo, corpo, COALESCE(sentimento_polaridade, 0.0) as polaridade
             FROM materias
             WHERE ner_processado = 0 AND tamanho_texto >= 150
         """

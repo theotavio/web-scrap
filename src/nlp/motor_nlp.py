@@ -211,13 +211,11 @@ class MotorNLP:
                 ids_sub_lote = [m["id"] for m in sub_lote]
 
                 entidades_lote = self.extrator_entidades.extrair_em_lote(textos_entidades, batch_size=self.batch_size)
-                lote_entidades = []
-
-                for m, ents in zip(sub_lote, entidades_lote):
-                    m_id = m["id"]
-                    if ents:
-                        ents_com_atrib = self.calculador_atribuicao.processar_entidades_artigo(m["corpo"], ents)
-                        lote_entidades.append((m_id, ents_com_atrib))
+                dados_sub_lote = [
+                    (m["id"], m["corpo"], ents, float(m.get("polaridade", 0.0) or 0.0))
+                    for m, ents in zip(sub_lote, entidades_lote)
+                ]
+                lote_entidades = self.calculador_atribuicao.processar_lote_artigos(dados_sub_lote)
 
                 self.banco.salvar_entidades_em_lote(lote_entidades)
                 self.banco.marcar_ner_processado_em_lote(ids_sub_lote)
