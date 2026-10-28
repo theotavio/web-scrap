@@ -40,7 +40,7 @@ class GeradorRelatorio:
         mudo_analise = p4.get("analise_efeito_mudo", {})
         teste_p4 = p4.get("teste_independencia_qui_quadrado", {})
 
-        conteudo = f"""# Quantificação Multidimensional e Modelagem Relacional da Cobertura Jornalística no Brasil (2015–2025)
+        conteudo = f"""# Quantificação de Viés Editorial e Sensacionalismo na Mídia Brasileira (2015–2025): Uma Abordagem Baseada em Processamento de Linguagem Natural e Modelagem em Grafos
 
 **Autor:** Otávio Alves Lima  
 **Disciplina:** Ciência dos Dados  
@@ -227,7 +227,7 @@ Foram construídos dois modelos de rede anonimizados:
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Relatório Final de Pesquisa - Cobertura Jornalística</title>
+<title>Quantificação de Viés Editorial e Sensacionalismo na Mídia Brasileira (2015–2025)</title>
 <style>
 body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 40px auto; padding: 0 20px; background: #fafafa; }}
 h1, h2, h3 {{ color: #111; }}

@@ -1,4 +1,4 @@
-# Quantificação Multidimensional e Modelagem Relacional da Cobertura Jornalística no Brasil (2015–2025)
+# Quantificação de Viés Editorial e Sensacionalismo na Mídia Brasileira (2015–2025): Uma Abordagem Baseada em Processamento de Linguagem Natural e Modelagem em Grafos
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+" />

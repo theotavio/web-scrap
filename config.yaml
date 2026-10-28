@@ -1,5 +1,5 @@
 geral:
-  nome_projeto: "Quantificacao Multidimensional da Cobertura Jornalistica"
+  nome_projeto: "Quantificacao de Vies Editorial e Sensacionalismo na Midia Brasileira (2015-2025): Uma Abordagem Baseada em Processamento de Linguagem Natural e Modelagem em Grafos"
   autor: "Otavio Alves Lima"
   banco_dados: "dados/jornalismo.db"
   diretorio_logs: "logs"

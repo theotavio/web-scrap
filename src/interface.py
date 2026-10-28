@@ -14,11 +14,11 @@ class InterfaceConsole:
             return "0"
         return f"{valor:,}".replace(",", ".")
 
-    def exibir_cabecalho(self, titulo: str = "QUANTIFICAÇÃO MULTIDIMENSIONAL DA COBERTURA JORNALÍSTICA") -> None:
+    def exibir_cabecalho(self, titulo: str = "QUANTIFICAÇÃO DE VIÉS EDITORIAL E SENSACIONALISMO NA MÍDIA BRASILEIRA (2015–2025)") -> None:
         grid = Table.grid(expand=True)
         grid.add_column(justify="center", ratio=1)
         grid.add_row(f"[bold cyan]{titulo}[/bold cyan]")
-        grid.add_row("[dim]Pipeline de Coleta, NLP, Clustering, Grafos e Estatística (2015-2025)[/dim]")
+        grid.add_row("[dim]Uma Abordagem Baseada em Processamento de Linguagem Natural e Modelagem em Grafos[/dim]")
         self.console.print(Panel(grid, border_style="cyan"))
 
     def exibir_status(self, stats: Dict[str, Any]) -> None:
