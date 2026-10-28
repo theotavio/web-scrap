@@ -244,17 +244,20 @@ def etapa_estatisticas(banco: BancoDados, ui: InterfaceConsole) -> None:
 
 def etapa_relatorio(banco: BancoDados, ui: InterfaceConsole) -> None:
     ui.exibir_mensagem("Gerando visualizações interativas Plotly e relatórios finais...", "cyan")
-    construtor = ConstrutorGrafos(banco)
-    G_bip = construtor.construir_grafo_bipartido()
-    G_proj = construtor.construir_projecao_veiculos(G_bip)
-
-    gerador_graficos = GeradorGraficos(banco)
-    caminhos_graficos = gerador_graficos.executar(G_proj)
 
     respondedor = RespondedorPerguntas(banco)
     respostas = respondedor.executar_todas()
 
+    construtor = ConstrutorGrafos(banco)
     metricas_grafos = construtor.executar()
+    G_proj = metricas_grafos.get("grafo_projecao")
+    if G_proj is None:
+        G_bip = construtor.construir_grafo_bipartido()
+        G_proj = construtor.construir_projecao_veiculos(G_bip)
+
+    gerador_graficos = GeradorGraficos(banco)
+    caminhos_graficos = gerador_graficos.executar(G_proj)
+
     stats_banco = banco.obter_estatisticas_gerais()
 
     gerador_relatorio = GeradorRelatorio(banco)

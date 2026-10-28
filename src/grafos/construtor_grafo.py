@@ -146,7 +146,8 @@ class ConstrutorGrafos:
             "projecao_nos": G_proj.number_of_nodes(),
             "projecao_arestas": G_proj.number_of_edges(),
             "caminho_gexf_bipartido": caminho_bip,
-            "caminho_gexf_projecao": caminho_proj
+            "caminho_gexf_projecao": caminho_proj,
+            "grafo_projecao": G_proj
         }
 
         self.logger.info(f"Processamento de grafos concluido: {metricas}")

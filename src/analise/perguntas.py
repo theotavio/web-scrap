@@ -1,3 +1,4 @@
+import gc
 from typing import Any, Dict, List
 import numpy as np
 from src.configuracao import obter_configuracao
@@ -17,64 +18,82 @@ class RespondedorPerguntas:
         cur = con.cursor()
 
         cur.execute("""
-            SELECT m.evento_id, m.veiculo_id, v.nome as veiculo_nome,
-                   m.sentimento_polaridade, m.score_clickbait
+            SELECT m.evento_id, m.veiculo_id, v.nome, m.sentimento_polaridade
             FROM materias m
             JOIN veiculos v ON m.veiculo_id = v.id
             WHERE m.evento_id > -1
             ORDER BY m.evento_id ASC
         """)
-        linhas = [dict(row) for row in cur.fetchall()]
-
-        cur.execute("""
-            SELECT em.materia_id, em.texto_entidade, em.polaridade_atribuicao, m.evento_id, m.veiculo_id, v.nome as veiculo_nome
-            FROM entidades_mencoes em
-            JOIN materias m ON em.materia_id = m.id
-            JOIN veiculos v ON m.veiculo_id = v.id
-            WHERE m.evento_id > -1
-        """)
-        linhas_entidades = [dict(row) for row in cur.fetchall()]
-        con.close()
-
-        eventos_map: Dict[int, List[Dict[str, Any]]] = {}
-        for l in linhas:
-            ev_id = l["evento_id"]
-            if ev_id not in eventos_map:
-                eventos_map[ev_id] = []
-            eventos_map[ev_id].append(l)
-
-        eventos_multi_veiculo = {ev_id: mats for ev_id, mats in eventos_map.items() if len(set(m["veiculo_id"] for m in mats)) >= 2}
 
         divergencias_sentimento = []
         grupos_por_veiculo: Dict[str, List[float]] = {}
+        total_eventos_compartilhados = 0
 
-        for ev_id, mats in eventos_multi_veiculo.items():
-            sents = [m["sentimento_polaridade"] for m in mats]
-            desvio = float(np.std(sents))
-            divergencias_sentimento.append(desvio)
+        evento_atual = None
+        mats_evento = []
 
-            for m in mats:
-                v_nome = m["veiculo_nome"]
-                if v_nome not in grupos_por_veiculo:
-                    grupos_por_veiculo[v_nome] = []
-                grupos_por_veiculo[v_nome].append(m["sentimento_polaridade"])
+        for row in cur:
+            ev_id, veic_id, veic_nome, pol = row[0], row[1], row[2], float(row[3] or 0.0)
+            if ev_id != evento_atual:
+                if evento_atual is not None and len(mats_evento) >= 2:
+                    veic_ids = set(m[0] for m in mats_evento)
+                    if len(veic_ids) >= 2:
+                        total_eventos_compartilhados += 1
+                        sents = [m[2] for m in mats_evento]
+                        divergencias_sentimento.append(float(np.std(sents)))
+                        for v_id, v_nome, s in mats_evento:
+                            if v_nome not in grupos_por_veiculo:
+                                grupos_por_veiculo[v_nome] = []
+                            grupos_por_veiculo[v_nome].append(s)
+                evento_atual = ev_id
+                mats_evento = [(veic_id, veic_nome, pol)]
+            else:
+                mats_evento.append((veic_id, veic_nome, pol))
+
+        if evento_atual is not None and len(mats_evento) >= 2:
+            veic_ids = set(m[0] for m in mats_evento)
+            if len(veic_ids) >= 2:
+                total_eventos_compartilhados += 1
+                sents = [m[2] for m in mats_evento]
+                divergencias_sentimento.append(float(np.std(sents)))
+                for v_id, v_nome, s in mats_evento:
+                    if v_nome not in grupos_por_veiculo:
+                        grupos_por_veiculo[v_nome] = []
+                    grupos_por_veiculo[v_nome].append(s)
+
+        del mats_evento
 
         grupos_anova = list(grupos_por_veiculo.values())
         res_anova = AnalisadorEstatistico.teste_anova_kruskal(grupos_anova)
         desc_div = AnalisadorEstatistico.calcular_estatisticas_descritivas(divergencias_sentimento)
 
+        del divergencias_sentimento
+        del grupos_por_veiculo
+        del grupos_anova
+
+        cur.execute("""
+            SELECT v.nome, em.polaridade_atribuicao
+            FROM entidades_mencoes em
+            JOIN materias m ON em.materia_id = m.id
+            JOIN veiculos v ON m.veiculo_id = v.id
+            WHERE m.evento_id > -1
+        """)
         entidades_por_veiculo: Dict[str, List[float]] = {}
-        for le in linhas_entidades:
-            v_nome = le["veiculo_nome"]
+        for r in cur:
+            v_nome, pol_atrib = r[0], float(r[1] or 0.0)
             if v_nome not in entidades_por_veiculo:
                 entidades_por_veiculo[v_nome] = []
-            entidades_por_veiculo[v_nome].append(le["polaridade_atribuicao"])
+            entidades_por_veiculo[v_nome].append(pol_atrib)
+        con.close()
 
         res_anova_entidades = AnalisadorEstatistico.teste_anova_kruskal(list(entidades_por_veiculo.values()))
 
+        del entidades_por_veiculo
+        gc.collect()
+
         resultado = {
             "pergunta": "Pergunta Principal: Divergencia Sistematica de Enquadramento",
-            "total_eventos_compartilhados": len(eventos_multi_veiculo),
+            "total_eventos_compartilhados": total_eventos_compartilhados,
             "estatisticas_divergencia_sentimento": desc_div,
             "teste_efeito_veiculo_sentimento": res_anova,
             "teste_efeito_veiculo_atribuicao_entidades": res_anova_entidades,
@@ -98,37 +117,54 @@ class RespondedorPerguntas:
         cur = con.cursor()
 
         cur.execute("""
-            SELECT m.score_clickbait, v.tipo as veiculo_tipo, v.nome as veiculo_nome
+            SELECT m.score_clickbait, v.tipo, v.nome
             FROM materias m
             JOIN veiculos v ON m.veiculo_id = v.id
         """)
-        linhas = [dict(row) for row in cur.fetchall()]
-        con.close()
 
-        tradicionais = [l["score_clickbait"] for l in linhas if l["veiculo_tipo"] == "tradicional"]
-        digitais = [l["score_clickbait"] for l in linhas if l["veiculo_tipo"] == "digital_nativo"]
+        tradicionais = []
+        digitais = []
+        ranking_veiculos: Dict[str, List[float]] = {}
+        veiculo_tipos_map = {}
+
+        for r in cur:
+            score = float(r[0] or 0.0)
+            v_tipo = r[1]
+            v_nome = r[2]
+
+            if v_tipo == "tradicional":
+                tradicionais.append(score)
+            elif v_tipo == "digital_nativo":
+                digitais.append(score)
+
+            if v_nome not in ranking_veiculos:
+                ranking_veiculos[v_nome] = []
+                veiculo_tipos_map[v_nome] = v_tipo
+            ranking_veiculos[v_nome].append(score)
+
+        con.close()
 
         desc_trad = AnalisadorEstatistico.calcular_estatisticas_descritivas(tradicionais)
         desc_dig = AnalisadorEstatistico.calcular_estatisticas_descritivas(digitais)
 
         teste_comparativo = AnalisadorEstatistico.teste_diferenca_dois_grupos(digitais, tradicionais)
 
-        veiculo_tipos_map = {l["veiculo_nome"]: l["veiculo_tipo"] for l in linhas}
-        ranking_veiculos: Dict[str, List[float]] = {}
-        for l in linhas:
-            v_nome = l["veiculo_nome"]
-            if v_nome not in ranking_veiculos:
-                ranking_veiculos[v_nome] = []
-            ranking_veiculos[v_nome].append(l["score_clickbait"])
+        del tradicionais
+        del digitais
 
         ranking_desc = {
             v: AnalisadorEstatistico.calcular_estatisticas_descritivas(scores)
             for v, scores in ranking_veiculos.items()
         }
+        del ranking_veiculos
+
         ranking_ordenado = [
             (v, veiculo_tipos_map.get(v, "-"), stats_dict)
             for v, stats_dict in sorted(ranking_desc.items(), key=lambda x: x[1]["media"], reverse=True)
         ]
+
+        del ranking_desc
+        gc.collect()
 
         resultado = {
             "pergunta": "Pergunta Secundaria 1: Clickbait e Credibilidade por Tipo de Veiculo",
@@ -159,29 +195,44 @@ class RespondedorPerguntas:
             SELECT ano, ano_eleitoral, sentimento_polaridade, score_clickbait
             FROM materias
         """)
-        linhas = [dict(row) for row in cur.fetchall()]
-        con.close()
 
-        eleitorais = [abs(l["sentimento_polaridade"]) + (0.5 * l["score_clickbait"]) for l in linhas if l["ano_eleitoral"] == 1]
-        nao_eleitorais = [abs(l["sentimento_polaridade"]) + (0.5 * l["score_clickbait"]) for l in linhas if l["ano_eleitoral"] == 0]
+        eleitorais = []
+        nao_eleitorais = []
+        por_ano: Dict[int, List[float]] = {}
+
+        for r in cur:
+            ano = int(r[0])
+            ano_eleit = int(r[1])
+            pol = float(r[2] or 0.0)
+            cb = float(r[3] or 0.0)
+            indice_vies = abs(pol) + (0.5 * cb)
+
+            if ano_eleit == 1:
+                eleitorais.append(indice_vies)
+            else:
+                nao_eleitorais.append(indice_vies)
+
+            if ano not in por_ano:
+                por_ano[ano] = []
+            por_ano[ano].append(indice_vies)
+
+        con.close()
 
         desc_eleit = AnalisadorEstatistico.calcular_estatisticas_descritivas(eleitorais)
         desc_nao_eleit = AnalisadorEstatistico.calcular_estatisticas_descritivas(nao_eleitorais)
 
         teste_hipotese = AnalisadorEstatistico.teste_diferenca_dois_grupos(eleitorais, nao_eleitorais)
 
-        por_ano: Dict[int, List[float]] = {}
-        for l in linhas:
-            ano = l["ano"]
-            indice_vies = abs(l["sentimento_polaridade"]) + (0.5 * l["score_clickbait"])
-            if ano not in por_ano:
-                por_ano[ano] = []
-            por_ano[ano].append(indice_vies)
+        del eleitorais
+        del nao_eleitorais
 
         evolucao_anual = {
             ano: AnalisadorEstatistico.calcular_estatisticas_descritivas(scores)
             for ano, scores in sorted(por_ano.items())
         }
+
+        del por_ano
+        gc.collect()
 
         resultado = {
             "pergunta": "Pergunta Secundaria 2: Evolucao Temporal em Ciclos Eleitorais",
@@ -214,19 +265,20 @@ class RespondedorPerguntas:
             WHERE m.eixo_tematico IS NOT NULL AND m.eixo_tematico != ''
             GROUP BY m.eixo_tematico, v.tipo
         """)
-        linhas = [dict(row) for row in cur.fetchall()]
-        con.close()
 
         dist_trad: Dict[str, int] = {}
         dist_dig: Dict[str, int] = {}
 
-        for l in linhas:
-            eixo = l["eixo_tematico"]
-            cnt = l["contagem"]
-            if l["veiculo_tipo"] == "tradicional":
+        for r in cur:
+            eixo = r[0]
+            v_tipo = r[1]
+            cnt = int(r[2])
+            if v_tipo == "tradicional":
                 dist_trad[eixo] = cnt
             else:
                 dist_dig[eixo] = cnt
+
+        con.close()
 
         analise_mudo = AnalisadorEstatistico.calcular_efeito_mudo_tematico(dist_trad, dist_dig)
 

@@ -20,9 +20,8 @@ class GeradorGraficos:
     def _obter_dataframe_materias(self) -> pd.DataFrame:
         con = self.banco.obter_conexao()
         df = pd.read_sql_query("""
-            SELECT m.id, m.titulo, m.data_publicacao, m.ano, m.mes, m.ano_eleitoral,
-                   m.eixo_tematico, m.score_clickbait, m.sentimento_polaridade,
-                   m.sentimento_pos, m.sentimento_neg, m.sentimento_neu, m.evento_id,
+            SELECT m.ano, m.ano_eleitoral, m.eixo_tematico, m.score_clickbait,
+                   m.sentimento_polaridade, m.sentimento_pos, m.sentimento_neg, m.sentimento_neu,
                    v.nome as veiculo_nome, v.tipo as veiculo_tipo, v.codigo as veiculo_codigo
             FROM materias m
             JOIN veiculos v ON m.veiculo_id = v.id
@@ -54,8 +53,10 @@ class GeradorGraficos:
         if df.empty:
             return str(caminho)
 
+        df_plot = df.sample(min(len(df), 50000), random_state=42) if len(df) > 50000 else df
+
         fig = px.box(
-            df,
+            df_plot,
             x="veiculo_anonimizado",
             y="sentimento_polaridade",
             color="grupo_editorial",
@@ -74,12 +75,14 @@ class GeradorGraficos:
         if df.empty:
             return str(caminho)
 
+        df_plot = df.sample(min(len(df), 50000), random_state=42) if len(df) > 50000 else df
+
         fig = px.box(
-            df,
+            df_plot,
             x="grupo_editorial",
             y="score_clickbait",
             color="grupo_editorial",
-            points="all",
+            points="outliers",
             title="Comparativo de Índice de Clickbait: Grupo Tradicional vs. Grupo Digital Nativo",
             labels={"grupo_editorial": "Grupo Editorial", "score_clickbait": "Índice de Clickbait [0 a 1]"},
             template="plotly_white",
