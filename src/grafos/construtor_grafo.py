@@ -19,17 +19,17 @@ class ConstrutorGrafos:
         self.dir_relatorios = Path(self.config.obter("geral.diretorio_relatorios", "relatorios")) / "grafos"
         self.dir_relatorios.mkdir(parents=True, exist_ok=True)
 
-        self.veiculos_anonimizados = {
-            1: ("Tradicional 1", "tradicional"),
-            2: ("Tradicional 2", "tradicional"),
-            3: ("Tradicional 3", "tradicional"),
-            4: ("Tradicional 4", "tradicional"),
-            5: ("Tradicional 5", "tradicional"),
-            6: ("Digital 1", "digital_nativo"),
-            7: ("Digital 2", "digital_nativo"),
-            8: ("Digital 3", "digital_nativo"),
-            9: ("Digital 4", "digital_nativo"),
-            10: ("Digital 5", "digital_nativo")
+        self.veiculos_pos = {
+            "Tradicional 1": (-750.0, 200.0),
+            "Tradicional 2": (-800.0, 100.0),
+            "Tradicional 3": (-750.0, 0.0),
+            "Tradicional 4": (-800.0, -100.0),
+            "Tradicional 5": (-750.0, -200.0),
+            "Digital 1": (750.0, 200.0),
+            "Digital 2": (800.0, 100.0),
+            "Digital 3": (750.0, 0.0),
+            "Digital 4": (800.0, -100.0),
+            "Digital 5": (750.0, -200.0),
         }
 
         self.cores_eixos = {
@@ -39,8 +39,9 @@ class ConstrutorGrafos:
             "social": {"r": 142, "g": 68, "b": 173},
             "internacional": {"r": 192, "g": 57, "b": 43},
             "esportivo": {"r": 230, "g": 126, "b": 34},
-            "editorial": {"r": 44, "g": 62, "b": 80}
         }
+        self.cor_tradicional = {"r": 27, "g": 79, "b": 114}
+        self.cor_digital = {"r": 211, "g": 84, "b": 0}
 
         self.stopwords_gerais = {
             "para", "com", "nao", "uma", "mais", "como", "ele", "seu", "sua", "quando", "muito", "tambem",
@@ -67,7 +68,9 @@ class ConstrutorGrafos:
             "mês", "meses", "aponta", "mostra", "passa", "chega", "segue", "volta", "começa", "afirma",
             "pede", "vê", "revela", "traz", "diz", "dizer", "levar", "sair", "dar", "fica", "ter", "vir",
             "ver", "vai", "vão", "ia", "virou", "ficou", "deu", "foi", "era", "são", "tem", "entre",
-            "planalto", "assim", "cada", "tanto", "quanto", "sabe", "tinha", "vamos", "então", "aqui"
+            "planalto", "assim", "cada", "tanto", "quanto", "sabe", "tinha", "vamos", "então", "aqui",
+            "deve", "fazer", "quer", "vai", "vir", "dar", "ter", "estar", "dizer", "poder", "ver", "fica",
+            "todo", "toda", "todos", "todas", "sido", "terem", "dizer", "acordo", "passado", "chegou"
         }
 
     def limpar_grafos_antigos(self) -> None:
@@ -103,11 +106,9 @@ class ConstrutorGrafos:
 
     def construir_grafo_semantico(
         self,
-        palavras_por_eixo: int = 250,
-        max_coocorrencias_por_palavra: int = 2,
-        max_palavras_por_veiculo: int = 15
+        palavras_por_eixo: int = 35
     ) -> Tuple[nx.Graph, Dict[str, Any]]:
-        self.logger.info("Iniciando mineracao de alta definicao para o Grafo Semantico...")
+        self.logger.info("Iniciando mineracao semantica polarizada com separacao de polos...")
         tokens_nomes = self.obter_entidades_pessoas_para_filtro()
         stopwords_totais = self.stopwords_gerais | tokens_nomes
 
@@ -132,16 +133,19 @@ class ConstrutorGrafos:
                 cnt.update(filtrados)
 
             for w, freq in cnt.most_common(palavras_por_eixo):
-                if w not in palavra_info:
-                    palavra_info[w] = {
+                termo = w.capitalize()
+                if termo not in palavra_info:
+                    palavra_info[termo] = {
                         "eixo": eixo,
                         "frequencia": freq,
+                        "tradicional_count": 0,
+                        "digital_count": 0,
                         "sentimentos": [],
                         "clickbaits": [],
                         "veiculos": defaultdict(int)
                     }
 
-        todas_palavras_set = set(palavra_info.keys())
+        todas_palavras_set = {k.lower(): k for k in palavra_info.keys()}
         coocorrencias: Counter = Counter()
 
         for eixo in eixos:
@@ -157,120 +161,151 @@ class ConstrutorGrafos:
                 sent = float(r[2] or 0.0)
                 cb = float(r[3] or 0.0)
                 tokens = set(re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower()))
-                presentes = [t for t in tokens if t in todas_palavras_set]
+                presentes = [todas_palavras_set[t] for t in tokens if t in todas_palavras_set]
 
-                for w in presentes:
-                    palavra_info[w]["sentimentos"].append(sent)
-                    palavra_info[w]["clickbaits"].append(cb)
-                    palavra_info[w]["veiculos"][v_id] += 1
+                for p in presentes:
+                    palavra_info[p]["veiculos"][v_id] += 1
+                    palavra_info[p]["sentimentos"].append(sent)
+                    palavra_info[p]["clickbaits"].append(cb)
+                    if v_id <= 5:
+                        palavra_info[p]["tradicional_count"] += 1
+                    else:
+                        palavra_info[p]["digital_count"] += 1
 
                 for i in range(len(presentes)):
                     for j in range(i + 1, len(presentes)):
-                        w1, w2 = sorted([presentes[i], presentes[j]])
-                        coocorrencias[(w1, w2)] += 1
+                        p1, p2 = sorted([presentes[i], presentes[j]])
+                        coocorrencias[(p1, p2)] += 1
 
         con.close()
 
-        cooc_por_no: Dict[str, List[Tuple[str, float]]] = {}
-        for (w1, w2), count in coocorrencias.items():
-            if count >= 3:
-                cooc_por_no.setdefault(w1, []).append((w2, float(count)))
-                cooc_por_no.setdefault(w2, []).append((w1, float(count)))
-
-        arestas_podadas: Set[Tuple[str, str, float, str]] = set()
-
-        for u, vizinhos in cooc_por_no.items():
-            vizinhos_ord = sorted(vizinhos, key=lambda x: x[1], reverse=True)[:max_coocorrencias_por_palavra]
-            for v, w in vizinhos_ord:
-                edge_key = tuple(sorted([f"palavra_{u}", f"palavra_{v}"]))
-                arestas_podadas.add((edge_key[0], edge_key[1], w, "coocorrencia"))
-
-        for v_id in range(1, 11):
-            no_veic = f"veiculo_{v_id}"
-            pals_veic = []
-            for w, info in palavra_info.items():
-                qtd = info["veiculos"].get(v_id, 0)
-                if qtd >= 2:
-                    pals_veic.append((f"palavra_{w}", float(qtd)))
-            pals_ord = sorted(pals_veic, key=lambda x: x[1], reverse=True)[:max_palavras_por_veiculo]
-            for pal_node, w in pals_ord:
-                edge_key = tuple(sorted([no_veic, pal_node]))
-                arestas_podadas.add((edge_key[0], edge_key[1], w, "enquadramento"))
-
         G = nx.Graph()
 
+        for v_id in range(1, 6):
+            nome = f"Tradicional {v_id}"
+            px, py = self.veiculos_pos[nome]
+            G.add_node(
+                nome,
+                Label=nome,
+                rotulo=nome,
+                tipo_no="veiculo",
+                grupo_editorial="Tradicional",
+                eixo="Imprensa Tradicional",
+                size=45.0,
+                viz={"size": 45.0, "color": self.cor_tradicional, "position": {"x": px, "y": py, "z": 0.0}}
+            )
+
+        for v_id in range(1, 6):
+            nome = f"Digital {v_id}"
+            px, py = self.veiculos_pos[nome]
+            G.add_node(
+                nome,
+                Label=nome,
+                rotulo=nome,
+                tipo_no="veiculo",
+                grupo_editorial="Digital Nativo",
+                eixo="Nativos Digitais",
+                size=45.0,
+                viz={"size": 45.0, "color": self.cor_digital, "position": {"x": px, "y": py, "z": 0.0}}
+            )
+
+        y_offsets = {
+            "politico": 250.0,
+            "economico": 120.0,
+            "internacional": 0.0,
+            "ambiental": -120.0,
+            "social": -240.0,
+            "esportivo": -360.0
+        }
+
+        np.random.seed(42)
         max_freq = max(info["frequencia"] for info in palavra_info.values()) if palavra_info else 1
 
-        for v_id, (v_label, v_tipo) in self.veiculos_anonimizados.items():
-            cor = self.cores_eixos["editorial"]
-            G.add_node(
-                f"veiculo_{v_id}",
-                Label=v_label,
-                rotulo=v_label,
-                tipo_no="veiculo",
-                tipo_editorial=v_tipo,
-                eixo="editorial",
-                frequencia=10000,
-                sentimento_medio=0.0,
-                clickbait_medio=0.0,
-                size=40.0,
-                viz={"size": 40.0, "color": cor}
-            )
+        for termo, info in palavra_info.items():
+            t_cnt = info["tradicional_count"]
+            d_cnt = info["digital_count"]
+            total_cnt = t_cnt + d_cnt + 1e-5
+            polarizacao = (d_cnt - t_cnt) / total_cnt
 
-        for w, info in palavra_info.items():
-            sents = info["sentimentos"]
-            cbs = info["clickbaits"]
-            s_med = float(np.mean(sents)) if sents else 0.0
-            cb_med = float(np.mean(cbs)) if cbs else 0.0
-            freq = float(info["frequencia"])
-            tam = 8.0 + 18.0 * (np.log1p(freq) / np.log1p(max_freq))
-            cor = self.cores_eixos.get(info["eixo"], {"r": 120, "g": 120, "b": 120})
+            if polarizacao < -0.25:
+                enq = "Viés Tradicional"
+                cor = self.cor_tradicional
+            elif polarizacao > 0.25:
+                enq = "Viés Digital"
+                cor = self.cor_digital
+            else:
+                enq = "Consenso Fático"
+                cor = self.cores_eixos.get(info["eixo"], {"r": 100, "g": 100, "b": 100})
+
+            base_x = polarizacao * 450.0 + np.random.uniform(-40, 40)
+            base_y = y_offsets.get(info["eixo"], 0.0) + np.random.uniform(-35, 35)
+
+            freq = info["frequencia"]
+            tam = 10.0 + 20.0 * (np.log1p(freq) / np.log1p(max_freq))
 
             G.add_node(
-                f"palavra_{w}",
-                Label=w.capitalize(),
-                rotulo=w.capitalize(),
+                termo,
+                Label=termo,
+                rotulo=termo,
                 tipo_no="palavra",
                 eixo=info["eixo"],
-                frequencia=int(info["frequencia"]),
-                sentimento_medio=round(s_med, 4),
-                clickbait_medio=round(cb_med, 4),
+                enquadramento=enq,
+                polarizacao_editorial=round(float(polarizacao), 4),
+                frequencia=int(freq),
                 size=round(float(tam), 2),
-                viz={"size": round(float(tam), 2), "color": cor}
+                viz={"size": round(float(tam), 2), "color": cor, "position": {"x": round(float(base_x), 2), "y": round(float(base_y), 2), "z": 0.0}}
             )
 
-        max_w = max(w for u, v, w, t in arestas_podadas) if arestas_podadas else 1.0
-        min_w = min(w for u, v, w, t in arestas_podadas) if arestas_podadas else 0.0
+        cooc_por_no = defaultdict(list)
+        for (p1, p2), count in coocorrencias.items():
+            if count >= 3:
+                cooc_por_no[p1].append((p2, count))
+                cooc_por_no[p2].append((p1, count))
 
-        for u, v, w, t in arestas_podadas:
-            w_norm = 0.3 + 2.2 * ((w - min_w) / (max_w - min_w + 1e-6))
-            G.add_edge(
-                u,
-                v,
-                weight=round(float(w_norm), 3),
-                peso_bruto=int(w),
-                tipo_aresta=t,
-                distancia_semantica=round(1.0 / (1.0 + np.log1p(w)), 4)
-            )
+        arestas_adicionadas = set()
+        for p1, vizinhos in cooc_por_no.items():
+            viz_ord = sorted(vizinhos, key=lambda x: x[1], reverse=True)[:2]
+            for p2, count in viz_ord:
+                chave = tuple(sorted([p1, p2]))
+                if chave not in arestas_adicionadas and p1 in G and p2 in G:
+                    w_norm = 0.5 + 1.5 * min(1.0, count / 50.0)
+                    G.add_edge(
+                        p1,
+                        p2,
+                        weight=round(float(w_norm), 3),
+                        tipo_aresta="coocorrencia",
+                        distancia=round(1.0 / (1.0 + np.log1p(count)), 4),
+                        viz={"color": {"r": 210, "g": 215, "b": 220, "a": 0.35}}
+                    )
+                    arestas_adicionadas.add(chave)
 
-        pos = nx.spring_layout(G, k=0.18, iterations=80, seed=42)
-        for n in G.nodes():
-            x, y = pos[n]
-            G.nodes[n]["viz"]["position"] = {
-                "x": round(float(x * 1200.0), 2),
-                "y": round(float(y * 1200.0), 2),
-                "z": 0.0
-            }
+        for termo, info in palavra_info.items():
+            for v_id, count in info["veiculos"].items():
+                if count >= 8:
+                    v_nome = f"Tradicional {v_id}" if v_id <= 5 else f"Digital {v_id - 5}"
+                    chave = tuple(sorted([v_nome, termo]))
+                    if chave not in arestas_adicionadas and v_nome in G and termo in G:
+                        w_norm = 0.4 + 1.2 * min(1.0, count / 40.0)
+                        cor_aresta = {"r": 180, "g": 200, "b": 220, "a": 0.4} if v_id <= 5 else {"r": 240, "g": 200, "b": 160, "a": 0.4}
+                        G.add_edge(
+                            v_nome,
+                            termo,
+                            weight=round(float(w_norm), 3),
+                            tipo_aresta="enquadramento",
+                            distancia=round(1.0 / (1.0 + np.log1p(count)), 4),
+                            viz={"color": cor_aresta}
+                        )
+                        arestas_adicionadas.add(chave)
 
         del coocorrencias
         del palavra_info
         gc.collect()
 
-        metricas_algoritmos = self._calcular_metricas_grafo(G)
-        return G, metricas_algoritmos
+        metricas = self._calcular_metricas_grafo(G)
+        return G, metricas
 
     def _calcular_metricas_grafo(self, G: nx.Graph) -> Dict[str, Any]:
-        self.logger.info("Calculando metricas analiticas de algoritmos no Grafo Semantico...")
+        self.logger.info("Calculando metricas analiticas para o Grafo Semantico Polarizado...")
 
         comunidades = nx_comm.louvain_communities(G, weight="weight", resolution=1.0)
         mod_q = nx_comm.modularity(G, comunidades, weight="weight")
@@ -279,54 +314,51 @@ class ConstrutorGrafos:
             for no in comm:
                 G.nodes[no]["modularity_class"] = idx_c
 
-        veiculos_trad = [f"veiculo_{i}" for i in range(1, 6)]
-        veiculos_dig = [f"veiculo_{i}" for i in range(6, 11)]
+        veics_trad = [f"Tradicional {i}" for i in range(1, 6)]
+        veics_dig = [f"Digital {i}" for i in range(1, 6)]
 
-        dists_trad_trad = []
-        dists_dig_dig = []
-        dists_cruzadas = []
+        d_trad = []
+        d_dig = []
+        d_cross = []
         caminhos_exemplares = []
 
-        for i in range(1, 6):
-            for j in range(i + 1, 6):
-                v1, v2 = f"veiculo_{i}", f"veiculo_{j}"
+        for i in range(len(veics_trad)):
+            for j in range(i + 1, len(veics_trad)):
+                v1, v2 = veics_trad[i], veics_trad[j]
                 if nx.has_path(G, v1, v2):
-                    d = nx.shortest_path_length(G, v1, v2, weight="distancia_semantica")
-                    dists_trad_trad.append(d)
+                    d_trad.append(nx.shortest_path_length(G, v1, v2, weight="distancia"))
 
-        for i in range(6, 11):
-            for j in range(i + 1, 11):
-                v1, v2 = f"veiculo_{i}", f"veiculo_{j}"
+        for i in range(len(veics_dig)):
+            for j in range(i + 1, len(veics_dig)):
+                v1, v2 = veics_dig[i], veics_dig[j]
                 if nx.has_path(G, v1, v2):
-                    d = nx.shortest_path_length(G, v1, v2, weight="distancia_semantica")
-                    dists_dig_dig.append(d)
+                    d_dig.append(nx.shortest_path_length(G, v1, v2, weight="distancia"))
 
-        for i in range(1, 6):
-            for j in range(6, 11):
-                v1, v2 = f"veiculo_{i}", f"veiculo_{j}"
+        for v1 in veics_trad:
+            for v2 in veics_dig:
                 if nx.has_path(G, v1, v2):
-                    d = nx.shortest_path_length(G, v1, v2, weight="distancia_semantica")
-                    caminho = nx.shortest_path(G, v1, v2, weight="distancia_semantica")
-                    dists_cruzadas.append(d)
+                    d = nx.shortest_path_length(G, v1, v2, weight="distancia")
+                    d_cross.append(d)
+                    caminho = nx.shortest_path(G, v1, v2, weight="distancia")
                     if len(caminho) >= 3 and len(caminhos_exemplares) < 5:
                         caminhos_exemplares.append({
-                            "origem": G.nodes[v1].get("Label"),
-                            "destino": G.nodes[v2].get("Label"),
+                            "origem": v1,
+                            "destino": v2,
                             "distancia": round(float(d), 4),
-                            "termo_ponte": G.nodes[caminho[1]].get("Label")
+                            "termo_ponte": caminho[1]
                         })
 
-        bc = nx.betweenness_centrality(G, weight="distancia_semantica", k=min(200, G.number_of_nodes()))
+        bc = nx.betweenness_centrality(G, weight="distancia")
         termos_bc = [(n, val) for n, val in bc.items() if G.nodes[n].get("tipo_no") == "palavra"]
         top_pontes = [
-            {"termo": G.nodes[no].get("Label"), "eixo": G.nodes[no].get("eixo"), "score": round(float(score), 6)}
+            {"termo": no, "eixo": G.nodes[no].get("eixo"), "score": round(float(score), 6)}
             for no, score in sorted(termos_bc, key=lambda x: x[1], reverse=True)[:10]
         ]
 
         bfs_saltos = []
-        for v in veiculos_trad + veiculos_dig:
+        for v in veics_trad + veics_dig:
             lengths = nx.single_source_shortest_path_length(G, v)
-            for v_alvo in veiculos_trad + veiculos_dig:
+            for v_alvo in veics_trad + veics_dig:
                 if v != v_alvo and v_alvo in lengths:
                     bfs_saltos.append(lengths[v_alvo])
 
@@ -335,9 +367,9 @@ class ConstrutorGrafos:
             "total_arestas": G.number_of_edges(),
             "total_comunidades_louvain": len(comunidades),
             "modularidade_q": round(float(mod_q), 4),
-            "distancia_media_dijkstra_tradicional": float(np.mean(dists_trad_trad)) if dists_trad_trad else 0.0,
-            "distancia_media_dijkstra_digital": float(np.mean(dists_dig_dig)) if dists_dig_dig else 0.0,
-            "distancia_media_dijkstra_cruzada": float(np.mean(dists_cruzadas)) if dists_cruzadas else 0.0,
+            "distancia_media_dijkstra_tradicional": float(np.mean(d_trad)) if d_trad else 0.0,
+            "distancia_media_dijkstra_digital": float(np.mean(d_dig)) if d_dig else 0.0,
+            "distancia_media_dijkstra_cruzada": float(np.mean(d_cross)) if d_cross else 0.0,
             "caminhos_geodesicos_exemplares": caminhos_exemplares,
             "top_termos_ponte_betweenness": top_pontes,
             "diametro_bfs_entre_veiculos": max(bfs_saltos) if bfs_saltos else 0,
