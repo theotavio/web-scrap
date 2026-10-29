@@ -127,6 +127,109 @@ class ConstrutorGrafos:
 
         return G_proj
 
+    def construir_subgrafo_macro_eventos(self, limite_eventos: int = 1000, min_veiculos: int = 5) -> Tuple[nx.Graph, Dict[str, Any]]:
+        con = self.banco.obter_conexao()
+        cur = con.cursor()
+
+        cur.execute(f"""
+            SELECT id, nome_evento, total_materias, total_veiculos, eixo_predominante, divergencia_sentimento
+            FROM clusters_eventos
+            WHERE total_veiculos >= {min_veiculos}
+            ORDER BY total_veiculos DESC, total_materias DESC
+            LIMIT {limite_eventos}
+        """)
+        eventos = cur.fetchall()
+        eventos_ids = set(e[0] for e in eventos)
+
+        cur.execute(f"""
+            SELECT m.evento_id, m.veiculo_id, v.nome as veiculo_nome, v.tipo as veiculo_tipo,
+                   AVG(m.sentimento_polaridade) as sent_med,
+                   AVG(m.score_clickbait) as cb_med,
+                   COUNT(m.id) as qtd_materias
+            FROM materias m
+            JOIN veiculos v ON m.veiculo_id = v.id
+            WHERE m.evento_id IN ({','.join(str(i) for i in eventos_ids)})
+            GROUP BY m.evento_id, m.veiculo_id
+        """)
+        arestas = cur.fetchall()
+        con.close()
+
+        G = nx.Graph()
+        for e in eventos:
+            G.add_node(
+                f"evento_{e[0]}",
+                Label=e[1][:45],
+                rotulo=e[1][:45],
+                tipo_no="evento",
+                eixo=e[4] or "geral",
+                divergencia=float(e[5] or 0.0),
+                total_materias=int(e[2]),
+                total_veiculos=int(e[3])
+            )
+
+        veiculos_adicionados = set()
+        for a in arestas:
+            ev_id, v_id, v_nome, v_tipo, sent, cb, qtd = a
+            no_v = f"veiculo_{v_nome}"
+            if no_v not in veiculos_adicionados:
+                G.add_node(
+                    no_v,
+                    Label=v_nome,
+                    rotulo=v_nome,
+                    tipo_no="veiculo",
+                    tipo_editorial=v_tipo,
+                    total_materias=0,
+                    total_veiculos=10
+                )
+                veiculos_adicionados.add(no_v)
+
+            dist = round(abs(float(sent or 0.0)) + 0.05, 4)
+            G.add_edge(
+                no_v,
+                f"evento_{ev_id}",
+                weight=int(qtd),
+                distancia_enquadramento=dist,
+                sentimento=round(float(sent or 0.0), 4),
+                clickbait=round(float(cb or 0.0), 4)
+            )
+
+        veiculos = [n for n, d in G.nodes(data=True) if d.get("tipo_no") == "veiculo"]
+        dijkstra_caminhos = {}
+        for i in range(len(veiculos)):
+            for j in range(i + 1, len(veiculos)):
+                v1, v2 = veiculos[i], veiculos[j]
+                caminho = nx.shortest_path(G, source=v1, target=v2, weight="distancia_enquadramento")
+                dist_val = nx.shortest_path_length(G, source=v1, target=v2, weight="distancia_enquadramento")
+                dijkstra_caminhos[f"{v1}__{v2}"] = {
+                    "origem": G.nodes[v1].get("Label"),
+                    "destino": G.nodes[v2].get("Label"),
+                    "distancia": round(dist_val, 4),
+                    "evento_ponte": G.nodes[caminho[1]].get("Label")
+                }
+
+        bc = nx.betweenness_centrality(G, weight="distancia_enquadramento")
+        eventos_bc = [(n, val) for n, val in bc.items() if G.nodes[n].get("tipo_no") == "evento"]
+        top_pontes = [
+            {"evento": G.nodes[no].get("Label"), "score_intermediacao": round(score, 6)}
+            for no, score in sorted(eventos_bc, key=lambda x: x[1], reverse=True)[:10]
+        ]
+
+        bfs_hops = []
+        for v in veiculos:
+            lengths = nx.single_source_shortest_path_length(G, v)
+            other_veics = [lengths[v_other] for v_other in veiculos if v_other != v]
+            bfs_hops.extend(other_veics)
+
+        analise = {
+            "total_macro_eventos": len(eventos),
+            "dijkstra_pares": dijkstra_caminhos,
+            "top_eventos_ponte_betweenness": top_pontes,
+            "diametro_bfs": max(bfs_hops) if bfs_hops else 0,
+            "media_saltos_bfs": float(np.mean(bfs_hops)) if bfs_hops else 0.0
+        }
+
+        return G, analise
+
     def exportar_gexf(self, G: nx.Graph, nome_arquivo: str) -> str:
         caminho = self.dir_relatorios / nome_arquivo
         nx.write_gexf(G, str(caminho))
@@ -136,17 +239,23 @@ class ConstrutorGrafos:
     def executar(self) -> Dict[str, Any]:
         G_bip = self.construir_grafo_bipartido()
         G_proj = self.construir_projecao_veiculos(G_bip)
+        G_macro, analise_macro = self.construir_subgrafo_macro_eventos()
 
         caminho_bip = self.exportar_gexf(G_bip, "rede_bipartida.gexf")
         caminho_proj = self.exportar_gexf(G_proj, "rede_veiculos.gexf")
+        caminho_macro = self.exportar_gexf(G_macro, "rede_macro_eventos.gexf")
 
         metricas = {
-            "bipartido_nos": G_bip.number_of_nodes(),
+            "bipartido_nos": G_bip.number_of_nos() if hasattr(G_bip, "number_of_nos") else G_bip.number_of_nodes(),
             "bipartido_arestas": G_bip.number_of_edges(),
             "projecao_nos": G_proj.number_of_nodes(),
             "projecao_arestas": G_proj.number_of_edges(),
+            "macro_eventos_nos": G_macro.number_of_nodes(),
+            "macro_eventos_arestas": G_macro.number_of_edges(),
             "caminho_gexf_bipartido": caminho_bip,
             "caminho_gexf_projecao": caminho_proj,
+            "caminho_gexf_macro": caminho_macro,
+            "analise_macro": analise_macro,
             "grafo_projecao": G_proj
         }
 

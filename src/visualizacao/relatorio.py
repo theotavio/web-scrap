@@ -173,9 +173,10 @@ Para preservar a imparcialidade científica na apresentação dos dados, os veí
 
 ## 4. Modelagem em Grafo e Similaridade Editorial
 
-Foram construídos dois modelos de rede anonimizados:
-1. **Grafo Bipartido $G_{{bipartido}}$ (Veículos $\\leftrightarrow$ Eventos):** Permite verificar a sobreposição de pauta factual entre os 10 veículos dos dois grupos. Exportado em formato GEXF para Gephi em `relatorios/grafos/rede_bipartida.gexf`.
-2. **Projeção Unipartida de Veículos $G_{{veiculos}}$:** Arestas ponderadas pela proximidade de enquadramento nos mesmos eventos factuais. Exportado para Gephi em `relatorios/grafos/rede_veiculos.gexf` e interativo em `relatorios/graficos/rede_similaridade_interativa.html`.
+Foram construídos três modelos de rede anonimizados:
+1. **Subgrafo de Macro-Eventos Nacionais $G_{macro}$:** Contém os 10 veículos e os 1.000 macro-eventos mais centrais e multilaterais da década (1.010 nós e 10.000 arestas). Utilizado para responder à Pergunta Principal através de algoritmos de Menor Caminho (Dijkstra), Centralidade de Intermediação (Betweenness) e Alcance Fático (BFS). Exportado para Gephi em `relatorios/grafos/rede_macro_eventos.gexf`.
+2. **Projeção Unipartida de Veículos $G_{veiculos}$:** Arestas ponderadas pela proximidade de enquadramento nos mesmos eventos factuais. Exportado para Gephi em `relatorios/grafos/rede_veiculos.gexf` e interativo em `relatorios/graficos/rede_similaridade_interativa.html`.
+3. **Grafo Bipartido Integral $G_{bipartido}$ (Veículos $\\leftrightarrow$ Eventos):** Rede matriz de 446.659 eventos mantida para fins de replicação e auditoria científica em `relatorios/grafos/rede_bipartida.gexf`.
 
 ---
 
@@ -186,8 +187,9 @@ Foram construídos dois modelos de rede anonimizados:
 - [Efeito Mudo e Silenciamento Seletivo por Eixo Temático](graficos/efeito_mudo_por_area_tematica.html)
 - [Radar Multidimensional Editorial por Grupo](graficos/radar_enquadramento_editorial.html)
 - [Rede de Proximidade Editorial Anonimizada](graficos/rede_similaridade_interativa.html)
-- [Arquivo GEXF para Gephi (Rede Bipartida)](grafos/rede_bipartida.gexf)
+- [Arquivo GEXF para Gephi (Macro-Eventos Nacionais)](grafos/rede_macro_eventos.gexf)
 - [Arquivo GEXF para Gephi (Projeção Veículos)](grafos/rede_veiculos.gexf)
+- [Arquivo GEXF para Gephi (Rede Bipartida Integral)](grafos/rede_bipartida.gexf)
 
 ---
 *Relatório gerado automaticamente pelo pipeline de pesquisa.*
