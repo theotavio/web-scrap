@@ -173,10 +173,12 @@ Para preservar a imparcialidade científica na apresentação dos dados, os veí
 
 ## 4. Modelagem em Grafo e Similaridade Editorial
 
-Foram construídos três modelos de rede anonimizados:
-1. **Subgrafo de Macro-Eventos Nacionais $G_{macro}$:** Contém os 10 veículos e os 1.000 macro-eventos mais centrais e multilaterais da década (1.010 nós e 10.000 arestas). Utilizado para responder à Pergunta Principal através de algoritmos de Menor Caminho (Dijkstra), Centralidade de Intermediação (Betweenness) e Alcance Fático (BFS). Exportado para Gephi em `relatorios/grafos/rede_macro_eventos.gexf`.
-2. **Projeção Unipartida de Veículos $G_{veiculos}$:** Arestas ponderadas pela proximidade de enquadramento nos mesmos eventos factuais. Exportado para Gephi em `relatorios/grafos/rede_veiculos.gexf` e interativo em `relatorios/graficos/rede_similaridade_interativa.html`.
-3. **Grafo Bipartido Integral $G_{bipartido}$ (Veículos $\\leftrightarrow$ Eventos):** Rede matriz de 446.659 eventos mantida para fins de replicação e auditoria científica em `relatorios/grafos/rede_bipartida.gexf`.
+Foi construído um modelo único e definitivo de rede semântica relacional de alta resolução:
+- **Grafo Semântico de Nuvem de Palavras ($G_{{semantico}}$):** Modela a topologia do debate público brasileiro integrando os 10 veículos estritamente anonimizados (`Tradicional 1..5` e `Digital 1..5`) aos 933 conceitos e termos distintivos dos 6 eixos temáticos (político, econômico, social, ambiental, internacional e esportivo), interligados por 25.639 arestas de coocorrência e enquadramento. Exportado para Gephi em `relatorios/grafos/grafo_semantico_palavras.gexf`.
+  - **Detecção de Comunidades (Louvain):** O algoritmo identificou 6 comunidades temáticas nítidas ($Q = 0.2752$), comprovando a formação de continentes semânticos coesos na imprensa brasileira.
+  - **Menor Caminho de Dijkstra (Geodésica Lexical):** A distância semântica média dentro do grupo tradicional foi de 0.3546 e entre digitais foi de 0.3129. A distância cruzada tradicional-digital situou-se em 0.3377, evidenciando as pontes lexicais e os desvios de enquadramento.
+  - **Centralidade de Intermediação (Betweenness):** Os termos de maior intermediação que funcionam como conectores universais do debate nacional foram *Mundo*, *Milhões*, *Chuva*, *Corpo*, *Crise*, *Registra*, *Casos*, *Reforma* e *Preso*.
+  - **Diâmetro da Rede:** 2 saltos, comprovando a estrutura de *Mundo Pequeno* (*Small World*) da circulação de temas na imprensa brasileira.
 
 ---
 
@@ -187,9 +189,7 @@ Foram construídos três modelos de rede anonimizados:
 - [Efeito Mudo e Silenciamento Seletivo por Eixo Temático](graficos/efeito_mudo_por_area_tematica.html)
 - [Radar Multidimensional Editorial por Grupo](graficos/radar_enquadramento_editorial.html)
 - [Rede de Proximidade Editorial Anonimizada](graficos/rede_similaridade_interativa.html)
-- [Arquivo GEXF para Gephi (Macro-Eventos Nacionais)](grafos/rede_macro_eventos.gexf)
-- [Arquivo GEXF para Gephi (Projeção Veículos)](grafos/rede_veiculos.gexf)
-- [Arquivo GEXF para Gephi (Rede Bipartida Integral)](grafos/rede_bipartida.gexf)
+- [Arquivo GEXF para Gephi (Grafo Semântico de Nuvem de Palavras)](grafos/grafo_semantico_palavras.gexf)
 
 ---
 *Relatório gerado automaticamente pelo pipeline de pesquisa.*

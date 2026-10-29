@@ -1,6 +1,10 @@
+import gc
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+import re
+from collections import Counter, defaultdict
+from typing import Any, Dict, List, Set, Tuple
 import networkx as nx
+import networkx.algorithms.community as nx_comm
 import numpy as np
 from src.configuracao import obter_configuracao
 from src.registro import obter_logger
@@ -15,220 +19,284 @@ class ConstrutorGrafos:
         self.dir_relatorios = Path(self.config.obter("geral.diretorio_relatorios", "relatorios")) / "grafos"
         self.dir_relatorios.mkdir(parents=True, exist_ok=True)
 
-    def construir_grafo_bipartido(self) -> nx.Graph:
+        self.veiculos_anonimizados = {
+            1: ("Tradicional 1", "tradicional"),
+            2: ("Tradicional 2", "tradicional"),
+            3: ("Tradicional 3", "tradicional"),
+            4: ("Tradicional 4", "tradicional"),
+            5: ("Tradicional 5", "tradicional"),
+            6: ("Digital 1", "digital_nativo"),
+            7: ("Digital 2", "digital_nativo"),
+            8: ("Digital 3", "digital_nativo"),
+            9: ("Digital 4", "digital_nativo"),
+            10: ("Digital 5", "digital_nativo")
+        }
+
+        self.stopwords_gerais = {
+            "para", "com", "nao", "uma", "mais", "como", "ele", "seu", "sua", "quando", "muito", "tambem",
+            "pelo", "pela", "depois", "mesmo", "seus", "quem", "esse", "eles", "voce", "essa", "numa",
+            "pelos", "elas", "qual", "deles", "essas", "esses", "pelas", "este", "dele", "voces", "minhas",
+            "nossa", "nossos", "nossas", "dela", "delas", "esta", "estes", "estas", "aquele", "aquela",
+            "aqueles", "aquelas", "isto", "aquilo", "estou", "estamos", "estao", "estive", "esteve",
+            "estivemos", "estiveram", "estava", "estavamos", "estavam", "estivera", "esteja", "estejam",
+            "estivesse", "houve", "houveram", "haja", "hajam", "houvesse", "houver", "somos", "foram",
+            "sejam", "fossem", "seremos", "serao", "seria", "seriam", "tenho", "temos", "tinham", "teve",
+            "tiveram", "tenham", "tivessem", "tiver", "sobre", "anos", "segundo", "pode", "dias", "novo",
+            "nova", "novos", "novas", "primeiro", "primeira", "contra", "brasil", "brasileiro", "brasileira",
+            "brasileiros", "brasileiras", "país", "pais", "governo", "veja", "tudo", "onde", "porque",
+            "saiba", "entenda", "foto", "fotos", "vídeo", "vídeos", "leia", "confira", "tempo", "minuto",
+            "minutos", "hora", "horas", "outro", "outra", "outros", "outras", "hoje", "ontem", "nesta",
+            "neste", "disse", "deve", "fazer", "fala", "quer", "caso", "parte", "durante", "frente",
+            "forma", "ponto", "grupo", "número", "ainda", "maior", "menor", "melhor", "pior", "grande",
+            "grandes", "pequeno", "pequenos", "alta", "queda", "baixa", "deixa", "morre", "mortes", "morto",
+            "morta", "homem", "mulher", "mulheres", "pessoas", "geral", "nacional", "brasília", "paulo",
+            "janeiro", "folha", "estadao", "globo", "gazeta", "correio", "metrópoles", "metropoles",
+            "poder360", "antagonista", "brasil247", "nexo", "g1", "uol", "após", "além", "sendo", "terá",
+            "será", "está", "estão", "havia", "desde", "pouco", "muitos", "muitas", "feira", "desta",
+            "deste", "segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo", "semana",
+            "mês", "meses", "aponta", "mostra", "passa", "chega", "segue", "volta", "começa", "afirma",
+            "pede", "vê", "revela", "traz", "diz", "dizer", "levar", "sair", "dar", "fica", "ter", "vir",
+            "ver", "vai", "vão", "ia", "virou", "ficou", "deu", "foi", "era", "são", "tem", "entre",
+            "planalto", "assim", "cada", "tanto", "quanto", "sabe", "tinha", "vamos", "então", "aqui"
+        }
+
+    def limpar_grafos_antigos(self) -> None:
+        arquivos_antigos = [
+            "rede_bipartida.gexf",
+            "rede_veiculos.gexf",
+            "rede_macro_eventos.gexf"
+        ]
+        for arq in arquivos_antigos:
+            p = self.dir_relatorios / arq
+            if p.exists():
+                p.unlink()
+                self.logger.info(f"Arquivo antigo removido: {p}")
+
+    def obter_entidades_pessoas_para_filtro(self) -> Set[str]:
+        con = self.banco.obter_conexao()
+        cur = con.cursor()
+        cur.execute("""
+            SELECT LOWER(texto_entidade)
+            FROM entidades_mencoes
+            WHERE tipo_entidade = 'PER'
+            GROUP BY LOWER(texto_entidade)
+            HAVING COUNT(*) >= 50
+        """)
+        nomes_raw = [r[0] for r in cur.fetchall()]
+        con.close()
+
+        tokens_nomes = set()
+        for n in nomes_raw:
+            for t in re.findall(r"\b[a-záéíóúãõâêîôûç]{3,}\b", n):
+                tokens_nomes.add(t)
+        return tokens_nomes
+
+    def construir_grafo_semantico(
+        self,
+        palavras_por_eixo: int = 250,
+        min_coocorrencias: int = 4
+    ) -> Tuple[nx.Graph, Dict[str, Any]]:
+        self.logger.info("Iniciando mineracao para o Grafo Semantico de Nuvem de Palavras...")
+        tokens_nomes = self.obter_entidades_pessoas_para_filtro()
+        stopwords_totais = self.stopwords_gerais | tokens_nomes
+
+        eixos = ["politico", "economico", "ambiental", "social", "internacional", "esportivo"]
         con = self.banco.obter_conexao()
         cur = con.cursor()
 
-        cur.execute("""
-            SELECT m.id, m.veiculo_id, m.evento_id, m.sentimento_polaridade,
-                   m.score_clickbait, v.nome as veiculo_nome, v.tipo as veiculo_tipo,
-                   ce.nome_evento, ce.eixo_predominante, ce.divergencia_sentimento
-            FROM materias m
-            JOIN veiculos v ON m.veiculo_id = v.id
-            JOIN clusters_eventos ce ON m.evento_id = ce.id
-            WHERE m.evento_id > -1
-        """)
-        linhas = [dict(row) for row in cur.fetchall()]
+        palavra_info: Dict[str, Dict[str, Any]] = {}
+
+        for eixo in eixos:
+            cur.execute(f"""
+                SELECT titulo, veiculo_id, sentimento_polaridade, score_clickbait
+                FROM materias
+                WHERE eixo_tematico = '{eixo}' AND id % 3 = 0
+                LIMIT 35000
+            """)
+            rows = cur.fetchall()
+            cnt = Counter()
+            for r in rows:
+                tokens = re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower())
+                filtrados = [t for t in tokens if t not in stopwords_totais and len(t) >= 4]
+                cnt.update(filtrados)
+
+            for w, freq in cnt.most_common(palavras_por_eixo):
+                if w not in palavra_info:
+                    palavra_info[w] = {
+                        "eixo": eixo,
+                        "frequencia": freq,
+                        "sentimentos": [],
+                        "clickbaits": [],
+                        "veiculos": defaultdict(int)
+                    }
+
+        todas_palavras_set = set(palavra_info.keys())
+        coocorrencias: Counter = Counter()
+
+        for eixo in eixos:
+            cur.execute(f"""
+                SELECT titulo, veiculo_id, sentimento_polaridade, score_clickbait
+                FROM materias
+                WHERE eixo_tematico = '{eixo}' AND id % 3 = 0
+                LIMIT 35000
+            """)
+            rows = cur.fetchall()
+            for r in rows:
+                v_id = r[1]
+                sent = float(r[2] or 0.0)
+                cb = float(r[3] or 0.0)
+                tokens = set(re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower()))
+                presentes = [t for t in tokens if t in todas_palavras_set]
+
+                for w in presentes:
+                    palavra_info[w]["sentimentos"].append(sent)
+                    palavra_info[w]["clickbaits"].append(cb)
+                    palavra_info[w]["veiculos"][v_id] += 1
+
+                for i in range(len(presentes)):
+                    for j in range(i + 1, len(presentes)):
+                        w1, w2 = sorted([presentes[i], presentes[j]])
+                        coocorrencias[(w1, w2)] += 1
+
         con.close()
 
         G = nx.Graph()
 
-        veiculos_adicionados = set()
-        eventos_adicionados = set()
-        arestas_acumuladas: Dict[Tuple[str, str], List[Dict[str, Any]]] = {}
+        for v_id, (v_label, v_tipo) in self.veiculos_anonimizados.items():
+            G.add_node(
+                f"veiculo_{v_id}",
+                Label=v_label,
+                rotulo=v_label,
+                tipo_no="veiculo",
+                tipo_editorial=v_tipo,
+                eixo="editorial",
+                frequencia=10000,
+                sentimento_medio=0.0,
+                clickbait_medio=0.0
+            )
 
-        for l in linhas:
-            no_veiculo = f"veiculo_{l['veiculo_nome']}"
-            no_evento = f"evento_{l['evento_id']}"
+        for w, info in palavra_info.items():
+            sents = info["sentimentos"]
+            cbs = info["clickbaits"]
+            s_med = float(np.mean(sents)) if sents else 0.0
+            cb_med = float(np.mean(cbs)) if cbs else 0.0
 
-            if no_veiculo not in veiculos_adicionados:
-                G.add_node(
-                    no_veiculo,
-                    rotulo=l["veiculo_nome"],
-                    tipo_no="veiculo",
-                    tipo_editorial=l["veiculo_tipo"],
-                    bipartite=0
-                )
-                veiculos_adicionados.add(no_veiculo)
-
-            if no_evento not in eventos_adicionados:
-                G.add_node(
-                    no_evento,
-                    rotulo=l["nome_evento"][:50],
-                    tipo_no="evento",
-                    eixo=l["eixo_predominante"],
-                    divergencia=float(l["divergencia_sentimento"]),
-                    bipartite=1
-                )
-                eventos_adicionados.add(no_evento)
-
-            chave_aresta = (no_veiculo, no_evento)
-            if chave_aresta not in arestas_acumuladas:
-                arestas_acumuladas[chave_aresta] = []
-            arestas_acumuladas[chave_aresta].append(l)
-
-        for (no_v, no_e), itens in arestas_acumuladas.items():
-            qtd = len(itens)
-            sent_med = float(np.mean([it["sentimento_polaridade"] for it in itens]))
-            cb_med = float(np.mean([it["score_clickbait"] for it in itens]))
-
-            G.add_edge(
-                no_v,
-                no_e,
-                weight=qtd,
-                sentimento_medio=round(sent_med, 4),
+            G.add_node(
+                f"palavra_{w}",
+                Label=w.capitalize(),
+                rotulo=w.capitalize(),
+                tipo_no="palavra",
+                eixo=info["eixo"],
+                frequencia=int(info["frequencia"]),
+                sentimento_medio=round(s_med, 4),
                 clickbait_medio=round(cb_med, 4)
             )
 
-        return G
-
-    def construir_projecao_veiculos(self, G_bip: nx.Graph) -> nx.Graph:
-        G_proj = nx.Graph()
-
-        nos_veiculos = [n for n, d in G_bip.nodes(data=True) if d.get("bipartite") == 0]
-        for n in nos_veiculos:
-            d = G_bip.nodes[n]
-            G_proj.add_node(
-                n,
-                rotulo=d.get("rotulo"),
-                tipo_editorial=d.get("tipo_editorial")
-            )
-
-        for i in range(len(nos_veiculos)):
-            for j in range(i + 1, len(nos_veiculos)):
-                v1 = nos_veiculos[i]
-                v2 = nos_veiculos[j]
-
-                vizinhos_v1 = set(G_bip.neighbors(v1))
-                vizinhos_v2 = set(G_bip.neighbors(v2))
-                eventos_comuns = list(vizinhos_v1.intersection(vizinhos_v2))
-
-                if not eventos_comuns:
-                    continue
-
-                diferencas_sentimento = []
-                for ev in eventos_comuns:
-                    s1 = G_bip[v1][ev].get("sentimento_medio", 0.0)
-                    s2 = G_bip[v2][ev].get("sentimento_medio", 0.0)
-                    diferencas_sentimento.append(abs(s1 - s2))
-
-                dist_media = float(np.mean(diferencas_sentimento)) if diferencas_sentimento else 0.0
-                similaridade_enquadramento = max(0.0, 1.0 - (dist_media / 2.0))
-                peso_final = len(eventos_comuns) * similaridade_enquadramento
-
-                G_proj.add_edge(
-                    v1,
-                    v2,
-                    weight=round(peso_final, 4),
-                    eventos_comuns=len(eventos_comuns),
-                    distancia_sentimento=round(dist_media, 4),
-                    similaridade_enquadramento=round(similaridade_enquadramento, 4)
+        for (w1, w2), count in coocorrencias.items():
+            if count >= min_coocorrencias:
+                dist = round(1.0 / (1.0 + np.log1p(count)), 4)
+                G.add_edge(
+                    f"palavra_{w1}",
+                    f"palavra_{w2}",
+                    weight=int(count),
+                    tipo_aresta="coocorrencia",
+                    distancia_semantica=dist
                 )
 
-        return G_proj
+        for w, info in palavra_info.items():
+            for v_id, count in info["veiculos"].items():
+                if count >= 3:
+                    dist = round(1.0 / (1.0 + np.log1p(count)), 4)
+                    G.add_edge(
+                        f"veiculo_{v_id}",
+                        f"palavra_{w}",
+                        weight=int(count),
+                        tipo_aresta="enquadramento",
+                        distancia_semantica=dist
+                    )
 
-    def construir_subgrafo_macro_eventos(self, limite_eventos: int = 1000, min_veiculos: int = 5) -> Tuple[nx.Graph, Dict[str, Any]]:
-        con = self.banco.obter_conexao()
-        cur = con.cursor()
+        del coocorrencias
+        del palavra_info
+        gc.collect()
 
-        cur.execute(f"""
-            SELECT id, nome_evento, total_materias, total_veiculos, eixo_predominante, divergencia_sentimento
-            FROM clusters_eventos
-            WHERE total_veiculos >= {min_veiculos}
-            ORDER BY total_veiculos DESC, total_materias DESC
-            LIMIT {limite_eventos}
-        """)
-        eventos = cur.fetchall()
-        eventos_ids = set(e[0] for e in eventos)
+        metricas_algoritmos = self._calcular_metricas_grafo(G)
+        return G, metricas_algoritmos
 
-        cur.execute(f"""
-            SELECT m.evento_id, m.veiculo_id, v.nome as veiculo_nome, v.tipo as veiculo_tipo,
-                   AVG(m.sentimento_polaridade) as sent_med,
-                   AVG(m.score_clickbait) as cb_med,
-                   COUNT(m.id) as qtd_materias
-            FROM materias m
-            JOIN veiculos v ON m.veiculo_id = v.id
-            WHERE m.evento_id IN ({','.join(str(i) for i in eventos_ids)})
-            GROUP BY m.evento_id, m.veiculo_id
-        """)
-        arestas = cur.fetchall()
-        con.close()
+    def _calcular_metricas_grafo(self, G: nx.Graph) -> Dict[str, Any]:
+        self.logger.info("Calculando metricas analiticas de algoritmos no Grafo Semantico...")
 
-        G = nx.Graph()
-        for e in eventos:
-            G.add_node(
-                f"evento_{e[0]}",
-                Label=e[1][:45],
-                rotulo=e[1][:45],
-                tipo_no="evento",
-                eixo=e[4] or "geral",
-                divergencia=float(e[5] or 0.0),
-                total_materias=int(e[2]),
-                total_veiculos=int(e[3])
-            )
+        comunidades = nx_comm.louvain_communities(G, weight="weight", resolution=1.0)
+        mod_q = nx_comm.modularity(G, comunidades, weight="weight")
 
-        veiculos_adicionados = set()
-        for a in arestas:
-            ev_id, v_id, v_nome, v_tipo, sent, cb, qtd = a
-            no_v = f"veiculo_{v_nome}"
-            if no_v not in veiculos_adicionados:
-                G.add_node(
-                    no_v,
-                    Label=v_nome,
-                    rotulo=v_nome,
-                    tipo_no="veiculo",
-                    tipo_editorial=v_tipo,
-                    total_materias=0,
-                    total_veiculos=10
-                )
-                veiculos_adicionados.add(no_v)
+        for idx_c, comm in enumerate(comunidades):
+            for no in comm:
+                G.nodes[no]["modularity_class"] = idx_c
 
-            dist = round(abs(float(sent or 0.0)) + 0.05, 4)
-            G.add_edge(
-                no_v,
-                f"evento_{ev_id}",
-                weight=int(qtd),
-                distancia_enquadramento=dist,
-                sentimento=round(float(sent or 0.0), 4),
-                clickbait=round(float(cb or 0.0), 4)
-            )
+        veiculos_trad = [f"veiculo_{i}" for i in range(1, 6)]
+        veiculos_dig = [f"veiculo_{i}" for i in range(6, 11)]
 
-        veiculos = [n for n, d in G.nodes(data=True) if d.get("tipo_no") == "veiculo"]
-        dijkstra_caminhos = {}
-        for i in range(len(veiculos)):
-            for j in range(i + 1, len(veiculos)):
-                v1, v2 = veiculos[i], veiculos[j]
-                caminho = nx.shortest_path(G, source=v1, target=v2, weight="distancia_enquadramento")
-                dist_val = nx.shortest_path_length(G, source=v1, target=v2, weight="distancia_enquadramento")
-                dijkstra_caminhos[f"{v1}__{v2}"] = {
-                    "origem": G.nodes[v1].get("Label"),
-                    "destino": G.nodes[v2].get("Label"),
-                    "distancia": round(dist_val, 4),
-                    "evento_ponte": G.nodes[caminho[1]].get("Label")
-                }
+        dists_trad_trad = []
+        dists_dig_dig = []
+        dists_cruzadas = []
+        caminhos_exemplares = []
 
-        bc = nx.betweenness_centrality(G, weight="distancia_enquadramento")
-        eventos_bc = [(n, val) for n, val in bc.items() if G.nodes[n].get("tipo_no") == "evento"]
+        for i in range(1, 6):
+            for j in range(i + 1, 6):
+                v1, v2 = f"veiculo_{i}", f"veiculo_{j}"
+                if nx.has_path(G, v1, v2):
+                    d = nx.shortest_path_length(G, v1, v2, weight="distancia_semantica")
+                    dists_trad_trad.append(d)
+
+        for i in range(6, 11):
+            for j in range(i + 1, 11):
+                v1, v2 = f"veiculo_{i}", f"veiculo_{j}"
+                if nx.has_path(G, v1, v2):
+                    d = nx.shortest_path_length(G, v1, v2, weight="distancia_semantica")
+                    dists_dig_dig.append(d)
+
+        for i in range(1, 6):
+            for j in range(6, 11):
+                v1, v2 = f"veiculo_{i}", f"veiculo_{j}"
+                if nx.has_path(G, v1, v2):
+                    d = nx.shortest_path_length(G, v1, v2, weight="distancia_semantica")
+                    caminho = nx.shortest_path(G, v1, v2, weight="distancia_semantica")
+                    dists_cruzadas.append(d)
+                    if len(caminho) >= 3 and len(caminhos_exemplares) < 5:
+                        caminhos_exemplares.append({
+                            "origem": G.nodes[v1].get("Label"),
+                            "destino": G.nodes[v2].get("Label"),
+                            "distancia": round(d, 4),
+                            "termo_ponte": G.nodes[caminho[1]].get("Label")
+                        })
+
+        bc = nx.betweenness_centrality(G, weight="distancia_semantica", k=min(200, G.number_of_nodes()))
+        termos_bc = [(n, val) for n, val in bc.items() if G.nodes[n].get("tipo_no") == "palavra"]
         top_pontes = [
-            {"evento": G.nodes[no].get("Label"), "score_intermediacao": round(score, 6)}
-            for no, score in sorted(eventos_bc, key=lambda x: x[1], reverse=True)[:10]
+            {"termo": G.nodes[no].get("Label"), "eixo": G.nodes[no].get("eixo"), "score": round(score, 6)}
+            for no, score in sorted(termos_bc, key=lambda x: x[1], reverse=True)[:10]
         ]
 
-        bfs_hops = []
-        for v in veiculos:
+        bfs_saltos = []
+        for v in veiculos_trad + veiculos_dig:
             lengths = nx.single_source_shortest_path_length(G, v)
-            other_veics = [lengths[v_other] for v_other in veiculos if v_other != v]
-            bfs_hops.extend(other_veics)
+            for v_alvo in veiculos_trad + veiculos_dig:
+                if v != v_alvo and v_alvo in lengths:
+                    bfs_saltos.append(lengths[v_alvo])
 
-        analise = {
-            "total_macro_eventos": len(eventos),
-            "dijkstra_pares": dijkstra_caminhos,
-            "top_eventos_ponte_betweenness": top_pontes,
-            "diametro_bfs": max(bfs_hops) if bfs_hops else 0,
-            "media_saltos_bfs": float(np.mean(bfs_hops)) if bfs_hops else 0.0
+        resultado = {
+            "total_nos": G.number_of_nodes(),
+            "total_arestas": G.number_of_edges(),
+            "total_comunidades_louvain": len(comunidades),
+            "modularidade_q": round(mod_q, 4),
+            "distancia_media_dijkstra_tradicional": float(np.mean(dists_trad_trad)) if dists_trad_trad else 0.0,
+            "distancia_media_dijkstra_digital": float(np.mean(dists_dig_dig)) if dists_dig_dig else 0.0,
+            "distancia_media_dijkstra_cruzada": float(np.mean(dists_cruzadas)) if dists_cruzadas else 0.0,
+            "caminhos_geodesicos_exemplares": caminhos_exemplares,
+            "top_termos_ponte_betweenness": top_pontes,
+            "diametro_bfs_entre_veiculos": max(bfs_saltos) if bfs_saltos else 0,
+            "media_saltos_bfs": float(np.mean(bfs_saltos)) if bfs_saltos else 0.0
         }
-
-        return G, analise
+        return resultado
 
     def exportar_gexf(self, G: nx.Graph, nome_arquivo: str) -> str:
         caminho = self.dir_relatorios / nome_arquivo
@@ -237,27 +305,24 @@ class ConstrutorGrafos:
         return str(caminho)
 
     def executar(self) -> Dict[str, Any]:
-        G_bip = self.construir_grafo_bipartido()
-        G_proj = self.construir_projecao_veiculos(G_bip)
-        G_macro, analise_macro = self.construir_subgrafo_macro_eventos()
+        self.limpar_grafos_antigos()
+        G_semantico, analise = self.construir_grafo_semantico()
+        caminho_grafo = self.exportar_gexf(G_semantico, "grafo_semantico_palavras.gexf")
 
-        caminho_bip = self.exportar_gexf(G_bip, "rede_bipartida.gexf")
-        caminho_proj = self.exportar_gexf(G_proj, "rede_veiculos.gexf")
-        caminho_macro = self.exportar_gexf(G_macro, "rede_macro_eventos.gexf")
+        self.banco.salvar_resultado_estatistico(
+            pergunta="grafo_semantico",
+            chave="analise_rede_nuvem_palavras",
+            valor=analise.get("modularidade_q", 0.0),
+            detalhes=analise
+        )
 
         metricas = {
-            "bipartido_nos": G_bip.number_of_nos() if hasattr(G_bip, "number_of_nos") else G_bip.number_of_nodes(),
-            "bipartido_arestas": G_bip.number_of_edges(),
-            "projecao_nos": G_proj.number_of_nodes(),
-            "projecao_arestas": G_proj.number_of_edges(),
-            "macro_eventos_nos": G_macro.number_of_nodes(),
-            "macro_eventos_arestas": G_macro.number_of_edges(),
-            "caminho_gexf_bipartido": caminho_bip,
-            "caminho_gexf_projecao": caminho_proj,
-            "caminho_gexf_macro": caminho_macro,
-            "analise_macro": analise_macro,
-            "grafo_projecao": G_proj
+            "grafo_nos": G_semantico.number_of_nodes(),
+            "grafo_arestas": G_semantico.number_of_edges(),
+            "caminho_gexf": caminho_grafo,
+            "analise_semantica": analise,
+            "grafo": G_semantico
         }
 
-        self.logger.info(f"Processamento de grafos concluido: {metricas}")
+        self.logger.info(f"Grafo Semantico gerado com sucesso: {analise['total_nos']} nos e {analise['total_arestas']} arestas.")
         return metricas
