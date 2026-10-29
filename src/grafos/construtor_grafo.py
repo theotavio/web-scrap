@@ -20,16 +20,16 @@ class ConstrutorGrafos:
         self.dir_relatorios.mkdir(parents=True, exist_ok=True)
 
         self.veiculos_pos = {
-            "Tradicional 1": (-750.0, 200.0),
-            "Tradicional 2": (-800.0, 100.0),
-            "Tradicional 3": (-750.0, 0.0),
-            "Tradicional 4": (-800.0, -100.0),
-            "Tradicional 5": (-750.0, -200.0),
-            "Digital 1": (750.0, 200.0),
-            "Digital 2": (800.0, 100.0),
-            "Digital 3": (750.0, 0.0),
-            "Digital 4": (800.0, -100.0),
-            "Digital 5": (750.0, -200.0),
+            "Tradicional 1": (-360.0, 160.0),
+            "Tradicional 2": (-400.0, 80.0),
+            "Tradicional 3": (-380.0, 0.0),
+            "Tradicional 4": (-400.0, -80.0),
+            "Tradicional 5": (-360.0, -160.0),
+            "Digital 1": (360.0, 160.0),
+            "Digital 2": (400.0, 80.0),
+            "Digital 3": (380.0, 0.0),
+            "Digital 4": (400.0, -80.0),
+            "Digital 5": (360.0, -160.0),
         }
 
         self.cores_eixos = {
@@ -106,9 +106,10 @@ class ConstrutorGrafos:
 
     def construir_grafo_semantico(
         self,
-        palavras_por_eixo: int = 35
+        palavras_por_eixo: int = 25,
+        amostras_por_veiculo_eixo: int = 1500
     ) -> Tuple[nx.Graph, Dict[str, Any]]:
-        self.logger.info("Iniciando mineracao semantica polarizada com separacao de polos...")
+        self.logger.info("Iniciando mineracao balanceada e simetrica para o Grafo Semantico...")
         tokens_nomes = self.obter_entidades_pessoas_para_filtro()
         stopwords_totais = self.stopwords_gerais | tokens_nomes
 
@@ -119,18 +120,18 @@ class ConstrutorGrafos:
         palavra_info: Dict[str, Dict[str, Any]] = {}
 
         for eixo in eixos:
-            cur.execute(f"""
-                SELECT titulo, veiculo_id, sentimento_polaridade, score_clickbait
-                FROM materias
-                WHERE eixo_tematico = '{eixo}' AND id % 3 = 0
-                LIMIT 35000
-            """)
-            rows = cur.fetchall()
             cnt = Counter()
-            for r in rows:
-                tokens = re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower())
-                filtrados = [t for t in tokens if t not in stopwords_totais and len(t) >= 4]
-                cnt.update(filtrados)
+            for v in range(1, 11):
+                cur.execute(f"""
+                    SELECT titulo FROM materias
+                    WHERE veiculo_id = {v} AND eixo_tematico = '{eixo}'
+                    LIMIT {amostras_por_veiculo_eixo}
+                """)
+                rows = cur.fetchall()
+                for r in rows:
+                    tokens = re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower())
+                    filtrados = [t for t in tokens if t not in stopwords_totais and len(t) >= 4]
+                    cnt.update(filtrados)
 
             for w, freq in cnt.most_common(palavras_por_eixo):
                 termo = w.capitalize()
@@ -140,8 +141,6 @@ class ConstrutorGrafos:
                         "frequencia": freq,
                         "tradicional_count": 0,
                         "digital_count": 0,
-                        "sentimentos": [],
-                        "clickbaits": [],
                         "veiculos": defaultdict(int)
                     }
 
@@ -149,33 +148,27 @@ class ConstrutorGrafos:
         coocorrencias: Counter = Counter()
 
         for eixo in eixos:
-            cur.execute(f"""
-                SELECT titulo, veiculo_id, sentimento_polaridade, score_clickbait
-                FROM materias
-                WHERE eixo_tematico = '{eixo}' AND id % 3 = 0
-                LIMIT 35000
-            """)
-            rows = cur.fetchall()
-            for r in rows:
-                v_id = r[1]
-                sent = float(r[2] or 0.0)
-                cb = float(r[3] or 0.0)
-                tokens = set(re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower()))
-                presentes = [todas_palavras_set[t] for t in tokens if t in todas_palavras_set]
+            for v in range(1, 11):
+                cur.execute(f"""
+                    SELECT titulo FROM materias
+                    WHERE veiculo_id = {v} AND eixo_tematico = '{eixo}'
+                    LIMIT {amostras_por_veiculo_eixo}
+                """)
+                rows = cur.fetchall()
+                for r in rows:
+                    tokens = set(re.findall(r"\b[a-záéíóúãõâêîôûç]{4,}\b", r[0].lower()))
+                    presentes = [todas_palavras_set[t] for t in tokens if t in todas_palavras_set]
+                    for p in presentes:
+                        palavra_info[p]["veiculos"][v] += 1
+                        if v <= 5:
+                            palavra_info[p]["tradicional_count"] += 1
+                        else:
+                            palavra_info[p]["digital_count"] += 1
 
-                for p in presentes:
-                    palavra_info[p]["veiculos"][v_id] += 1
-                    palavra_info[p]["sentimentos"].append(sent)
-                    palavra_info[p]["clickbaits"].append(cb)
-                    if v_id <= 5:
-                        palavra_info[p]["tradicional_count"] += 1
-                    else:
-                        palavra_info[p]["digital_count"] += 1
-
-                for i in range(len(presentes)):
-                    for j in range(i + 1, len(presentes)):
-                        p1, p2 = sorted([presentes[i], presentes[j]])
-                        coocorrencias[(p1, p2)] += 1
+                    for i in range(len(presentes)):
+                        for j in range(i + 1, len(presentes)):
+                            p1, p2 = sorted([presentes[i], presentes[j]])
+                            coocorrencias[(p1, p2)] += 1
 
         con.close()
 
@@ -191,8 +184,8 @@ class ConstrutorGrafos:
                 tipo_no="veiculo",
                 grupo_editorial="Tradicional",
                 eixo="Imprensa Tradicional",
-                size=45.0,
-                viz={"size": 45.0, "color": self.cor_tradicional, "position": {"x": px, "y": py, "z": 0.0}}
+                size=55.0,
+                viz={"size": 55.0, "color": self.cor_tradicional, "position": {"x": px, "y": py, "z": 0.0}}
             )
 
         for v_id in range(1, 6):
@@ -205,17 +198,17 @@ class ConstrutorGrafos:
                 tipo_no="veiculo",
                 grupo_editorial="Digital Nativo",
                 eixo="Nativos Digitais",
-                size=45.0,
-                viz={"size": 45.0, "color": self.cor_digital, "position": {"x": px, "y": py, "z": 0.0}}
+                size=55.0,
+                viz={"size": 55.0, "color": self.cor_digital, "position": {"x": px, "y": py, "z": 0.0}}
             )
 
         y_offsets = {
-            "politico": 250.0,
-            "economico": 120.0,
-            "internacional": 0.0,
-            "ambiental": -120.0,
-            "social": -240.0,
-            "esportivo": -360.0
+            "politico": 180.0,
+            "economico": 80.0,
+            "internacional": -10.0,
+            "ambiental": -90.0,
+            "social": -170.0,
+            "esportivo": -250.0
         }
 
         np.random.seed(42)
@@ -227,21 +220,21 @@ class ConstrutorGrafos:
             total_cnt = t_cnt + d_cnt + 1e-5
             polarizacao = (d_cnt - t_cnt) / total_cnt
 
-            if polarizacao < -0.25:
+            if polarizacao < -0.15:
                 enq = "Viés Tradicional"
                 cor = self.cor_tradicional
-            elif polarizacao > 0.25:
+            elif polarizacao > 0.15:
                 enq = "Viés Digital"
                 cor = self.cor_digital
             else:
-                enq = "Consenso Fático"
+                enq = "Consenso Central"
                 cor = self.cores_eixos.get(info["eixo"], {"r": 100, "g": 100, "b": 100})
 
-            base_x = polarizacao * 450.0 + np.random.uniform(-40, 40)
-            base_y = y_offsets.get(info["eixo"], 0.0) + np.random.uniform(-35, 35)
+            base_x = polarizacao * 250.0 + np.random.uniform(-25, 25)
+            base_y = y_offsets.get(info["eixo"], 0.0) + np.random.uniform(-20, 20)
 
             freq = info["frequencia"]
-            tam = 10.0 + 20.0 * (np.log1p(freq) / np.log1p(max_freq))
+            tam = 22.0 + 20.0 * (np.log1p(freq) / np.log1p(max_freq))
 
             G.add_node(
                 termo,
@@ -268,25 +261,25 @@ class ConstrutorGrafos:
             for p2, count in viz_ord:
                 chave = tuple(sorted([p1, p2]))
                 if chave not in arestas_adicionadas and p1 in G and p2 in G:
-                    w_norm = 0.5 + 1.5 * min(1.0, count / 50.0)
+                    w_norm = 0.5 + 1.0 * min(1.0, count / 50.0)
                     G.add_edge(
                         p1,
                         p2,
                         weight=round(float(w_norm), 3),
                         tipo_aresta="coocorrencia",
                         distancia=round(1.0 / (1.0 + np.log1p(count)), 4),
-                        viz={"color": {"r": 210, "g": 215, "b": 220, "a": 0.35}}
+                        viz={"color": {"r": 210, "g": 215, "b": 220, "a": 0.3}}
                     )
                     arestas_adicionadas.add(chave)
 
         for termo, info in palavra_info.items():
             for v_id, count in info["veiculos"].items():
-                if count >= 8:
+                if count >= 5:
                     v_nome = f"Tradicional {v_id}" if v_id <= 5 else f"Digital {v_id - 5}"
                     chave = tuple(sorted([v_nome, termo]))
                     if chave not in arestas_adicionadas and v_nome in G and termo in G:
-                        w_norm = 0.4 + 1.2 * min(1.0, count / 40.0)
-                        cor_aresta = {"r": 180, "g": 200, "b": 220, "a": 0.4} if v_id <= 5 else {"r": 240, "g": 200, "b": 160, "a": 0.4}
+                        w_norm = 0.5 + 1.0 * min(1.0, count / 40.0)
+                        cor_aresta = {"r": 180, "g": 200, "b": 220, "a": 0.35} if v_id <= 5 else {"r": 240, "g": 200, "b": 160, "a": 0.35}
                         G.add_edge(
                             v_nome,
                             termo,
