@@ -32,6 +32,16 @@ class ConstrutorGrafos:
             10: ("Digital 5", "digital_nativo")
         }
 
+        self.cores_eixos = {
+            "politico": {"r": 41, "g": 128, "b": 185},
+            "economico": {"r": 243, "g": 156, "b": 18},
+            "ambiental": {"r": 39, "g": 174, "b": 96},
+            "social": {"r": 142, "g": 68, "b": 173},
+            "internacional": {"r": 192, "g": 57, "b": 43},
+            "esportivo": {"r": 230, "g": 126, "b": 34},
+            "editorial": {"r": 44, "g": 62, "b": 80}
+        }
+
         self.stopwords_gerais = {
             "para", "com", "nao", "uma", "mais", "como", "ele", "seu", "sua", "quando", "muito", "tambem",
             "pelo", "pela", "depois", "mesmo", "seus", "quem", "esse", "eles", "voce", "essa", "numa",
@@ -94,9 +104,10 @@ class ConstrutorGrafos:
     def construir_grafo_semantico(
         self,
         palavras_por_eixo: int = 250,
-        min_coocorrencias: int = 4
+        max_coocorrencias_por_palavra: int = 2,
+        max_palavras_por_veiculo: int = 15
     ) -> Tuple[nx.Graph, Dict[str, Any]]:
-        self.logger.info("Iniciando mineracao para o Grafo Semantico de Nuvem de Palavras...")
+        self.logger.info("Iniciando mineracao de alta definicao para o Grafo Semantico...")
         tokens_nomes = self.obter_entidades_pessoas_para_filtro()
         stopwords_totais = self.stopwords_gerais | tokens_nomes
 
@@ -160,9 +171,38 @@ class ConstrutorGrafos:
 
         con.close()
 
+        cooc_por_no: Dict[str, List[Tuple[str, float]]] = {}
+        for (w1, w2), count in coocorrencias.items():
+            if count >= 3:
+                cooc_por_no.setdefault(w1, []).append((w2, float(count)))
+                cooc_por_no.setdefault(w2, []).append((w1, float(count)))
+
+        arestas_podadas: Set[Tuple[str, str, float, str]] = set()
+
+        for u, vizinhos in cooc_por_no.items():
+            vizinhos_ord = sorted(vizinhos, key=lambda x: x[1], reverse=True)[:max_coocorrencias_por_palavra]
+            for v, w in vizinhos_ord:
+                edge_key = tuple(sorted([f"palavra_{u}", f"palavra_{v}"]))
+                arestas_podadas.add((edge_key[0], edge_key[1], w, "coocorrencia"))
+
+        for v_id in range(1, 11):
+            no_veic = f"veiculo_{v_id}"
+            pals_veic = []
+            for w, info in palavra_info.items():
+                qtd = info["veiculos"].get(v_id, 0)
+                if qtd >= 2:
+                    pals_veic.append((f"palavra_{w}", float(qtd)))
+            pals_ord = sorted(pals_veic, key=lambda x: x[1], reverse=True)[:max_palavras_por_veiculo]
+            for pal_node, w in pals_ord:
+                edge_key = tuple(sorted([no_veic, pal_node]))
+                arestas_podadas.add((edge_key[0], edge_key[1], w, "enquadramento"))
+
         G = nx.Graph()
 
+        max_freq = max(info["frequencia"] for info in palavra_info.values()) if palavra_info else 1
+
         for v_id, (v_label, v_tipo) in self.veiculos_anonimizados.items():
+            cor = self.cores_eixos["editorial"]
             G.add_node(
                 f"veiculo_{v_id}",
                 Label=v_label,
@@ -172,7 +212,9 @@ class ConstrutorGrafos:
                 eixo="editorial",
                 frequencia=10000,
                 sentimento_medio=0.0,
-                clickbait_medio=0.0
+                clickbait_medio=0.0,
+                size=40.0,
+                viz={"size": 40.0, "color": cor}
             )
 
         for w, info in palavra_info.items():
@@ -180,6 +222,9 @@ class ConstrutorGrafos:
             cbs = info["clickbaits"]
             s_med = float(np.mean(sents)) if sents else 0.0
             cb_med = float(np.mean(cbs)) if cbs else 0.0
+            freq = float(info["frequencia"])
+            tam = 8.0 + 18.0 * (np.log1p(freq) / np.log1p(max_freq))
+            cor = self.cores_eixos.get(info["eixo"], {"r": 120, "g": 120, "b": 120})
 
             G.add_node(
                 f"palavra_{w}",
@@ -189,31 +234,33 @@ class ConstrutorGrafos:
                 eixo=info["eixo"],
                 frequencia=int(info["frequencia"]),
                 sentimento_medio=round(s_med, 4),
-                clickbait_medio=round(cb_med, 4)
+                clickbait_medio=round(cb_med, 4),
+                size=round(float(tam), 2),
+                viz={"size": round(float(tam), 2), "color": cor}
             )
 
-        for (w1, w2), count in coocorrencias.items():
-            if count >= min_coocorrencias:
-                dist = round(1.0 / (1.0 + np.log1p(count)), 4)
-                G.add_edge(
-                    f"palavra_{w1}",
-                    f"palavra_{w2}",
-                    weight=int(count),
-                    tipo_aresta="coocorrencia",
-                    distancia_semantica=dist
-                )
+        max_w = max(w for u, v, w, t in arestas_podadas) if arestas_podadas else 1.0
+        min_w = min(w for u, v, w, t in arestas_podadas) if arestas_podadas else 0.0
 
-        for w, info in palavra_info.items():
-            for v_id, count in info["veiculos"].items():
-                if count >= 3:
-                    dist = round(1.0 / (1.0 + np.log1p(count)), 4)
-                    G.add_edge(
-                        f"veiculo_{v_id}",
-                        f"palavra_{w}",
-                        weight=int(count),
-                        tipo_aresta="enquadramento",
-                        distancia_semantica=dist
-                    )
+        for u, v, w, t in arestas_podadas:
+            w_norm = 0.3 + 2.2 * ((w - min_w) / (max_w - min_w + 1e-6))
+            G.add_edge(
+                u,
+                v,
+                weight=round(float(w_norm), 3),
+                peso_bruto=int(w),
+                tipo_aresta=t,
+                distancia_semantica=round(1.0 / (1.0 + np.log1p(w)), 4)
+            )
+
+        pos = nx.spring_layout(G, k=0.18, iterations=80, seed=42)
+        for n in G.nodes():
+            x, y = pos[n]
+            G.nodes[n]["viz"]["position"] = {
+                "x": round(float(x * 1200.0), 2),
+                "y": round(float(y * 1200.0), 2),
+                "z": 0.0
+            }
 
         del coocorrencias
         del palavra_info
@@ -265,14 +312,14 @@ class ConstrutorGrafos:
                         caminhos_exemplares.append({
                             "origem": G.nodes[v1].get("Label"),
                             "destino": G.nodes[v2].get("Label"),
-                            "distancia": round(d, 4),
+                            "distancia": round(float(d), 4),
                             "termo_ponte": G.nodes[caminho[1]].get("Label")
                         })
 
         bc = nx.betweenness_centrality(G, weight="distancia_semantica", k=min(200, G.number_of_nodes()))
         termos_bc = [(n, val) for n, val in bc.items() if G.nodes[n].get("tipo_no") == "palavra"]
         top_pontes = [
-            {"termo": G.nodes[no].get("Label"), "eixo": G.nodes[no].get("eixo"), "score": round(score, 6)}
+            {"termo": G.nodes[no].get("Label"), "eixo": G.nodes[no].get("eixo"), "score": round(float(score), 6)}
             for no, score in sorted(termos_bc, key=lambda x: x[1], reverse=True)[:10]
         ]
 
@@ -287,7 +334,7 @@ class ConstrutorGrafos:
             "total_nos": G.number_of_nodes(),
             "total_arestas": G.number_of_edges(),
             "total_comunidades_louvain": len(comunidades),
-            "modularidade_q": round(mod_q, 4),
+            "modularidade_q": round(float(mod_q), 4),
             "distancia_media_dijkstra_tradicional": float(np.mean(dists_trad_trad)) if dists_trad_trad else 0.0,
             "distancia_media_dijkstra_digital": float(np.mean(dists_dig_dig)) if dists_dig_dig else 0.0,
             "distancia_media_dijkstra_cruzada": float(np.mean(dists_cruzadas)) if dists_cruzadas else 0.0,
