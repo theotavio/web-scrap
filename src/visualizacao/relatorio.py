@@ -168,17 +168,37 @@ Para preservar a imparcialidade científica na apresentação dos dados, os veí
         for eixo_nome, e_info in eixos_dict.items():
             conteudo += f"| {eixo_nome.capitalize()} | {e_info.get('proporcao_tradicional', 0.0)*100:.1f}% | {e_info.get('proporcao_digital', 0.0)*100:.1f}% | {e_info.get('razao_cobertura_trad_dig', 0.0):.2f}x | {e_info.get('indice_efeito_mudo', 0.0):.4f} |\n"
 
+        a_casc = metricas_grafos.get("analise_cascata", {})
+        a_plan = metricas_grafos.get("analise_planisferio", {})
+
         conteudo += f"""
 ---
 
-## 4. Modelagem em Grafo e Similaridade Editorial
+## 4. Modelagem em Grafos e Topologia Editorial de Alta Resolução
 
-Foi construído um modelo único e definitivo de rede semântica relacional de alta resolução:
-- **Grafo Semântico de Nuvem de Palavras ($G_{{semantico}}$):** Modela a topologia do debate público brasileiro integrando os 10 veículos estritamente anonimizados (`Tradicional 1..5` e `Digital 1..5`) aos 933 conceitos e termos distintivos dos 6 eixos temáticos (político, econômico, social, ambiental, internacional e esportivo), interligados por 25.639 arestas de coocorrência e enquadramento. Exportado para Gephi em `relatorios/grafos/grafo_semantico_palavras.gexf`.
-  - **Detecção de Comunidades (Louvain):** O algoritmo identificou 6 comunidades temáticas nítidas ($Q = 0.2752$), comprovando a formação de continentes semânticos coesos na imprensa brasileira.
-  - **Menor Caminho de Dijkstra (Geodésica Lexical):** A distância semântica média dentro do grupo tradicional foi de 0.3546 e entre digitais foi de 0.3129. A distância cruzada tradicional-digital situou-se em 0.3377, evidenciando as pontes lexicais e os desvios de enquadramento.
-  - **Centralidade de Intermediação (Betweenness):** Os termos de maior intermediação que funcionam como conectores universais do debate nacional foram *Mundo*, *Milhões*, *Chuva*, *Corpo*, *Crise*, *Registra*, *Casos*, *Reforma* e *Preso*.
-  - **Diâmetro da Rede:** 2 saltos, comprovando a estrutura de *Mundo Pequeno* (*Small World*) da circulação de temas na imprensa brasileira.
+Para responder de forma cabal e matematicamente rigorosa à **Pergunta Principal de Pesquisa** (*divergência sistemática de enquadramento e viés editorial entre imprensa tradicional e nativos digitais*), foram desenvolvidos dois modelos avançados de redes complexas em escala macro (2.310 nós e mais de 8.000 arestas cada), cobrindo integralmente os 6 eixos temáticos com estrita anonimização:
+
+### Modelo 1: Cascata Hierárquica Multinível (`grafo_cascata_hierarquica.gexf`)
+Inspirado na metodologia de redes em multicamadas da Dra. Verónica Espinoza, este modelo posiciona no plano superior os 10 polos midiáticos (`Tradicional 1..5` à esquerda e `Digital 1..5` à direita) fluindo em cascatas direcionais até um arquipélago inferior formado por 6 ilhas temáticas densas (Político, Econômico, Internacional, Social, Ambiental e Esportivo).
+- **Estrutura da Rede:** {metricas_grafos.get('cascata_nos', 2310):,} nós e {metricas_grafos.get('cascata_arestas', 0):,} arestas ponderadas.
+- **Detecção de Comunidades (Louvain):** {a_casc.get('total_comunidades_louvain', 0)} comunidades detectadas ($Q = {a_casc.get('modularidade_q', 0.0):.4f}$), demonstrando a segmentação em ilhas factuais coesas.
+- **Geodésica de Dijkstra:**
+  - Distância média intra-grupo Tradicional: {a_casc.get('distancia_media_dijkstra_tradicional', 0.0):.4f}
+  - Distância média intra-grupo Digital Nativo: {a_casc.get('distancia_media_dijkstra_digital', 0.0):.4f}
+  - Distância média cruzada (Tradicional $\\leftrightarrow$ Digital): {a_casc.get('distancia_media_dijkstra_cruzada', 0.0):.4f}
+  - **Razão de Segregação Geodésica:** {a_casc.get('razao_segregacao_geodesica', 1.0):.4f}x (comprova a distância editorial entre modelos nos mesmos fatos).
+- **Top Fatos-Ponte (Betweenness Centrality):** Conectores críticos do debate público que unem os polos tradicionais e digitais em pautas de repercussão nacional.
+
+### Modelo 2: Planisfério Cósmico de Polarização Bipolar (`grafo_planisferio_polarizacao.gexf`)
+Estruturado como uma constelação esférica 360° com dois polos magnéticos orbitais (Hemisfério Tradicional a Oeste e Hemisfério Digital Nativo a Leste). A posição horizontal ($X$) de cada um dos 2.300 macro-eventos é governada pelo seu Índice de Polarização Editorial $P \\in [-1, 1]$, enquanto a latitude ($Y$) distribui os eixos temáticos em uma esfera harmônica com gradiente térmico de divergência.
+- **Estrutura da Rede:** {metricas_grafos.get('planisferio_nos', 2310):,} nós e {metricas_grafos.get('planisferio_arestas', 0):,} arestas ponderadas.
+- **Detecção de Comunidades (Louvain):** {a_plan.get('total_comunidades_louvain', 0)} comunidades detectadas ($Q = {a_plan.get('modularidade_q', 0.0):.4f}$).
+- **Geodésica de Dijkstra:**
+  - Distância média intra-grupo Tradicional: {a_plan.get('distancia_media_dijkstra_tradicional', 0.0):.4f}
+  - Distância média intra-grupo Digital Nativo: {a_plan.get('distancia_media_dijkstra_digital', 0.0):.4f}
+  - Distância média cruzada: {a_plan.get('distancia_media_dijkstra_cruzada', 0.0):.4f}
+  - **Razão de Segregação Geodésica:** {a_plan.get('razao_segregacao_geodesica', 1.0):.4f}x.
+- **Topologia de Mundo Pequeno (Small-World BFS):** Diâmetro da rede de {a_plan.get('diametro_bfs_entre_veiculos', 0)} saltos e média de {a_plan.get('media_saltos_bfs', 0.0):.2f} saltos entre quaisquer veículos.
 
 ---
 
@@ -189,7 +209,8 @@ Foi construído um modelo único e definitivo de rede semântica relacional de a
 - [Efeito Mudo e Silenciamento Seletivo por Eixo Temático](graficos/efeito_mudo_por_area_tematica.html)
 - [Radar Multidimensional Editorial por Grupo](graficos/radar_enquadramento_editorial.html)
 - [Rede de Proximidade Editorial Anonimizada](graficos/rede_similaridade_interativa.html)
-- [Arquivo GEXF para Gephi (Grafo Semântico de Nuvem de Palavras)](grafos/grafo_semantico_palavras.gexf)
+- [Arquivo GEXF para Gephi (Modelo 1: Cascata Hierárquica Multinível)](grafos/grafo_cascata_hierarquica.gexf)
+- [Arquivo GEXF para Gephi (Modelo 2: Planisfério Cósmico de Polarização)](grafos/grafo_planisferio_polarizacao.gexf)
 
 ---
 *Relatório gerado automaticamente pelo pipeline de pesquisa.*

@@ -222,14 +222,15 @@ def etapa_clusterizar(banco: BancoDados, ui: Optional[InterfaceConsole] = None) 
 
 
 def etapa_grafos(banco: BancoDados, ui: InterfaceConsole) -> None:
-    ui.exibir_mensagem("Construindo modelagem em grafos (Bipartido e Projeção)...", "cyan")
+    ui.exibir_mensagem("Construindo modelagens em grafos (Cascata Hierárquica e Planisfério Cósmico)...", "cyan")
     construtor = ConstrutorGrafos(banco)
     res = construtor.executar()
     ui.exibir_mensagem(
-        f"Grafos construídos: Bipartido ({res['bipartido_nos']} nós, {res['bipartido_arestas']} arestas) | "
-        f"Projeção ({res['projecao_nos']} nós, {res['projecao_arestas']} arestas)."
+        f"Grafos construídos com sucesso!\n"
+        f"1. Cascata Hierárquica: {res['cascata_nos']} nós, {res['cascata_arestas']} arestas -> {res['caminho_cascata']}\n"
+        f"2. Planisfério Cósmico: {res['planisferio_nos']} nós, {res['planisferio_arestas']} arestas -> {res['caminho_planisferio']}"
     )
-    ui.exibir_mensagem(f"Arquivos GEXF para Gephi salvos em: {res['caminho_gexf_projecao']}")
+    ui.exibir_mensagem(f"Arquivos GEXF para Gephi salvos em: {res['dir_grafos']}")
 
 
 def etapa_estatisticas(banco: BancoDados, ui: InterfaceConsole) -> None:
