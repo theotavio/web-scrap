@@ -176,11 +176,11 @@ Para preservar a imparcialidade científica na apresentação dos dados, os veí
 
 ## 4. Modelagem em Grafos e Topologia Editorial de Alta Resolução
 
-Para responder de forma cabal e matematicamente rigorosa à **Pergunta Principal de Pesquisa** (*divergência sistemática de enquadramento e viés editorial entre imprensa tradicional e nativos digitais*), foram desenvolvidos dois modelos avançados de redes complexas em escala macro (2.310 nós e mais de 8.000 arestas cada), cobrindo integralmente os 6 eixos temáticos com estrita anonimização:
+Para responder de forma cabal e matematicamente rigorosa à **Pergunta Principal de Pesquisa** (*divergência sistemática de enquadramento e viés editorial entre imprensa tradicional e nativos digitais*), foram desenvolvidos dois modelos avançados de redes complexas em escala macro (20.010 nós e mais de 60.000 arestas cada), cobrindo integralmente os 6 eixos temáticos com estrita anonimização:
 
 ### Modelo 1: Cascata Hierárquica Multinível (`grafo_cascata_hierarquica.gexf`)
 Inspirado na metodologia de redes em multicamadas da Dra. Verónica Espinoza, este modelo posiciona no plano superior os 10 polos midiáticos (`Tradicional 1..5` à esquerda e `Digital 1..5` à direita) fluindo em cascatas direcionais até um arquipélago inferior formado por 6 ilhas temáticas densas (Político, Econômico, Internacional, Social, Ambiental e Esportivo).
-- **Estrutura da Rede:** {metricas_grafos.get('cascata_nos', 2310):,} nós e {metricas_grafos.get('cascata_arestas', 0):,} arestas ponderadas.
+- **Estrutura da Rede:** {metricas_grafos.get('cascata_nos', 20010):,} nós e {metricas_grafos.get('cascata_arestas', 0):,} arestas ponderadas.
 - **Detecção de Comunidades (Louvain):** {a_casc.get('total_comunidades_louvain', 0)} comunidades detectadas ($Q = {a_casc.get('modularidade_q', 0.0):.4f}$), demonstrando a segmentação em ilhas factuais coesas.
 - **Geodésica de Dijkstra:**
   - Distância média intra-grupo Tradicional: {a_casc.get('distancia_media_dijkstra_tradicional', 0.0):.4f}
@@ -190,8 +190,8 @@ Inspirado na metodologia de redes em multicamadas da Dra. Verónica Espinoza, es
 - **Top Fatos-Ponte (Betweenness Centrality):** Conectores críticos do debate público que unem os polos tradicionais e digitais em pautas de repercussão nacional.
 
 ### Modelo 2: Planisfério Cósmico de Polarização Bipolar (`grafo_planisferio_polarizacao.gexf`)
-Estruturado como uma constelação esférica 360° com dois polos magnéticos orbitais (Hemisfério Tradicional a Oeste e Hemisfério Digital Nativo a Leste). A posição horizontal ($X$) de cada um dos 2.300 macro-eventos é governada pelo seu Índice de Polarização Editorial $P \\in [-1, 1]$, enquanto a latitude ($Y$) distribui os eixos temáticos em uma esfera harmônica com gradiente térmico de divergência.
-- **Estrutura da Rede:** {metricas_grafos.get('planisferio_nos', 2310):,} nós e {metricas_grafos.get('planisferio_arestas', 0):,} arestas ponderadas.
+Estruturado como uma constelação esférica 360° com dois polos magnéticos orbitais (Hemisfério Tradicional a Oeste e Hemisfério Digital Nativo a Leste). A posição horizontal ($X$) de cada um dos 20.000 macro-eventos é governada pelo seu Índice de Polarização Editorial $P \\in [-1, 1]$, enquanto a latitude ($Y$) distribui os eixos temáticos em uma esfera harmônica com gradiente térmico de divergência.
+- **Estrutura da Rede:** {metricas_grafos.get('planisferio_nos', 20010):,} nós e {metricas_grafos.get('planisferio_arestas', 0):,} arestas ponderadas.
 - **Detecção de Comunidades (Louvain):** {a_plan.get('total_comunidades_louvain', 0)} comunidades detectadas ($Q = {a_plan.get('modularidade_q', 0.0):.4f}$).
 - **Geodésica de Dijkstra:**
   - Distância média intra-grupo Tradicional: {a_plan.get('distancia_media_dijkstra_tradicional', 0.0):.4f}

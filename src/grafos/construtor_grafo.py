@@ -44,17 +44,17 @@ class ConstrutorGrafos:
                 self.logger.info(f"Arquivo antigo removido: {p}")
 
     def carregar_macro_eventos(self) -> Dict[int, Dict[str, Any]]:
-        self.logger.info("Carregando 2.300 macro-eventos balanceados em 6 eixos...")
+        self.logger.info("Carregando 20.000 macro-eventos balanceados em 6 eixos...")
         con = self.banco.obter_conexao()
         cur = con.cursor()
 
         eixos_cotas = {
-            "politico": 500,
-            "economico": 400,
-            "internacional": 400,
-            "social": 400,
-            "ambiental": 300,
-            "esportivo": 300
+            "politico": 6000,
+            "economico": 4000,
+            "internacional": 3500,
+            "social": 3000,
+            "ambiental": 1800,
+            "esportivo": 1700
         }
 
         eventos = {}
@@ -62,7 +62,7 @@ class ConstrutorGrafos:
             cur.execute(f"""
                 SELECT id, nome_evento, total_materias, total_veiculos, eixo_predominante, divergencia_sentimento
                 FROM clusters_eventos
-                WHERE eixo_predominante = '{eixo}' AND total_materias >= 5
+                WHERE eixo_predominante = '{eixo}' AND total_materias >= 3
                 ORDER BY total_materias DESC
                 LIMIT {cota}
             """)
@@ -93,7 +93,7 @@ class ConstrutorGrafos:
         cur.execute("""
             SELECT m.evento_id, m.veiculo_id, COUNT(*), AVG(m.score_clickbait), AVG(m.sentimento_polaridade)
             FROM tmp_sel_eventos t
-            JOIN materias m ON m.evento_id = t.id
+            CROSS JOIN materias m ON m.evento_id = t.id
             GROUP BY m.evento_id, m.veiculo_id
         """)
 
@@ -130,21 +130,21 @@ class ConstrutorGrafos:
         self,
         eventos: Dict[int, Dict[str, Any]]
     ) -> Tuple[nx.Graph, Dict[str, Any]]:
-        self.logger.info("Construindo Opcao 1: Grafo Cascata Hierarquica Multinivel...")
+        self.logger.info("Construindo Opcao 1: Grafo Cascata Hierarquica Multinivel (20.000 eventos)...")
         G = nx.Graph()
         np.random.seed(42)
 
         pos_veiculos_cascata = {
-            "Tradicional 1": (-460.0, 520.0),
-            "Tradicional 2": (-380.0, 520.0),
-            "Tradicional 3": (-300.0, 520.0),
-            "Tradicional 4": (-220.0, 520.0),
-            "Tradicional 5": (-140.0, 520.0),
-            "Digital 1": (140.0, 520.0),
-            "Digital 2": (220.0, 520.0),
-            "Digital 3": (300.0, 520.0),
-            "Digital 4": (380.0, 520.0),
-            "Digital 5": (460.0, 520.0),
+            "Tradicional 1": (-680.0, 780.0),
+            "Tradicional 2": (-540.0, 780.0),
+            "Tradicional 3": (-400.0, 780.0),
+            "Tradicional 4": (-260.0, 780.0),
+            "Tradicional 5": (-120.0, 780.0),
+            "Digital 1": (120.0, 780.0),
+            "Digital 2": (260.0, 780.0),
+            "Digital 3": (400.0, 780.0),
+            "Digital 4": (540.0, 780.0),
+            "Digital 5": (680.0, 780.0),
         }
 
         for v_id in range(1, 6):
@@ -161,8 +161,8 @@ class ConstrutorGrafos:
                 divergencia_sentimento=0.0,
                 total_materias=0,
                 total_veiculos=1,
-                size=60.0,
-                viz={"size": 60.0, "color": self.cor_tradicional, "position": {"x": x, "y": y, "z": 0.0}}
+                size=75.0,
+                viz={"size": 75.0, "color": self.cor_tradicional, "position": {"x": x, "y": y, "z": 0.0}}
             )
 
         for v_id in range(1, 6):
@@ -179,17 +179,17 @@ class ConstrutorGrafos:
                 divergencia_sentimento=0.0,
                 total_materias=0,
                 total_veiculos=1,
-                size=60.0,
-                viz={"size": 60.0, "color": self.cor_digital, "position": {"x": x, "y": y, "z": 0.0}}
+                size=75.0,
+                viz={"size": 75.0, "color": self.cor_digital, "position": {"x": x, "y": y, "z": 0.0}}
             )
 
         ilhas_centros = {
-            "politico": (-340.0, 100.0, 125.0, self.cores_eixos["politico"]),
-            "economico": (0.0, 130.0, 110.0, self.cores_eixos["economico"]),
-            "internacional": (340.0, 100.0, 110.0, self.cores_eixos["internacional"]),
-            "social": (-280.0, -220.0, 110.0, self.cores_eixos["social"]),
-            "ambiental": (0.0, -240.0, 95.0, self.cores_eixos["ambiental"]),
-            "esportivo": (280.0, -220.0, 95.0, self.cores_eixos["esportivo"]),
+            "politico": (-460.0, 160.0, 240.0, self.cores_eixos["politico"]),
+            "economico": (0.0, 200.0, 210.0, self.cores_eixos["economico"]),
+            "internacional": (460.0, 160.0, 200.0, self.cores_eixos["internacional"]),
+            "social": (-380.0, -300.0, 190.0, self.cores_eixos["social"]),
+            "ambiental": (0.0, -340.0, 160.0, self.cores_eixos["ambiental"]),
+            "esportivo": (380.0, -300.0, 160.0, self.cores_eixos["esportivo"]),
         }
 
         max_mat = max(ev["total_materias"] for ev in eventos.values()) if eventos else 1
@@ -198,10 +198,10 @@ class ConstrutorGrafos:
         for eid, ev in eventos.items():
             eventos_por_eixo[ev["eixo"]].append(eid)
             cx, cy, r_ilha, cor_ilha = ilhas_centros.get(
-                ev["eixo"], (0.0, 0.0, 100.0, {"r": 120, "g": 120, "b": 120})
+                ev["eixo"], (0.0, 0.0, 150.0, {"r": 120, "g": 120, "b": 120})
             )
 
-            u = np.random.uniform(0.04, 1.0)
+            u = np.random.uniform(0.02, 1.0)
             theta = np.random.uniform(0, 2 * np.pi)
             raio_no = r_ilha * np.sqrt(u)
 
@@ -209,7 +209,7 @@ class ConstrutorGrafos:
             px = cx + raio_no * np.cos(theta) + pol * (r_ilha * 0.35)
             py = cy + raio_no * np.sin(theta)
 
-            tam = 8.5 + 16.5 * (np.log1p(ev["total_materias"]) / np.log1p(max_mat))
+            tam = 3.5 + 9.5 * (np.log1p(ev["total_materias"]) / np.log1p(max_mat))
             str_id = str(eid)
 
             G.add_node(
@@ -237,14 +237,14 @@ class ConstrutorGrafos:
             for vid, v_data in ev["veiculos"].items():
                 cnt = v_data["count"]
                 prop = cnt / (tot_evento + 1e-5)
-                if prop >= 0.10 or len(ev["veiculos"]) <= 2:
+                if prop >= 0.08 or len(ev["veiculos"]) <= 2:
                     v_nome = f"Tradicional {vid}" if vid <= 5 else f"Digital {vid - 5}"
-                    w_norm = 0.4 + 1.2 * min(1.0, cnt / 15.0)
+                    w_norm = 0.3 + 1.2 * min(1.0, cnt / 15.0)
                     dist = 1.0 / (1.0 + np.log1p(cnt))
                     if vid <= 5:
-                        cor_aresta = {"r": 100, "g": 149, "b": 237, "a": 0.28}
+                        cor_aresta = {"r": 100, "g": 149, "b": 237, "a": 0.22}
                     else:
-                        cor_aresta = {"r": 255, "g": 140, "b": 0, "a": 0.28}
+                        cor_aresta = {"r": 255, "g": 140, "b": 0, "a": 0.22}
 
                     G.add_edge(
                         v_nome,
@@ -257,21 +257,20 @@ class ConstrutorGrafos:
 
         for eixo, eids in eventos_por_eixo.items():
             sub_eids = sorted(eids, key=lambda i: eventos[i]["polarizacao"])
-            for idx in range(len(sub_eids) - 1):
-                if idx % 2 == 0:
-                    id1 = str(sub_eids[idx])
-                    id2 = str(sub_eids[idx + 1])
-                    diff_pol = abs(eventos[sub_eids[idx]]["polarizacao"] - eventos[sub_eids[idx + 1]]["polarizacao"])
-                    w_intra = 0.35 + 0.3 * max(0.0, 1.0 - diff_pol)
-                    dist_intra = 1.0 / (1.0 + np.log1p(w_intra))
-                    G.add_edge(
-                        id1,
-                        id2,
-                        weight=round(float(w_intra), 3),
-                        distancia=round(float(dist_intra), 4),
-                        tipo_aresta="proximidade_intra_ilha",
-                        viz={"color": {"r": 200, "g": 200, "b": 210, "a": 0.15}}
-                    )
+            for idx in range(0, len(sub_eids) - 1, 4):
+                id1 = str(sub_eids[idx])
+                id2 = str(sub_eids[idx + 1])
+                diff_pol = abs(eventos[sub_eids[idx]]["polarizacao"] - eventos[sub_eids[idx + 1]]["polarizacao"])
+                w_intra = 0.3 + 0.3 * max(0.0, 1.0 - diff_pol)
+                dist_intra = 1.0 / (1.0 + np.log1p(w_intra))
+                G.add_edge(
+                    id1,
+                    id2,
+                    weight=round(float(w_intra), 3),
+                    distancia=round(float(dist_intra), 4),
+                    tipo_aresta="proximidade_intra_ilha",
+                    viz={"color": {"r": 200, "g": 200, "b": 210, "a": 0.12}}
+                )
 
         metricas = self._calcular_metricas_grafo(G, "cascata_hierarquica")
         return G, metricas
@@ -280,11 +279,11 @@ class ConstrutorGrafos:
         self,
         eventos: Dict[int, Dict[str, Any]]
     ) -> Tuple[nx.Graph, Dict[str, Any]]:
-        self.logger.info("Construindo Opcao 2: Grafo Planisferio Cosmico de Polarizacao...")
+        self.logger.info("Construindo Opcao 2: Grafo Planisferio Cosmico de Polarizacao (20.000 eventos)...")
         G = nx.Graph()
         np.random.seed(42)
 
-        r_orb = 460.0
+        r_orb = 680.0
         angulos_trad = [135.0, 157.5, 180.0, 202.5, 225.0]
         for idx, deg in enumerate(angulos_trad):
             nome = f"Tradicional {idx + 1}"
@@ -302,8 +301,8 @@ class ConstrutorGrafos:
                 divergencia_sentimento=0.0,
                 total_materias=0,
                 total_veiculos=1,
-                size=65.0,
-                viz={"size": 65.0, "color": self.cor_tradicional, "position": {"x": round(float(x), 2), "y": round(float(y), 2), "z": 0.0}}
+                size=80.0,
+                viz={"size": 80.0, "color": self.cor_tradicional, "position": {"x": round(float(x), 2), "y": round(float(y), 2), "z": 0.0}}
             )
 
         angulos_dig = [-45.0, -22.5, 0.0, 22.5, 45.0]
@@ -323,17 +322,17 @@ class ConstrutorGrafos:
                 divergencia_sentimento=0.0,
                 total_materias=0,
                 total_veiculos=1,
-                size=65.0,
-                viz={"size": 65.0, "color": self.cor_digital, "position": {"x": round(float(x), 2), "y": round(float(y), 2), "z": 0.0}}
+                size=80.0,
+                viz={"size": 80.0, "color": self.cor_digital, "position": {"x": round(float(x), 2), "y": round(float(y), 2), "z": 0.0}}
             )
 
         latitudes_eixo = {
-            "internacional": 230.0,
-            "politico": 115.0,
+            "internacional": 330.0,
+            "politico": 165.0,
             "economico": 0.0,
-            "social": -110.0,
-            "ambiental": -200.0,
-            "esportivo": -270.0
+            "social": -160.0,
+            "ambiental": -280.0,
+            "esportivo": -370.0
         }
 
         max_mat = max(ev["total_materias"] for ev in eventos.values()) if eventos else 1
@@ -343,23 +342,23 @@ class ConstrutorGrafos:
             pol = ev["polarizacao"]
             str_id = str(eid)
 
-            jx = np.random.normal(0, 14.0)
-            px = pol * 340.0 + jx
-            px = float(np.clip(px, -370.0, 370.0))
+            jx = np.random.normal(0, 16.0)
+            px = pol * 490.0 + jx
+            px = float(np.clip(px, -530.0, 530.0))
 
-            envelope = np.sqrt(max(0.12, 1.0 - (px / 380.0) ** 2))
+            envelope = np.sqrt(max(0.10, 1.0 - (px / 550.0) ** 2))
             y_base = latitudes_eixo.get(ev["eixo"], 0.0)
-            jy = np.random.uniform(-25.0, 25.0)
+            jy = np.random.uniform(-30.0, 30.0)
             py = float((y_base + jy) * envelope)
 
-            if pol < -0.2:
+            if pol < -0.15:
                 t = min(1.0, abs(pol))
                 cor_no = {
                     "r": int(27 + (52 - 27) * (1.0 - t)),
                     "g": int(79 + (152 - 79) * (1.0 - t)),
                     "b": int(114 + (219 - 114) * (1.0 - t))
                 }
-            elif pol > 0.2:
+            elif pol > 0.15:
                 t = min(1.0, pol)
                 cor_no = {
                     "r": int(243 + (231 - 243) * t),
@@ -370,7 +369,7 @@ class ConstrutorGrafos:
                 cor_no = {"r": 142, "g": 68, "b": 173}
                 eventos_equador.append(eid)
 
-            tam = 8.5 + 16.5 * (np.log1p(ev["total_materias"]) / np.log1p(max_mat))
+            tam = 3.0 + 8.5 * (np.log1p(ev["total_materias"]) / np.log1p(max_mat))
 
             G.add_node(
                 str_id,
@@ -397,14 +396,14 @@ class ConstrutorGrafos:
             for vid, v_data in ev["veiculos"].items():
                 cnt = v_data["count"]
                 prop = cnt / (tot_evento + 1e-5)
-                if prop >= 0.10 or len(ev["veiculos"]) <= 2:
+                if prop >= 0.08 or len(ev["veiculos"]) <= 2:
                     v_nome = f"Tradicional {vid}" if vid <= 5 else f"Digital {vid - 5}"
-                    w_norm = 0.4 + 1.2 * min(1.0, cnt / 15.0)
+                    w_norm = 0.3 + 1.2 * min(1.0, cnt / 15.0)
                     dist = 1.0 / (1.0 + np.log1p(cnt))
                     if vid <= 5:
-                        cor_aresta = {"r": 100, "g": 149, "b": 237, "a": 0.25}
+                        cor_aresta = {"r": 100, "g": 149, "b": 237, "a": 0.20}
                     else:
-                        cor_aresta = {"r": 255, "g": 140, "b": 0, "a": 0.25}
+                        cor_aresta = {"r": 255, "g": 140, "b": 0, "a": 0.20}
 
                     G.add_edge(
                         v_nome,
@@ -415,17 +414,17 @@ class ConstrutorGrafos:
                         viz={"color": cor_aresta}
                     )
 
-        sub_eq = sorted(eventos_equador, key=lambda i: eventos[i]["total_materias"], reverse=True)[:350]
+        sub_eq = sorted(eventos_equador, key=lambda i: eventos[i]["total_materias"], reverse=True)[:800]
         for i in range(0, len(sub_eq) - 1, 2):
             id1 = str(sub_eq[i])
             id2 = str(sub_eq[i + 1])
             G.add_edge(
                 id1,
                 id2,
-                weight=0.45,
-                distancia=0.6,
+                weight=0.4,
+                distancia=0.65,
                 tipo_aresta="consenso_equatorial",
-                viz={"color": {"r": 180, "g": 180, "b": 220, "a": 0.18}}
+                viz={"color": {"r": 180, "g": 180, "b": 220, "a": 0.15}}
             )
 
         metricas = self._calcular_metricas_grafo(G, "planisferio_polarizacao")
@@ -466,7 +465,7 @@ class ConstrutorGrafos:
     def _calcular_metricas_grafo(self, G: nx.Graph, modelo_nome: str) -> Dict[str, Any]:
         self.logger.info(f"Calculando metricas analiticas para {modelo_nome}...")
 
-        comunidades = nx_comm.louvain_communities(G, weight="weight", resolution=1.0)
+        comunidades = nx_comm.louvain_communities(G, weight="weight", resolution=1.0, seed=42)
         mod_q = nx_comm.modularity(G, comunidades, weight="weight")
 
         for idx_c, comm in enumerate(comunidades):
@@ -515,7 +514,7 @@ class ConstrutorGrafos:
         mean_cross = float(np.mean(d_cross)) if d_cross else 0.0
         razao_segregacao = mean_cross / (0.5 * (mean_trad + mean_dig) + 1e-6)
 
-        bc = nx.betweenness_centrality(G, k=250, weight="distancia")
+        bc = nx.betweenness_centrality(G, k=100, weight="distancia", seed=42)
         eventos_bc = [(n, val) for n, val in bc.items() if G.nodes[n].get("tipo_no") == "evento"]
         top_pontes = [
             {
