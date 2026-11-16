@@ -1,0 +1,6 @@
+eixo_tematico,proporcao_tradicional_pct,proporcao_digital_pct,diferenca_pontos_pct,razao_tradicional_digital,indice_efeito_mudo,status_cobertura
+Politico,41.1,60.76,19.66,0.68,0.187,Super-representado nos Digitais (Foco Digital)
+Economico,29.87,13.18,-16.69,2.27,0.3931,Sub-representado nos Digitais (Silêncio Digital)
+Internacional,16.15,13.49,-2.66,1.2,0.0959,Cobertura Equilibrada entre Grupos
+Ambiental,2.62,2.36,-0.26,1.11,0.0588,Cobertura Equilibrada entre Grupos
+Social,10.26,10.21,-0.05,1.0,0.0087,Cobertura Equilibrada entre Grupos

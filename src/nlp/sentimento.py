@@ -43,7 +43,7 @@ class AnalisadorSentimento:
             import onnxruntime as ort
             from transformers import AutoTokenizer
 
-            caminho_modelo = "dados/modelos/roberta_sentiment_int8.onnx"
+            caminho_modelo = "modelos/roberta_sentiment_int8.onnx"
             if not os.path.exists(caminho_modelo):
                 sucesso_geracao = self._garantir_modelo_onnx(caminho_modelo)
                 if not sucesso_geracao or not os.path.exists(caminho_modelo):

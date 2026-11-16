@@ -1,0 +1,1201 @@
+ano,data_evento,titulo_evento,eixo_tematico,polo_predominante,delta_polaridade,sentimento_tradicional,sentimento_digital,score_fato_ponte_betweenness,total_materias,total_veiculos,divergencia_sentimento
+2015,2015-05-31,Correios arruinados,Economico,Tradicional Mais Favorável,0.3993,0.3513,-0.048,72.66,126,7,0.2466
+2015,2015-10-10,Painel: Articuladores do impeachment tentam acelerar pr,Politico,Tradicional Mais Favorável,0.3295,0.2367,-0.0928,87.48,128,7,0.3285
+2015,2015-12-09,Grupo vai pedir impeachment de Dilma por 'pedaladas men,Politico,Tradicional Mais Favorável,0.2873,0.2144,-0.0729,93.37,178,7,0.3144
+2016,2016-02-19,"Recuperação brasileira vai demorar, dizem economistas",Economico,Tradicional Mais Favorável,0.4256,0.271,-0.1546,119.21,199,8,0.2715
+2016,2016-02-25,A tentação dos maus exemplos,Economico,Tradicional Mais Favorável,0.603,0.3111,-0.2919,151.69,156,9,0.3754
+2016,2016-03-02,"Para Dilma, investigações contra Lula não podem 'passar",Politico,Tradicional Mais Favorável,0.2789,0.1933,-0.0856,63.7,201,6,0.3538
+2016,2016-03-08,"Pezão: 'Se Dilma cair, Temer também cai. Aí fica quem?",Politico,Tradicional Mais Favorável,0.2859,0.1515,-0.1344,112.28,146,8,0.3788
+2016,2016-03-08,"Com retorno do impeachment, Lula viaja a Brasília para",Politico,Tradicional Mais Favorável,0.2725,0.2306,-0.0419,88.82,138,7,0.3563
+2016,2016-03-14,Rui Falcão e Paulo Teixeira defendem que Lula seja mini,Politico,Tradicional Mais Favorável,0.3481,0.3286,-0.0195,132.56,361,8,0.3464
+2016,2016-03-14,"Investigação é 'sacanagem homérica', criticou Lula em d",Politico,Tradicional Mais Favorável,0.3599,0.2019,-0.1579,132.71,251,8,0.3608
+2016,2016-03-14,"Manifestantes concordam sobre problemas do Brasil, mas",Politico,Tradicional Mais Favorável,0.5391,0.3579,-0.1811,159.84,205,9,0.46
+2016,2016-03-26,"Em depoimento a ativista, Celso de Mello defende impeac",Politico,Tradicional Mais Favorável,0.3846,0.1984,-0.1862,123.26,169,8,0.355
+2016,2016-04-01,Acusação vai rejeitar ouvir Cardozo no lugar de Dilma e,Politico,Tradicional Mais Favorável,0.2905,0.1342,-0.1564,99.31,248,7,0.321
+2016,2016-04-01,"A meia hora da sessão, PT ainda sabatina candidatos",Politico,Tradicional Mais Favorável,0.3429,0.1607,-0.1822,89.46,143,7,0.2369
+2016,2016-04-07,"Para defesa de Dilma, não há base legal para impeachmen",Politico,Tradicional Mais Favorável,0.2986,0.1984,-0.1002,88.86,373,7,0.3205
+2016,2016-04-13,Manifestantes já acampam no DF à espera da votação do i,Politico,Tradicional Mais Favorável,0.2475,0.1277,-0.1197,140.93,354,8,0.3279
+2016,2016-04-13,"Votar em comissão contrariaria minha consciência, diz d",Politico,Tradicional Mais Favorável,0.271,0.1477,-0.1233,137.05,301,8,0.2833
+2016,2016-04-19,Gilmar diz que é ‘plausível’ tese que defende afastamen,Politico,Tradicional Mais Favorável,0.2944,0.1516,-0.1428,123.12,168,8,0.3475
+2016,2016-05-01,"Preso na Lava Jato, Cunha pode não conseguir emplacar a",Politico,Tradicional Mais Favorável,0.1828,0.1212,-0.0616,94.73,192,7,0.291
+2016,2016-05-01,Aliados dizem que Dilma está desolada,Politico,Tradicional Mais Favorável,0.3226,0.1652,-0.1574,110.2,133,8,0.3599
+2016,2016-05-07,Dilma não telefonou para novo presidente da Câmara,Politico,Tradicional Mais Favorável,0.2525,0.1474,-0.1051,133.08,255,8,0.2997
+2016,2016-06-12,"Cunha diz a interlocutores que, se cair, será atirando",Politico,Tradicional Mais Favorável,0.1947,0.1072,-0.0876,100.09,259,7,0.2557
+2016,2016-06-24,O que é e como é medido o risco Brasil,Economico,Tradicional Mais Favorável,0.4887,0.327,-0.1617,117.7,186,8,0.3216
+2016,2016-06-24,Suspeitos não foram obrigados a depor na PF na operação,Politico,Tradicional Mais Favorável,0.2756,0.1855,-0.0902,111.03,138,8,0.2724
+2016,2016-06-30,"Condenado por corrupção e alvo de CPI, Cachoeira é velh",Politico,Tradicional Mais Favorável,0.3754,0.1206,-0.2547,119.61,145,8,0.3064
+2016,2016-07-06,"Aliado de Cunha, deputado Gaguim pede para sair da CCJ",Politico,Tradicional Mais Favorável,0.2792,0.1571,-0.1221,124.09,175,8,0.2626
+2016,2016-07-24,Crise econômica adoece,Economico,Tradicional Mais Favorável,0.3922,0.3083,-0.0839,115.56,169,8,0.227
+2016,2016-07-30,O que a ONU pode fazer por Lula. E o que não pode,Politico,Tradicional Mais Favorável,0.3452,0.3738,0.0286,76.86,167,7,0.3514
+2016,2016-08-17,"Com o chapéu da Previdência, governo faz “cortesia” de",Economico,Tradicional Mais Favorável,0.66,0.3781,-0.282,116.84,179,8,0.305
+2016,2016-08-29,Impeachment: Dilma faz no Senado a defesa de seu mandat,Politico,Tradicional Mais Favorável,0.298,0.2042,-0.0937,153.04,587,8,0.3489
+2016,2016-08-29,Protesto contra impeachment em São Paulo tem bombas e d,Politico,Tradicional Mais Favorável,0.5294,0.3123,-0.2171,72.78,127,7,0.4067
+2016,2016-09-10,EXCLUSIVO: EMÍLIO ODEBRECHT COM OS PROCURADORES DA LAVA,Politico,Tradicional Mais Favorável,0.4722,0.3896,-0.0826,50.58,275,5,0.2929
+2016,2016-09-10,Lula pode ir aos EUA para fazer contraponto a Temer na,Politico,Tradicional Mais Favorável,0.3582,0.2094,-0.1488,58.68,132,6,0.4441
+2016,2016-09-10,Manobra de Cunha para evitar cassação é considerada ous,Politico,Tradicional Mais Favorável,0.1427,0.1666,0.0239,117.19,131,8,0.3137
+2016,2016-09-10,Maia aposta que votação de cassação de Cunha será na se,Politico,Tradicional Mais Favorável,0.1684,0.1368,-0.0316,116.64,128,8,0.2475
+2016,2016-09-16,Fala de Lula que compara servidores a políticos corrupt,Politico,Tradicional Mais Favorável,0.3409,0.1746,-0.1663,119.44,201,8,0.3815
+2016,2016-09-22,Doria ultrapassa Russomanno e lidera intenção de voto e,Politico,Tradicional Mais Favorável,0.3749,0.2255,-0.1494,94.91,194,7,0.3292
+2016,2016-09-28,BC bloqueia mais de R$ 30 milhões de empresa e contas d,Economico,Tradicional Mais Favorável,0.3453,0.2875,-0.0579,160.13,207,9,0.2517
+2016,2016-09-28,"Alvo de críticas e denúncias, governadores desaparecem",Politico,Tradicional Mais Favorável,0.3242,0.2042,-0.1201,125.03,182,8,0.3953
+2016,2016-09-28,"Em Campinas, candidatos batalham para haver 2o turno",Politico,Tradicional Mais Favorável,0.1009,0.1791,0.0782,116.26,126,8,0.203
+2016,2016-10-16,"Doação on-line cresce em 2016, mas isso não quer dizer",Economico,Tradicional Mais Favorável,0.5592,0.3272,-0.232,148.46,140,9,0.3417
+2016,2016-10-16,Ciro chama Moro de fascista por não mandar prender Cunh,Politico,Tradicional Mais Favorável,0.2344,0.1294,-0.105,88.95,139,7,0.2895
+2016,2016-10-17,Moro intima Eduardo Cunha para prestar contas à Lava Ja,Politico,Tradicional Mais Favorável,0.268,0.2076,-0.0604,87.62,129,7,0.2476
+2016,2016-10-22,Caiu também a sucessora da prefeita ‘ostentação’,Economico,Tradicional Mais Favorável,0.4574,0.2766,-0.1809,181.36,125,10,0.3374
+2016,2016-10-28,Campanha eleitoral do segundo turno vira cenário de pug,Politico,Tradicional Mais Favorável,0.1617,0.2123,0.0506,131.23,236,8,0.2834
+2016,2016-10-28,Aumenta pressão por vagas em presídios de segurança máx,Economico,Tradicional Mais Favorável,0.3708,0.3096,-0.0612,155.45,177,9,0.2908
+2016,2016-11-03,"PSDB vai governar 24% da população brasileira, índice r",Economico,Tradicional Mais Favorável,0.3943,0.3384,-0.0559,190.08,158,10,0.329
+2016,2016-11-21,TCU diz que 70% das obras com verba federal têm irregul,Economico,Tradicional Mais Favorável,0.2796,0.374,0.0944,150.91,152,9,0.2258
+2016,2016-11-27,CPI da UNE esbarra em vontades de presidentes da Câmara,Politico,Tradicional Mais Favorável,0.2416,0.2263,-0.0153,182.67,440,9,0.3507
+2016,2016-11-27,"Para governo, crise não contaminará economia",Economico,Tradicional Mais Favorável,0.3913,0.2948,-0.0965,148.25,139,9,0.2972
+2017,2017-01-02,População carcerária cresce mais do que índice de preso,Social,Tradicional Mais Favorável,0.4492,0.3529,-0.0963,192.37,168,10,0.39
+2017,2017-01-02,Guerra entre facções deixa 56 mortos em presídio de Man,Politico,Tradicional Mais Favorável,0.4001,0.3132,-0.0869,109.69,130,8,0.3423
+2017,2017-01-26,PF mira Eike Batista por lavagem de US$ 100 milhões no,Politico,Tradicional Mais Favorável,0.1736,0.2443,0.0707,166.24,254,9,0.2466
+2017,2017-02-19,Quase metade das pessoas que sacaram FGTS usou dinheiro,Economico,Tradicional Mais Favorável,0.4478,0.3894,-0.0584,205.37,238,10,0.2615
+2017,2017-03-03,"Afif: sem o Simples Nacional, ambiente de negócios no B",Economico,Tradicional Mais Favorável,0.3454,0.3443,-0.0011,190.08,158,10,0.2948
+2017,2017-04-02,PSDB admite não ter como frear onda pró-Doria para vaga,Politico,Tradicional Mais Favorável,0.3931,0.3567,-0.0364,167.84,268,9,0.316
+2017,2017-04-09,Odebrecht diz ter repassado € 2 milhões de caixa dois a,Economico,Tradicional Mais Favorável,0.2346,0.2506,0.016,99.02,244,7,0.1933
+2017,2017-05-02,Lava Jato denuncia Dirceu no dia em que STF decide sobr,Politico,Tradicional Mais Favorável,0.1179,0.2006,0.0826,87.05,125,7,0.2727
+2017,2017-05-08,"Chance de Lula ser preso em Curitiba é remota, dizem es",Politico,Tradicional Mais Favorável,0.2794,0.3169,0.0375,209.66,267,10,0.3738
+2017,2017-05-08,Moro proíbe que defesa de Lula grave depoimento e criti,Politico,Tradicional Mais Favorável,0.0913,0.2543,0.163,156.12,181,9,0.2835
+2017,2017-05-08,Ciro Gomes atribui crescimento de Lula a papel de perse,Politico,Tradicional Mais Favorável,0.3559,0.3785,0.0226,145.09,125,9,0.3966
+2017,2017-05-14,Quadrinhos recriam depoimento de Lula a Moro e clima em,Politico,Tradicional Mais Favorável,0.1907,0.2266,0.0359,149.09,143,9,0.2895
+2017,2017-05-14,Por que os casos de zika e dengue estão despencando no,Economico,Tradicional Mais Favorável,0.3255,0.369,0.0435,146.71,132,9,0.2734
+2017,2017-05-20,"Após delação da JBS, Temer 'administra estrago como pod",Politico,Tradicional Mais Favorável,0.246,0.2388,-0.0072,104.49,331,7,0.3741
+2017,2017-06-01,"Procuradoria pede a Fachin a prisão de Rocha Loures, ex",Politico,Tradicional Mais Favorável,0.2811,0.2561,-0.025,210.49,273,10,0.2472
+2017,2017-06-13,Bancada tucana na Câmara racha após decisão de cúpula d,Politico,Tradicional Mais Favorável,0.2233,0.1792,-0.0441,121.35,156,8,0.3388
+2017,2017-06-25,Deputados que vão analisar caso de Temer são alvos de d,Politico,Tradicional Mais Favorável,0.1458,0.2453,0.0995,101.74,284,7,0.2892
+2017,2017-06-25,Governo avalia mexer de novo no FGTS. Como a medida pod,Politico,Tradicional Mais Favorável,0.4513,0.3776,-0.0737,186.89,145,10,0.3268
+2017,2017-06-25,"Às vésperas de ser denunciado, Temer reúne núcleo polít",Politico,Tradicional Mais Favorável,0.2748,0.2728,-0.002,119.11,142,8,0.3388
+2017,2017-07-07,Cássio Cunha Lima defende que PSDB deixe os 'cargos con,Politico,Tradicional Mais Favorável,0.2672,0.231,-0.0362,120.41,150,8,0.2904
+2017,2017-07-13,"A condenação de Lula, por colunistas do GLOBO",Politico,Tradicional Mais Favorável,0.2102,0.2012,-0.009,131.23,236,8,0.3493
+2017,2017-07-25,"Às vésperas de votação de denúncia, Temer nega estar 'c",Politico,Tradicional Mais Favorável,0.2652,0.1989,-0.0663,116.07,125,8,0.3362
+2017,2017-07-31,Assinantes da Folha se dividem sobre saída de Temer,Politico,Tradicional Mais Favorável,0.2728,0.2565,-0.0163,133.73,262,8,0.2988
+2017,2017-07-31,"Denunciado, Temer reedita discurso de Dilma Rousseff",Politico,Tradicional Mais Favorável,0.1372,0.1378,0.0006,87.34,127,7,0.2869
+2017,2017-08-12,opinião: Reforma política ou conluio contra o cidadão b,Politico,Tradicional Mais Favorável,0.4043,0.3479,-0.0564,167.39,264,9,0.3476
+2017,2017-08-18,Por que o governo mudou e pode voltar a mudar o salário,Economico,Tradicional Mais Favorável,0.3699,0.3215,-0.0484,189.37,155,10,0.3051
+2017,2017-08-24,A receita de Meirelles para liquidar a economia brasile,Economico,Tradicional Mais Favorável,0.4,0.3971,-0.0029,145.79,128,9,0.3395
+2017,2017-09-05,"Janot denuncia Lula, Dilma e mais seis por organização",Politico,Tradicional Mais Favorável,0.1944,0.24,0.0456,94.06,185,7,0.3028
+2017,2017-09-11,Como um cartão corporativo derrubou o vice-presidente d,Politico,Tradicional Mais Favorável,0.4138,0.3682,-0.0456,135.58,283,8,0.2755
+2017,2017-09-11,Lula é denunciado sob acusação de corrupção passiva enq,Politico,Tradicional Mais Favorável,0.3035,0.2967,-0.0068,88.03,132,7,0.4076
+2017,2017-09-23,Ministério Público faz manual de 'boas práticas' para d,Politico,Tradicional Mais Favorável,0.403,0.3276,-0.0754,145.33,126,9,0.3476
+2017,2017-10-11,"Congresso não deve rever medidas contra parlamentares,",Politico,Tradicional Mais Favorável,0.225,0.2507,0.0257,89.33,142,7,0.3067
+2017,2017-10-17,Doria diz que situação de Aécio não prejudica PSDB em 2,Politico,Tradicional Mais Favorável,0.2661,0.1547,-0.1115,119.93,147,8,0.308
+2017,2017-10-23,Lula ao El Mundo: corte de gastos irá a plebiscito,Economico,Tradicional Mais Favorável,0.4307,0.3428,-0.0879,150.32,149,9,0.303
+2017,2017-10-23,"Às vésperas da votação de denúncia, governo busca recei",Politico,Tradicional Mais Favorável,0.309,0.3107,0.0016,146.71,132,9,0.2897
+2017,2017-11-22,Doria recua do Planalto e mira governo de São Paulo,Politico,Tradicional Mais Favorável,0.158,0.2429,0.0849,155.79,179,9,0.304
+2017,2017-11-22,AGU enaltece trabalho de Grace Mendonça em notícias do,Economico,Tradicional Mais Favorável,0.447,0.4313,-0.0157,187.14,146,10,0.3479
+2017,2017-12-10,Governo antecipa calendário da Previdência | O Antagoni,Politico,Tradicional Mais Favorável,0.2931,0.3496,0.0565,88.16,133,7,0.2426
+2018,2018-01-03,Cristiane Brasil diz se sentir ‘empoderada’ com escolha,Politico,Tradicional Mais Favorável,0.2864,0.3316,0.0452,150.52,150,9,0.3238
+2018,2018-01-15,Lula e o julgamento do Judiciário,Politico,Tradicional Mais Favorável,0.2335,0.2603,0.0268,169.47,283,9,0.319
+2018,2018-01-15,Marun diz que juiz de Niterói 'se equivocou' ao barrar,Politico,Tradicional Mais Favorável,0.3154,0.3504,0.0351,109.17,127,8,0.3158
+2018,2018-01-21,Entenda: o essencial sobre o julgamento de Lula,Politico,Tradicional Mais Favorável,0.2821,0.2846,0.0024,194.63,656,9,0.3086
+2018,2018-01-21,Julgamento de Lula machucará o Brasil de forma indeléve,Politico,Tradicional Mais Favorável,0.2646,0.2016,-0.063,123.41,240,8,0.3486
+2018,2018-01-27,"Caso candidatura de Lula seja barrada, transferência de",Politico,Tradicional Mais Favorável,0.2154,0.1881,-0.0274,128.44,210,8,0.326
+2018,2018-02-02,"Auxílio-moradia compensa falta de reajuste aos juízes,",Politico,Tradicional Mais Favorável,0.3516,0.2414,-0.1101,192.37,168,10,0.2718
+2018,2018-02-15,Temer discute intervenção no Rio,Politico,Tradicional Mais Favorável,0.5389,0.5082,-0.0308,113.33,153,8,0.3647
+2018,2018-03-16,A ala Lula-Temer do STF,Politico,Tradicional Mais Favorável,0.2042,0.1531,-0.0512,159.54,203,9,0.2811
+2018,2018-03-16,Lula diz que pode ser 'o 1º preso político do país no,Politico,Tradicional Mais Favorável,0.2388,0.2382,-0.0006,89.58,144,7,0.2913
+2018,2018-03-22,"Advogados de Lula comemoram decisão, mas evitam fazer p",Politico,Tradicional Mais Favorável,0.1405,0.1623,0.0218,225.97,413,10,0.2726
+2018,2018-04-03,Comandante do Exército cita ‘repúdio à impunidade’; min,Politico,Tradicional Mais Favorável,0.2482,0.2571,0.0089,218.81,341,10,0.4003
+2018,2018-04-03,Julgamento de habeas corpus de Lula expõe vaivém do S,Politico,Tradicional Mais Favorável,0.1688,0.2044,0.0356,173.7,326,9,0.2751
+2018,2018-04-03,Ato na Paulista pede prisão de Lula e critica ministro,Politico,Tradicional Mais Favorável,0.1471,0.3155,0.1683,157.25,188,9,0.3375
+2018,2018-04-03,Veja o apartamento que levou Lula à condenação e vai,Politico,Tradicional Mais Favorável,0.1167,0.2309,0.1142,120.89,153,8,0.2539
+2018,2018-04-09,Paulo Pimenta sobre despedida de Lula: O Ciro fez uma o,Politico,Tradicional Mais Favorável,0.2587,0.274,0.0153,183.28,449,9,0.3734
+2018,2018-04-15,Datafolha: 54% consideram justa prisão do ex-presidente,Politico,Tradicional Mais Favorável,0.1726,0.241,0.0685,157.57,190,9,0.3388
+2018,2018-04-27,"Com 1% nas pesquisas, Maia faz rodada de seminários pa",Economico,Tradicional Mais Favorável,0.3801,0.3377,-0.0424,192.37,168,10,0.3472
+2018,2018-05-27,"Em meio à crise, procura por caronas intermunicipais cr",Economico,Tradicional Mais Favorável,0.4994,0.3474,-0.1519,205.05,236,10,0.2289
+2018,2018-05-27,Governadores dizem que Temer “repassa” ônus da greve,Politico,Tradicional Mais Favorável,0.453,0.3618,-0.0912,191.02,162,10,0.424
+2018,2018-07-08,Entenda o vaivém das decisões judiciais sobre a liberta,Politico,Tradicional Mais Favorável,0.2224,0.217,-0.0054,229.59,455,10,0.3413
+2018,2018-08-13,PT espera melhor momento para troca da candidatura de L,Politico,Tradicional Mais Favorável,0.2037,0.2087,0.005,204.73,234,10,0.3339
+2018,2018-08-19,Agência Lupa: presidenciáveis erram ao falar sobre gr,Politico,Tradicional Mais Favorável,0.0913,0.1722,0.0809,183.95,134,10,0.294
+2018,2018-08-25,"Análise: Bolsonaro reúne núcleo do antipetismo, mas vot",Politico,Tradicional Mais Favorável,0.209,0.1975,-0.0115,218.81,341,10,0.3583
+2018,2018-08-31,Caso Lula gera divisão interna no TSE,Politico,Tradicional Mais Favorável,0.2816,0.2663,-0.0154,226.15,415,10,0.3301
+2018,2018-08-31,Bolsonaro quer tirar do ar propaganda de Alckmin sobre,Politico,Tradicional Mais Favorável,0.2078,0.1417,-0.0661,210.08,270,10,0.3738
+2018,2018-09-02,"Fogo destrói Museu Nacional, o mais antigo centro de ci",Ambiental,Tradicional Mais Favorável,0.367,0.2611,-0.1059,110.2,133,8,0.4269
+2018,2018-09-06,"Na UTI, Bolsonaro está consciente, estável, mas quadro",Politico,Tradicional Mais Favorável,0.2555,0.1926,-0.0629,249.92,783,10,0.3314
+2018,2018-09-06,"Com narração de Haddad, campanha do PT defende candid",Politico,Tradicional Mais Favorável,0.1533,0.23,0.0767,122.69,165,8,0.3032
+2018,2018-09-12,Ciro Gomes diz que sai da política se Bolsonaro vencer,Politico,Tradicional Mais Favorável,0.2757,0.2671,-0.0086,210.77,275,10,0.3311
+2018,2018-09-12,Agressor de Bolsonaro está em ala de prisão federal com,Politico,Tradicional Mais Favorável,0.281,0.2643,-0.0166,153.54,166,9,0.3053
+2018,2018-09-12,Ciro diz que Haddad seria presidente por procuração de,Politico,Tradicional Mais Favorável,0.2085,0.3346,0.1261,122.69,165,8,0.3057
+2018,2018-09-12,Bolsonaro e Haddad ampliam índice de conhecimento de el,Politico,Tradicional Mais Favorável,0.2708,0.298,0.0273,188.89,153,10,0.2948
+2018,2018-09-18,"Apoio a Bolsonaro gera polêmica entre atletas, clubes e",Politico,Tradicional Mais Favorável,0.2798,0.2581,-0.0217,233.05,499,10,0.3731
+2018,2018-09-18,Especialistas rebatem Mourão: mães e avós são fundament,Economico,Tradicional Mais Favorável,0.425,0.3924,-0.0327,187.4,147,10,0.2889
+2018,2018-09-24,Ibope: Bolsonaro segue na liderança com 28%. Haddad sob,Politico,Tradicional Mais Favorável,0.1447,0.2043,0.0595,172.19,310,9,0.2754
+2018,2018-09-24,"Bolsonaro tem quadro clínico estável, sem dor, febre ou",Politico,Tradicional Mais Favorável,0.2107,0.2171,0.0063,159.69,204,9,0.322
+2018,2018-09-30,Bolsonaro registra maior disparidade de votos entre gên,Politico,Tradicional Mais Favorável,0.2961,0.2769,-0.0193,226.87,423,10,0.3152
+2018,2018-09-30,"No Twitter, Bolsonaro agradece apoio de manifestantes",Politico,Tradicional Mais Favorável,0.223,0.2944,0.0714,176.5,358,9,0.3192
+2018,2018-10-06,"Presidenciável do PSL, Bolsonaro tira votos do PT no No",Politico,Tradicional Mais Favorável,0.252,0.2691,0.0171,262.13,1085,10,0.2737
+2018,2018-10-06,"Bolsonaro, sobre intrigas internas: &#8216;tudo reflete",Politico,Tradicional Mais Favorável,0.4148,0.3112,-0.1036,191.92,166,10,0.3987
+2018,2018-10-12,"Doria vem ao Rio em busca de apoio, mas não é recebido",Politico,Tradicional Mais Favorável,0.2485,0.255,0.0065,239.19,588,10,0.3226
+2018,2018-10-18,"Datafolha: Bolsonaro tem 59% dos votos válidos, e Hadda",Politico,Tradicional Mais Favorável,0.2009,0.2257,0.0248,210.22,271,10,0.2555
+2018,2018-10-18,Bolsonaro e Haddad se comprometem a manter cláusulas d,Politico,Tradicional Mais Favorável,0.2835,0.2623,-0.0212,197.16,191,10,0.3816
+2018,2018-10-18,"Após suposta compra de pacote de fake news, PT pede inv",Politico,Tradicional Mais Favorável,0.3281,0.2661,-0.062,196.57,188,10,0.3382
+2018,2018-10-24,"Em referência a Bolsonaro, Lula diz que 'ameaça fascist",Politico,Tradicional Mais Favorável,0.2494,0.2948,0.0454,210.36,272,10,0.3524
+2018,2018-10-24,Haddad diz que evangélicos estão perdendo a confiança e,Politico,Tradicional Mais Favorável,0.1789,0.1559,-0.023,205.37,238,10,0.3526
+2018,2018-10-24,Eduardo Jorge diverge de Marina e anuncia voto nulo no,Politico,Tradicional Mais Favorável,0.141,0.2084,0.0674,202.6,221,10,0.259
+2018,2018-10-24,"Eleição não acabou e Bolsonaro já dita ordens a Temer,",Politico,Tradicional Mais Favorável,0.2761,0.3194,0.0434,193.89,175,10,0.3274
+2018,2018-10-24,A sorte está lançada: Haddad tem 5 dias para tirar 9 mi,Politico,Consenso de Sentimento,0.0641,0.1,0.0359,182.53,129,10,0.254
+2018,2018-10-30,Declarações de Paulo Guedes sobre Mercosul geram descon,Politico,Tradicional Mais Favorável,0.4171,0.399,-0.0181,207.94,255,10,0.3596
+2018,2018-10-30,Moro diz que convite de Bolsonaro passará por discussão,Politico,Tradicional Mais Favorável,0.2047,0.3318,0.1271,166.36,255,9,0.3098
+2018,2018-10-30,General diz que manifestações contra Bolsonaro não são,Politico,Tradicional Mais Favorável,0.2675,0.285,0.0175,202.09,218,10,0.3827
+2018,2018-11-05,Segurança de Bolsonaro terá medidas usadas por presiden,Politico,Tradicional Mais Favorável,0.3897,0.3811,-0.0086,214.51,304,10,0.3408
+2018,2018-11-05,Bolsonaro discute extradição de Cesare Battisti com emb,Politico,Tradicional Mais Favorável,0.2474,0.3089,0.0615,147.82,137,9,0.2682
+2018,2018-11-11,Confira os 10 atropelos de Bolsonaro e sua equipe de tr,Politico,Tradicional Mais Favorável,0.354,0.3198,-0.0342,233.05,499,10,0.3726
+2018,2018-11-11,"Corte de ministérios deve gerar economia de R$ 85,6 mil",Economico,Tradicional Mais Favorável,0.3225,0.3431,0.0206,188.64,152,10,0.2223
+2018,2018-11-17,Tereza Cruvinel: Bolsonaro ainda não sabe que virou vid,Politico,Tradicional Mais Favorável,0.2078,0.2523,0.0445,165.16,245,9,0.3537
+2018,2018-11-17,Governo Bolsonaro: saiba como será o novo Ministério de,Politico,Tradicional Mais Favorável,0.3216,0.344,0.0224,184.77,137,10,0.3102
+2018,2018-11-23,O dia em resumo: Guru de Bolsonaro diz que Escola sem P,Politico,Tradicional Mais Favorável,0.2241,0.2668,0.0427,182.24,128,10,0.3524
+2018,2018-11-29,"Repetição da prática de crimes levou Pezão à prisão, af",Politico,Tradicional Mais Favorável,0.3326,0.2875,-0.0451,159.69,204,9,0.2835
+2018,2018-12-05,"Bolsonaro, Moro, Terra e Onyx não se entendem sobre des",Politico,Tradicional Mais Favorável,0.3022,0.2821,-0.0201,196.96,190,10,0.3211
+2018,2018-12-05,"Questionado sobre investigação de Onyx, Bolsonaro diz q",Politico,Tradicional Mais Favorável,0.1476,0.2042,0.0567,153.72,167,9,0.2661
+2018,2018-12-11,"Foi melhor que Bolsonaro ganhasse, diz Meirelles, futur",Politico,Tradicional Mais Favorável,0.3666,0.3255,-0.0411,195.15,181,10,0.3604
+2018,2018-12-17,Posse de Bolsonaro: custo de R$ 1 mi e agentes à paisan,Politico,Tradicional Mais Favorável,0.2469,0.2508,0.0039,201.92,217,10,0.3026
+2018,2018-12-29,Bolsonaro vai liberar posse de arma a cidadão sem antec,Politico,Tradicional Mais Favorável,0.3305,0.3448,0.0143,221.35,365,10,0.3351
+2019,2019-01-04,"Decreto que flexibiliza posse de arma sai este mês, diz",Politico,Tradicional Mais Favorável,0.3844,0.3523,-0.0321,220.2,354,10,0.3397
+2019,2019-01-04,Bolsonaro lança em suas redes sociais a nova logomarca,Politico,Tradicional Mais Favorável,0.258,0.3191,0.0611,169.15,280,9,0.4006
+2019,2019-01-10,Gleisi vai à posse de Maduro para mostrar oposição a Bo,Politico,Tradicional Mais Favorável,0.2221,0.2523,0.0303,168.72,276,9,0.3119
+2019,2019-01-10,Militares pressionam para ficar fora da reforma da Prev,Economico,Tradicional Mais Favorável,0.4017,0.3602,-0.0415,210.77,275,10,0.3246
+2019,2019-01-13,Quem é Cesare Battisti: saiba mais sobre a vida do ital,Politico,Tradicional Mais Favorável,0.202,0.2175,0.0155,146.71,132,9,0.2205
+2019,2019-01-16,Bolsonaro e Macri: compromisso com Mercosul e posição c,Politico,Tradicional Mais Favorável,0.4057,0.4142,0.0085,209.1,263,10,0.3567
+2019,2019-01-16,Bolsonaro sanciona orçamento com mais de 48 mil vagas e,Politico,Tradicional Mais Favorável,0.2524,0.2714,0.019,185.84,141,10,0.2576
+2019,2019-01-16,Chefe de gabinete de Flávio Bolsonaro terá que depor so,Politico,Tradicional Mais Favorável,0.1775,0.2927,0.1152,145.33,126,9,0.2639
+2019,2019-01-22,Bolsonaro estreia no cenário internacional sob os olhar,Politico,Tradicional Mais Favorável,0.3943,0.3916,-0.0028,230.97,472,10,0.3742
+2019,2019-01-22,"Após rebelião em quartel, Guaidó apela por golpe milita",Internacional,Tradicional Mais Favorável,0.1655,0.3114,0.1458,156.45,183,9,0.2488
+2019,2019-01-28,Ciro Nogueira é Ciro Nogueira,Politico,Tradicional Mais Favorável,0.1717,0.2763,0.1046,116.84,179,8,0.2196
+2019,2019-02-03,"Bolsonaro prepara decretos sobre comissionados, carreir",Economico,Tradicional Mais Favorável,0.282,0.3317,0.0497,198.5,198,10,0.2772
+2019,2019-02-09,Bolsonaro assina decreto que concede indulto a presos c,Politico,Tradicional Mais Favorável,0.3486,0.2788,-0.0698,196.17,186,10,0.3318
+2019,2019-02-15,Entenda a crise entre Bebianno e a família Bolsonaro em,Politico,Tradicional Mais Favorável,0.3365,0.2727,-0.0639,234.73,522,10,0.3564
+2019,2019-02-21,"Venezuela: Brasil mantém ajuda, mas não comenta bloquei",Internacional,Tradicional Mais Favorável,0.3187,0.3814,0.0627,223.05,382,10,0.3327
+2019,2019-02-21,"Reforma é destruição do bem-estar social, diz economist",Economico,Tradicional Mais Favorável,0.4026,0.3632,-0.0395,185.04,138,10,0.3521
+2019,2019-03-05,Ex falso sequitur quodlibet,Politico,Tradicional Mais Favorável,0.3627,0.2379,-0.1248,200.34,208,10,0.4464
+2019,2019-03-11,Fake: repórter não disse querer “arruinar Flávio Bolson,Politico,Tradicional Mais Favorável,0.4724,0.2999,-0.1725,213.01,292,10,0.3984
+2019,2019-03-17,Bolsonaro embarca com destino aos EUA para encontrar Tr,Politico,Tradicional Mais Favorável,0.2803,0.3732,0.0929,204.89,235,10,0.3364
+2019,2019-03-17,Como a lei trata as armas brancas no Brasil e no mundo,Politico,Tradicional Mais Favorável,0.4296,0.3301,-0.0994,190.78,161,10,0.3402
+2019,2019-03-21,Vídeo: veja o momento em que Temer é abordado pela PF,Politico,Tradicional Mais Favorável,0.2724,0.2709,-0.0015,197.35,192,10,0.2886
+2019,2019-03-23,"Do governo à oposição, políticos do DF repudiam vinda d",Politico,Tradicional Mais Favorável,0.3918,0.2421,-0.1497,208.96,262,10,0.3242
+2019,2019-03-23,"Em 2018, governo federal gastou R$ 1,3 bilhão com viage",Economico,Tradicional Mais Favorável,0.3788,0.315,-0.0638,199.06,201,10,0.3205
+2019,2019-03-23,"Governo Bolsonaro é um deserto de ideias, diz Rodrigo M",Politico,Tradicional Mais Favorável,0.4409,0.258,-0.1828,195.15,181,10,0.4276
+2019,2019-03-23,"Indagado sobre futuro do Brasil, Mourão fala em Olavo d",Politico,Tradicional Mais Favorável,0.3124,0.2994,-0.0129,87.2,126,7,0.405
+2019,2019-03-29,Gleisi: discutir afastamento de Bolsonaro seria “coisa,Politico,Tradicional Mais Favorável,0.3571,0.3232,-0.0339,162.22,222,9,0.412
+2019,2019-03-29,"Celebrar golpe causa cisão dentro das Forças Armadas, a",Politico,Tradicional Mais Favorável,0.2938,0.2647,-0.0292,195.36,182,10,0.367
+2019,2019-04-04,"Como o IBGE calcula o desemprego no Brasil, criticado p",Economico,Tradicional Mais Favorável,0.3755,0.2869,-0.0886,209.38,265,10,0.3755
+2019,2019-04-04,Governo Bolsonaro comunica à ONU que golpe militar é â,Politico,Tradicional Mais Favorável,0.2852,0.2942,0.009,164.92,243,9,0.3671
+2019,2019-04-04,"Jucá: “MDB não quer base, quer agenda” para debater pro",Politico,Tradicional Mais Favorável,0.3704,0.3078,-0.0626,200.16,207,10,0.3072
+2019,2019-04-10,Governo Bolsonaro conclui menos da metade das metas dos,Politico,Tradicional Mais Favorável,0.3641,0.318,-0.046,206.9,248,10,0.3209
+2019,2019-04-10,"Aliado de Bolsonaro, Alexandre Frota reclama da articul",Politico,Tradicional Mais Favorável,0.3325,0.267,-0.0655,188.4,151,10,0.3319
+2019,2019-04-16,Alexandre de Moraes nega arquivar inquérito de fake ne,Politico,Tradicional Mais Favorável,0.2944,0.0853,-0.2091,208.24,257,10,0.3073
+2019,2019-04-16,Bolsonaro desautoriza o Ibama a destruir veículos usado,Politico,Tradicional Mais Favorável,0.3389,0.3402,0.0013,191.24,163,10,0.3721
+2019,2019-04-16,"Após reunião, ministros dizem 'quem manda' na política",Economico,Tradicional Mais Favorável,0.2529,0.3114,0.0585,190.08,158,10,0.308
+2019,2019-04-16,"Toffoli quer esconder alguma coisa, diz general alvo do",Politico,Tradicional Mais Favorável,0.3373,0.2102,-0.1272,147.6,136,9,0.3336
+2019,2019-04-22,Mourão recomenda que Olavo deixe a política e se limite,Politico,Tradicional Mais Favorável,0.313,0.2384,-0.0746,202.26,219,10,0.3679
+2019,2019-04-22,STJ julga recurso de Lula no caso tríplex nesta terça,Politico,Tradicional Mais Favorável,0.1843,0.2273,0.043,153.9,168,9,0.2716
+2019,2019-04-22,Novo quer cobrar mensalidade de estudantes. USP tem sup,Economico,Tradicional Mais Favorável,0.2572,0.2998,0.0425,181.95,127,10,0.2733
+2019,2019-04-28,Da honraria às críticas. Entenda a briga de Carlos e ge,Politico,Tradicional Mais Favorável,0.2747,0.2714,-0.0033,224.68,399,10,0.3656
+2019,2019-04-28,Guaidó diz que governo Maduro bloqueou ruas para impedi,Internacional,Tradicional Mais Favorável,0.2042,0.2308,0.0265,188.4,151,10,0.31
+2019,2019-04-28,INSS atrasa mais de 40% dos benefícios. E pode piorar c,Economico,Tradicional Mais Favorável,0.288,0.2844,-0.0036,185.58,140,10,0.2841
+2019,2019-05-04,Bolsonaro diz que aguarda aprovação de pacote anticrime,Politico,Tradicional Mais Favorável,0.2873,0.3146,0.0272,209.1,263,10,0.3247
+2019,2019-05-04,"“Boa viagem. Seu ódio não é bem-vindo”, diz prefeito de",Politico,Tradicional Mais Favorável,0.2697,0.2797,0.0099,160.56,210,9,0.3807
+2019,2019-05-04,Governo corre contra o tempo para conseguir verba para,Economico,Tradicional Mais Favorável,0.2154,0.2596,0.0442,183.95,134,10,0.3607
+2019,2019-05-10,"Análise: fraco no Congresso, Bolsonaro tenta governar c",Politico,Tradicional Mais Favorável,0.2699,0.2052,-0.0647,242.89,649,10,0.3384
+2019,2019-05-16,"Análise: pela educação, as ruas mudam de cor e põem Bol",Politico,Tradicional Mais Favorável,0.2808,0.2741,-0.0067,234.52,519,10,0.3957
+2019,2019-05-22,"Análise: sob pressão, Congresso se enrola com pauta de",Politico,Tradicional Mais Favorável,0.3869,0.3004,-0.0865,209.24,264,10,0.3341
+2019,2019-05-22,"De queda em queda, Bolsonaro agora encara o Aqui Não!",Politico,Tradicional Mais Favorável,0.387,0.3417,-0.0453,155.79,179,9,0.3784
+2019,2019-05-22,Quem são os alvos dos organizadores dos atos pró-Bolson,Politico,Tradicional Mais Favorável,0.2063,0.3122,0.106,152.81,162,9,0.3311
+2019,2019-05-28,"Por pacto nacional, Bolsonaro se reúne com Toffoli, Mai",Politico,Tradicional Mais Favorável,0.1589,0.2815,0.1226,209.24,264,10,0.3186
+2019,2019-05-28,Como será a nova versão do Mais Médicos de Bolsonaro,Economico,Tradicional Mais Favorável,0.2179,0.3166,0.0988,183.11,131,10,0.3186
+2019,2019-06-03,Alckmin anuncia pit stop na política e diz que Bolsonar,Politico,Tradicional Mais Favorável,0.2524,0.2754,0.0229,161.26,215,9,0.3068
+2019,2019-06-03,ANS altera regras de carência de planos de saúde. Veja,Economico,Tradicional Mais Favorável,0.2431,0.3093,0.0662,152.44,160,9,0.2755
+2019,2019-06-09,Diálogos mostram Moro direcionando Dallagnol na Lava Ja,Politico,Tradicional Mais Favorável,0.2324,0.2181,-0.0143,236.07,541,10,0.2916
+2019,2019-06-09,"Novas denúncias contra Bivar irritaram Bolsonaro, dizem",Politico,Tradicional Mais Favorável,0.3776,0.2864,-0.0912,209.8,268,10,0.3198
+2019,2019-06-09,"Como a violência afeta minorias no Brasil, segundo este",Economico,Tradicional Mais Favorável,0.3355,0.3168,-0.0187,182.82,130,10,0.314
+2019,2019-06-15,"Intercept: A defesa já fez o showzinho dela, disse Moro",Politico,Tradicional Mais Favorável,0.2069,0.1801,-0.0268,207.05,249,10,0.2913
+2019,2019-06-15,Bolsonaro diz que pode demitir Joaquim Levy do BNDES na,Politico,Tradicional Mais Favorável,0.2832,0.2383,-0.0449,157.72,191,9,0.321
+2019,2019-06-15,Bolsonaro agradace Conmebol por Brasil sediar a Copa Am,Politico,Tradicional Mais Favorável,0.2792,0.3013,0.0221,151.5,155,9,0.3621
+2019,2019-06-21,Bolsonaro anuncia major da reserva da PMDF para Secreta,Politico,Tradicional Mais Favorável,0.2275,0.2622,0.0347,214.14,301,10,0.2876
+2019,2019-06-27,UE e Mercosul devem aproveitar oportunidade e selar aco,Economico,Tradicional Mais Favorável,0.2697,0.436,0.1662,153.72,167,9,0.2818
+2019,2019-06-27,Bolsonaro rebate Merkel e diz que Brasil é exemplo par,Politico,Tradicional Mais Favorável,0.2215,0.298,0.0765,150.72,151,9,0.3638
+2019,2019-06-27,Entenda o caso do militar preso por levar cocaína em av,Politico,Tradicional Mais Favorável,0.2087,0.2528,0.0441,119.93,147,8,0.3004
+2019,2019-07-03,Bolsonaro diz que sacrifícios com a Previdência serão p,Politico,Tradicional Mais Favorável,0.3601,0.3348,-0.0253,235.59,534,10,0.3336
+2019,2019-07-03,Previdência: busca por acordos atrasa votação do novo t,Politico,Tradicional Mais Favorável,0.2027,0.2731,0.0704,164.17,237,9,0.2353
+2019,2019-07-09,"Bolsonaro: fora da reforma, policiais serão alvo de lei",Politico,Tradicional Mais Favorável,0.3149,0.2869,-0.0279,206.3,244,10,0.3128
+2019,2019-07-09,Bancada feminina cobra três mudanças para apoiar Previd,Politico,Tradicional Mais Favorável,0.1555,0.2254,0.0699,200.52,209,10,0.2316
+2019,2019-07-09,Disputa pela reforma da Previdência lidera debate nas r,Politico,Tradicional Mais Favorável,0.326,0.2839,-0.0421,158.19,194,9,0.2847
+2019,2019-07-09,"Cada hora é decisiva para aprovar a Previdência, diz Ro",Politico,Tradicional Mais Favorável,0.1225,0.2411,0.1186,116.34,175,8,0.2086
+2019,2019-07-15,Ex-petistas são 39% do primeiro e segundo escalão do go,Politico,Tradicional Mais Favorável,0.2978,0.2474,-0.0504,186.97,508,9,0.3404
+2019,2019-07-15,Bolsonaro: indicação a embaixada é atribuição exclusiva,Politico,Tradicional Mais Favorável,0.1936,0.2958,0.1022,173.61,325,9,0.296
+2019,2019-07-15,Previsões de crescimento do PIB não se confirmam. De qu,Economico,Tradicional Mais Favorável,0.2659,0.2796,0.0136,183.67,133,10,0.2572
+2019,2019-07-16,Decisão de Toffoli sobre Flávio pode anular condenações,Politico,Tradicional Mais Favorável,0.2635,0.2096,-0.0539,158.04,193,9,0.2989
+2019,2019-07-21,"Análise: por falar em ditadura, presidente, onde estão",Politico,Tradicional Mais Favorável,0.3534,0.2431,-0.1103,221.76,369,10,0.3445
+2019,2019-07-23,Delegado do mensalão prendeu hackers de celular de Mor,Politico,Tradicional Mais Favorável,0.2238,0.2453,0.0215,208.38,258,10,0.2191
+2019,2019-07-27,Bolsonaro vai a evento militar no RJ e ao jogo do Palme,Politico,Tradicional Mais Favorável,0.2891,0.2442,-0.045,244.08,670,10,0.3574
+2019,2019-07-27,Prisão de Moro e penas mais duras: a reação dos polític,Politico,Consenso de Sentimento,0.0796,0.1627,0.0831,147.38,135,9,0.3308
+2019,2019-08-02,Amoíado diz que Novo é âmuito diferenteâ de Bolsonaro,Politico,Tradicional Mais Favorável,0.2922,0.2395,-0.0528,227.83,434,10,0.3324
+2019,2019-08-02,"Apontada por pesquisa, rejeição a garimpos em terras in",Economico,Tradicional Mais Favorável,0.3196,0.2992,-0.0204,196.17,186,10,0.3326
+2019,2019-08-02,Segundo turno da Previdíancia será votado em 8 sessõe,Politico,Tradicional Mais Favorável,0.1551,0.2348,0.0797,156.12,181,9,0.1895
+2019,2019-08-08,SIP critica Bolsonaro por usar MP para se vingar da imp,Politico,Tradicional Mais Favorável,0.2567,0.2173,-0.0394,229.01,448,10,0.3098
+2019,2019-08-08,Alcolumbre recebe texto da Previdência: Vou seguir praz,Politico,Tradicional Mais Favorável,0.1988,0.2662,0.0674,183.95,134,10,0.2292
+2019,2019-08-14,"“Está difícil a escolha”, diz Bolsonaro sobre indicação",Politico,Tradicional Mais Favorável,0.1919,0.1762,-0.0157,181.84,428,9,0.2735
+2019,2019-08-14,Bolsonaro elogia Sistema S por inaugurar escola militar,Politico,Tradicional Mais Favorável,0.3959,0.3036,-0.0924,189.85,157,10,0.3166
+2019,2019-08-14,Deputada do PSL alerta sobre abuso de autoridade,Politico,Tradicional Mais Favorável,0.1807,0.1466,-0.0341,150.72,151,9,0.3059
+2019,2019-08-14,"Para Margaridas, reforma é opressora e tira direito da",Economico,Tradicional Mais Favorável,0.36,0.29,-0.07,187.65,148,10,0.392
+2019,2019-08-14,O que Brasil e Mercosul perdem com a volta do kirchneri,Politico,Tradicional Mais Favorável,0.2652,0.3052,0.04,146.94,133,9,0.3473
+2019,2019-08-20,Amazônia: Bolsonaro diz que passou de capitão motosserr,Politico,Tradicional Mais Favorável,0.3716,0.2359,-0.1358,243.35,657,10,0.3633
+2019,2019-08-20,"Após Bolsonaro citar fracasso, Eduardo diz que indicaí",Politico,Tradicional Mais Favorável,0.1749,0.2274,0.0524,159.25,201,9,0.2715
+2019,2019-08-26,Maia: narrativa de Bolsonaro estimula aumento do desmat,Politico,Tradicional Mais Favorável,0.3106,0.2625,-0.0481,214.51,304,10,0.2971
+2019,2019-08-26,País vive dificuldade financeira e deve aceitar ajuda d,Economico,Tradicional Mais Favorável,0.3189,0.3032,-0.0156,209.94,269,10,0.3421
+2019,2019-08-26,Bolsonaro rebate Macron: francês trata Brasil como terr,Politico,Tradicional Mais Favorável,0.3341,0.2777,-0.0564,207.65,253,10,0.3843
+2019,2019-08-26,Bolsonaro reúne-se com ministros para avaliar crise na,Politico,Tradicional Mais Favorável,0.2436,0.3477,0.1041,148.25,139,9,0.3083
+2019,2019-09-01,"Em churrasco surpresa, Bolsonaro busca relação cordial",Politico,Tradicional Mais Favorável,0.2859,0.2285,-0.0573,257.2,951,10,0.3433
+2019,2019-09-01,"Sem crescimento, Brasil sob Bolsonaro não atrai mais in",Economico,Tradicional Mais Favorável,0.3072,0.3576,0.0504,195.56,183,10,0.3216
+2019,2019-09-07,Bolsonaro aposta no patriotismo no seu primeiro 7 de Se,Politico,Tradicional Mais Favorável,0.2227,0.2616,0.039,185.65,486,9,0.3062
+2019,2019-09-07,"Em pesquisa, 44% dos brasileiros acreditam em aumento d",Economico,Tradicional Mais Favorável,0.3012,0.3004,-0.0008,187.9,149,10,0.3283
+2019,2019-09-13,Eduardo Bolsonaro vai acompanhar o Jair Bolsonaro na ON,Politico,Tradicional Mais Favorável,0.1274,0.2386,0.1112,152.44,160,9,0.3034
+2019,2019-09-13,Grupos disputam cargo de Valeixo na chefia da Polícia F,Politico,Tradicional Mais Favorável,0.2659,0.2505,-0.0154,188.15,150,10,0.2843
+2019,2019-09-13,"Bolsonaro só terá alta quando conseguir se alimentar, d",Politico,Tradicional Mais Favorável,0.2815,0.2537,-0.0279,184.5,136,10,0.363
+2019,2019-09-13,Caderneta de poupança pode ter remuneração atrelada à i,Economico,Tradicional Mais Favorável,0.2811,0.2927,0.0116,146.26,130,9,0.276
+2019,2019-09-19,Minirreforma eleitoral: deputados jogam pressão popular,Politico,Tradicional Mais Favorável,0.3246,0.2985,-0.0261,194.11,176,10,0.3052
+2019,2019-09-19,"Após operação da PF, Bezerra põe liderança do governo à",Politico,Tradicional Mais Favorável,0.1788,0.244,0.0652,190.55,160,10,0.2235
+2019,2019-09-19,"No Facebook, Bolsonaro diz que vai à ONU “enfrentar” eu",Politico,Tradicional Mais Favorável,0.1442,0.2057,0.0615,151.69,156,9,0.3609
+2019,2019-09-25,Congresso derruba veto de Bolsonaro à Lei do Livro,Politico,Tradicional Mais Favorável,0.2486,0.2223,-0.0263,200.52,209,10,0.3049
+2019,2019-09-25,Cresce desaprovação à s políticas ambientais do gover,Politico,Tradicional Mais Favorável,0.2372,0.2177,-0.0195,197.93,195,10,0.3664
+2019,2019-09-25,Advogado de Lula vai ao STF acompanhar decisões da Lava,Politico,Tradicional Mais Favorável,0.1786,0.2347,0.056,151.5,155,9,0.2358
+2019,2019-09-26,'Ia dar um tiro na cara dele (Gilmar) e depois me suici,Politico,Tradicional Mais Favorável,0.2809,0.1738,-0.1071,199.8,205,10,0.3515
+2019,2019-10-01,Flávio Bolsonaro contrariou decisão do pai em votação d,Politico,Tradicional Mais Favorável,0.302,0.2692,-0.0328,209.38,265,10,0.3689
+2019,2019-10-01,"É direito de Lula ficar preso lá. Quer ficar, fica, diz",Politico,Tradicional Mais Favorável,0.2837,0.2875,0.0038,159.4,202,9,0.3173
+2019,2019-10-01,Empresa de ex-senador é alvo da 4a fase da Operação Car,Politico,Tradicional Mais Favorável,0.2499,0.265,0.0151,194.74,179,10,0.2448
+2019,2019-10-07,Bolsonaro acusa reportagens de mentir e difamar o gover,Politico,Tradicional Mais Favorável,0.2924,0.2546,-0.0378,247.85,741,10,0.3432
+2019,2019-10-07,Governo quer reformular FGTS e tirar monopólio da Caix,Politico,Tradicional Mais Favorável,0.2884,0.3187,0.0303,185.84,141,10,0.2715
+2019,2019-10-13,Análise: papa e arcebispo fazem alerta contra governo B,Politico,Tradicional Mais Favorável,0.2412,0.2238,-0.0174,241.11,619,10,0.3254
+2019,2019-10-13,Reeleição de Bolsonaro é tema de evento conservador,Politico,Tradicional Mais Favorável,0.106,0.1419,0.0359,146.94,133,9,0.2043
+2019,2019-10-19,"Contra Joice, bolsonaristas fazem campanha #DeixeDeSegu",Politico,Tradicional Mais Favorável,0.2634,0.1892,-0.0742,181.7,426,9,0.3027
+2019,2019-10-19,Bolsonaro diz que Eduardo decide seu futuro: “É maior d,Politico,Tradicional Mais Favorável,0.2519,0.2667,0.0149,221.96,371,10,0.3079
+2019,2019-10-25,Análise: Queiroz sabe segredos de Bolsonaro e tem a boc,Politico,Tradicional Mais Favorável,0.2671,0.1625,-0.1046,245.45,695,10,0.3723
+2019,2019-10-31,Bolsonaro manda suspender assinaturas da Folha no gover,Politico,Tradicional Mais Favorável,0.2293,0.1952,-0.0341,185.21,479,9,0.3175
+2019,2019-10-31,Declaração de Eduardo Bolsonaro sobre AI-5 repercute no,Politico,Tradicional Mais Favorável,0.2264,0.1795,-0.0469,221.96,371,10,0.337
+2019,2019-10-31,PEC quer obrigar governo a reduzir carga tributária. P,Economico,Tradicional Mais Favorável,0.2669,0.3355,0.0686,200.69,210,10,0.2817
+2019,2019-11-06,Intelectuais e artistas alertam para injustiça cometida,Politico,Tradicional Mais Favorável,0.1676,0.2458,0.0781,200.34,208,10,0.3384
+2019,2019-11-06,Aras diz que Bolsonaro pode bloquear internautas no Twi,Politico,Tradicional Mais Favorável,0.2421,0.2318,-0.0103,155.95,180,9,0.3328
+2019,2019-11-06,Bolsonaro veta Mourão e Ernesto Araújo em posse de pres,Politico,Tradicional Mais Favorável,0.2715,0.2462,-0.0254,193.89,175,10,0.2962
+2019,2019-11-06,"Agiotagem, diz oposição sobre pacote Mais Brasil de Gue",Politico,Tradicional Mais Favorável,0.2739,0.3504,0.0765,189.37,155,10,0.279
+2019,2019-11-06,"300 dias de governo Bolsonaro: uma privatização, tría",Politico,Digital Mais Favorável,-0.2036,0.2192,0.4228,44.01,132,5,0.1409
+2019,2019-11-12,Bolsonaro anuncia a deputados saída do PSL,Politico,Tradicional Mais Favorável,0.1221,0.1501,0.028,203.76,228,10,0.253
+2019,2019-11-12,MP aumenta jornada de trabalho e bancos deverão abrir a,Economico,Tradicional Mais Favorável,0.3604,0.3747,0.0143,201.4,214,10,0.3015
+2019,2019-11-12,Análise: Lula reaparece mesclando “jararaca” com “paz e,Politico,Tradicional Mais Favorável,0.1889,0.214,0.025,156.28,182,9,0.3214
+2019,2019-11-12,"Aliança pelo Brasil, o novo partido de Jair Bolsonaro,",Politico,Tradicional Mais Favorável,0.4721,0.387,-0.0851,190.55,160,10,0.2463
+2019,2019-11-12,Presidente Jair Bolsonaro manda Evo Morales ir para Cub,Internacional,Tradicional Mais Favorável,0.1588,0.221,0.0622,117.73,134,8,0.2581
+2019,2019-11-18,"Análise: com PSL, Bolsonaro revela desprezo a sistema p",Politico,Tradicional Mais Favorável,0.2137,0.2284,0.0148,239.25,589,10,0.3173
+2019,2019-11-18,Tofolli recua de decisão que lhe dava acesso a dados ba,Politico,Tradicional Mais Favorável,0.2328,0.2282,-0.0046,199.61,204,10,0.2678
+2019,2019-11-24,"Na esteira do Bolsa Família, entidades pressionam por 1",Economico,Tradicional Mais Favorável,0.4929,0.3568,-0.1361,205.99,242,10,0.2918
+2019,2019-11-24,Bolsonaro já ganhou 38 camisas de clubes e seleções de,Politico,Tradicional Mais Favorável,0.3307,0.3383,0.0075,147.16,134,9,0.3051
+2019,2019-11-30,Bolsonaro fala de levar democracia e liberdade a países,Politico,Tradicional Mais Favorável,0.3223,0.2173,-0.105,216.78,323,10,0.3767
+2019,2019-11-30,"ONS prevê alta de 2,4% na carga de energia no Brasil em",Economico,Tradicional Mais Favorável,0.2628,0.3022,0.0394,189.61,156,10,0.266
+2019,2019-12-06,Bolsonaro revoga licitação de jornais que excluiu Fol,Politico,Tradicional Mais Favorável,0.2231,0.2745,0.0515,150.12,148,9,0.2834
+2019,2019-12-06,Risco de ditadura no Brasil é médio ou grande para 40,Politico,Tradicional Mais Favorável,0.2878,0.2999,0.0121,146.03,129,9,0.3226
+2019,2019-12-12,Bolsonaro convida novo presidente argentino Fernández,Politico,Tradicional Mais Favorável,0.2427,0.2761,0.0335,127.28,200,8,0.3255
+2019,2019-12-12,Lucro do FGTS não terá mais distribuição integral a,Economico,Tradicional Mais Favorável,0.2226,0.2638,0.0412,145.79,128,9,0.2588
+2019,2019-12-18,Bolsonaro sai em defesa de Weintraub: Faz trabalho exce,Politico,Tradicional Mais Favorável,0.3024,0.2134,-0.0891,224.3,395,10,0.3327
+2019,2019-12-18,Bolsonaro quer vetar fundo eleitoral para evitar recurs,Politico,Tradicional Mais Favorável,0.2672,0.2465,-0.0207,199.25,202,10,0.2834
+2019,2019-12-24,Bolsonaro sofre queda no Alvorada; tomografia do crânio,Politico,Tradicional Mais Favorável,0.2684,0.2149,-0.0535,230.89,471,10,0.3404
+2019,2019-12-30,Olavo: “Governo Bolsonaro jamais terá coragem de me pro,Politico,Tradicional Mais Favorável,0.286,0.2524,-0.0336,158.34,195,9,0.3506
+2019,2019-12-30,"Para 46%, corrupção permanece igual no governo Bolson",Politico,Tradicional Mais Favorável,0.3211,0.3069,-0.0142,182.53,129,10,0.3528
+2020,2020-01-05,Democratas americanos resistem a Bolsonaro,Politico,Tradicional Mais Favorável,0.2533,0.2647,0.0115,164.42,239,9,0.3444
+2020,2020-01-05,"Trump ameaça Irã: se retaliar, reação pode ser despropo",Internacional,Consenso de Sentimento,0.0751,0.0807,0.0056,108.82,125,8,0.1981
+2020,2020-01-11,Bolsonaro critica Podemos por ação contra tarifa do c,Politico,Tradicional Mais Favorável,0.1945,0.1418,-0.0527,90.9,155,7,0.3118
+2020,2020-01-17,Joice sobre Bolsonaro: Botequeiro de quinta categoria,Politico,Tradicional Mais Favorável,0.1874,0.2772,0.0898,168.28,272,9,0.3188
+2020,2020-01-17,Deputados cobram punição a Alvim após citação de minist,Politico,Tradicional Mais Favorável,0.3564,0.2718,-0.0846,116.59,177,8,0.4234
+2020,2020-01-23,"Bolsonaro: se criar Ministério da Segurança, Moro fica",Politico,Tradicional Mais Favorável,0.1396,0.184,0.0444,172.39,312,9,0.3045
+2020,2020-01-23,Bolsonaro autoriza entrada do Brasil em acordo da OMC,Politico,Tradicional Mais Favorável,0.1782,0.1674,-0.0108,158.04,193,9,0.2525
+2020,2020-01-29,Bolsonaro vai sobrevoar áreas atingidas por chuvas em M,Politico,Tradicional Mais Favorável,0.0898,0.1507,0.061,123.82,173,8,0.2778
+2020,2020-02-04,Bolsonaro revolta governadores por culpá-los pelo preço,Politico,Tradicional Mais Favorável,0.348,0.3405,-0.0075,184.5,136,10,0.359
+2020,2020-02-16,Bolsonaro sobre morte de miliciano na Bahia: Estão inve,Politico,Tradicional Mais Favorável,0.1481,0.1153,-0.0328,175.74,349,9,0.312
+2020,2020-02-22,TSE rejeitou 11 mil adesões a sigla de Bolsonaro. 3 mil,Politico,Tradicional Mais Favorável,0.2885,0.2634,-0.025,156.45,183,9,0.3449
+2020,2020-02-22,"Com 34 casos de coronavírus, EUA se preparam para event",Internacional,Tradicional Mais Favorável,0.2467,0.1987,-0.0481,155.11,175,9,0.1917
+2020,2020-02-22,Bolsonaro circula pelo Guarujá em ritmo de carnaval,Politico,Tradicional Mais Favorável,0.1455,0.2636,0.1181,116.64,128,8,0.3523
+2020,2020-02-28,"“Liberdade de expressão só vale pra esquerda”, diz Bols",Politico,Tradicional Mais Favorável,0.2014,0.165,-0.0364,197.35,192,10,0.3598
+2020,2020-02-28,Bolsonaro discute com ministros se prorroga GLO no Cear,Politico,Tradicional Mais Favorável,0.1264,0.2378,0.1114,117.9,135,8,0.2669
+2020,2020-02-28,Governos latino-americanos fortalecem medidas contra o,Internacional,Tradicional Mais Favorável,0.2675,0.2873,0.0198,145.33,126,9,0.2439
+2020,2020-03-05,"Na esteira do caso Eduardo Bolsonaro, parlamentares ten",Politico,Tradicional Mais Favorável,0.2487,0.1457,-0.103,149.09,143,9,0.3401
+2020,2020-03-11,Coronavírus: especialistas brasileiros já haviam falado,Politico,Tradicional Mais Favorável,0.2216,0.2454,0.0238,205.99,242,10,0.2473
+2020,2020-03-11,Bolsonaro disse desconhecer carta para retirada de proj,Politico,Tradicional Mais Favorável,0.2609,0.2653,0.0044,161.26,215,9,0.3155
+2020,2020-03-11,Perfil da Secom do governo defende manifestação de 15 d,Politico,Tradicional Mais Favorável,0.1762,0.2125,0.0363,155.95,180,9,0.3275
+2020,2020-03-11,"Casos de coronavírus deve aumentar duas semanas, prevía",Social,Tradicional Mais Favorável,0.1649,0.2038,0.0389,154.07,169,9,0.2303
+2020,2020-03-11,Wajngarten volta de viagem com suspeita do coronavírus,Politico,Tradicional Mais Favorável,0.1168,0.1847,0.068,88.69,137,7,0.1926
+2020,2020-03-17,"Governo avalia vale para trabalhador informal, diz Bols",Economico,Tradicional Mais Favorável,0.3156,0.3277,0.0122,234.81,523,10,0.3062
+2020,2020-03-17,"Após ataques, Bolsonaro diz que imprensa faz bom trabal",Politico,Tradicional Mais Favorável,0.253,0.1986,-0.0544,176.75,361,9,0.3527
+2020,2020-03-17,Gráfico interativo: veja a evolução do coronavírus pelo,Internacional,Tradicional Mais Favorável,0.1169,0.13,0.0131,174.51,335,9,0.2068
+2020,2020-03-17,"Política no Brasil: notícias do Governo, Congresso e ST",Politico,Tradicional Mais Favorável,0.3043,0.193,-0.1113,161.12,214,9,0.3714
+2020,2020-03-17,Coronavírus: Bolsonaro decide fechar fronteira com a Ve,Politico,Tradicional Mais Favorável,0.1448,0.222,0.0772,116.07,125,8,0.2667
+2020,2020-03-23,Maia diz que MP de Bolsonaro é “capenga” e cobra novo t,Politico,Tradicional Mais Favorável,0.2628,0.2359,-0.0269,263.36,1121,10,0.3385
+2020,2020-03-23,Coronavírus: país tem 1.891 pacientes diagnosticados e,Internacional,Tradicional Mais Favorável,0.2418,0.2054,-0.0365,221.25,364,10,0.2075
+2020,2020-03-23,BC reduz compulsórios mais uma vez e prevê liberação de,Economico,Tradicional Mais Favorável,0.1791,0.264,0.0849,129.12,216,8,0.2166
+2020,2020-03-23,Empresários pedem ‘Plano Marshall’ para enfrentar o cor,Economico,Tradicional Mais Favorável,0.2848,0.331,0.0462,199.06,201,10,0.3304
+2020,2020-03-23,Governo autoriza suspensão do contrato de trabalho por,Economico,Tradicional Mais Favorável,0.2469,0.227,-0.0198,125.16,183,8,0.3381
+2020,2020-03-29,"Afastado de Mandetta, Bolsonaro pede opinião de Ernesto",Politico,Tradicional Mais Favorável,0.2946,0.2501,-0.0445,248.45,753,10,0.3405
+2020,2020-03-29,Preparados para ver caminhões do Exército transportando,Politico,Tradicional Mais Favorável,0.2988,0.2554,-0.0433,231.44,478,10,0.3103
+2020,2020-03-29,Como a pandemia afeta a infraestrutura da internet,Economico,Tradicional Mais Favorável,0.2425,0.2697,0.0271,193.25,172,10,0.2373
+2020,2020-04-04,Carlos Bolsonaro critica reunião de Mourão com opositor,Politico,Tradicional Mais Favorável,0.2734,0.2426,-0.0308,232.14,487,10,0.321
+2020,2020-04-04,"A pergunta de R$ 1,2 trilhão sobre o combate à Covid-19",Economico,Tradicional Mais Favorável,0.236,0.252,0.016,169.47,283,9,0.2854
+2020,2020-04-04,Coronavírus: Itália e Espanha registram queda no número,Internacional,Tradicional Mais Favorável,0.2548,0.1985,-0.0563,169.15,280,9,0.2328
+2020,2020-04-04,Pesquisadores estudam utilizar vacina BCG contra corona,Social,Tradicional Mais Favorável,0.1625,0.1829,0.0204,148.89,142,9,0.2441
+2020,2020-04-10,BID alerta: impacto econômico do covid-19 na América La,Economico,Tradicional Mais Favorável,0.2676,0.2561,-0.0115,178.21,379,9,0.2746
+2020,2020-04-10,"Após novo passeio, Bolsonaro critica repórteres: Se agl",Politico,Tradicional Mais Favorável,0.1475,0.1853,0.0378,175.57,347,9,0.3373
+2020,2020-04-16,Bolsonaro abaixa o tom sobre cloroquina. “Vamos ver se,Politico,Tradicional Mais Favorável,0.2048,0.1953,-0.0096,197.08,712,9,0.3329
+2020,2020-04-16,Governos liderados por mulheres são exemplo de combate,Social,Tradicional Mais Favorável,0.3,0.2801,-0.0198,205.84,241,10,0.3115
+2020,2020-04-16,Autópsia de pacientes de Covid-19 mostra enorme agressi,Social,Tradicional Mais Favorável,0.1873,0.1769,-0.0104,148.89,142,9,0.172
+2020,2020-04-22,Intervenção? Qual é o papel dos militares no governo,Politico,Tradicional Mais Favorável,0.165,0.2116,0.0466,234.73,522,10,0.2919
+2020,2020-04-22,Retomada: governo quer 1 milhão de empregos com obras p,Economico,Tradicional Mais Favorável,0.2745,0.273,-0.0015,181.98,430,9,0.2997
+2020,2020-04-22,"Bolsonaro diz que, “se Deus quiser”, Trump será reeleit",Politico,Tradicional Mais Favorável,0.2592,0.1961,-0.0631,176.16,354,9,0.3117
+2020,2020-04-22,Alexandre de Moraes dá cinco dias para Bolsonaro explic,Politico,Tradicional Mais Favorável,0.2384,0.2315,-0.0069,183.39,132,10,0.302
+2020,2020-04-22,Aumento nos casos de coronavírus na América do Sul preo,Social,Tradicional Mais Favorável,0.2421,0.2173,-0.0248,146.03,129,9,0.2073
+2020,2020-04-23,"Moro, um anão no jardim de Bolsonaro",Politico,Tradicional Mais Favorável,0.3123,0.324,0.0117,119.44,201,8,0.3933
+2020,2020-04-28,"Bolsonaro elogia Regina Duarte, mas diz que a queria em",Politico,Tradicional Mais Favorável,0.2012,0.1968,-0.0044,185.4,482,9,0.3403
+2020,2020-04-28,Assessor de Bolsonaro faz piada gordofóbica com Joice H,Politico,Tradicional Mais Favorável,0.3405,0.173,-0.1675,172.86,317,9,0.3484
+2020,2020-04-28,"Amigo da família Bolsonaro, Alexandre Ramagem assume ch",Politico,Tradicional Mais Favorável,0.2091,0.2386,0.0295,214.14,301,10,0.2448
+2020,2020-04-28,Alemanha agrava epidemia após flexibilizar regras de is,Economico,Tradicional Mais Favorável,0.3283,0.2969,-0.0314,151.3,154,9,0.2989
+2020,2020-04-28,Covid-19: Espanha registra menor número de contágios em,Social,Tradicional Mais Favorável,0.2409,0.1656,-0.0754,183.11,131,10,0.1759
+2020,2020-05-04,"Bolsonaro nomeia Rolando de Souza, braço direito de Ram",Politico,Tradicional Mais Favorável,0.2276,0.3028,0.0752,235.72,536,10,0.257
+2020,2020-05-04,"“Caminho é a lei”, diz Santos Cruz após Bolsonaro ir a",Politico,Tradicional Mais Favorável,0.2606,0.2601,-0.0005,166.82,259,9,0.3699
+2020,2020-05-04,Covid-19: Economia desconhece pacote de R$ 5 bilhões pr,Economico,Tradicional Mais Favorável,0.3486,0.3049,-0.0437,164.79,242,9,0.2794
+2020,2020-05-04,Bolsonaro atribui agressão a jornalistas a algum maluc,Politico,Tradicional Mais Favorável,0.1861,0.1706,-0.0155,128.56,211,8,0.2808
+2020,2020-05-04,Covid-19: juíza se nega a rever decisão para Bolsonaro,Politico,Tradicional Mais Favorável,0.178,0.2162,0.0382,117.19,131,8,0.295
+2020,2020-05-04,Espanha tem 164 novas mortes por Covid-19 e mantém ritm,Internacional,Tradicional Mais Favorável,0.1432,0.0874,-0.0558,109.52,129,8,0.1078
+2020,2020-05-10,Bolsonaro aproveita domingo para conhecer a casa alugad,Politico,Tradicional Mais Favorável,0.2594,0.218,-0.0414,193.23,626,9,0.3364
+2020,2020-05-10,"Guedes: se Bolsonaro vetar reajuste a servidor, equilíb",Politico,Tradicional Mais Favorável,0.3211,0.2275,-0.0936,171.11,299,9,0.3462
+2020,2020-05-10,Celso de Mello libera vídeo de reunião no Planalto a Mo,Politico,Tradicional Mais Favorável,0.099,0.1771,0.0782,159.69,204,9,0.2559
+2020,2020-05-10,Grupo que divulga táticas para 'exterminar a esquerda',Politico,Tradicional Mais Favorável,0.2886,0.2832,-0.0054,151.11,153,9,0.3585
+2020,2020-05-10,Mercadante: &#8216;impeachment de Bolsonaro está em qua,Politico,Tradicional Mais Favorável,0.3125,0.2351,-0.0774,148.25,139,9,0.349
+2020,2020-05-10,Um vírus velho pegou a medicina do Rio,Social,Tradicional Mais Favorável,0.2849,0.2811,-0.0039,146.03,129,9,0.3242
+2020,2020-05-10,Bolsonaro quis que Polícia Rodoviária falsificasse caus,Politico,Tradicional Mais Favorável,0.1928,0.2611,0.0683,116.82,129,8,0.2586
+2020,2020-05-16,"A apoiadores de Minas, Bolsonaro brinca: “Tem alguém de",Politico,Tradicional Mais Favorável,0.1564,0.2032,0.0468,153.37,595,8,0.2995
+2020,2020-05-16,Bolsonaro diz que fará pronunciamento contra isolamento,Politico,Tradicional Mais Favorável,0.3148,0.273,-0.0418,177.49,370,9,0.3641
+2020,2020-05-16,"Governo gastou só 26% dos R$ 258,5 bi liberados para co",Economico,Tradicional Mais Favorável,0.3288,0.2875,-0.0413,215.0,308,10,0.2911
+2020,2020-05-22,Assista aos vídeos da reunião ministerial de Bolsonaro,Politico,Tradicional Mais Favorável,0.2216,0.2326,0.011,242.19,637,10,0.325
+2020,2020-05-22,Laura Carvalho defende que renda emergencial se torne p,Economico,Tradicional Mais Favorável,0.3146,0.3178,0.0032,159.69,204,9,0.2925
+2020,2020-05-22,Bolsonaro admite que temia operação contra seus filhos,Politico,Tradicional Mais Favorável,0.2086,0.1251,-0.0835,126.55,194,8,0.3644
+2020,2020-05-22,Bronca de Carlos Bolsonaro funciona e BB volta a apoiar,Politico,Tradicional Mais Favorável,0.2192,0.1666,-0.0526,125.03,182,8,0.31
+2020,2020-05-22,América Latina ultrapassa 645 mil casos de coronavírus,Social,Tradicional Mais Favorável,0.2128,0.2042,-0.0086,153.9,168,9,0.262
+2020,2020-05-28,"“Acabou, porra!”, diz Bolsonaro após operação contra fa",Politico,Tradicional Mais Favorável,0.3646,0.3032,-0.0614,254.25,879,10,0.3375
+2020,2020-05-28,"Brasil tem 12,8 milhões de desempregados, diz IBGE",Economico,Tradicional Mais Favorável,0.2838,0.2659,-0.0178,181.36,125,10,0.2308
+2020,2020-06-03,Bolsonaro chama grupos antifascistas de “marginais e te,Politico,Tradicional Mais Favorável,0.2649,0.1716,-0.0933,186.68,503,9,0.3864
+2020,2020-06-03,"Bolsonaro veta repasse de R$ 8,6 bilhões para combate a",Social,Tradicional Mais Favorável,0.3448,0.2652,-0.0796,228.25,439,10,0.3161
+2020,2020-06-03,Bolsonaro efetiva general Pazuello como ministro interi,Politico,Tradicional Mais Favorável,0.2234,0.2611,0.0377,155.79,179,9,0.2941
+2020,2020-06-09,Bolsonaro diz que OMS não transmite confiança: Parece u,Politico,Tradicional Mais Favorável,0.249,0.1869,-0.0621,235.86,538,10,0.3389
+2020,2020-06-09,Saiba como será o mercado imobiliário do Brasil no pós,Social,Tradicional Mais Favorável,0.3573,0.2931,-0.0642,212.49,288,10,0.2599
+2020,2020-06-09,Bolsonaro sugere diminuir salário de parlamentares por,Economico,Tradicional Mais Favorável,0.2803,0.3087,0.0285,157.57,190,9,0.2696
+2020,2020-06-15,Bolsonaro cometeu crime ao incentivar a invasão de hosp,Social,Tradicional Mais Favorável,0.3746,0.3027,-0.0719,223.54,387,10,0.3362
+2020,2020-06-15,"Em 17 meses de governo, Bolsonaro é o presidente que ma",Politico,Tradicional Mais Favorável,0.2384,0.1934,-0.045,173.61,325,9,0.3121
+2020,2020-06-15,"Após pressão por demissão, Bolsonaro diz que Weintraub",Politico,Tradicional Mais Favorável,0.1523,0.0623,-0.0901,171.51,303,9,0.3149
+2020,2020-06-15,Moro defende prisão de Sara Winter: Debate público foi,Politico,Tradicional Mais Favorável,0.205,0.1843,-0.0207,122.1,161,8,0.3013
+2020,2020-06-21,Coronavírus ganha velocidade nos EUA e 12 estados batem,Social,Tradicional Mais Favorável,0.3846,0.3219,-0.0627,209.94,269,10,0.3105
+2020,2020-06-21,Wassef anuncia que deixará defesa de Flávio Bolsonaro,Politico,Tradicional Mais Favorável,0.1772,0.2331,0.0559,129.66,221,8,0.2951
+2020,2020-06-21,"Além de Atibaia, Queiroz esteve em Saquarema com ajuda",Politico,Tradicional Mais Favorável,0.1138,0.1549,0.0411,124.76,180,8,0.2186
+2020,2020-06-21,"Com falta de diretrizes nacionais, estados assumem prot",Politico,Tradicional Mais Favorável,0.3967,0.31,-0.0867,153.18,164,9,0.38
+2020,2020-06-21,Julgamento no TJ do Rio pode anular decisões do juiz do,Politico,Tradicional Mais Favorável,0.23,0.2986,0.0686,147.6,136,9,0.2504
+2020,2020-06-27,"Aras quer dados da Lava Jato no Rio, território de inte",Politico,Tradicional Mais Favorável,0.2808,0.2649,-0.0159,191.96,600,9,0.3075
+2020,2020-06-27,Filha da número 2 do gabinete pessoal de Bolsonaro ganh,Politico,Tradicional Mais Favorável,0.1046,0.1535,0.0489,148.25,139,9,0.3053
+2020,2020-07-03,Brasileiros tiveram queda recorde da renda em maio dest,Economico,Tradicional Mais Favorável,0.2736,0.2847,0.0111,161.81,219,9,0.2774
+2020,2020-07-03,"Bolsonaro sanciona lei que obriga uso de máscaras, mas",Politico,Tradicional Mais Favorável,0.1657,0.1763,0.0106,94.06,185,7,0.2007
+2020,2020-07-03,Bolsonaro afirma que Senado deve aprovar projeto da nov,Politico,Tradicional Mais Favorável,0.2717,0.2829,0.0112,150.72,151,9,0.2888
+2020,2020-07-09,"Bolsonaro evolui bem da Covid-19 e sem intercorrências,",Politico,Tradicional Mais Favorável,0.2291,0.1601,-0.069,182.47,437,9,0.2882
+2020,2020-07-09,Ex-mulher de Bolsonaro depõe nesta quinta-feira em inve,Politico,Tradicional Mais Favorável,0.2134,0.174,-0.0394,145.09,125,9,0.3466
+2020,2020-07-15,"Ex-assessor de Trump, Bolton diz que Bolsonaro precisa",Politico,Tradicional Mais Favorável,0.2369,0.239,0.0021,123.68,172,8,0.3555
+2020,2020-07-15,Bolsonaro anuncia que testou positivo em novo exame de,Politico,Tradicional Mais Favorável,0.2157,0.1924,-0.0232,183.67,133,10,0.2133
+2020,2020-07-21,Bolsonaro sanciona lei que libera sorteios de príamios,Politico,Tradicional Mais Favorável,0.2207,0.2316,0.011,172.96,318,9,0.3038
+2020,2020-07-21,Governo envia texto da reforma tributária ao Congresso,Economico,Tradicional Mais Favorável,0.2242,0.3313,0.1071,148.67,141,9,0.2395
+2020,2020-07-27,Bolsonaro retoma trabalho no Planalto e se diz imunizad,Politico,Tradicional Mais Favorável,0.2396,0.2181,-0.0215,212.23,286,10,0.344
+2020,2020-07-27,"'Crença em uma cura mágica' é comum em pandemias, di",Social,Tradicional Mais Favorável,0.2351,0.252,0.0169,192.81,170,10,0.3021
+2020,2020-08-02,Brasil alcança 94.104 óbitos e 2.733.677 casos confirma,Social,Tradicional Mais Favorável,0.2457,0.2279,-0.0178,218.36,337,10,0.2699
+2020,2020-08-02,Ala do governo quer ampliar gastos para projetar popula,Economico,Tradicional Mais Favorável,0.1677,0.2436,0.0759,195.15,181,10,0.2817
+2020,2020-08-04,"Líbano: explosão deixa ao menos 73 mortos e 3,7 mil fer",Internacional,Tradicional Mais Favorável,0.2554,0.2088,-0.0466,153.0,163,9,0.2903
+2020,2020-08-08,Brasília-DF,Politico,Tradicional Mais Favorável,0.2267,0.1899,-0.0369,240.07,602,10,0.3312
+2020,2020-08-08,Alcolumbre decreta luto de 4 dias por marca de 100 mil,Politico,Tradicional Mais Favorável,0.3403,0.1915,-0.1488,219.67,349,10,0.3074
+2020,2020-08-14,Aprovação de Bolsonaro vai a 37% e atinge o melhor dese,Politico,Tradicional Mais Favorável,0.2408,0.2419,0.0011,237.23,558,10,0.3149
+2020,2020-08-14,Fusão das pastas de Segurança Pública e Justiça foi lam,Politico,Tradicional Mais Favorável,0.2822,0.2415,-0.0408,147.16,134,9,0.3269
+2020,2020-08-20,Tentativa de Bolsonaro em se reaproximar do PSL enfrent,Politico,Tradicional Mais Favorável,0.1642,0.1291,-0.0351,209.38,265,10,0.355
+2020,2020-08-20,Acupuntura é alternativa para tratar dores provocadas p,Social,Tradicional Mais Favorável,0.2661,0.269,0.0029,209.24,264,10,0.2533
+2020,2020-08-20,"Brasil já tem pelo menos 11 mil fichas suja, diz estudo",Politico,Tradicional Mais Favorável,0.092,0.176,0.084,122.65,232,8,0.0622
+2020,2020-08-20,Flávio diz que não poderá comparecer à acareação com Ma,Politico,Tradicional Mais Favorável,0.1607,0.1086,-0.0521,145.79,128,9,0.3485
+2020,2020-08-26,Bolsonaro: nota de R$ 200 foi criada porque governo não,Economico,Tradicional Mais Favorável,0.2208,0.2237,0.0029,187.14,146,10,0.2792
+2020,2020-08-26,Renda Brasil: governo avalia como ter acesso a recursos,Economico,Tradicional Mais Favorável,0.2912,0.3539,0.0627,146.94,133,9,0.263
+2020,2020-08-26,"Para Bolsonaro, Brasil se destaca no combate à pandemia",Politico,Tradicional Mais Favorável,0.2454,0.2468,0.0014,146.94,133,9,0.3982
+2020,2020-08-26,DF registra 55 novas mortes e número de óbitos por Covi,Social,Consenso de Sentimento,0.035,0.1953,0.1603,181.36,125,10,0.2275
+2020,2020-09-01,Auxílio emergencial cai para R$ 300 e terá mais 4 parce,Economico,Tradicional Mais Favorável,0.269,0.2751,0.0061,228.42,441,10,0.2685
+2020,2020-09-01,Bolsonaro diz que enviará reforma administrativa ao Co,Politico,Tradicional Mais Favorável,0.24,0.3258,0.0858,151.3,154,9,0.2806
+2020,2020-09-07,"Após cerimônia do 7 de Setembro, Bolsonaro almoça com m",Politico,Tradicional Mais Favorável,0.2453,0.2623,0.0169,210.9,276,10,0.3341
+2020,2020-09-07,"Brasil chega a 126.960 mortes e 4,1 milhões de casos de",Social,Tradicional Mais Favorável,0.2859,0.2591,-0.0269,197.54,193,10,0.2432
+2020,2020-09-13,"Bolsonaro visita ministro da Justiça, internado após pa",Politico,Tradicional Mais Favorável,0.204,0.2006,-0.0034,236.55,548,10,0.3167
+2020,2020-09-13,Planeta registra recorde de novos casos da Covid-19 em,Social,Tradicional Mais Favorável,0.1493,0.1633,0.0141,200.69,210,10,0.2006
+2020,2020-09-19,Bolsonaro participa de Convenção Nacional das Assemblei,Politico,Tradicional Mais Favorável,0.2569,0.2178,-0.0391,232.75,495,10,0.3734
+2020,2020-09-19,Internautas tomam redes de Bolsonaro exigindo sanção da,Politico,Tradicional Mais Favorável,0.2942,0.2717,-0.0225,186.63,144,10,0.3136
+2020,2020-09-25,Bolsonaro apresenta ótima evolução após cirurgia para r,Politico,Tradicional Mais Favorável,0.244,0.2427,-0.0012,221.65,368,10,0.3247
+2020,2020-09-25,"Governo libera R$ 2,5 bi para programa de acesso a vaci",Social,Tradicional Mais Favorável,0.3329,0.2896,-0.0433,189.37,155,10,0.2582
+2020,2020-10-01,"Conheça Kássio Nunes, a surpresa de Bolsonaro para su",Politico,Tradicional Mais Favorável,0.2091,0.2458,0.0367,208.24,257,10,0.2894
+2020,2020-10-01,Bolsonaro pede a eleitores que escolham candidatos com,Politico,Tradicional Mais Favorável,0.1824,0.2167,0.0343,202.43,220,10,0.3266
+2020,2020-10-01,"Governo mudou destino de R$ 7,5 mi para testes de coron",Economico,Tradicional Mais Favorável,0.2993,0.2663,-0.033,199.43,203,10,0.265
+2020,2020-10-07,Ríago Barros é exonerado do cargo de porta-voz da pres,Politico,Tradicional Mais Favorável,0.185,0.2078,0.0228,151.11,153,9,0.2882
+2020,2020-10-07,Empresário diz que Eduardo Bolsonaro o ajudou a planeja,Politico,Tradicional Mais Favorável,0.2008,0.2435,0.0427,146.03,129,9,0.3163
+2020,2020-10-13,Fux leva soltura de André do Rap para votação no ple,Politico,Tradicional Mais Favorável,0.1474,0.1736,0.0262,167.05,261,9,0.2491
+2020,2020-10-13,"'Eu prefiro papel', diz Bolsonaro sobre voto online",Politico,Tradicional Mais Favorável,0.0828,0.1085,0.0257,192.15,167,10,0.2672
+2020,2020-10-13,Brasil não terá vacinação em massa contra Covid-19 em 2,Social,Tradicional Mais Favorável,0.3067,0.2853,-0.0214,187.4,147,10,0.2338
+2020,2020-10-19,Vacina contra Covid-19 “não será obrigatória e ponto fi,Politico,Tradicional Mais Favorável,0.1799,0.095,-0.0849,189.02,544,9,0.2905
+2020,2020-10-19,Mortes pela polícia atingem patamar recorde; negros sã,Social,Tradicional Mais Favorável,0.2576,0.246,-0.0116,207.2,250,10,0.2543
+2020,2020-10-19,Augusto Heleno diz que justificativas de Chico Rodrigue,Politico,Tradicional Mais Favorável,0.1282,0.1047,-0.0236,164.67,241,9,0.2997
+2020,2020-10-19,Bolsonaro assina projeto de lei para criar marco legal,Politico,Tradicional Mais Favorável,0.3541,0.3028,-0.0513,199.06,201,10,0.3436
+2020,2020-10-25,Bolsonaro posta foto com cachorro e diz: “Vacina obriga,Politico,Tradicional Mais Favorável,0.2088,0.1257,-0.0831,226.95,424,10,0.325
+2020,2020-10-25,Polarização política do país não deixa de fora nem a,Social,Tradicional Mais Favorável,0.2475,0.1967,-0.0507,201.75,216,10,0.2158
+2020,2020-10-25,"'Tem gente que é expert em tentar destruir o governo',",Politico,Tradicional Mais Favorável,0.2701,0.2288,-0.0414,158.34,195,9,0.3411
+2020,2020-10-31,"Para 46%, gestão de Bolsonaro no combate ao desmatament",Politico,Tradicional Mais Favorável,0.3253,0.2593,-0.066,218.25,336,10,0.3188
+2020,2020-11-06,Ação no STF contra Flávio no caso da rachadinha fica,Politico,Tradicional Mais Favorável,0.2058,0.1837,-0.0221,219.24,345,10,0.3003
+2020,2020-11-06,Bolsonaro diz que Trump não é a pessoa mais importante,Politico,Tradicional Mais Favorável,0.2208,0.165,-0.0558,194.53,178,10,0.3725
+2020,2020-11-06,Governo de Minas anuncia desenvolvimento de soro contra,Social,Tradicional Mais Favorável,0.2484,0.1996,-0.0488,192.59,169,10,0.2474
+2020,2020-11-06,"Urnas eletrí ́nicas são seguras e uso é transparente,",Politico,Tradicional Mais Favorável,0.1454,0.1168,-0.0287,186.11,142,10,0.2989
+2020,2020-11-06,Biden vira na Pensilvânia e fica mais perto de ganhar e,Internacional,Tradicional Mais Favorável,0.1437,0.2238,0.0802,145.33,126,9,0.1872
+2020,2020-11-12,Violíancia leva medo à s eleições municipais com assa,Politico,Tradicional Mais Favorável,0.1784,0.1271,-0.0513,255.05,898,10,0.2183
+2020,2020-11-12,Eleições: candidatos favoritos nas capitais estão mais,Politico,Tradicional Mais Favorável,0.1059,0.1774,0.0716,222.16,373,10,0.1881
+2020,2020-11-12,Bolsonaro diz que suicídio pode ter sido efeito colater,Politico,Tradicional Mais Favorável,0.2362,0.1515,-0.0846,206.75,247,10,0.3118
+2020,2020-11-12,Mourão responde fala de Bolsonaro sobre expropriação: E,Politico,Tradicional Mais Favorável,0.2334,0.1916,-0.0418,163.4,231,9,0.3508
+2020,2020-11-12,Movimento Todos Pela Educação alerta para cortes orç,Economico,Tradicional Mais Favorável,0.2948,0.2828,-0.012,201.92,217,10,0.272
+2020,2020-11-12,Distrito industrial e albergue para moradores de rua sí,Politico,Consenso de Sentimento,-0.0135,0.1487,0.1623,158.65,197,9,0.1311
+2020,2020-11-12,É tudo anedota,Politico,Tradicional Mais Favorável,0.105,0.1564,0.0514,126.18,191,8,0.212
+2020,2020-11-12,Barroso adia eleição de Macapá após pedido do TRE d,Politico,Tradicional Mais Favorável,0.0918,0.1192,0.0275,126.05,190,8,0.247
+2020,2020-11-12,Apagão no Amapá: Alcolumbre pede à PF investigação,Politico,Tradicional Mais Favorável,0.1248,0.1248,0.0,0.0,182,3,0.1105
+2020,2020-11-12,"Em queda nas pesquisas, Russomanno se diz perseguido po",Politico,Tradicional Mais Favorável,0.1165,0.1709,0.0544,193.46,173,10,0.3032
+2020,2020-11-12,Marcos Ceara DC 27025 | Candidato a vereador | Salvador,Politico,Tradicional Mais Favorável,0.4189,0.2992,-0.1197,15.32,164,3,0.1364
+2020,2020-11-12,Valor repassado a Flávio Bolsonaro e mulher é “incalcul,Politico,Tradicional Mais Favorável,0.196,0.1614,-0.0345,145.33,126,9,0.3045
+2020,2020-11-18,"Contra Bolsonaro, PT orienta voto em Eduardo Paes no Ri",Politico,Tradicional Mais Favorável,0.117,0.1369,0.0199,219.67,349,10,0.2729
+2020,2020-11-18,Saúde faz nova postagem recomendando tratamento precoce,Social,Tradicional Mais Favorável,0.2973,0.2833,-0.014,214.02,300,10,0.2486
+2020,2020-11-18,Bolsonaro divulga vídeo em que Putin o elogia pelas “qu,Politico,Tradicional Mais Favorável,0.3887,0.222,-0.1666,201.22,213,10,0.323
+2020,2020-11-24,Gil AVANTE 70900 | Candidato a vereador | Quixaba - PE,Politico,Consenso de Sentimento,-0.0133,0.2189,0.2322,38.56,617,4,0.1298
+2020,2020-11-24,Antônio Pezão PSB 40000 | Candidato a vereador | Quixab,Politico,Digital Mais Favorável,-0.4403,0.1413,0.5816,19.11,583,3,0.1158
+2020,2020-11-24,Mulher de Eduardo Bolsonaro: Movimento antivacina é coi,Politico,Tradicional Mais Favorável,0.2549,0.2111,-0.0438,236.14,542,10,0.3111
+2020,2020-11-24,Bolsonaro fala em nova opção caso não consiga formar,Politico,Tradicional Mais Favorável,0.1539,0.2022,0.0484,216.43,320,10,0.3198
+2020,2020-11-24,Eduardo Paes admite: “Estão votando em mim para tirar o,Politico,Tradicional Mais Favorável,0.128,0.152,0.024,215.84,315,10,0.2578
+2020,2020-11-24,"Covas cai para 55% e Boulos sobe a 45% no 2º turno, ap",Politico,Tradicional Mais Favorável,0.0852,0.1306,0.0454,209.8,268,10,0.2334
+2020,2020-11-24,"Ministro da Justiça, André Mendonça é diagnosticado",Politico,Tradicional Mais Favorável,0.2355,0.1805,-0.0549,193.89,175,10,0.2572
+2020,2020-11-24,Diferença entre resultados de pesquisa e de eleição não,Politico,Tradicional Mais Favorável,0.3634,0.4458,0.0824,23.24,174,4,0.1171
+2020,2020-11-24,China reage a fala de Eduardo Bolsonaro: Vai arcar com,Internacional,Tradicional Mais Favorável,0.2212,0.1904,-0.0308,148.89,142,9,0.3692
+2020,2020-11-30,"Em Porto Alegre, Recife e São Paulo, institutos de pesq",Economico,Tradicional Mais Favorável,0.2852,0.3055,0.0203,201.75,216,10,0.271
+2020,2020-11-30,Fernández pede a Bolsonaro fim de diferenças do passado,Politico,Tradicional Mais Favorável,0.1649,0.1892,0.0243,160.84,212,9,0.3101
+2020,2020-11-30,Covid-19: Moderna pedirá autorização para uso emergenci,Social,Tradicional Mais Favorável,0.1944,0.2321,0.0377,155.95,180,9,0.2197
+2020,2020-11-30,Análise das eleições municipais: a hora do centro e,Politico,Tradicional Mais Favorável,0.2217,0.1764,-0.0454,183.95,134,10,0.3255
+2020,2020-12-06,Bolsonaro passa por consulta oftalmológica na base aére,Politico,Tradicional Mais Favorável,0.0996,0.1499,0.0502,209.24,264,10,0.3116
+2020,2020-12-06,"Brasil registra 6,6 milhões de casos da Covid-19 e 176",Social,Tradicional Mais Favorável,0.2099,0.1819,-0.028,203.1,224,10,0.2139
+2020,2020-12-06,Covid-19: Reino Unido inicia vacinação nesta terça; rai,Social,Tradicional Mais Favorável,0.2143,0.2518,0.0375,152.26,159,9,0.1915
+2020,2020-12-06,União enviou verba de combate à Covid-19 para entidades,Social,Tradicional Mais Favorável,0.2702,0.2647,-0.0055,181.95,127,10,0.2829
+2020,2020-12-12,"Candidato do Planalto à Câmara, Lira defende fim de br",Social,Tradicional Mais Favorável,0.2682,0.2495,-0.0187,211.57,281,10,0.2684
+2020,2020-12-12,Itália chega a 64 mil mortes por Covid-19 e supera Rein,Social,Tradicional Mais Favorável,0.3175,0.236,-0.0815,210.36,272,10,0.2909
+2020,2020-12-12,Brasil deixa de arrecadar R$ 417 bi por ano com sonegaç,Economico,Tradicional Mais Favorável,0.2334,0.2896,0.0561,206.14,243,10,0.2469
+2020,2020-12-12,"Bolsonaro: 'Nossa liberdade não tem preço, ela vale m",Politico,Tradicional Mais Favorável,0.2347,0.2008,-0.0339,195.15,181,10,0.3313
+2020,2020-12-12,Apoio a Lira opõe direção do PSB a bancada na Câmara; P,Politico,Consenso de Sentimento,0.0514,0.1269,0.0755,154.42,171,9,0.2275
+2020,2020-12-12,PGR diz que dados de relatórios da Abin a Flávio Bols,Politico,Tradicional Mais Favorável,0.1104,0.1593,0.0489,181.66,126,10,0.2703
+2020,2020-12-18,Bolsonaro volta a criticar ações de Kalil na pandemia e,Politico,Tradicional Mais Favorável,0.2492,0.2061,-0.043,174.78,338,9,0.377
+2020,2020-12-18,"Ao contrário de Bolsonaro, líderes mundiais incentivam",Social,Tradicional Mais Favorável,0.3044,0.2782,-0.0263,213.64,297,10,0.2811
+2020,2020-12-24,Bolsonaro visita Carlos em hospital de Brasília após f,Politico,Tradicional Mais Favorável,0.2052,0.1989,-0.0063,160.84,212,9,0.3479
+2020,2020-12-24,Brasil registra 762 mortes por Covid-19 nas íoltimas 24,Social,Tradicional Mais Favorável,0.2723,0.1497,-0.1225,195.36,182,10,0.2206
+2020,2020-12-24,França aprova vacina da Pfizer e planeja imunização a p,Internacional,Tradicional Mais Favorável,0.2215,0.2768,0.0553,191.7,165,10,0.2293
+2020,2020-12-30,"Ao STF, Rede pede para governo fazer relatório semanal",Social,Tradicional Mais Favorável,0.2908,0.2696,-0.0212,217.12,326,10,0.294
+2020,2020-12-30,Brasil volta a ultrapassar 1 mil mortes diárias por Co,Social,Tradicional Mais Favorável,0.3246,0.2034,-0.1212,199.06,201,10,0.32
+2020,2020-12-30,Bolsonaro ataca aborto legal na Argentina: Jamais será,Politico,Tradicional Mais Favorável,0.2021,0.1475,-0.0546,150.91,152,9,0.4312
+2021,2021-01-05,“Brasil quebrado”: Ciro sugere a Bolsonaro revogar teto,Politico,Tradicional Mais Favorável,0.2739,0.1231,-0.1508,221.45,366,10,0.3795
+2021,2021-01-05,Governadores pressionam governo por início da vacinação,Social,Tradicional Mais Favorável,0.2588,0.2253,-0.0335,166.47,256,9,0.2725
+2021,2021-01-05,Pesquisa Datafolha indica que para 69% situação econômi,Economico,Tradicional Mais Favorável,0.3355,0.2818,-0.0537,203.76,228,10,0.2865
+2021,2021-01-05,"Sem prova científica, Bolsonaro volta a defender iverme",Social,Tradicional Mais Favorável,0.2773,0.2094,-0.0678,202.77,222,10,0.297
+2021,2021-01-11,Governo restringe produção de seringas contra a covid-1,Social,Tradicional Mais Favorável,0.4273,0.2968,-0.1304,224.96,402,10,0.3307
+2021,2021-01-11,Baleia Rossi não descarta aceitar pedidos de impeachmen,Politico,Tradicional Mais Favorável,0.2295,0.214,-0.0155,223.44,386,10,0.3388
+2021,2021-01-11,O desafio fiscal: especialistas apontam os problemas or,Politico,Tradicional Mais Favorável,0.4662,0.3007,-0.1655,208.24,257,10,0.3924
+2021,2021-01-11,Amazonas sem oxigênio,Ambiental,Tradicional Mais Favorável,0.2816,0.3202,0.0386,89.83,146,7,0.3023
+2021,2021-01-11,Ford ganhou muito dinheiro no Brasil e fechamento é má,Economico,Tradicional Mais Favorável,0.2384,0.236,-0.0023,185.84,141,10,0.3003
+2021,2021-01-11,Rede pede que STF dê 72 horas para Anvisa aprovar a Cor,Social,Tradicional Mais Favorável,0.2445,0.2804,0.0359,108.82,125,8,0.2243
+2021,2021-01-17,Pazuello dá recado a Doria: vacinação não começa c,Social,Tradicional Mais Favorável,0.1581,0.2078,0.0497,238.94,584,10,0.2736
+2021,2021-01-17,“Aqui qualquer coisa é impeachment. Deixa o cara govern,Politico,Tradicional Mais Favorável,0.2791,0.2011,-0.078,233.79,509,10,0.3525
+2021,2021-01-17,"Ajuda chega a Manaus, mas cenário ainda preocupa autor",Social,Tradicional Mais Favorável,0.3705,0.2788,-0.0916,205.99,242,10,0.3076
+2021,2021-01-17,Azitromicina: saiba os problemas decorrentes do uso ind,Social,Tradicional Mais Favorável,0.4346,0.2453,-0.1893,155.62,178,9,0.2807
+2021,2021-01-23,"Em carreata, manifestantes protestam contra Bolsonaro n",Politico,Tradicional Mais Favorável,0.2477,0.2078,-0.0399,220.83,360,10,0.3636
+2021,2021-01-23,Governo diz que Pfizer 'tenta desconstruir trabalho de,Social,Tradicional Mais Favorável,0.3127,0.261,-0.0516,205.37,238,10,0.2579
+2021,2021-01-23,"Por aproximação com Biden, Brasil prepara ofensiva para",Economico,Tradicional Mais Favorável,0.2983,0.2811,-0.0172,201.05,212,10,0.3036
+2021,2021-01-23,Eleição no Congresso: vacina e crise na Saúde entram na,Politico,Tradicional Mais Favorável,0.4147,0.2531,-0.1617,190.32,159,10,0.318
+2021,2021-01-23,Brasil rapidamente será o 2o país com mais vacinados no,Social,Tradicional Mais Favorável,0.1994,0.2213,0.022,149.09,143,9,0.21
+2021,2021-01-29,Bolsonaro ataca palpiteiros e desautoriza Mourão sobre,Politico,Tradicional Mais Favorável,0.15,0.1573,0.0072,182.74,441,9,0.3209
+2021,2021-01-29,Planalto está cada vez mais perto de conquistar o coma,Politico,Tradicional Mais Favorável,0.1975,0.2527,0.0552,214.76,306,10,0.3017
+2021,2021-01-29,"Volta de auxílio emergencial 'vai quebrar o Brasil', di",Politico,Tradicional Mais Favorável,0.3494,0.261,-0.0884,209.52,266,10,0.3467
+2021,2021-01-29,"No Pará, quem furar a fila da vacina pode pegar até 12",Social,Tradicional Mais Favorável,0.188,0.2319,0.0439,194.32,177,10,0.198
+2021,2021-02-04,Projeto quer punir “fura-fila” da vacinação contra Covi,Social,Tradicional Mais Favorável,0.3953,0.2939,-0.1014,159.54,203,9,0.2361
+2021,2021-02-04,Bolsonaro visita academia da Polícia Rodoviária Federal,Politico,Tradicional Mais Favorável,0.2192,0.2317,0.0125,197.16,191,10,0.2877
+2021,2021-02-10,Governo e o Congresso entram em consenso para retorno d,Economico,Tradicional Mais Favorável,0.3506,0.337,-0.0136,225.61,409,10,0.3029
+2021,2021-02-10,Anvisa pede a Bolsonaro veto a trecho de MP que tira da,Politico,Tradicional Mais Favorável,0.2608,0.2753,0.0145,215.12,309,10,0.3334
+2021,2021-02-16,"Em vídeo, deputado Daniel Silveira ataca e ofende minis",Politico,Tradicional Mais Favorável,0.2123,0.1926,-0.0196,222.95,381,10,0.3296
+2021,2021-02-16,Supremo Tribunal Federal determina prisão do deputado,Politico,Tradicional Mais Favorável,0.1298,0.1559,0.0262,218.03,334,10,0.2761
+2021,2021-02-16,Bolsonaro sobre preço dos combustíveis: 'Tem novidade,Politico,Tradicional Mais Favorável,0.2555,0.2734,0.0179,206.6,246,10,0.2841
+2021,2021-02-16,"Ministro do Meio Ambiente, Ricardo Salles testa positiv",Social,Tradicional Mais Favorável,0.3153,0.2674,-0.0479,117.34,183,8,0.2884
+2021,2021-02-16,"Câmara de SP quer auxílio para 1,7 milhão de moradore",Social,Tradicional Mais Favorável,0.331,0.274,-0.057,187.65,148,10,0.2291
+2021,2021-02-16,Covid-19: Brasil registra 1.167 mortes e passa dos 240,Social,Tradicional Mais Favorável,0.1898,0.1414,-0.0484,117.9,135,8,0.1734
+2021,2021-02-22,Flexibilização de acesso a armas desagrada 68% da popul,Politico,Tradicional Mais Favorável,0.287,0.2631,-0.0239,237.96,569,10,0.3147
+2021,2021-02-22,Brasil atinge mais de 10 milhões de casos e 246.560 óbi,Social,Tradicional Mais Favorável,0.2799,0.194,-0.0859,224.21,394,10,0.2778
+2021,2021-02-22,"'Não podemos deixar Bolsonaro sozinho na pista', diz H",Politico,Tradicional Mais Favorável,0.2333,0.2885,0.0553,173.14,320,9,0.3252
+2021,2021-02-22,Senado vai propor compra de vacina da Covid-19 pela ini,Social,Tradicional Mais Favorável,0.1829,0.234,0.0511,152.44,160,9,0.2197
+2021,2021-02-22,Julgamento sobre depoimento de Bolsonaro está na pauta,Politico,Tradicional Mais Favorável,0.2008,0.2362,0.0355,184.77,137,10,0.2636
+2021,2021-02-22,Bolsonaro confirma repasse de R$ 450 mi a regiões afeta,Economico,Tradicional Mais Favorável,0.3843,0.3158,-0.0684,181.66,126,10,0.3291
+2021,2021-02-28,"Cotado para vice em 2022, Tarcísio é o ministro mais at",Politico,Tradicional Mais Favorável,0.2922,0.1799,-0.1123,258.13,975,10,0.3481
+2021,2021-02-28,Governo do Acre inicia atendimentos médicos a desabriga,Social,Tradicional Mais Favorável,0.3407,0.3357,-0.005,219.78,350,10,0.2969
+2021,2021-02-28,Europa deve ter fornecimento de vacinas normalizado em,Social,Tradicional Mais Favorável,0.1805,0.2366,0.0561,174.78,338,9,0.2137
+2021,2021-03-06,Bolsonaro muda o tom e admite possibilidade de se vacin,Social,Tradicional Mais Favorável,0.2681,0.2324,-0.0357,241.77,630,10,0.305
+2021,2021-03-06,Bolsonaro afirma que auxílio irá variar de 150 a 300 e,Politico,Tradicional Mais Favorável,0.2052,0.2493,0.0442,203.6,227,10,0.3066
+2021,2021-03-06,&#8216;Moro mercadejou sua toga. Ele prendeu Lula e vir,Politico,Tradicional Mais Favorável,0.1494,0.1649,0.0155,202.43,220,10,0.2996
+2021,2021-03-06,Marcia Tiburi também aponta risco de intervenção intern,Politico,Tradicional Mais Favorável,0.3772,0.3527,-0.0246,193.68,174,10,0.4474
+2021,2021-03-06,Jaques Wagner pede que STF investigue Bolsonaro por pre,Politico,Tradicional Mais Favorável,0.2248,0.1659,-0.0589,147.82,137,9,0.3465
+2021,2021-03-07,Entenda pedido de Lula no STF para anular sentenças de,Politico,Tradicional Mais Favorável,0.0909,0.1708,0.0799,145.79,128,9,0.2326
+2021,2021-03-12,Bolsonaro diz que povo é obrigado a ser sustentado pelo,Politico,Tradicional Mais Favorável,0.2321,0.2036,-0.0285,233.2,501,10,0.3575
+2021,2021-03-12,Brasil já registra mais de mil mortes de indígenas por,Social,Tradicional Mais Favorável,0.2804,0.2012,-0.0792,229.51,454,10,0.2829
+2021,2021-03-12,"Em mudança de tom, ministro Ramos diz que vacinação é a",Social,Tradicional Mais Favorável,0.2441,0.2665,0.0224,152.44,160,9,0.2562
+2021,2021-03-18,Bolsonaro sobre UTIs lotadas: Parece que só se morre de,Politico,Tradicional Mais Favorável,0.3013,0.2232,-0.0781,268.68,1292,10,0.3461
+2021,2021-03-18,Secretários de Saúde dos estados preveem que pandemia s,Economico,Tradicional Mais Favorável,0.2942,0.2774,-0.0169,182.82,130,10,0.2748
+2021,2021-03-24,Governadores pedem isolamento social nacional em reuniã,Social,Tradicional Mais Favorável,0.3457,0.2629,-0.0828,252.46,838,10,0.318
+2021,2021-03-24,"Após Bolsonaro mudar discurso, prefeitos criticam gestã",Politico,Tradicional Mais Favorável,0.2147,0.1841,-0.0306,231.52,479,10,0.3627
+2021,2021-03-24,Decisão do STF leva Moro de 'herói nacional' a juiz s,Politico,Tradicional Mais Favorável,0.2171,0.2005,-0.0166,200.52,209,10,0.3108
+2021,2021-03-24,Senadores pedem que Ernesto Araújo entregue o cargo de,Politico,Tradicional Mais Favorável,0.2369,0.1629,-0.0741,192.81,170,10,0.3601
+2021,2021-03-24,Araújo diz que vacinas dos EUA não estão disponíveis pa,Social,Tradicional Mais Favorável,0.2648,0.3064,0.0415,150.32,149,9,0.289
+2021,2021-03-30,Bolsonaro supera rotatividade de ministros dos governos,Politico,Tradicional Mais Favorável,0.2235,0.1592,-0.0643,220.52,357,10,0.3658
+2021,2021-03-30,Brasil fica de fora de iniciativa internacional contra,Social,Tradicional Mais Favorável,0.3227,0.2482,-0.0745,207.35,251,10,0.3168
+2021,2021-03-30,Alto comando das Forças Armadas discute lista tríplice,Politico,Tradicional Mais Favorável,0.2086,0.2048,-0.0038,197.16,191,10,0.3049
+2021,2021-03-30,SindMédico-DF consegue liminar para compra de vacinas c,Social,Tradicional Mais Favorável,0.1923,0.2816,0.0892,156.93,186,9,0.2125
+2021,2021-03-30,Um em cada cinco brasileiros ganhou peso durante a pand,Social,Tradicional Mais Favorável,0.3181,0.3036,-0.0145,185.31,139,10,0.2484
+2021,2021-03-30,"Governo tenta emplacar Estado de Mobilização, mas não c",Politico,Tradicional Mais Favorável,0.2533,0.2498,-0.0035,146.94,133,9,0.3136
+2021,2021-04-05,Conselho de Ética adia decisão sobre processo de Eduard,Politico,Tradicional Mais Favorável,0.2535,0.185,-0.0685,185.4,482,9,0.3258
+2021,2021-04-05,"Por causa da demanda de sepultamentos, SP estuda plano",Social,Tradicional Mais Favorável,0.2964,0.254,-0.0424,226.6,420,10,0.2985
+2021,2021-04-05,"Ministra da Agricultura, Tereza Cristina toma vacina co",Social,Tradicional Mais Favorável,0.3301,0.3195,-0.0106,211.84,283,10,0.2389
+2021,2021-04-05,Militares foram 'sábios' ao escolher Constituição em,Politico,Tradicional Mais Favorável,0.1964,0.2085,0.0121,163.27,230,9,0.4223
+2021,2021-04-05,Senado pauta prisão para fura-fila da vacina e quebra d,Politico,Tradicional Mais Favorável,0.2686,0.3037,0.0351,157.72,191,9,0.2692
+2021,2021-04-11,Políticos de MS culpam Bolsonaro por falta de vacinas,Politico,Tradicional Mais Favorável,0.2842,0.2379,-0.0463,252.73,844,10,0.3267
+2021,2021-04-11,"'Bolsonaro gosta de errar,' afirma Doria em entrevista",Politico,Tradicional Mais Favorável,0.245,0.1628,-0.0822,230.41,465,10,0.3256
+2021,2021-04-11,Alex Manente diz ver “clima” favorável para CPI da Covi,Politico,Tradicional Mais Favorável,0.1589,0.1675,0.0086,189.13,154,10,0.2084
+2021,2021-04-17,"Bolsonaro: Seríamos o 4° que mais vacina, se todas foss",Social,Tradicional Mais Favorável,0.1966,0.136,-0.0606,219.35,346,10,0.2844
+2021,2021-04-17,Brasil chegou ao fundo do poço após Bolsonaro e gover,Politico,Tradicional Mais Favorável,0.3585,0.3081,-0.0504,215.96,316,10,0.4322
+2021,2021-04-17,Trocas em superintendíancias aumentam a tensão na Polí,Politico,Tradicional Mais Favorável,0.2345,0.1907,-0.0438,204.73,234,10,0.3179
+2021,2021-04-17,"Antes de campanha, Bolsonaro vai se submeter à sétima",Politico,Tradicional Mais Favorável,0.193,0.2494,0.0564,158.8,198,9,0.3379
+2021,2021-04-17,"“É preciso agora processar o vende-pátria Moro”, diz St",Politico,Tradicional Mais Favorável,0.1644,0.1714,0.007,185.31,139,10,0.2826
+2021,2021-04-23,Bolsonaro cita número considerável de vacinados nos pró,Politico,Tradicional Mais Favorável,0.2291,0.1957,-0.0334,240.2,604,10,0.2965
+2021,2021-04-23,Bolsonaro realoca Pazuello na Secretaria-Geral do Exérc,Politico,Tradicional Mais Favorável,0.1697,0.2066,0.0369,172.19,310,9,0.3276
+2021,2021-04-23,Bolsonaro sanciona a Lei Orçamentária de 2021 com vetos,Economico,Tradicional Mais Favorável,0.2971,0.2901,-0.007,210.77,275,10,0.2879
+2021,2021-04-23,Aceleradora Circle ajuda martechs a se lançarem no merc,Economico,Tradicional Mais Favorável,0.3332,0.3701,0.0369,186.37,143,10,0.2678
+2021,2021-04-29,"Sem citar 400 mil mortes por Covid, Bolsonaro lamenta n",Politico,Tradicional Mais Favorável,0.3174,0.1966,-0.1209,223.44,386,10,0.3415
+2021,2021-04-29,Bolsonaro desafia governadores a criarem auxílio de R$,Politico,Tradicional Mais Favorável,0.2973,0.2877,-0.0096,222.66,378,10,0.3369
+2021,2021-04-29,CPI da Covid aprova convocação de Queiroga e ex-ministr,Politico,Tradicional Mais Favorável,0.162,0.2154,0.0535,200.34,208,10,0.2113
+2021,2021-04-29,Renan sobre plano de trabalho: Não fecha portas em nenh,Social,Tradicional Mais Favorável,0.2283,0.2471,0.0188,157.25,188,9,0.2743
+2021,2021-04-29,Ministério da Saúde diz que 100 mil doses “achadas” não,Social,Tradicional Mais Favorável,0.1965,0.2592,0.0627,114.61,162,8,0.2049
+2021,2021-04-29,Estudos avaliam se pressão arterial abaixo de 120 mmHg,Social,Tradicional Mais Favorável,0.2749,0.2607,-0.0142,187.14,146,10,0.245
+2021,2021-05-05,"Após Bolsonaro acusar China, Frente Parlamentar reage:",Politico,Tradicional Mais Favorável,0.1585,0.0865,-0.0721,225.33,406,10,0.3084
+2021,2021-05-05,Confira ponto a ponto do depoimento de Mandetta à CPI d,Politico,Tradicional Mais Favorável,0.3176,0.2682,-0.0494,213.64,297,10,0.3259
+2021,2021-05-05,Braga Netto defende vacinação: Prioridade das Forças Ar,Social,Tradicional Mais Favorável,0.2233,0.25,0.0267,162.48,224,9,0.2709
+2021,2021-05-05,Ataque a creche em Saudades repercute na imprensa inter,Social,Tradicional Mais Favorável,0.306,0.1832,-0.1228,196.76,189,10,0.3115
+2021,2021-05-11,"Após 423 mil mortes, Bolsonaro cria secretaria de comba",Politico,Tradicional Mais Favorável,0.1462,0.1328,-0.0134,219.13,344,10,0.3222
+2021,2021-05-11,Bolsonaro nega existência de orçamento secreto e reclam,Politico,Tradicional Mais Favorável,0.1871,0.1687,-0.0184,190.32,159,10,0.3221
+2021,2021-05-11,Gestão de Marcelo Queiroga no Ministério da Saúde mante,Social,Tradicional Mais Favorável,0.2475,0.2518,0.0042,185.58,140,10,0.2204
+2021,2021-05-17,Bolsonaro sobre isolamento: Tem idiotas que até hoje fi,Politico,Tradicional Mais Favorável,0.2301,0.1622,-0.0678,250.44,794,10,0.3412
+2021,2021-05-17,Embarque de matéria-prima para vacina do Butantan agua,Social,Tradicional Mais Favorável,0.1292,0.1548,0.0256,201.75,216,10,0.2077
+2021,2021-05-17,Senador governista diz acreditar que Pazuello não fica,Politico,Tradicional Mais Favorável,0.2666,0.1921,-0.0744,183.67,133,10,0.2448
+2021,2021-05-23,Bolsonaro provoca aglomeração em passeio com motociclis,Politico,Tradicional Mais Favorável,0.1702,0.1834,0.0132,239.0,585,10,0.3215
+2021,2021-05-23,"Glossário da CPI: vacinas, cloroquina e China são as pa",Social,Tradicional Mais Favorável,0.2169,0.1868,-0.0301,219.99,352,10,0.2837
+2021,2021-05-23,"Sob governo Bolsonaro, país bate recorde de extrema pob",Economico,Tradicional Mais Favorável,0.2876,0.2779,-0.0097,199.8,205,10,0.2615
+2021,2021-05-23,Exército vai avaliar participação de Pazuello em ato no,Politico,Tradicional Mais Favorável,0.1982,0.229,0.0308,191.92,166,10,0.3067
+2021,2021-05-23,Atuação no STF causa disputa entre advogados de Flávio,Politico,Tradicional Mais Favorável,0.1765,0.2435,0.067,149.09,143,9,0.2862
+2021,2021-05-23,Demissão de secretária que criticou a cloroquina foi or,Politico,Tradicional Mais Favorável,0.2079,0.148,-0.0599,148.46,140,9,0.3075
+2021,2021-05-29,Bolsonaro mais que dobrou número de aglomerações em um,Politico,Tradicional Mais Favorável,0.2443,0.2316,-0.0128,250.58,797,10,0.3418
+2021,2021-06-04,"Para desviar foco da CPI da Covid, Bolsonaro encara Cop",Politico,Tradicional Mais Favorável,0.1942,0.1318,-0.0623,230.33,464,10,0.3347
+2021,2021-06-04,O combate à fome requer políticas de Estado - José Álva,Economico,Tradicional Mais Favorável,0.2814,0.327,0.0456,210.36,272,10,0.2347
+2021,2021-06-04,"Após vídeo de ministério paralelo, CPI avalia dispensar",Politico,Tradicional Mais Favorável,0.0954,0.063,-0.0324,210.22,271,10,0.2293
+2021,2021-06-04,"Como será tratado o sargento?, pergunta ex-presidente d",Politico,Tradicional Mais Favorável,0.1075,0.1153,0.0078,154.07,169,9,0.3207
+2021,2021-06-10,Bolsonaro pressionou primeiro-ministro indiano por hidr,Politico,Tradicional Mais Favorável,0.238,0.2189,-0.0191,247.9,742,10,0.3228
+2021,2021-06-10,"Com Lula, partidos ensaiam frente ampla contra Bolsonar",Politico,Tradicional Mais Favorável,0.17,0.2441,0.0741,153.18,164,9,0.3092
+2021,2021-06-16,"Quanto mais lei tem um país, pior, diz Bolsonaro ao fal",Politico,Tradicional Mais Favorável,0.2996,0.1804,-0.1192,215.24,310,10,0.357
+2021,2021-06-16,Ala contrária a Bolsonaro no Patriota convoca convenção,Politico,Tradicional Mais Favorável,0.1372,0.2246,0.0874,213.26,294,10,0.301
+2021,2021-06-16,"Bolsonaro: se não privatizar Eletrobras, haverá caos no",Politico,Tradicional Mais Favorável,0.309,0.2124,-0.0965,212.1,285,10,0.3642
+2021,2021-06-16,EUA compram mais 200 milhões de doses da vacina Moderna,Social,Tradicional Mais Favorável,0.1596,0.1373,-0.0222,195.97,185,10,0.2138
+2021,2021-06-16,CPI da Covid aprova quebra de sigilo fiscal e bancário,Politico,Tradicional Mais Favorável,0.1266,0.0878,-0.0388,194.74,179,10,0.2364
+2021,2021-06-16,Câmara aprova mudanças na Lei de Improbidade Administra,Politico,Tradicional Mais Favorável,0.1053,0.1504,0.0452,146.48,131,9,0.2296
+2021,2021-06-16,"Estradas fechadas, helicópteros e buscas na mata: como",Social,Tradicional Mais Favorável,0.2629,0.3032,0.0403,117.0,130,8,0.2673
+2021,2021-06-16,CPI pede que Azul explique visita de Bolsonaro a avião,Politico,Tradicional Mais Favorável,0.2052,0.133,-0.0722,145.09,125,9,0.3258
+2021,2021-06-22,"Investigado pela PF, Ricardo Salles é elogiado por Bols",Politico,Tradicional Mais Favorável,0.2181,0.1792,-0.0389,234.3,516,10,0.3395
+2021,2021-06-22,"Após ataque à imprensa, Renan sugere focinheira para Bo",Politico,Tradicional Mais Favorável,0.2156,0.1346,-0.081,209.8,268,10,0.3057
+2021,2021-06-22,Vacina indiana ficou 1.000% mais cara em seis meses,Social,Tradicional Mais Favorável,0.1607,0.1891,0.0283,206.45,245,10,0.2314
+2021,2021-06-22,CPI quer ouvir deputado Luis Miranda e irmão sobre comp,Politico,Tradicional Mais Favorável,0.083,0.1256,0.0426,202.09,218,10,0.1969
+2021,2021-06-22,CPI da Covid faz um minuto de silêncio em homenagem aos,Social,Tradicional Mais Favorável,0.1394,0.0441,-0.0953,199.98,206,10,0.2564
+2021,2021-06-28,Bolsonaro comenta morte de Lázaro no Twitter: CPF cance,Politico,Tradicional Mais Favorável,0.1382,0.1057,-0.0325,230.08,461,10,0.3079
+2021,2021-06-28,"Com lucro de 50% na pandemia, planos de saúde coletivos",Economico,Tradicional Mais Favorável,0.2317,0.2607,0.029,212.62,289,10,0.2237
+2021,2021-06-28,Rosa Weber fala sobre 'grave suspeita' em relação à a,Social,Tradicional Mais Favorável,0.138,0.1418,0.0039,206.6,246,10,0.2328
+2021,2021-07-04,Bolsonaro sobre vandalismo em protesto: Esse tipo de ge,Politico,Tradicional Mais Favorável,0.1854,0.0533,-0.1321,225.79,411,10,0.3746
+2021,2021-07-04,CPI muda calendário e ouvirá ex-coordenadora do PNI na,Politico,Tradicional Mais Favorável,0.1514,0.1264,-0.0249,221.76,369,10,0.2454
+2021,2021-07-04,ABJD cobra informações sobre encontro de Bolsonaro com,Politico,Tradicional Mais Favorável,0.2059,0.1416,-0.0643,217.92,333,10,0.309
+2021,2021-07-04,"Com pandemia, governadores turbinam agenda social de ol",Economico,Tradicional Mais Favorável,0.2709,0.314,0.0431,207.8,254,10,0.2576
+2021,2021-07-04,Centrão e militares estão no foco das suspeitas na Sa,Social,Tradicional Mais Favorável,0.1998,0.1882,-0.0116,194.94,180,10,0.2816
+2021,2021-07-04,Eduardo Paes rebate crítica de Bolsonaro sobre eficáci,Social,Tradicional Mais Favorável,0.1585,0.2014,0.043,187.14,146,10,0.2362
+2021,2021-07-04,Eduardo Leite se diz arrependido de declarar voto em Bo,Politico,Tradicional Mais Favorável,0.1152,0.125,0.0098,145.79,128,9,0.2875
+2021,2021-07-10,Datafolha: maioria dos brasileiros não acredita nas fal,Politico,Tradicional Mais Favorável,0.1991,0.1569,-0.0423,260.91,1050,10,0.3155
+2021,2021-07-10,Bolsonaro diz que controles governamentais impediram co,Social,Tradicional Mais Favorável,0.1171,0.1268,0.0097,190.78,161,10,0.2238
+2021,2021-07-10,"Quero que prorrogue, diz Veneziano Vital do Rêgo, vice",Politico,Tradicional Mais Favorável,0.1303,0.1388,0.0085,189.61,156,10,0.245
+2021,2021-07-16,Renan sugere a Bolsonaro avaliação psiquiátrica após at,Politico,Tradicional Mais Favorável,0.2057,0.2083,0.0026,251.74,822,10,0.2887
+2021,2021-07-16,"Bolsonaro não é inimigo, não desejamos o mal, diz Omar",Politico,Tradicional Mais Favorável,0.195,0.1695,-0.0256,169.15,280,9,0.3124
+2021,2021-07-16,"Fundão de R$ 5,7 bi e mínimo de R$ 1.147: como votou ca",Politico,Tradicional Mais Favorável,0.1116,0.1553,0.0437,189.13,154,10,0.2401
+2021,2021-07-22,Bolsonaro alfineta Argentina após defender rivalidade s,Politico,Tradicional Mais Favorável,0.1389,0.1489,0.01,235.37,531,10,0.2699
+2021,2021-07-22,Ameaça de Braga Netto desagrada deputados da PEC do vot,Politico,Tradicional Mais Favorável,0.178,0.1134,-0.0646,226.69,421,10,0.2672
+2021,2021-07-22,Bolsonaro: Mortes por covid-19 poderiam ter sido evitad,Social,Tradicional Mais Favorável,0.1775,0.0888,-0.0887,198.5,198,10,0.2565
+2021,2021-07-28,Bolsonaro diz que general Luiz Eduardo Ramos é nota 9,Politico,Tradicional Mais Favorável,0.2308,0.1447,-0.0862,241.71,629,10,0.3325
+2021,2021-07-28,Fisco cobra R$ 17 milhões de Ciro Nogueira por sonegaçã,Economico,Tradicional Mais Favorável,0.2827,0.2975,0.0148,224.11,393,10,0.2738
+2021,2021-07-28,"Não sei se vou disputar as eleições do ano que vem, diz",Politico,Tradicional Mais Favorável,0.1094,0.0799,-0.0295,204.57,233,10,0.3288
+2021,2021-07-28,Bolsonaro diz que vetou tratamento de câncer por onerar,Politico,Tradicional Mais Favorável,0.2467,0.1917,-0.055,196.96,190,10,0.2914
+2021,2021-07-28,Vice da CPI quer quebrar sigilo de empresas ligadas a d,Politico,Tradicional Mais Favorável,0.118,0.1035,-0.0145,185.04,138,10,0.224
+2021,2021-08-03,Bolsonaro convoca ato em SP para “último recado” sobre,Politico,Tradicional Mais Favorável,0.1268,0.1248,-0.0021,262.2,1087,10,0.325
+2021,2021-08-03,Média de mortes por Covid no Brasil é a menor desde 14,Social,Tradicional Mais Favorável,0.1626,0.15,-0.0126,116.82,129,8,0.1662
+2021,2021-08-03,Aziz critica encontro de Bolsonaro com deputada alemã:,Politico,Tradicional Mais Favorável,0.2122,0.056,-0.1561,181.66,126,10,0.3476
+2021,2021-08-09,Apib denuncia Bolsonaro ao Tribunal Penal Internacional,Politico,Tradicional Mais Favorável,0.2099,0.1169,-0.093,243.35,657,10,0.3302
+2021,2021-08-09,Governo envia ao Congresso PEC que prevê parcelamento d,Politico,Tradicional Mais Favorável,0.1656,0.2097,0.0441,219.13,344,10,0.2761
+2021,2021-08-09,Bolsonaro participa de desfile de tanques no dia da vot,Politico,Tradicional Mais Favorável,0.1249,0.1942,0.0693,198.69,199,10,0.3536
+2021,2021-08-09,Lira levará PEC do Voto Impresso ao plenário da Câmara,Politico,Tradicional Mais Favorável,0.0961,0.0988,0.0026,196.17,186,10,0.2205
+2021,2021-08-09,"'Brasil é país negro e feminino, governado por homens",Economico,Tradicional Mais Favorável,0.3904,0.3602,-0.0301,185.58,140,10,0.3502
+2021,2021-08-13,Moraes determina bloqueio de conta que Roberto Jefferso,Politico,Tradicional Mais Favorável,0.1252,0.1104,-0.0148,183.95,134,10,0.2939
+2021,2021-08-15,Bolsonaro fez 81 eventos no Planalto durante a pandemia,Politico,Tradicional Mais Favorável,0.1671,0.133,-0.0341,233.2,501,10,0.2994
+2021,2021-08-15,Comandante do Exército diz que ‘não há interferência po,Politico,Tradicional Mais Favorável,0.1303,0.1695,0.0392,165.52,248,9,0.3289
+2021,2021-08-15,"Covid: Brasil chega a 30,8% da população totalmente vac",Social,Consenso de Sentimento,0.0689,0.139,0.0701,152.81,162,9,0.2137
+2021,2021-08-15,Pacheco não dará andamento a pedidos de impeachment pro,Politico,Tradicional Mais Favorável,0.1421,0.1621,0.02,190.78,161,10,0.2735
+2021,2021-08-15,Eduardo Bolsonaro fracassa e não consegue assinaturas p,Politico,Tradicional Mais Favorável,0.0961,0.1153,0.0192,147.82,137,9,0.2911
+2021,2021-08-15,"Com preços exorbitantes, Guedes projeta queda em consum",Economico,Tradicional Mais Favorável,0.3127,0.308,-0.0047,182.53,129,10,0.2616
+2021,2021-08-21,Alexandre de Moraes já foi alvo de 10 pedidos de impeac,Politico,Tradicional Mais Favorável,0.2188,0.1858,-0.033,224.11,393,10,0.3047
+2021,2021-08-21,"Fundão: após veto, problema de Bolsonaro agora é neg",Politico,Tradicional Mais Favorável,0.2207,0.1764,-0.0443,190.78,161,10,0.2926
+2021,2021-08-21,Covid: média móvel de mortes no Brasil fica abaixo de 8,Social,Tradicional Mais Favorável,0.2502,0.2209,-0.0293,189.13,154,10,0.2096
+2021,2021-08-21,Economistas veem contágio político na inflação e mostra,Economico,Tradicional Mais Favorável,0.2764,0.2956,0.0192,182.53,129,10,0.2931
+2021,2021-08-27,Alto comando do Exército está preocupado com futuro da,Politico,Tradicional Mais Favorável,0.1942,0.1805,-0.0137,230.57,467,10,0.3612
+2021,2021-08-27,"Governo federal já distribuiu 260,9 milhões de máscaras",Social,Tradicional Mais Favorável,0.2378,0.228,-0.0098,213.51,296,10,0.2692
+2021,2021-08-27,"População brasileira chega a 213,3 milhões de pessoas e",Economico,Tradicional Mais Favorável,0.2458,0.2613,0.0154,195.15,181,10,0.226
+2021,2021-08-27,Prévias do PSDB acirram disputa no partido entre alas d,Politico,Tradicional Mais Favorável,0.1566,0.1928,0.0362,191.47,164,10,0.2874
+2021,2021-08-27,Bolsonaro diz que vai vetar artigo que cria regra de qu,Politico,Tradicional Mais Favorável,0.1593,0.1518,-0.0075,191.24,163,10,0.3058
+2021,2021-08-27,"Reforma política traz incertezas para eleições de 2022,",Politico,Tradicional Mais Favorável,0.1997,0.2147,0.015,189.85,157,10,0.2618
+2021,2021-09-02,Bolsonaro defende que país está em paz e ninguém precis,Politico,Tradicional Mais Favorável,0.1623,0.1398,-0.0224,263.72,1132,10,0.3404
+2021,2021-09-02,"Em contraponto à Fiemg, empresários lançam manifesto em",Politico,Tradicional Mais Favorável,0.1787,0.2128,0.0341,206.9,248,10,0.3738
+2021,2021-09-08,Ameaça de Bolsonaro de desobediência a ordens judiciais,Politico,Tradicional Mais Favorável,0.196,0.1443,-0.0517,281.97,1842,10,0.3472
+2021,2021-09-08,"'Fuja do país', recado de Arthur Lira ao capital estran",Economico,Tradicional Mais Favorável,0.3242,0.3241,-0.0,209.38,265,10,0.3154
+2021,2021-09-14,"Da operação contra aliados ao marco temporal, relembre",Politico,Tradicional Mais Favorável,0.1233,0.1331,0.0098,227.91,435,10,0.3135
+2021,2021-09-14,"Pobreza alcança 27,7 milhões de brasileiros - Enio Verr",Economico,Tradicional Mais Favorável,0.2665,0.2474,-0.0192,208.53,259,10,0.2887
+2021,2021-09-14,Bolsonaro minimiza disseminação de notícias falsas e di,Politico,Tradicional Mais Favorável,0.091,0.0405,-0.0505,189.61,156,10,0.3114
+2021,2021-09-14,Aziz sobre Bolsonaro pedir desculpas por Barros: Só não,Politico,Tradicional Mais Favorável,0.0963,0.1477,0.0514,188.4,151,10,0.2457
+2021,2021-09-14,Covid: Goiânia e Aparecida iniciam vacinação de adolesc,Social,Tradicional Mais Favorável,0.2509,0.2111,-0.0398,108.99,126,8,0.3049
+2021,2021-09-20,Churrascaria improvisa puxadinho na calçada para Bolson,Politico,Tradicional Mais Favorável,0.1173,0.1141,-0.0033,221.14,363,10,0.3472
+2021,2021-09-20,"Datafolha: para 69% dos brasileiros, situação econômica",Economico,Tradicional Mais Favorável,0.2725,0.2873,0.0148,213.39,295,10,0.2532
+2021,2021-09-20,Bolsonaro diz que seu discurso na ONU vai ser em braill,Politico,Consenso de Sentimento,-0.0198,-0.0424,-0.0226,205.21,237,10,0.4041
+2021,2021-09-20,Boris Johnson elogia vacina contra Covid e Bolsonaro ri,Politico,Tradicional Mais Favorável,0.1678,0.1389,-0.0289,156.45,183,9,0.2716
+2021,2021-09-20,Prefeito de João Pessoa diz que MPF influenciou fim de,Social,Tradicional Mais Favorável,0.2039,0.2539,0.05,153.9,168,9,0.226
+2021,2021-09-26,"Ao longo dos mil dias, 19 ministros já deixaram o gover",Politico,Tradicional Mais Favorável,0.1818,0.1748,-0.0071,240.07,602,10,0.3214
+2021,2021-09-26,"População totalmente vacinada varia de 15,6% a 54,5% na",Social,Tradicional Mais Favorável,0.1612,0.1365,-0.0247,222.56,377,10,0.2678
+2021,2021-09-26,Jair Bolsonaro testa negativo para Covid após viagem a,Politico,Tradicional Mais Favorável,0.138,0.0861,-0.0519,218.03,334,10,0.2816
+2021,2021-09-26,Auditora independente da Caixa cobra Pedro Guimarães so,Economico,Tradicional Mais Favorável,0.1843,0.2686,0.0843,156.61,184,9,0.2578
+2021,2021-10-02,"A um ano das eleições, Lula e Bolsonaro lideram pesquis",Politico,Tradicional Mais Favorável,0.0844,0.1486,0.0642,214.02,300,10,0.2645
+2021,2021-10-02,"Manifestações contra Bolsonaro focam impeachment, pande",Politico,Tradicional Mais Favorável,0.1232,0.1345,0.0113,209.1,263,10,0.3396
+2021,2021-10-02,Mortes na enfermagem por Covid caem para menor nível na,Social,Consenso de Sentimento,0.0436,0.0822,0.0385,126.05,190,8,0.2054
+2021,2021-10-02,Atraso em votação de supersalários custou R$ 12 bi a,Economico,Tradicional Mais Favorável,0.2309,0.2489,0.018,196.37,187,10,0.2441
+2021,2021-10-02,Rosa se diz perplexa por PGR não querer investigar fal,Politico,Consenso de Sentimento,0.0711,0.1178,0.0467,183.67,133,10,0.2741
+2021,2021-10-08,Bolsonaro diz que Covid não fez Brasil sofrer tanto na,Economico,Tradicional Mais Favorável,0.2479,0.2143,-0.0336,244.52,678,10,0.3079
+2021,2021-10-08,Bolsonaro fala em problema sério com indicado ao STF,Politico,Tradicional Mais Favorável,0.1114,0.1507,0.0393,216.55,321,10,0.2826
+2021,2021-10-08,"Covid: 60,4% dos quilombolas ainda não receberam 2a dos",Social,Tradicional Mais Favorável,0.2622,0.2956,0.0334,149.3,144,9,0.2657
+2021,2021-10-14,"Ao comentar caso dos absorventes, Bolsonaro debocha: Au",Politico,Tradicional Mais Favorável,0.1238,0.1086,-0.0152,228.51,442,10,0.2956
+2021,2021-10-14,Associações ligadas ao MP se manifestam contrárias à PE,Politico,Tradicional Mais Favorável,0.1069,0.1212,0.0143,164.29,238,9,0.2901
+2021,2021-10-14,País terá problemas 'seríssimos' se STF decidir a favo,Economico,Tradicional Mais Favorável,0.2577,0.2903,0.0325,197.35,192,10,0.3261
+2021,2021-10-20,"Ao criticar relatório da CPI, Flávio diz que Renan tem",Politico,Tradicional Mais Favorável,0.184,0.1112,-0.0727,230.33,464,10,0.2995
+2021,2021-10-20,Mourão sobre auxílio: Guedes sempre se preocupa com alg,Economico,Tradicional Mais Favorável,0.2649,0.2964,0.0315,202.43,220,10,0.2866
+2021,2021-10-20,Aziz a senador governista: Bolsonaro cometeu muitos cri,Politico,Tradicional Mais Favorável,0.1287,0.1264,-0.0022,197.74,194,10,0.2936
+2021,2021-10-20,ANP indica novo aumento nos combustíveis e valor de trí,Economico,Tradicional Mais Favorável,0.2093,0.2765,0.0672,191.47,164,10,0.2127
+2021,2021-10-20,Bolsonaro confirma Auxílio Brasil de R$ 400: 'Ninguém,Economico,Tradicional Mais Favorável,0.1769,0.2006,0.0237,186.63,144,10,0.2442
+2021,2021-10-20,Ministério da Cidadania fará anúncio sobre Auxílio Bras,Economico,Tradicional Mais Favorável,0.2873,0.3111,0.0237,186.37,143,10,0.2975
+2021,2021-10-26,Barroso envia à PGR ação contra Bolsonaro por relaciona,Politico,Tradicional Mais Favorável,0.1746,0.1137,-0.0609,258.55,986,10,0.3212
+2021,2021-10-26,Por que o preço da gasolina subiu e pode aumentar ainda,Economico,Tradicional Mais Favorável,0.1975,0.2714,0.0739,230.08,461,10,0.2602
+2021,2021-11-01,"Além de PP e PL, Bolsonaro diz estar em negociação com",Politico,Tradicional Mais Favorável,0.1183,0.1507,0.0324,220.2,354,10,0.275
+2021,2021-11-01,Governo proíbe demissão por justa causa de não vacinado,Social,Tradicional Mais Favorável,0.2614,0.1873,-0.0741,204.25,231,10,0.2789
+2021,2021-11-01,Podemos pede afastamento de Alcolumbre da CCJ do Senado,Politico,Tradicional Mais Favorável,0.1058,0.1242,0.0185,188.89,153,10,0.2262
+2021,2021-11-01,Bolsonaro sobre mudanças climáticas: Brasil é parte da,Politico,Tradicional Mais Favorável,0.1146,0.1638,0.0493,187.9,149,10,0.3146
+2021,2021-11-01,Podemos divulga imagem e slogan da filiação de Moro ao,Politico,Tradicional Mais Favorável,0.1384,0.2811,0.1426,147.16,134,9,0.306
+2021,2021-11-07,"Após 18 anos, Bolsa Família chega ao fim; Auxílio Brasi",Economico,Tradicional Mais Favorável,0.2151,0.2446,0.0295,227.91,435,10,0.2655
+2021,2021-11-07,"Análise: precatórios, ética e segurança jurídica es",Politico,Tradicional Mais Favorável,0.1251,0.1647,0.0396,213.51,296,10,0.2861
+2021,2021-11-07,PEC dos Precatórios: Rosa Weber dá 24h para Câmara expl,Politico,Tradicional Mais Favorável,0.1091,0.1398,0.0307,200.34,208,10,0.2244
+2021,2021-11-07,"Bolsonaro ataca Aziz, que rebate: “abre a boca pra joga",Politico,Tradicional Mais Favorável,0.1199,0.0879,-0.032,196.96,190,10,0.3364
+2021,2021-11-07,"Pré-candidato ao Planalto, Cabo Daciolo está ansioso pa",Politico,Tradicional Mais Favorável,0.1043,0.1759,0.0716,185.84,141,10,0.2504
+2021,2021-11-13,Governo Bolsonaro já puniu ou afastou 18 delegados da P,Politico,Tradicional Mais Favorável,0.2181,0.1721,-0.046,221.35,365,10,0.307
+2021,2021-11-13,Bolsonaro desembarca nos Emirados Árabes em busca de in,Politico,Tradicional Mais Favorável,0.1268,0.1841,0.0573,217.01,325,10,0.2973
+2021,2021-11-13,"Com 731 mortes em 24h, média móvel de óbitos por Covid",Social,Tradicional Mais Favorável,0.2007,0.2245,0.0238,193.68,174,10,0.2181
+2021,2021-11-13,"Após um ano, oposição amplia espaço em prefeituras de c",Politico,Tradicional Mais Favorável,0.2969,0.1323,-0.1646,148.46,140,9,0.2422
+2021,2021-11-13,No Brasil o pobre passa fome e o rico ri à toa,Economico,Tradicional Mais Favorável,0.3222,0.3808,0.0586,181.36,125,10,0.3093
+2021,2021-11-19,"Com apoio de senadores, Doria e Leite brigam por votos",Politico,Tradicional Mais Favorável,0.1667,0.1502,-0.0165,240.99,617,10,0.2722
+2021,2021-11-19,"Após voltar de viagem ao Oriente Médio, Bolsonaro faz l",Politico,Consenso de Sentimento,0.0606,0.1521,0.0915,151.11,153,9,0.2907
+2021,2021-11-19,Moro diz que não houve uma 'cruzada pessoal' contra Lu,Politico,Tradicional Mais Favorável,0.1424,0.1693,0.027,148.89,142,9,0.327
+2021,2021-11-19,Texto da PEC dos Precatórios pode ser desmembrado,Politico,Consenso de Sentimento,0.0529,0.1141,0.0612,183.95,134,10,0.2279
+2021,2021-11-25,Bolsonaro corrige fake news de apoiadores sobre... Lula,Politico,Tradicional Mais Favorável,0.1556,0.1515,-0.0041,240.63,611,10,0.3001
+2021,2021-11-25,"Bolsonaro faz previsão sobre a Covid-19: Outra onda, si",Social,Tradicional Mais Favorável,0.1942,0.1997,0.0055,217.47,329,10,0.2376
+2021,2021-11-25,Congresso votará projeto para mudar orçamento secreto n,Politico,Tradicional Mais Favorável,0.1629,0.2069,0.044,190.55,160,10,0.2711
+2021,2021-11-25,"Moro não descarta Centrão: Você precisa do Supremo, do",Politico,Tradicional Mais Favorável,0.0916,0.1884,0.0968,186.11,142,10,0.255
+2021,2021-12-01,"Balança comercial tem rombo de US$1,3 bi em novembro, p",Economico,Tradicional Mais Favorável,0.2159,0.2447,0.0288,214.88,307,10,0.2485
+2021,2021-12-01,Mourão diz que Bolsonaro precisa de tempo da TV e recur,Politico,Tradicional Mais Favorável,0.111,0.1664,0.0555,158.65,197,9,0.2594
+2021,2021-12-01,As vantagens e desvantagens da parceria Lula e Alckmin,Politico,Tradicional Mais Favorável,0.2032,0.2786,0.0754,156.28,182,9,0.2533
+2021,2021-12-01,"Na contramão do governo, Moro defende vacinação cont",Politico,Tradicional Mais Favorável,0.1714,0.1691,-0.0023,188.4,151,10,0.3423
+2021,2021-12-01,André Mendonça em sabatina: Há espaço para posse e port,Politico,Tradicional Mais Favorável,0.1109,0.1873,0.0764,184.5,136,10,0.2834
+2021,2021-12-01,"Bolsonaristas, Centrão e terceira via endossam orçament",Politico,Tradicional Mais Favorável,0.1265,0.2069,0.0803,181.95,127,10,0.2769
+2021,2021-12-07,Bolsonaro a empresários: Somos devedores de favores a v,Politico,Tradicional Mais Favorável,0.2057,0.1783,-0.0274,226.6,420,10,0.3469
+2021,2021-12-07,Congresso deve derrubar vetos de distribuição de absorv,Economico,Tradicional Mais Favorável,0.2959,0.2964,0.0005,219.89,351,10,0.3021
+2021,2021-12-07,Governo anuncia quarentena de 5 dias para estrangeiros,Social,Tradicional Mais Favorável,0.0885,0.1096,0.021,166.7,258,9,0.2194
+2021,2021-12-07,Assessor de senador faz campanha por boicote a passapor,Social,Tradicional Mais Favorável,0.2342,0.2186,-0.0155,147.38,135,9,0.2669
+2021,2021-12-13,"Fiel escudeiro de Bolsonaro, Hélio Lopes é internado co",Politico,Tradicional Mais Favorável,0.1284,0.1333,0.0049,221.25,364,10,0.288
+2021,2021-12-13,Governo avança em proposta de reajuste salarial para PF,Economico,Tradicional Mais Favorável,0.2231,0.2927,0.0696,202.6,221,10,0.2444
+2021,2021-12-13,Julgamentos polêmicos e temas de interesse de Bolsonaro,Politico,Tradicional Mais Favorável,0.2393,0.1721,-0.0672,193.89,175,10,0.2763
+2021,2021-12-13,Eduardo Bolsonaro critica salário de Moro: 'Mau uso do,Politico,Tradicional Mais Favorável,0.1549,0.1158,-0.0391,152.26,159,9,0.2877
+2021,2021-12-13,Mourão: Bobagem comprar briga com Barroso sobre passapo,Politico,Tradicional Mais Favorável,0.1754,0.2012,0.0258,149.71,146,9,0.255
+2021,2021-12-13,Base governista não chega a acordo e Congresso adia ses,Politico,Tradicional Mais Favorável,0.1055,0.1484,0.0429,183.67,133,10,0.1828
+2021,2021-12-13,Grupo de Alckmin espera que ele deixe PSDB e indique se,Politico,Tradicional Mais Favorável,0.1107,0.1454,0.0347,181.36,125,10,0.2144
+2021,2021-12-19,Bolsonaro volta atrás e diz que Mourão pode compor chap,Politico,Tradicional Mais Favorável,0.1289,0.1641,0.0351,220.2,354,10,0.283
+2021,2021-12-19,Aumento da pobreza e fome entram no centro da discussã,Economico,Tradicional Mais Favorável,0.2839,0.299,0.0151,219.99,352,10,0.3322
+2021,2021-12-19,"Alagoas, Amazonas e eleições 2022: CPI da Covid expôs d",Social,Tradicional Mais Favorável,0.2903,0.2448,-0.0455,215.12,309,10,0.3059
+2021,2021-12-19,"Lula e Alckmin, ex-adversários, jantam em São Paulo de",Politico,Consenso de Sentimento,0.0618,0.1994,0.1376,198.87,200,10,0.2588
+2021,2021-12-19,"Em Praia Grande, Bolsonaro critica vacina para criança",Politico,Tradicional Mais Favorável,0.2873,0.1406,-0.1468,182.53,129,10,0.34
+2021,2021-12-25,FGV aponta que Bolsonaro perde o protagonismo nas redes,Politico,Tradicional Mais Favorável,0.17,0.1528,-0.0172,230.65,468,10,0.3598
+2021,2021-12-25,Os danos ao meio ambiente no Brasil – um breve balanço,Economico,Tradicional Mais Favorável,0.2624,0.2533,-0.0092,210.63,274,10,0.2792
+2021,2021-12-25,Lula critica Queiroga,Social,Tradicional Mais Favorável,0.1852,0.1947,0.0095,120.42,210,8,0.2455
+2021,2021-12-25,Datafolha: Lula atinge 62% dos votos de quem não tem co,Politico,Tradicional Mais Favorável,0.249,0.2298,-0.0193,190.55,160,10,0.3361
+2021,2021-12-31,Bolsonaro reclama da Anvisa: Impossível falar com o pre,Politico,Tradicional Mais Favorável,0.1472,0.1325,-0.0147,224.68,399,10,0.2962
+2021,2021-12-31,"Mesmo com surto de gripe, Brasil tem 12 milhões de vaci",Social,Tradicional Mais Favorável,0.2693,0.2457,-0.0236,208.53,259,10,0.2352
+2021,2021-12-31,"Bolsonaro, Lula, Moro, Doria e Ciro já têm candidatos a",Politico,Tradicional Mais Favorável,0.1945,0.241,0.0464,164.92,243,9,0.2757
+2021,2021-12-31,Descubra 15 simpatias surreais para garantir amor e din,Economico,Tradicional Mais Favorável,0.2314,0.2485,0.0172,186.89,145,10,0.3246
+2021,2021-12-31,Bolsonaro destina R$ 700 milhões a regiões afetadas por,Politico,Tradicional Mais Favorável,0.206,0.251,0.045,185.31,139,10,0.2807
+2021,2021-12-31,Partidos irão ao Supremo,Social,Tradicional Mais Favorável,0.3442,0.2734,-0.0708,148.25,139,9,0.2362
+2022,2022-01-06,"Anvisa virou outro Poder e dona da verdade, ataca Bolso",Politico,Tradicional Mais Favorável,0.204,0.0849,-0.1191,216.43,320,10,0.3394
+2022,2022-01-06,Quanto tempo após a recuperação da gripe posso voltar a,Social,Tradicional Mais Favorável,0.2987,0.2385,-0.0603,212.49,288,10,0.2486
+2022,2022-01-06,"Propósito de poder de Moro já estava definido, diz Bols",Politico,Tradicional Mais Favorável,0.2981,0.2822,-0.0159,169.68,285,9,0.3416
+2022,2022-01-06,"Análise: Lula aposta no confronto com Bolsonaro, centr",Politico,Tradicional Mais Favorável,0.1607,0.2001,0.0394,182.82,130,10,0.2952
+2022,2022-01-12,Bolsonaro chama Dino de gordo e governador rebate: Vai,Politico,Tradicional Mais Favorável,0.1193,0.1604,0.0411,225.7,410,10,0.3261
+2022,2022-01-12,"Economia não aguenta outro lockdown, diz Bolsonaro",Economico,Tradicional Mais Favorável,0.3016,0.2947,-0.0069,219.02,343,10,0.2908
+2022,2022-01-12,Bolsonaro: 200 servidores da Presidência fizeram tratam,Social,Tradicional Mais Favorável,0.2502,0.2035,-0.0467,218.25,336,10,0.2506
+2022,2022-01-12,Bolsonaro autoriza ministros a voarem em classe executi,Politico,Tradicional Mais Favorável,0.2535,0.3063,0.0528,185.58,140,10,0.3139
+2022,2022-01-12,Província do Canadá vai cobrar ‘imposto de saúde’ de nã,Social,Tradicional Mais Favorável,0.1927,0.2612,0.0685,109.69,130,8,0.2242
+2022,2022-01-18,Bolsonaro critica governadores por reajuste de ICMS: La,Politico,Tradicional Mais Favorável,0.1867,0.1524,-0.0344,161.12,214,9,0.2803
+2022,2022-01-18,Bolsonaro no Suriname: 25% da equipe precursora tem Cov,Politico,Tradicional Mais Favorável,0.2186,0.1697,-0.0489,191.92,166,10,0.2491
+2022,2022-01-18,PT quer Brasil liderando distribuição de vacinas para p,Social,Tradicional Mais Favorável,0.3531,0.2684,-0.0847,151.11,153,9,0.264
+2022,2022-01-18,A economia e a reforma trabalhista - Paulo Kliass - Bra,Economico,Tradicional Mais Favorável,0.2105,0.287,0.0765,186.11,142,10,0.2512
+2022,2022-01-24,"Bolsonaro sanciona Orçamento com reajuste de R$ 1,7 bi",Economico,Tradicional Mais Favorável,0.2289,0.253,0.0241,231.67,481,10,0.2486
+2022,2022-01-24,"De volta a Brasília após enterro da mãe, Bolsonaro canc",Politico,Tradicional Mais Favorável,0.1951,0.1623,-0.0328,231.67,481,10,0.2878
+2022,2022-01-24,Senadores do Podemos repudiam ideia de CPI contra Sergi,Politico,Tradicional Mais Favorável,0.2544,0.2082,-0.0462,154.07,169,9,0.2786
+2022,2022-01-24,Campanha de Doria está pessimista em ter vacina como at,Social,Tradicional Mais Favorável,0.3217,0.3298,0.0081,145.33,126,9,0.2261
+2022,2022-01-30,Brasil registra 134 mil infectados e 330 mortes por Cov,Social,Tradicional Mais Favorável,0.2872,0.2502,-0.0371,217.35,328,10,0.2136
+2022,2022-01-30,Bolsonaro passeia de moto por área rural de Brasília e,Politico,Tradicional Mais Favorável,0.2099,0.1829,-0.0269,216.66,322,10,0.2862
+2022,2022-01-30,Judiciário retoma trabalhos e temas do desagrado de Bo,Politico,Tradicional Mais Favorável,0.2992,0.2145,-0.0846,205.52,239,10,0.3175
+2022,2022-01-30,Em quem Bolsonaro votou para governador do RJ em 2018,Politico,Tradicional Mais Favorável,0.2112,0.1983,-0.013,197.54,193,10,0.3005
+2022,2022-01-30,"Após opção de Lula, Pedro Paulo vê ‘completa divergênci",Politico,Tradicional Mais Favorável,0.1699,0.261,0.0912,147.38,135,9,0.2915
+2022,2022-02-05,Brasileiros queimam aplicações para pagar contas e poup,Economico,Tradicional Mais Favorável,0.2747,0.2826,0.0078,217.35,328,10,0.2479
+2022,2022-02-05,Pesquisa de opinião indica que população desconhece,Politico,Tradicional Mais Favorável,0.2872,0.1851,-0.1021,214.14,301,10,0.3077
+2022,2022-02-05,Bolsonaro visita ministro e vai a festa de aniversário,Politico,Tradicional Mais Favorável,0.1195,0.2131,0.0936,199.8,205,10,0.2764
+2022,2022-02-11,"'O PSDB Não é mais uma referíancia nacional', afirma",Politico,Tradicional Mais Favorável,0.2079,0.2217,0.0138,220.52,357,10,0.2731
+2022,2022-02-11,Ríossia pede que Bolsonaro faça 5 testes de covid ante,Politico,Tradicional Mais Favorável,0.1362,0.2495,0.1133,205.52,239,10,0.2419
+2022,2022-02-11,Caixa contrata quase mil pessoas com deficiência e atin,Economico,Tradicional Mais Favorável,0.3561,0.3265,-0.0295,189.85,157,10,0.2392
+2022,2022-02-17,"6 perguntas para Gleisi Hoffman, presidente do PT",Politico,Tradicional Mais Favorável,0.2017,0.2424,0.0406,210.9,276,10,0.2907
+2022,2022-02-17,"Bolsonaro deixa Budapeste rumo a Petrópolis, onde fará",Politico,Tradicional Mais Favorável,0.2183,0.2555,0.0372,196.76,189,10,0.2855
+2022,2022-02-17,Análise: Bolsonaro volta à carga contra as urnas eletr,Politico,Tradicional Mais Favorável,0.1886,0.1403,-0.0483,188.89,153,10,0.2864
+2022,2022-02-17,Ciganos portugueses que deram golpe em Águas Claras faz,Social,Tradicional Mais Favorável,0.3365,0.2103,-0.1261,186.37,143,10,0.3407
+2022,2022-02-17,"Governo federal repassa R$ 2,3 milhões para Petrópolis",Economico,Tradicional Mais Favorável,0.3831,0.3447,-0.0384,183.39,132,10,0.2692
+2022,2022-02-23,Bolsonaro sobre ministros do STF: Vamos ceder para dois,Politico,Tradicional Mais Favorável,0.1748,0.1981,0.0234,220.94,361,10,0.2409
+2022,2022-02-23,Ucrânia convoca reservistas para guerra contra a Rússia,Internacional,Tradicional Mais Favorável,0.185,0.1974,0.0124,132.71,251,8,0.2347
+2022,2022-02-23,Maduro diz que EUA e Europa governam a Ucrânia “quase c,Internacional,Tradicional Mais Favorável,0.2957,0.2774,-0.0184,195.97,185,10,0.268
+2022,2022-03-01,40% dos ministérios serão atingidos por saídas de min,Economico,Tradicional Mais Favorável,0.2845,0.2454,-0.039,208.38,258,10,0.3223
+2022,2022-03-01,Bruna Torlay chama Bolsonaro de 'idiota sem base políti,Politico,Tradicional Mais Favorável,0.119,0.035,-0.084,188.64,152,10,0.4128
+2022,2022-03-01,Rússia cobra que os EUA retirem suas armas nucleares da,Internacional,Tradicional Mais Favorável,0.2481,0.2224,-0.0257,150.72,151,9,0.247
+2022,2022-03-01,Bolsonaro sobre férias de R$ 900 mil: Vou pegar no cang,Politico,Consenso de Sentimento,0.0727,0.107,0.0343,146.94,133,9,0.3184
+2022,2022-03-07,Bolsonaro sobre crise do combustível: Nós temos alterna,Economico,Tradicional Mais Favorável,0.2194,0.2575,0.0381,228.08,437,10,0.2968
+2022,2022-03-07,"Para recuperar apoio feminino, Bolsonaro lota agenda pa",Politico,Consenso de Sentimento,0.0334,0.2794,0.246,193.89,175,10,0.3211
+2022,2022-03-13,"Petrobrás está saqueando o Brasil, diz Roberto Requião",Economico,Tradicional Mais Favorável,0.2925,0.2854,-0.0071,196.57,188,10,0.3329
+2022,2022-03-13,"Deputados gastaram mais de R$ 1,3 milhão com táxi aéreo",Economico,Tradicional Mais Favorável,0.2178,0.2841,0.0663,194.94,180,10,0.2571
+2022,2022-03-13,Brasil registra 18.642 novos casos de Covid-19,Social,Tradicional Mais Favorável,0.2304,0.2435,0.0131,193.25,172,10,0.1802
+2022,2022-03-19,"Bolsonaro participa de filiação de Eduardo, Bia Kicis e",Politico,Tradicional Mais Favorável,0.0922,0.2002,0.108,235.3,530,10,0.2552
+2022,2022-03-25,Bolsonaro anuncia pacotão com ampliação de excludente d,Politico,Tradicional Mais Favorável,0.0947,0.1864,0.0917,221.76,369,10,0.3049
+2022,2022-03-25,Operação na Ucrânia continuará até objetivos definidos,Internacional,Tradicional Mais Favorável,0.1627,0.2553,0.0926,114.05,158,8,0.2178
+2022,2022-03-25,Vídeo: Bolsonaro insulta Dilma Rousseff ao chamá-la de,Politico,Consenso de Sentimento,0.0764,0.1875,0.1111,188.15,150,10,0.3709
+2022,2022-03-31,"Bolsonaro ao STF: Bota tua toga e fica aí, sem encher o",Politico,Tradicional Mais Favorável,0.1771,0.1743,-0.0028,236.62,549,10,0.3225
+2022,2022-03-31,Presidente do Podemos diz que soube da saída de Moro pe,Politico,Tradicional Mais Favorável,0.1069,0.1447,0.0379,211.84,283,10,0.3065
+2022,2022-03-31,MDB será vice do PT na Bahia,Politico,Tradicional Mais Favorável,0.1201,0.2054,0.0853,197.16,191,10,0.2725
+2022,2022-04-06,Bolsonaro promove ações de Tarcísio após afirmar que nã,Politico,Tradicional Mais Favorável,0.1552,0.2121,0.0569,213.13,293,10,0.2935
+2022,2022-04-06,Bolsonaro anuncia fim de taxa extra e conta de luz mais,Economico,Tradicional Mais Favorável,0.1905,0.2541,0.0636,194.74,179,10,0.238
+2022,2022-04-12,Veja as ocasiões em que o STF barrou decisões do govern,Politico,Tradicional Mais Favorável,0.1994,0.1778,-0.0216,195.56,183,10,0.309
+2022,2022-04-12,Empreiteira 'campeã de pregões' estreou no governo Bols,Economico,Tradicional Mais Favorável,0.1468,0.2574,0.1106,189.85,157,10,0.2571
+2022,2022-04-18,"Relembre acusações contra Daniel Silveira, que será jul",Politico,Tradicional Mais Favorável,0.1094,0.1427,0.0333,193.89,175,10,0.3164
+2022,2022-04-18,"STF reduz pena de Marcelo Odebrecht, que pode ficar liv",Politico,Tradicional Mais Favorável,0.1373,0.1761,0.0388,190.55,160,10,0.2827
+2022,2022-04-18,Presidente do PDT chama Bolsonaro de profeta da ignorân,Politico,Tradicional Mais Favorável,0.1645,0.1644,-0.0001,145.56,127,9,0.3536
+2022,2022-04-24,Resta o Congresso,Politico,Tradicional Mais Favorável,0.1209,0.2288,0.1079,218.14,335,10,0.2846
+2022,2022-04-24,"Cedo ou tarde irei te encontrar, avisa Weintraub a Edua",Politico,Tradicional Mais Favorável,0.1854,0.2124,0.0269,209.24,264,10,0.3158
+2022,2022-04-24,Políticos brasileiros repercutem vitória de Macron nas,Politico,Consenso de Sentimento,0.0755,0.202,0.1265,191.92,166,10,0.2662
+2022,2022-04-24,Movimentos rurais se articulam para aumentar a presenç,Economico,Tradicional Mais Favorável,0.2211,0.2903,0.0692,185.31,139,10,0.2817
+2022,2022-04-24,Twitter reavalia aceitar oferta bilionária de Elon Musk,Economico,Tradicional Mais Favorável,0.2586,0.2885,0.0299,182.82,130,10,0.2318
+2022,2022-04-30,Apoio do PSol,Politico,Consenso de Sentimento,0.0533,0.2087,0.1554,211.3,279,10,0.2809
+2022,2022-04-30,"Após boom com Bolsonaro, Novo perde um terço dos filiad",Politico,Tradicional Mais Favorável,0.2654,0.2366,-0.0287,183.67,133,10,0.2967
+2022,2022-04-30,Eduardo Bolsonaro é condenado a indenizar Omar Aziz em,Politico,Tradicional Mais Favorável,0.2169,0.1642,-0.0527,182.53,129,10,0.3102
+2022,2022-05-06,CURTIDAS,Politico,Tradicional Mais Favorável,0.2219,0.2363,0.0144,207.8,254,10,0.3256
+2022,2022-05-12,Bolsonaro critica margem de lucro da Petrobras: “Está g,Politico,Tradicional Mais Favorável,0.2124,0.2618,0.0494,218.25,336,10,0.3214
+2022,2022-05-18,Auxílio Brasil: Bolsonaro sanciona valor mínimo permane,Politico,Tradicional Mais Favorável,0.2395,0.2547,0.0152,226.6,420,10,0.2733
+2022,2022-05-18,Candidatura íonica,Politico,Consenso de Sentimento,0.0353,0.1581,0.1228,196.37,187,10,0.2508
+2022,2022-05-18,"Flávio Bolsonaro admite erros do governo, mas ataca o P",Politico,Tradicional Mais Favorável,0.1871,0.2211,0.034,146.94,133,9,0.3202
+2022,2022-05-24,Bolsonaro recorre de decisão que rejeitou investigação,Politico,Tradicional Mais Favorável,0.1656,0.2344,0.0688,214.39,303,10,0.2744
+2022,2022-05-24,Ipec: Lula só não vence Bolsonaro entre os evangélicos,Politico,Consenso de Sentimento,0.0585,0.1855,0.1271,193.03,171,10,0.2198
+2022,2022-05-24,"Análise: Doria desiste, mas PSDB continua dividido",Politico,Consenso de Sentimento,0.0682,0.1646,0.0964,152.26,159,9,0.2807
+2022,2022-05-24,Bolsonaro diz que entrada do Brasil na OCDE sai em dois,Politico,Tradicional Mais Favorável,0.2355,0.2593,0.0238,151.11,153,9,0.2995
+2022,2022-05-30,"Bolsonaro diz lamentar caso Genivaldo, mas defende a PR",Politico,Tradicional Mais Favorável,0.236,0.228,-0.0081,222.06,372,10,0.3207
+2022,2022-05-30,"'Rejeição decidirá a eleição', diz Carlos Melo, do",Politico,Tradicional Mais Favorável,0.0864,0.1466,0.0602,188.89,153,10,0.2693
+2022,2022-05-30,"Após chuvas, Bolsonaro anuncia crédito sem juros a in",Social,Tradicional Mais Favorável,0.1812,0.225,0.0438,188.64,152,10,0.2562
+2022,2022-06-05,"'Absurdo se não me apoiarem', diz Queiroz sobre famíli",Politico,Tradicional Mais Favorável,0.1076,0.1861,0.0785,218.03,334,10,0.3143
+2022,2022-06-05,Pesquisa mostra consistência do apoio a Lula - Paulo Mo,Economico,Tradicional Mais Favorável,0.2402,0.3111,0.0709,200.69,210,10,0.3209
+2022,2022-06-05,Deputado afastado recorre ao STF após decisão de Nune,Politico,Tradicional Mais Favorável,0.1255,0.2171,0.0916,183.11,131,10,0.238
+2022,2022-06-06,Família de jornalista inglês desaparecido implora por b,Politico,Tradicional Mais Favorável,0.1703,0.3014,0.1311,154.6,172,9,0.26
+2022,2022-06-11,"Bolsonaro disse a Biden que respeitará eleições, diz po",Politico,Tradicional Mais Favorável,0.1457,0.1886,0.0429,192.15,167,10,0.257
+2022,2022-06-11,Estados vão ao STF para negociar corte gradual e reduzi,Economico,Tradicional Mais Favorável,0.1508,0.237,0.0863,185.04,138,10,0.2078
+2022,2022-06-17,Bolsonaro diz que Petrobras pode mergulhar o Brasil num,Politico,Tradicional Mais Favorável,0.232,0.2425,0.0105,219.57,348,10,0.3365
+2022,2022-06-17,Mendonça cobra explicações sobre alta dos combustíve,Economico,Tradicional Mais Favorável,0.1596,0.2627,0.1031,183.39,132,10,0.2258
+2022,2022-06-23,"Após prisão de Ribeiro, líder do PT pede que STF invest",Politico,Tradicional Mais Favorável,0.1475,0.228,0.0805,221.86,370,10,0.2829
+2022,2022-06-23,"Combustível: em vez de compensação, governo vai de vouc",Economico,Tradicional Mais Favorável,0.1554,0.2115,0.0561,198.5,198,10,0.2499
+2022,2022-06-23,Exame/Ideia: Lula lidera pesquisa com 45%; Bolsonaro te,Politico,Consenso de Sentimento,0.0539,0.1502,0.0963,152.63,161,9,0.2444
+2022,2022-06-29,Bolsonaro diz avaliar desoneração a empresas e nega int,Politico,Tradicional Mais Favorável,0.1797,0.1958,0.0162,220.73,359,10,0.2874
+2022,2022-06-29,Presidente da Caixa se parabenizava por colocar mulhere,Politico,Tradicional Mais Favorável,0.1984,0.2163,0.018,184.77,137,10,0.2983
+2022,2022-06-29,Relatório confirma Auxílio Brasil de R$ 600 e voucher a,Economico,Tradicional Mais Favorável,0.114,0.2397,0.1257,181.95,127,10,0.2032
+2022,2022-07-05,Bolsonaro comanda reunião ministerial a três meses das,Politico,Tradicional Mais Favorável,0.1249,0.2441,0.1192,211.57,281,10,0.2937
+2022,2022-07-05,Prefeitos chegam a Brasília para protestar contra medid,Economico,Tradicional Mais Favorável,0.2898,0.2827,-0.0071,145.33,126,9,0.3094
+2022,2022-07-11,Bolsonaro compara assassinato em Foz do Iguaçu à facada,Politico,Tradicional Mais Favorável,0.1814,0.1294,-0.052,237.7,565,10,0.3274
+2022,2022-07-11,Como é a vida de moradores afetados por polo petroquími,Social,Tradicional Mais Favorável,0.2358,0.3108,0.075,185.58,140,10,0.2746
+2022,2022-07-11,Vídeos mostram momento em que médico anestesista estupr,Social,Tradicional Mais Favorável,0.3035,0.3041,0.0005,73.91,137,7,0.2831
+2022,2022-07-17,Bolsonaro sobre prazo de 48 horas dado por Moraes: Quer,Politico,Tradicional Mais Favorável,0.1251,0.1572,0.0321,230.0,460,10,0.3325
+2022,2022-07-17,"Pesquisa Quaest no DF: Bolsonaro tem 36% e Lula, 32%",Politico,Tradicional Mais Favorável,0.1898,0.2523,0.0625,205.68,240,10,0.2847
+2022,2022-07-23,Aumento da pobreza no governo Bolsonaro explica crescim,Economico,Tradicional Mais Favorável,0.2024,0.2754,0.0731,207.05,249,10,0.2625
+2022,2022-07-23,"Bolsonaro diz que, se reeleito, nenhum abortista será i",Politico,Consenso de Sentimento,0.0366,0.1459,0.1093,196.17,186,10,0.267
+2022,2022-07-23,Bolsonaro desembarca em Vitória para cumprir agenda de,Politico,Consenso de Sentimento,-0.0182,0.1824,0.2006,188.64,152,10,0.2985
+2022,2022-07-23,"Tebet chega à convenção com dissidências no MDB, resist",Politico,Tradicional Mais Favorável,0.1103,0.1687,0.0585,148.03,138,9,0.2548
+2022,2022-07-29,Análise: O establishment se mexe em defesa das urnas,Politico,Tradicional Mais Favorável,0.2333,0.1849,-0.0485,201.75,216,10,0.3247
+2022,2022-07-29,"Em 180 caracteres, Bolsonaro escreve carta pela democra",Politico,Tradicional Mais Favorável,0.113,0.2163,0.1034,154.42,171,9,0.3385
+2022,2022-07-29,Brasil registra três casos de crianças com varíola dos,Social,Tradicional Mais Favorável,0.2055,0.2673,0.0618,186.63,144,10,0.2236
+2022,2022-07-29,Luciano Bivar desiste de candidatura e deixa corrida í,Politico,Tradicional Mais Favorável,0.0846,0.1824,0.0978,183.11,131,10,0.2537
+2022,2022-07-29,"Petrobrás lucra R$ 54,3 bilhões em três meses com polít",Economico,Tradicional Mais Favorável,0.2023,0.2818,0.0794,182.82,130,10,0.2445
+2022,2022-08-04,Bolsonaro: artistas que assinaram carta receberam dinhe,Politico,Tradicional Mais Favorável,0.1061,0.2189,0.1127,216.19,318,10,0.3073
+2022,2022-08-10,Bolsonaro e Lula trocam ofensas durante participações,Politico,Tradicional Mais Favorável,0.1058,0.1806,0.0747,211.44,280,10,0.2903
+2022,2022-08-10,Manifestos se multiplicam,Politico,Tradicional Mais Favorável,0.1209,0.3305,0.2096,206.3,244,10,0.2955
+2022,2022-08-10,Vendas no varejo despencam e queda é a maior desde o fi,Economico,Tradicional Mais Favorável,0.1963,0.2667,0.0704,191.92,166,10,0.2343
+2022,2022-08-16,Moraes diz que eleições são orgulho nacional e Bolsonar,Politico,Tradicional Mais Favorável,0.0888,0.2229,0.1341,181.42,422,9,0.2851
+2022,2022-08-16,Ciro planeja taxar fortunas: 'Brasil é um paraíso fisc,Economico,Tradicional Mais Favorável,0.1042,0.2953,0.191,155.62,178,9,0.282
+2022,2022-08-16,Candidato do PL pede impugnação da candidatura de Del,Politico,Consenso de Sentimento,0.0647,0.1846,0.1199,152.63,161,9,0.2585
+2022,2022-08-16,Lula e Bolsonaro escolhem cidades simbólicas para inic,Politico,Consenso de Sentimento,0.0516,0.2403,0.1887,148.46,140,9,0.2848
+2022,2022-08-22,"Bolsonaro é cópia malfeita de Trump, diz Lula à imprens",Politico,Tradicional Mais Favorável,0.0928,0.197,0.1041,187.67,520,9,0.3129
+2022,2022-08-22,STF deve incluir empresários pró-golpe no inquérito,Politico,Tradicional Mais Favorável,0.1976,0.2052,0.0076,149.51,145,9,0.3211
+2022,2022-08-22,Ministro publica foto de grupo que vai com Bolsonaro à,Politico,Tradicional Mais Favorável,0.1239,0.3235,0.1996,148.46,140,9,0.3039
+2022,2022-08-28,Entenda como foi o primeiro dia de propaganda dos candi,Politico,Tradicional Mais Favorável,0.0856,0.1474,0.0618,227.22,427,10,0.3358
+2022,2022-08-28,"Em debate, Bolsonaro critica STF e chama governo Lula d",Politico,Consenso de Sentimento,0.0606,0.1224,0.0618,160.7,211,9,0.3003
+2022,2022-08-28,Fome vira tema central na campanha dos candidatos à pre,Politico,Tradicional Mais Favorável,0.2969,0.2381,-0.0589,197.54,193,10,0.329
+2022,2022-08-28,Covid: país registra 22 mortes em 24h; 9 estados não at,Economico,Tradicional Mais Favorável,0.2279,0.2506,0.0227,152.44,160,9,0.1864
+2022,2022-09-03,Atentado contra Cristina repercute nas campanhas,Politico,Tradicional Mais Favorável,0.1247,0.159,0.0343,231.67,481,10,0.3359
+2022,2022-09-03,Bolsonaro se refere a Moraes como 'vagabundo' e diz que,Politico,Consenso de Sentimento,0.0497,0.1653,0.1156,158.8,198,9,0.31
+2022,2022-09-09,Bolsonaro defende atos do 7 de setembro e ataca adversí,Politico,Consenso de Sentimento,0.0256,0.1359,0.1103,189.02,544,9,0.3019
+2022,2022-09-09,"Pela primeira vez, IDH global recua por dois anos segui",Economico,Tradicional Mais Favorável,0.2809,0.3036,0.0226,197.74,194,10,0.2556
+2022,2022-09-09,"Paraná Pesquisas em SP: Haddad tem 31,2%; Tarcísio 25,",Politico,Tradicional Mais Favorável,0.1528,0.2203,0.0675,147.16,134,9,0.2297
+2022,2022-09-15,Aliados orientam Bolsonaro a rever cortes no Farmácia P,Politico,Tradicional Mais Favorável,0.1413,0.2324,0.0911,218.81,341,10,0.2886
+2022,2022-09-15,Coligação pede ao TSE medidas para frear escalada de,Politico,Consenso de Sentimento,0.0574,0.1591,0.1017,158.19,194,9,0.2745
+2022,2022-09-15,"Datafolha em São Paulo: Haddad tem 36%; Tarcísio, 22%",Politico,Consenso de Sentimento,0.0472,0.1207,0.0735,152.44,160,9,0.1673
+2022,2022-09-21,Genial/Quaest: Lula tem 44% e vantagem sobre Bolsonaro,Politico,Consenso de Sentimento,0.0384,0.161,0.1226,182.81,442,9,0.2388
+2022,2022-09-21,Ciro: Lula financia 'gabinete do ódio' e PT lidera 'fa,Politico,Consenso de Sentimento,0.0197,0.126,0.1063,158.5,196,9,0.3098
+2022,2022-09-21,Bolsonaro sanciona projeto que obriga planos a cobrirem,Politico,Tradicional Mais Favorável,0.2088,0.2065,-0.0023,195.76,184,10,0.2548
+2022,2022-09-21,DataToalha do DataToalha: em quem votam os vendedores d,Politico,Consenso de Sentimento,0.0722,0.2048,0.1326,145.56,127,9,0.3073
+2022,2022-09-27,Análise: A 'sombra de futuro' de Simone Tebet,Politico,Consenso de Sentimento,0.0303,0.1616,0.1313,202.85,863,9,0.2088
+2022,2022-09-27,Bolsonaro acusa Moraes de vazar dados do ajudante de or,Politico,Consenso de Sentimento,0.0732,0.1044,0.0312,174.24,332,9,0.3023
+2022,2022-09-27,CNI destaca solidez das instituições democráticas,Politico,Tradicional Mais Favorável,0.1054,0.2471,0.1417,214.39,303,10,0.2814
+2022,2022-09-27,"Entusiasta do voto íotil em 2018, Ciro agora dispara cr",Politico,Tradicional Mais Favorável,0.1509,0.251,0.1001,166.94,260,9,0.2397
+2022,2022-09-27,Eduardo Bolsonaro para Danilo Gentili: 'Muito mau-carat,Politico,Tradicional Mais Favorável,0.1452,0.1869,0.0417,160.13,207,9,0.2964
+2022,2022-09-27,Casos de violíancia política disparam na reta final da,Politico,Tradicional Mais Favorável,0.2779,0.1398,-0.138,193.25,172,10,0.3357
+2022,2022-09-27,Mais 15 pesquisas sobre eleição presidencial serão d,Politico,Consenso de Sentimento,-0.078,0.1487,0.2267,122.4,163,8,0.1663
+2022,2022-09-27,Não sabe em quem votar para governador do Rio? Compare,Politico,Consenso de Sentimento,-0.069,0.1566,0.2256,148.46,140,9,0.1984
+2022,2022-10-03,Especialistas atribuem vitória de Lula no exterior ao,Politico,Consenso de Sentimento,0.063,0.1857,0.1227,179.44,395,9,0.2975
+2022,2022-10-03,Bolsonaro ataca institutos de pesquisa e diz aguardar p,Politico,Consenso de Sentimento,-0.0066,0.1227,0.1293,175.65,348,9,0.3108
+2022,2022-10-03,"Aos 81 anos, Suplicy é o deputado estadual mais votado",Politico,Consenso de Sentimento,0.0403,0.1861,0.1459,171.61,304,9,0.2236
+2022,2022-10-03,"Advogado da família Bolsonaro, Frederick Wassef não se",Politico,Digital Mais Favorável,-0.0969,0.088,0.1848,163.01,228,9,0.2604
+2022,2022-10-03,"'Gostaríamos de ter o Ciro na nossa campanha', diz Glei",Politico,Consenso de Sentimento,0.0383,0.194,0.1557,128.78,213,8,0.2093
+2022,2022-10-03,Bolsonaro diz que deu faca com seu nome a Moraes: Ficou,Politico,Tradicional Mais Favorável,0.1057,0.1737,0.0681,123.26,169,8,0.2706
+2022,2022-10-03,Erros grosseiros de pesquisas eleitorais detonam credib,Politico,Consenso de Sentimento,0.0478,0.1558,0.108,150.72,151,9,0.3123
+2022,2022-10-03,"Após trocar DF por SP, Luis Miranda tem 8,9 mil votos e",Politico,Tradicional Mais Favorável,0.1578,0.2268,0.069,150.12,148,9,0.2531
+2022,2022-10-09,"Na primeira semana do 2º turno, Bolsonaro consolida al",Politico,Tradicional Mais Favorável,0.1276,0.1475,0.0199,242.77,647,10,0.2978
+2022,2022-10-09,Lula aposta em campanha no interior de São Paulo para,Politico,Consenso de Sentimento,-0.0058,0.1634,0.1691,181.06,417,9,0.2621
+2022,2022-10-09,Aumento da desigualdade pode pesar no voto - Francisco,Economico,Tradicional Mais Favorável,0.2405,0.2514,0.011,192.15,167,10,0.3962
+2022,2022-10-15,Bolsonaro acusa Alexandre de Moraes de beneficiar petis,Politico,Consenso de Sentimento,0.0625,0.1584,0.096,208.44,1040,9,0.3071
+2022,2022-10-15,"João Amoíado, um dos fundadores do partido Novo, decla",Politico,Consenso de Sentimento,0.0196,0.152,0.1325,158.65,197,9,0.2567
+2022,2022-10-15,Lula x Bolsonaro: saiba como será primeiro debate do 2,Politico,Consenso de Sentimento,0.0346,0.2051,0.1705,118.43,138,8,0.2211
+2022,2022-10-21,Zema se compara a Bolsonaro na gestão da pandemia: 'Fi,Politico,Tradicional Mais Favorável,0.0894,0.1402,0.0508,174.33,333,9,0.3065
+2022,2022-10-21,"Com lutadores, Bolsonaro diz que Lula faltará ao debat",Politico,Tradicional Mais Favorável,0.1176,0.1793,0.0616,159.69,204,9,0.3084
+2022,2022-10-21,"Em vídeo, Jefferson xinga Cármen Lúcia e chama TSE de “",Politico,Consenso de Sentimento,0.0721,0.1332,0.0612,154.77,173,9,0.3021
+2022,2022-10-21,"Paraná Pesquisas: Em SP, Tarcísio tem 57,5% e Haddad,",Politico,Consenso de Sentimento,0.0702,0.1881,0.1179,154.6,172,9,0.2209
+2022,2022-10-21,"Lula, Simone Tebet e Marina Silva fazem campanha em Min",Politico,Consenso de Sentimento,-0.0203,0.204,0.2243,147.16,134,9,0.2448
+2022,2022-10-27,Lula completa 77 anos em clima de otimismo com vitória,Politico,Consenso de Sentimento,0.0711,0.2038,0.1326,269.62,1325,10,0.2575
+2022,2022-10-27,Moraes aponta tentativa de 'tumultuar eleições' com d,Politico,Consenso de Sentimento,0.0362,0.1135,0.0773,186.14,494,9,0.2811
+2022,2022-10-27,"Weintraub sobre Bolsonaro: 'Não tem honra, vai perder",Politico,Consenso de Sentimento,-0.0425,0.1137,0.1562,168.5,274,9,0.2857
+2022,2022-10-27,Datafolha divulga hoje (27/10) nova pesquisa para presi,Politico,Consenso de Sentimento,0.0289,0.1737,0.1448,123.68,172,8,0.1949
+2022,2022-11-02,Intervenção militar ou de Estado: especialista explic,Politico,Consenso de Sentimento,0.0712,0.1898,0.1186,184.13,462,9,0.3101
+2022,2022-11-02,"Entrevista: ‘Podemos dar suporte, mas sem adesão ao gov",Politico,Tradicional Mais Favorável,0.1581,0.2686,0.1105,192.59,169,10,0.2512
+2022,2022-11-02,Ministro da Justiça diz que 544 vias foram desbloquead,Politico,Tradicional Mais Favorável,0.1152,0.2727,0.1575,151.3,154,9,0.2651
+2022,2022-11-08,Entrega da PEC da Transição é adiada; Lula quer negocia,Politico,Tradicional Mais Favorável,0.0858,0.2553,0.1694,180.56,410,9,0.2389
+2022,2022-11-08,Bolsonaro se mantém isolado no Alvorada e longe das red,Politico,Tradicional Mais Favorável,0.1523,0.2546,0.1023,160.13,207,9,0.3263
+2022,2022-11-14,'à muito feio Lula prometer desmatamento zero na Amazí,Politico,Tradicional Mais Favorável,0.1301,0.2789,0.1488,189.85,157,10,0.3077
+2022,2022-11-14,Lewandowski sobre assumir Defesa no governo Lula: “Fora,Politico,Tradicional Mais Favorável,0.1754,0.2921,0.1167,149.51,145,9,0.2929
+2022,2022-11-14,Comunidade internacional aguarda com expectativa a part,Politico,Consenso de Sentimento,-0.0047,0.2465,0.2512,145.79,128,9,0.1924
+2022,2022-11-20,Sede do governo de transição vira centro do poder em,Politico,Tradicional Mais Favorável,0.208,0.3133,0.1052,149.92,147,9,0.3766
+2022,2022-11-20,Nas entrelinhas: 'Nada será como antes no 3º mandato,Politico,Tradicional Mais Favorável,0.1569,0.2789,0.122,148.46,140,9,0.2931
+2022,2022-11-20,Bolsonaro responde a doze ações no TSE que podem o deix,Politico,Tradicional Mais Favorável,0.2355,0.2257,-0.0099,147.38,135,9,0.341
+2022,2022-11-26,"Com destino a Brasília, Lula entra em campo para destra",Politico,Tradicional Mais Favorável,0.0954,0.2616,0.1662,221.55,367,10,0.2283
+2022,2022-11-26,GT do governo de transição mostra preocupação com e,Social,Tradicional Mais Favorável,0.3667,0.3299,-0.0368,199.25,202,10,0.3228
+2022,2022-11-26,"Após reclusão, Bolsonaro participa de evento militar no",Politico,Tradicional Mais Favorável,0.1951,0.3194,0.1243,156.93,186,9,0.2703
+2022,2022-12-02,Mourão descarta intervenção e diz que Lula tomará posse,Politico,Tradicional Mais Favorável,0.1059,0.2661,0.1603,153.36,165,9,0.2444
+2022,2022-12-02,"Lula quer Maduro na posse, mas portaria de Bolsonaro vi",Politico,Tradicional Mais Favorável,0.1695,0.3604,0.1909,150.72,151,9,0.3377
+2022,2022-12-02,"PIB de Bolsonaro cresce menos que os de Lula, Dilma e F",Economico,Tradicional Mais Favorável,0.1594,0.3023,0.1429,187.65,148,10,0.288
+2022,2022-12-08,Mourão: Bolsonaro deve entregar faixa e provocar Lula “,Politico,Tradicional Mais Favorável,0.1422,0.3163,0.1741,169.36,282,9,0.2981
+2022,2022-12-08,Como votou cada senador votou no 1o turno da PEC da Tra,Politico,Tradicional Mais Favorável,0.3125,0.2621,-0.0504,185.31,139,10,0.2337
+2022,2022-12-14,Câmara mostra resistência e equipe de Lula vê cronogram,Politico,Tradicional Mais Favorável,0.122,0.2592,0.1372,156.12,181,9,0.2288
+2022,2022-12-20,"Bolsonaro exonera Silvinei Vasques, chefe da PRF réu p",Politico,Tradicional Mais Favorável,0.1198,0.258,0.1382,166.36,255,9,0.2973
+2022,2022-12-20,"Em contraste com Bolsonaro, Lula deve priorizar diploma",Politico,Tradicional Mais Favorável,0.1469,0.3279,0.181,159.84,205,9,0.2667
+2022,2022-12-26,Padilha diz que Bolsonaro é “líder de barro” por não pa,Politico,Tradicional Mais Favorável,0.1171,0.2431,0.126,174.42,334,9,0.314
+2022,2022-12-26,Lula deve anunciar os 16 ministros que faltam na quarta,Politico,Tradicional Mais Favorável,0.1112,0.3057,0.1945,152.63,161,9,0.2308
+2022,2022-12-26,"Lula tem “carinho, respeito e reconhecimento” por Tebet",Politico,Tradicional Mais Favorável,0.1388,0.3473,0.2085,152.07,158,9,0.3152
+2023,2023-01-01,"Após discursar no Planalto, Lula cumprimenta chefes de",Politico,Tradicional Mais Favorável,0.087,0.3463,0.2594,177.81,374,9,0.2414
+2023,2023-01-01,Alexandre Frota assiste à posse de Lula e comemora: “Ch,Politico,Tradicional Mais Favorável,0.1102,0.322,0.2118,163.01,228,9,0.323
+2023,2023-01-01,"Com reforço de 10 mil policiais, Esplanada terá segur",Politico,Tradicional Mais Favorável,0.2691,0.3421,0.073,198.12,196,10,0.3404
+2023,2023-01-01,"“Chega de ódio, fake news, armas e bombas”, diz Lula no",Politico,Tradicional Mais Favorável,0.1636,0.3039,0.1403,156.93,186,9,0.3567
+2023,2023-01-07,"Janones, Paulinho da Força e outros: veja aliados de Lu",Politico,Tradicional Mais Favorável,0.1363,0.2734,0.1371,173.51,324,9,0.3085
+2023,2023-01-07,PF põe prisão de bolsonaristas foragidos entre priorida,Politico,Tradicional Mais Favorável,0.1658,0.2793,0.1135,164.79,242,9,0.3002
+2023,2023-01-07,Dino sobre nova ocupação no QG do Exército: “Impatriota,Politico,Tradicional Mais Favorável,0.1198,0.2269,0.1071,161.12,214,9,0.3246
+2023,2023-01-07,Vídeos mostram confusão de bolsonaristas em via de SP,Politico,Tradicional Mais Favorável,0.1602,0.2483,0.0881,159.98,206,9,0.3977
+2023,2023-01-07,Moraes determina desobstrução de avenida mineira ocupad,Politico,Tradicional Mais Favorável,0.2018,0.2838,0.082,154.6,172,9,0.3407
+2023,2023-01-08,"“Inaceitável”, diz Romeu Zema sobre atos terroristas em",Politico,Tradicional Mais Favorável,0.3268,0.275,-0.0518,155.28,176,9,0.3658
+2023,2023-01-08,"AGU pede prisão em flagrante de Anderson Torres, ex-sec",Politico,Tradicional Mais Favorável,0.0963,0.2242,0.1279,146.71,132,9,0.2936
+2023,2023-01-13,"Novo assessor de Tarcísio, irmão de Michelle esteve em",Politico,Tradicional Mais Favorável,0.194,0.2949,0.1009,161.53,217,9,0.3304
+2023,2023-01-13,R$ 27 milhões no cartão: veja detalhes da gastança d,Economico,Tradicional Mais Favorável,0.2706,0.2906,0.02,193.46,173,10,0.2433
+2023,2023-01-19,Lula se reíone com reitores: 'Saindo das trevas para vo,Politico,Tradicional Mais Favorável,0.0825,0.3028,0.2203,167.84,268,9,0.2526
+2023,2023-01-25,"Bolsonaro deverá passar por nova cirurgia, diz médico",Politico,Tradicional Mais Favorável,0.1665,0.2426,0.0761,150.32,149,9,0.3018
+2023,2023-01-31,Bolsonaro promoveu 'desmanche' na luta contra corrupçí,Politico,Tradicional Mais Favorável,0.2655,0.2852,0.0197,161.67,218,9,0.3569
+2023,2023-01-31,"Aécio: PSDB apoia reeleição de Pacheco no Senado, apesa",Politico,Tradicional Mais Favorável,0.0927,0.2644,0.1717,157.88,192,9,0.2224
+2023,2023-01-31,Governo Lula retira 18 indicações de Bolsonaro enviadas,Politico,Tradicional Mais Favorável,0.1331,0.2657,0.1326,148.03,138,9,0.2685
+2023,2023-02-12,As leis brasileiras não estavam preparadas para um crim,Politico,Tradicional Mais Favorável,0.2108,0.2497,0.0389,157.41,189,9,0.3062
+2023,2023-02-12,Governo Lula apressa nomeações de 2o escalão e estatais,Politico,Consenso de Sentimento,0.0707,0.2789,0.2083,152.81,162,9,0.2711
+2023,2023-02-12,“Taxa de juros está errada e Brasil pode entrar numa re,Economico,Tradicional Mais Favorável,0.1799,0.2462,0.0662,117.55,133,8,0.2731
+2023,2023-02-24,MP investigará restrição a adolescentes em shopping de,Politico,Tradicional Mais Favorável,0.2007,0.3252,0.1245,146.48,131,9,0.3389
+2023,2023-03-02,Lula diz que Bolsonaro deixou o Brasil em condições p,Politico,Tradicional Mais Favorável,0.2746,0.2805,0.0059,187.14,146,10,0.3561
+2023,2023-03-02,Flávio Bolsonaro quer que empréstimos do BNDES tenham c,Politico,Tradicional Mais Favorável,0.1288,0.2501,0.1213,147.16,134,9,0.2672
+2023,2023-03-08,Bolsonaro confirma ter incorporado joias ao acervo pess,Politico,Tradicional Mais Favorável,0.1128,0.2757,0.1629,174.42,334,9,0.2392
+2023,2023-03-08,"Após dois meses, segue busca pelos financiadores dos a",Politico,Tradicional Mais Favorável,0.2264,0.2589,0.0324,145.79,128,9,0.3372
+2023,2023-03-20,É preciso colocar pra fora os sabotadores do governo Lu,Politico,Consenso de Sentimento,0.0624,0.1762,0.1138,149.09,143,9,0.2748
+2023,2023-03-20,Pinato: visita de Lula à China simboliza retomada da ra,Politico,Tradicional Mais Favorável,0.1069,0.2721,0.1652,148.67,141,9,0.2355
+2023,2023-03-20,Sete investigações estão em andamento sobre o govern,Politico,Tradicional Mais Favorável,0.1432,0.3235,0.1803,146.26,130,9,0.2984
+2023,2023-03-26,Banco Central antinacional - Odair Cunha,Economico,Tradicional Mais Favorável,0.2218,0.274,0.0522,168.72,276,9,0.253
+2023,2023-03-26,Flávio Bolsonaro diz que pode disputar eleição para,Politico,Tradicional Mais Favorável,0.1621,0.2923,0.1302,166.0,252,9,0.266
+2023,2023-03-26,"Artigo: Regras fiscais, monetárias e a crítica de Luca",Economico,Tradicional Mais Favorável,0.117,0.252,0.135,151.88,157,9,0.216
+2023,2023-03-26,A aliados Pacheco rebate Lira: “Dignidade é cumprir a C,Politico,Tradicional Mais Favorável,0.1254,0.233,0.1076,146.48,131,9,0.2694
+2023,2023-04-01,Reprovação de Lula se iguala à de Bolsonaro nos 3 pri,Politico,Tradicional Mais Favorável,0.1852,0.278,0.0928,166.59,257,9,0.2891
+2023,2023-04-01,Governo define reposição de R$ 30 bi para reforçar c,Economico,Consenso de Sentimento,0.0532,0.28,0.2268,153.72,167,9,0.2225
+2023,2023-04-07,"Novo Ensino Médio, juros e STF: veja os pontos do enco",Politico,Tradicional Mais Favorável,0.1941,0.3583,0.1643,164.67,241,9,0.3148
+2023,2023-04-07,"Poupança tem retirada líquida de R$ 6,09 bilhões em mar",Economico,Tradicional Mais Favorável,0.2949,0.283,-0.012,200.69,210,10,0.2401
+2023,2023-04-13,MPE se manifesta a favor da inelegibilidade de Bolsonar,Politico,Tradicional Mais Favorável,0.1771,0.2567,0.0796,146.48,131,9,0.2874
+2023,2023-04-19,"Gonçalves Dias, ministro do GSI, pede demissão do gover",Politico,Tradicional Mais Favorável,0.1915,0.2828,0.0913,171.61,304,9,0.2628
+2023,2023-04-19,"Campos Neto só pensa no lucro dos rentistas, diz Gleisi",Economico,Tradicional Mais Favorável,0.198,0.2978,0.0998,150.32,149,9,0.2429
+2023,2023-04-25,Novo marco fiscal: o Brasil no rumo certo - Merlong Sol,Economico,Tradicional Mais Favorável,0.1874,0.275,0.0876,189.37,155,10,0.2396
+2023,2023-05-03,Bolsonaro foi aos EUA 3 vezes após suposta fraude no ca,Politico,Tradicional Mais Favorável,0.1835,0.2559,0.0724,158.95,199,9,0.2732
+2023,2023-05-07,Governo destinará R$ 200 milhões para complementação do,Economico,Tradicional Mais Favorável,0.2721,0.3299,0.0578,182.24,128,10,0.2244
+2023,2023-05-13,"Inelegibilidade de Bolsonaro é questão de tempo, avalia",Politico,Tradicional Mais Favorável,0.2287,0.3096,0.0808,160.84,212,9,0.2904
+2023,2023-05-25,Governo garroteado - Jeferson Miola,Politico,Tradicional Mais Favorável,0.2102,0.3359,0.1256,157.41,189,9,0.3165
+2023,2023-05-31,Arthur Lira adia votação da MP da Esplanada e aperta pr,Politico,Tradicional Mais Favorável,0.1662,0.2547,0.0885,171.81,306,9,0.2271
+2023,2023-06-06,"MSTfobia, a nova invenção da bancada ruralista - Marcia",Economico,Tradicional Mais Favorável,0.332,0.3635,0.0315,190.08,158,10,0.2823
+2023,2023-06-18,Aliados de Bolsonaro planejam recursos após sua inelegi,Politico,Tradicional Mais Favorável,0.1721,0.2522,0.0801,171.11,299,9,0.2488
+2023,2023-06-18,STF prepara chegada de Zanin com reforma em sala de 350,Politico,Tradicional Mais Favorável,0.0922,0.2589,0.1666,161.26,215,9,0.185
+2023,2023-06-24,Bolsonaro diz que pode ser candidato a vereador no Rio,Politico,Tradicional Mais Favorável,0.185,0.2943,0.1092,182.12,432,9,0.2747
+2023,2023-06-30,"Moraes após TSE condenar Bolsonaro: Justiça é cega, mas",Politico,Tradicional Mais Favorável,0.2103,0.2487,0.0385,171.71,305,9,0.2873
+2023,2023-06-30,Vídeo: bar petista do DF reúne apoiadores que festejam,Politico,Tradicional Mais Favorável,0.2342,0.2599,0.0257,164.42,239,9,0.2663
+2023,2023-07-06,Bolsonaro atribui a reforma tributária ao PT: Peço que,Politico,Tradicional Mais Favorável,0.179,0.3092,0.1302,175.22,343,9,0.273
+2023,2023-07-06,"Daniela Carneiro colocou o cargo à disposição de Lula,",Politico,Tradicional Mais Favorável,0.2259,0.3654,0.1395,147.38,135,9,0.2539
+2023,2023-07-06,Câmara debate reforma tributária no plenário e pode vot,Politico,Tradicional Mais Favorável,0.1439,0.2985,0.1546,147.38,135,9,0.1991
+2023,2023-07-18,Ministério da Saúde aumenta em 30% repasses ao Samu 192,Economico,Tradicional Mais Favorável,0.1734,0.3032,0.1299,145.56,127,9,0.2133
+2023,2023-07-24,"Tudo no caminho certo, menos o Banco Central - Helena C",Economico,Tradicional Mais Favorável,0.2379,0.3349,0.097,222.46,376,10,0.2629
+2023,2023-08-11,Bolsonaro ainda solto é piada de péssimo gosto - Bepe D,Politico,Tradicional Mais Favorável,0.2364,0.314,0.0777,179.06,390,9,0.3277
+2023,2023-08-11,Operação da PF mira pai de Mauro Cid por suposto desvio,Politico,Tradicional Mais Favorável,0.1559,0.3271,0.1712,146.48,131,9,0.2593
+2023,2023-08-17,Bolsonaro já está sendo tratado pela PF como chefe de q,Politico,Tradicional Mais Favorável,0.1835,0.3147,0.1312,176.42,357,9,0.2668
+2023,2023-08-23,Haddad defende apoio dos BRICS à reindustrialização de,Economico,Tradicional Mais Favorável,0.2573,0.4264,0.1691,186.37,143,10,0.2689
+2023,2023-08-23,"Em avião, deputado brinca com Bolsonaro após harmonizaç",Politico,Tradicional Mais Favorável,0.2505,0.377,0.1265,148.67,141,9,0.3
+2023,2023-08-29,Salário real dos trabalhadores volta a crescer na era L,Economico,Tradicional Mais Favorável,0.2778,0.328,0.0502,187.9,149,10,0.2338
+2023,2023-08-29,Governo reserva R$ 8 bi em garantia do Tesouro no Desen,Economico,Tradicional Mais Favorável,0.1097,0.2629,0.1532,147.16,134,9,0.1863
+2023,2023-09-10,Delação de Mauro Cid provoca completo pânico no clã Bol,Politico,Tradicional Mais Favorável,0.2374,0.3048,0.0674,152.07,158,9,0.3101
+2023,2023-09-10,Réus de SP e PR são os primeiros 4 julgados pelo STF,Politico,Tradicional Mais Favorável,0.1814,0.2492,0.0677,147.38,135,9,0.2333
+2023,2023-09-22,Mauro Cid recebeu estudo sobre “poder moderador” dos mi,Politico,Tradicional Mais Favorável,0.2148,0.3131,0.0983,156.28,182,9,0.309
+2023,2023-09-22,"Governo reduz déficit para 2023, mas eleva bloqueio do",Economico,Tradicional Mais Favorável,0.1926,0.2952,0.1026,148.67,141,9,0.2034
+2023,2023-10-07,Hamas faz ataque surpresa de grandes proporções contra,Internacional,Tradicional Mais Favorável,0.2551,0.2368,-0.0183,66.62,138,6,0.2369
+2023,2023-10-10,Governo pretende retirar 900 brasileiros de Israel até,Internacional,Tradicional Mais Favorável,0.1679,0.3666,0.1986,97.09,219,7,0.2343
+2023,2023-10-10,Ignorar os direitos palestinos representa uma ameaça ao,Internacional,Tradicional Mais Favorável,0.1482,0.2004,0.0522,156.45,183,9,0.3082
+2023,2023-10-10,Hamas diz que está preparado para “longa batalha”,Internacional,Tradicional Mais Favorável,0.2654,0.2724,0.0071,93.57,180,7,0.2503
+2023,2023-11-09,Cidadãos brasileiros recebem autorização para deixar Fa,Politico,Tradicional Mais Favorável,0.179,0.374,0.195,94.82,193,7,0.2321
+2023,2023-11-15,Crusoé: o que as últimas pesquisas contam sobre a eleiç,Internacional,Tradicional Mais Favorável,0.1528,0.3959,0.2431,151.69,156,9,0.2686
+2023,2023-11-15,Não precisa ser de esquerda para ser decente - Chico Vi,Politico,Tradicional Mais Favorável,0.241,0.358,0.117,148.46,140,9,0.4
+2023,2023-11-21,BNDES inicia Brasil Mais Produtivo com R$ 2 bilhões e j,Economico,Tradicional Mais Favorável,0.2375,0.3351,0.0976,208.96,262,10,0.2342
+2023,2023-11-21,Senado analisa PEC que limita decisões monocráticas do,Politico,Tradicional Mais Favorável,0.1307,0.2316,0.1009,147.16,134,9,0.1999
+2023,2023-11-27,Folha diz que Lula indicará Dino e Gonet ainda hoje,Politico,Tradicional Mais Favorável,0.131,0.3577,0.2267,162.35,223,9,0.2187
+2023,2023-11-27,Quem vai assumir o Ministério da Justiça caso Dino seja,Politico,Tradicional Mais Favorável,0.1438,0.3542,0.2103,154.42,171,9,0.2428
+2023,2023-12-03,Ao menos 11 das 17 medidas para reduzir custo Brasil de,Economico,Tradicional Mais Favorável,0.1396,0.312,0.1724,154.94,174,9,0.2366
+2023,2023-12-03,"Presidente da Guiana vai a Essequibo, acusa Venezuela d",Internacional,Tradicional Mais Favorável,0.1148,0.3002,0.1854,92.65,171,7,0.2119
+2023,2023-12-09,Dino enfrentou desgastes no governo e viveu corda bamba,Politico,Tradicional Mais Favorável,0.1336,0.3186,0.185,162.48,224,9,0.221
+2023,2023-12-15,Lira diz que Câmara votará reforma tributária nesta sex,Politico,Tradicional Mais Favorável,0.0816,0.2668,0.1852,154.77,173,9,0.1951
+2023,2023-12-15,Capitais perdem espaço e economia fica menos concentrad,Economico,Tradicional Mais Favorável,0.2995,0.3704,0.0709,146.71,132,9,0.2734
+2023,2023-12-27,Prioridade do governo em 2024 é tirar novamente o Brasi,Economico,Tradicional Mais Favorável,0.146,0.2788,0.1328,158.95,199,9,0.2537
+2024,2024-01-02,Superávit comercial brasileiro bate recorde em 2023,Economico,Tradicional Mais Favorável,0.1587,0.3385,0.1799,149.71,146,9,0.2505
+2024,2024-01-08,Deputados do DF gastaram 36% a mais com cota parlamenta,Economico,Tradicional Mais Favorável,0.1727,0.3293,0.1566,149.51,145,9,0.2147
+2024,2024-01-08,"“Espectro do autoritarismo continua a nos assombrar”, d",Politico,Tradicional Mais Favorável,0.144,0.3382,0.1942,145.56,127,9,0.3508
+2024,2024-01-14,"Bolsonaro sobre Lula: Posso ser horrível, mas o outro c",Politico,Tradicional Mais Favorável,0.2188,0.3125,0.0937,149.71,146,9,0.3337
+2024,2024-01-26,PF apura se o comando da Abin obstruiu investigações so,Politico,Tradicional Mais Favorável,0.1851,0.2814,0.0963,180.48,409,9,0.2431
+2024,2024-02-07,Vídeos. Multidão festeja Bolsonaro em dia que daria dep,Politico,Tradicional Mais Favorável,0.182,0.3108,0.1288,182.12,432,9,0.2967
+2024,2024-02-07,Aloysio tocou na ferida - Paulo Henrique Arantes - Bras,Politico,Tradicional Mais Favorável,0.32,0.3385,0.0185,155.28,176,9,0.3545
+2024,2024-02-07,Está com dengue? Saiba se é necessário fazer isolamento,Social,Tradicional Mais Favorável,0.2412,0.3404,0.0992,122.98,167,8,0.2281
+2024,2024-02-13,“Bolsonaro partiu para o tudo ou nada e decidiu trucar,Politico,Tradicional Mais Favorável,0.2407,0.3426,0.1019,176.75,361,9,0.3275
+2024,2024-02-14,Fugitivos da penitenciária de Mossoró são ligados ao Co,Politico,Tradicional Mais Favorável,0.1059,0.3167,0.2108,123.68,172,8,0.2216
+2024,2024-02-19,Wadih Damous diz que Lula acertou ao comparar as ações,Politico,Tradicional Mais Favorável,0.2137,0.2896,0.0758,176.33,356,9,0.3181
+2024,2024-02-19,"Depois de inelegível, incomunicável - Alex Solnik - Bra",Politico,Tradicional Mais Favorável,0.1881,0.3727,0.1846,156.28,182,9,0.2685
+2024,2024-02-19,A engrenagem do golpismo emperrou - Ronaldo Lima Lins,Politico,Tradicional Mais Favorável,0.2932,0.3669,0.0737,151.5,155,9,0.3702
+2024,2024-02-25,49 milhões de brasileiros não tem acesso a esgoto adequ,Economico,Tradicional Mais Favorável,0.1926,0.3077,0.1151,157.25,188,9,0.2208
+2024,2024-02-25,"Antes de ato na Paulista, governadores bolsonaristas co",Politico,Tradicional Mais Favorável,0.2529,0.4755,0.2226,155.45,177,9,0.2764
+2024,2024-02-25,Governo vai enviar vacinas contra dengue para mais 29 m,Social,Tradicional Mais Favorável,0.1896,0.3244,0.1348,120.09,148,8,0.2295
+2024,2024-02-25,PF desmente detenção de youtuber português bolsonarista,Politico,Tradicional Mais Favorável,0.2034,0.3875,0.1841,149.92,147,9,0.327
+2024,2024-03-02,"Com Lula e Haddad, PIB cresceu três vezes mais do que o",Economico,Tradicional Mais Favorável,0.2647,0.3692,0.1045,157.88,192,9,0.2619
+2024,2024-03-14,PF descarta interesse em delação de ex-assessor de Bols,Politico,Tradicional Mais Favorável,0.2196,0.2879,0.0683,173.24,321,9,0.2718
+2024,2024-03-20,A reconstrução do Brasil com investimentos e cresciment,Economico,Tradicional Mais Favorável,0.1048,0.3249,0.22,153.36,165,9,0.2581
+2024,2024-03-26,Reprovação do STF pelos brasileiros cai 10 pontos perce,Economico,Tradicional Mais Favorável,0.126,0.2574,0.1314,148.25,139,9,0.245
+2024,2024-03-26,"Para Itamaraty, Hungria acobertou permanência de Bolson",Politico,Tradicional Mais Favorável,0.1534,0.3097,0.1564,147.6,136,9,0.2798
+2024,2024-04-01,Governos e esquerdas perdem na disputa da hegemonia - A,Economico,Tradicional Mais Favorável,0.2375,0.3456,0.1081,154.6,172,9,0.2892
+2024,2024-04-07,Elon Musk ajuda Bolsonaro em tribunal internacional con,Politico,Tradicional Mais Favorável,0.1878,0.2778,0.0899,160.56,210,9,0.2455
+2024,2024-04-07,Maioria esmagadora dos brasileiros defende a manutenção,Economico,Tradicional Mais Favorável,0.1711,0.3526,0.1815,110.37,134,8,0.3043
+2024,2024-04-19,A polêmica revisão das metas fiscais - Paulo Nogueira B,Economico,Tradicional Mais Favorável,0.1112,0.2978,0.1866,164.67,241,9,0.2288
+2024,2024-04-19,Lula reúne articuladores do Congresso para encaminhar v,Politico,Tradicional Mais Favorável,0.1558,0.3663,0.2106,146.26,130,9,0.274
+2024,2024-05-07,Ações do governo no combate às enchentes no RS já somam,Politico,Tradicional Mais Favorável,0.216,0.3257,0.1097,167.73,267,9,0.3256
+2024,2024-05-19,Cuidado com os abutres - Francisco Calmon,Social,Tradicional Mais Favorável,0.2487,0.3381,0.0893,156.28,182,9,0.336
+2024,2024-06-24,Imposto sobre grandes fortunas tem apoio de 70% dos bra,Economico,Tradicional Mais Favorável,0.124,0.3052,0.1811,170.1,289,9,0.2536
+2024,2024-06-24,Porte de maconha para consumo próprio volta à pauta do,Politico,Tradicional Mais Favorável,0.2177,0.3025,0.0848,121.04,154,8,0.2126
+2024,2024-06-30,O Brasil não está em crise e a mídia entrou em modo pân,Politico,Tradicional Mais Favorável,0.1587,0.3322,0.1735,147.82,137,9,0.2881
+2024,2024-07-06,PF protocola no STF indiciamento de Bolsonaro,Politico,Tradicional Mais Favorável,0.1821,0.3235,0.1415,148.46,140,9,0.2738
+2024,2024-07-12,"Médico de Bolsonaro foi funcionário fantasma em Miami,",Politico,Tradicional Mais Favorável,0.1823,0.3355,0.1532,160.98,213,9,0.3451
+2024,2024-07-24,"Nada, além de pesquisas duvidosas, indica uma vitória d",Internacional,Tradicional Mais Favorável,0.1049,0.2626,0.1577,173.7,326,9,0.2539
+2024,2024-07-30,"Lula silencia sobre Maduro, enquanto líderes mundiais s",Politico,Tradicional Mais Favorável,0.2142,0.307,0.0928,175.74,349,9,0.2526
+2024,2024-07-30,Devedores contumazes comprometem financiamento público,Economico,Tradicional Mais Favorável,0.1211,0.2925,0.1714,148.89,142,9,0.2555
+2024,2024-08-05,Madurismo e a traição ao chavismo - Aldo Fornazieri - B,Internacional,Tradicional Mais Favorável,0.1708,0.3134,0.1426,148.89,142,9,0.318
+2024,2024-08-11,A diplomacia do Brasil está correta - Marcelo Zero - Br,Politico,Tradicional Mais Favorável,0.2715,0.2847,0.0132,159.98,206,9,0.3307
+2024,2024-08-11,Congresso pode voltar a ampliar controle sobre o orçam,Politico,Tradicional Mais Favorável,0.2217,0.3239,0.1022,150.72,151,9,0.2208
+2024,2024-08-17,"Saiba tudo sobre a primeira edição do CNU, o Enem dos C",Economico,Tradicional Mais Favorável,0.1273,0.3701,0.2428,154.6,172,9,0.2511
+2024,2024-08-29,"Após intimação, Musk usa X para responder, criticar e a",Politico,Tradicional Mais Favorável,0.3268,0.2862,-0.0406,130.0,322,8,0.2763
+2024,2024-09-04,Vice-presidente da Câmara diz que Lula autorizou candid,Politico,Tradicional Mais Favorável,0.1635,0.3479,0.1844,152.81,162,9,0.2468
+2024,2024-09-05,Ministro Silvio Almeida refuta acusações de assédio sex,Politico,Tradicional Mais Favorável,0.1796,0.2775,0.0979,154.25,170,9,0.3158
+2024,2024-09-10,Brasil entra no nível perigoso de poluição com aumento,Economico,Tradicional Mais Favorável,0.1843,0.2958,0.1115,168.61,275,9,0.2768
+2024,2024-09-16,Cadeirada em Marçal é fruto da normalização da intolerâ,Politico,Tradicional Mais Favorável,0.3869,0.2747,-0.1122,121.46,220,8,0.3785
+2024,2024-09-17,"Embaixador do Irã, civis e membros do Hezbollah são ati",Internacional,Tradicional Mais Favorável,0.2224,0.1687,-0.0538,66.12,133,6,0.1874
+2024,2024-09-28,"Situação de Nasrallah, líder do Hezbollah, é incerta ap",Internacional,Tradicional Mais Favorável,0.2003,0.148,-0.0523,98.58,238,7,0.1971
+2024,2024-10-04,Vitória de Boulos interessa a todos nós - Paulo Moreira,Politico,Tradicional Mais Favorável,0.1839,0.3519,0.168,189.24,548,9,0.256
+2024,2024-10-04,Eleições 2024: saiba quais as atribuições e funções do,Politico,Tradicional Mais Favorável,0.137,0.2948,0.1578,97.96,230,7,0.1933
+2024,2024-10-04,Governo modifica lista de bets autorizadas a operar no,Economico,Tradicional Mais Favorável,0.2336,0.3395,0.1059,119.44,201,8,0.2464
+2024,2024-10-22,Paraná Pesquisas mostra empate entre David Almeida e Ca,Politico,Tradicional Mais Favorável,0.1581,0.2879,0.1298,117.7,186,8,0.1897
+2024,2024-10-22,Os adjetivos com os quais o povo julga (e condena) Lula,Politico,Tradicional Mais Favorável,0.3195,0.3493,0.0298,110.2,133,8,0.2798
+2024,2024-11-03,Vitória de Trump nos EUA pode reativar projeto golpista,Politico,Tradicional Mais Favorável,0.118,0.3528,0.2348,151.5,155,9,0.2828
+2024,2024-11-21,Os dois comandantes que não foram indiciados por golpe,Politico,Tradicional Mais Favorável,0.2354,0.3363,0.1009,124.41,251,8,0.2514
+2024,2024-11-21,Relatório da PF está &#8216;bem embasado&#8217; e vai r,Politico,Tradicional Mais Favorável,0.2739,0.3044,0.0306,117.46,184,8,0.299
+2024,2024-11-27,"Não prejudica partido, diz Sóstenes sobre indiciamento",Politico,Tradicional Mais Favorável,0.3817,0.3106,-0.0711,160.56,210,9,0.2926
+2024,2024-12-03,A mídia é a alma da perversidade de um Brasil saqueado,Economico,Tradicional Mais Favorável,0.184,0.3509,0.1669,145.79,128,9,0.3699
+2024,2024-12-09,A importância do acordo Mercosul-União Europeia para o,Politico,Tradicional Mais Favorável,0.1818,0.3738,0.192,148.25,139,9,0.3796
+2024,2024-12-10,"Complicações são “muito pouco prováveis”, diz médico de",Politico,Tradicional Mais Favorável,0.2502,0.399,0.1488,108.99,126,8,0.2665
+2024,2024-12-15,"Governo prioriza PL e Centrão ao liberar R$ 7,3 bi em",Politico,Tradicional Mais Favorável,0.2077,0.2637,0.056,126.05,270,8,0.1941
+2025,2025-01-08,"“A democracia amadureceu”, avalia Barroso após dois ano",Politico,Tradicional Mais Favorável,0.207,0.2914,0.0844,149.71,146,9,0.3503
+2025,2025-01-14,Secretário da Receita desmente fake news sobre o Pix e,Economico,Tradicional Mais Favorável,0.0998,0.1625,0.0627,155.45,177,9,0.2999
+2025,2025-01-14,Viagem de Bolsonaro à posse de Trump será de cinco dias,Politico,Tradicional Mais Favorável,0.2437,0.3263,0.0827,113.48,154,8,0.2508
+2025,2025-01-20,"Relação entre Brasil e EUA é fria e protocolar, avaliam",Politico,Tradicional Mais Favorável,0.351,0.3718,0.0209,116.72,178,8,0.3315
+2025,2025-01-26,Brasil pedirá explicações aos EUA por tratamento degrad,Internacional,Tradicional Mais Favorável,0.2094,0.2755,0.0661,121.04,154,8,0.3235
+2025,2025-02-13,De Maricá a Macapá: todos os brasileiros têm direito à,Economico,Tradicional Mais Favorável,0.2291,0.3802,0.1511,158.04,193,9,0.3113
+2025,2025-02-13,Comissão da OEA vira nova investida de Bolsonaro contra,Politico,Consenso de Sentimento,0.0687,0.3045,0.2359,153.0,163,9,0.2767
+2025,2025-02-13,"Em Macapá, Lula defende o combate à desinformação: ‘tem",Politico,Tradicional Mais Favorável,0.359,0.2773,-0.0817,109.86,131,8,0.3296
+2025,2025-02-19,Conheça as etapas do processo que levará Bolsonaro e se,Politico,Tradicional Mais Favorável,0.1696,0.2965,0.127,196.49,698,9,0.2716
+2025,2025-02-19,Alcolumbre fura blindagem de Lula e revela cenário desc,Politico,Tradicional Mais Favorável,0.182,0.3266,0.1446,153.36,165,9,0.2838
+2025,2025-02-25,O milagre de Haddad - Camilo Irineu Quartarollo - Brasi,Economico,Tradicional Mais Favorável,0.1573,0.2761,0.1188,147.38,135,9,0.2608
+2025,2025-03-03,Bolsonaro critica pedido de apreensão do passaporte de,Politico,Tradicional Mais Favorável,0.3711,0.3495,-0.0215,110.03,132,8,0.2812
+2025,2025-03-09,"Economia desacelera, mas indústria e serviços compensam",Economico,Consenso de Sentimento,0.0758,0.2807,0.2049,151.3,154,9,0.2674
+2025,2025-03-15,Bolsonaristas cogitam ação no exterior para evitar cond,Politico,Tradicional Mais Favorável,0.2591,0.3225,0.0633,169.57,284,9,0.3173
+2025,2025-03-15,A juventude relegada torna-se antissistema - Sergio Fer,Economico,Tradicional Mais Favorável,0.2756,0.3512,0.0757,114.88,164,8,0.3094
+2025,2025-03-15,"Correção da tabela do IR pode isentar 12,9 milhões de b",Economico,Tradicional Mais Favorável,0.1621,0.2555,0.0934,113.04,151,8,0.1864
+2025,2025-03-15,Dores de um parto: há 40 anos nascia nossa democracia,Politico,Tradicional Mais Favorável,0.4089,0.4427,0.0338,145.79,128,9,0.3106
+2025,2025-03-21,Bolsonaro se define como “um aborto da natureza” em liv,Politico,Tradicional Mais Favorável,0.2462,0.3269,0.0807,157.57,190,9,0.264
+2025,2025-03-21,Suspeita no bolsonarismo: o coma político de Jair nem s,Politico,Tradicional Mais Favorável,0.2434,0.2928,0.0494,109.52,129,8,0.3164
+2025,2025-03-27,"59,1% dos brasileiros não aprovam condução da economia",Economico,Tradicional Mais Favorável,0.1173,0.2926,0.1753,153.54,166,9,0.2728
+2025,2025-04-02,Governo Lula tem aprovação de 41% e desaprovação de 56%,Politico,Tradicional Mais Favorável,0.1734,0.2783,0.1049,165.4,247,9,0.2941
+2025,2025-04-02,Tarifaço de Trump pode afetar exportações brasileiras d,Economico,Tradicional Mais Favorável,0.2506,0.3082,0.0576,113.91,157,8,0.2173
+2025,2025-04-08,China promete “lutar até o fim” contra guerra comercial,Internacional,Tradicional Mais Favorável,0.238,0.2159,-0.0221,123.69,243,8,0.2091
+2025,2025-04-08,Maioria dos brasileiros defende prisão de Bolsonaro por,Politico,Tradicional Mais Favorável,0.1472,0.3297,0.1826,159.69,204,9,0.2892
+2025,2025-04-14,"Pegou mal demais, Armínio - Leonardo Attuch - Brasil 24",Economico,Tradicional Mais Favorável,0.2469,0.3575,0.1105,154.25,170,9,0.3956
+2025,2025-04-14,Bolsonaro deixa UTI após cirurgia de 12 horas e segue p,Politico,Tradicional Mais Favorável,0.2427,0.4052,0.1624,112.44,147,8,0.2534
+2025,2025-04-20,"Papa Francisco faz aparição na Páscoa, pede paz em Gaza",Internacional,Tradicional Mais Favorável,0.0885,0.4664,0.3779,108.38,411,7,0.3052
+2025,2025-05-02,Marinho condiciona futuro de Lupi à resposta política e,Politico,Tradicional Mais Favorável,0.3078,0.2873,-0.0205,160.56,210,9,0.252
+2025,2025-05-02,Cardeais esperam conclave rápido para escolher o novo p,Internacional,Tradicional Mais Favorável,0.2385,0.3903,0.1518,66.81,140,6,0.2445
+2025,2025-05-08,Cardeal Robert Francis Prevost é anunciado como novo pa,Internacional,Tradicional Mais Favorável,0.3173,0.5029,0.1856,99.31,248,7,0.2338
+2025,2025-05-08,Parlamentares vão acionar o STF contra votação que susp,Politico,Tradicional Mais Favorável,0.2955,0.2972,0.0017,116.72,178,8,0.2583
+2025,2025-05-20,"O Amapá também é Brasil, é um estado protegido e tem o",Economico,Tradicional Mais Favorável,0.2025,0.398,0.1955,154.94,174,9,0.3134
+2025,2025-05-26,"Tarcísio vai depor em defesa de Bolsonaro, que está pre",Politico,Tradicional Mais Favorável,0.2809,0.3652,0.0843,127.1,283,8,0.2933
+2025,2025-06-03,"Antes de fugir, Carla Zambelli arrecadou R$ 285 mil por",Politico,Tradicional Mais Favorável,0.2618,0.2288,-0.033,113.77,156,8,0.2362
+2025,2025-06-07,Eduardo Bolsonaro ignora PF e não responde a contatos s,Politico,Tradicional Mais Favorável,0.2815,0.3357,0.0542,121.66,222,8,0.2673
+2025,2025-06-07,Alexandre de Moraes conduz interrogatório de Bolsonaro,Politico,Tradicional Mais Favorável,0.3114,0.3693,0.0579,121.66,222,8,0.2741
+2025,2025-06-13,Repercussão internacional condena ataques de Israel ao,Internacional,Tradicional Mais Favorável,0.3144,0.3169,0.0025,81.38,414,6,0.2761
+2025,2025-06-13,É hora de condenar Bolsonaro e todos os golpistas - Jos,Politico,Tradicional Mais Favorável,0.2554,0.2824,0.027,112.74,149,8,0.2515
+2025,2025-06-13,Datafolha aponta Brasil ainda polarizado entre Lula e B,Politico,Consenso de Sentimento,0.065,0.2985,0.2334,148.25,139,9,0.306
+2025,2025-06-13,Propostas para enfrentar a crise ambiental - João Pedro,Economico,Tradicional Mais Favorável,0.1851,0.3948,0.2097,147.6,136,9,0.2947
+2025,2025-06-19,Israel faz novos bombardeios a instalações nucleares e,Internacional,Tradicional Mais Favorável,0.2733,0.2527,-0.0206,67.91,152,6,0.2446
+2025,2025-06-25,A medida que pode amenizar derrota do governo com IOF,Politico,Tradicional Mais Favorável,0.2073,0.2848,0.0775,157.57,190,9,0.2682
+2025,2025-06-25,Receita amplia foco em grandes contribuintes: novas del,Economico,Tradicional Mais Favorável,0.1513,0.3465,0.1952,148.25,139,9,0.2988
+2025,2025-07-07,"&#8220;Deixem Bolsonaro em paz&#8221;, diz Trump, em at",Politico,Tradicional Mais Favorável,0.249,0.3386,0.0896,187.33,514,9,0.3347
+2025,2025-07-07,Brasil conduz bem o BRICS - Marcelo Zero,Politico,Tradicional Mais Favorável,0.2763,0.3846,0.1083,164.29,238,9,0.3749
+2025,2025-07-07,Trump ameaça sobretaxa de 10% a países alinhados ao BRI,Internacional,Tradicional Mais Favorável,0.1937,0.3073,0.1135,113.62,155,8,0.2511
+2025,2025-07-13,Aliados de Bolsonaro acusam Tarcísio de oportunismo e c,Politico,Tradicional Mais Favorável,0.3149,0.3238,0.0089,143.05,576,8,0.3132
+2025,2025-07-13,Lula amplia ofensiva política e midiática após tarifa d,Politico,Tradicional Mais Favorável,0.2235,0.3566,0.1331,182.74,441,9,0.2974
+2025,2025-07-19,&#8220;É hora de cassar e prender Eduardo Bolsonaro&#82,Politico,Tradicional Mais Favorável,0.2762,0.3082,0.0319,173.51,324,9,0.3192
+2025,2025-07-19,Semana foi marcada por resposta firme do governo a tari,Politico,Tradicional Mais Favorável,0.2582,0.3274,0.0691,113.62,155,8,0.246
+2025,2025-07-19,"Brasil não será intimidado, diz Messias, após sanções d",Politico,Tradicional Mais Favorável,0.2386,0.3577,0.1192,149.71,146,9,0.3217
+2025,2025-07-25,Brasil prepara política para minerais estratégicos e en,Economico,Tradicional Mais Favorável,0.1873,0.3774,0.1902,159.69,204,9,0.2754
+2025,2025-07-25,Governo Trump volta a acusar Alexandre de Moraes de per,Politico,Tradicional Mais Favorável,0.3338,0.309,-0.0247,117.46,184,8,0.3199
+2025,2025-07-25,"Lula: ‘Se abaixar a cabeça, eles colocam uma cangalha e",Politico,Tradicional Mais Favorável,0.175,0.3785,0.2034,154.42,171,9,0.2646
+2025,2025-07-25,Trump veta negociações com o Brasil sobre tarifaço,Economico,Tradicional Mais Favorável,0.2557,0.3253,0.0696,114.33,160,8,0.2842
+2025,2025-07-25,Haddad diz que mais de 10 mil empresas brasileiras serã,Economico,Tradicional Mais Favorável,0.2871,0.3136,0.0265,114.05,158,8,0.2303
+2025,2025-07-25,Preocupação com desigualdade social cresce entre brasil,Economico,Tradicional Mais Favorável,0.1176,0.3335,0.2159,150.72,151,9,0.3319
+2025,2025-07-26,Carla Zambelli diz ser “exilada política” na Itália e a,Politico,Tradicional Mais Favorável,0.1979,0.2609,0.063,111.03,138,8,0.2094
+2025,2025-07-31,General classifica sanção dos EUA a Moraes como vergonh,Politico,Tradicional Mais Favorável,0.1972,0.3276,0.1303,160.98,213,9,0.3057
+2025,2025-07-31,Tarifaço: Trump eleva taxas para dezenas de países. Vej,Economico,Tradicional Mais Favorável,0.1951,0.2952,0.1,160.27,208,9,0.2203
+2025,2025-07-31,Bolsonaro perde recurso contra Boulos em processo envol,Politico,Tradicional Mais Favorável,0.2483,0.3221,0.0738,152.07,158,9,0.2956
+2025,2025-07-31,Eduardo Bolsonaro “queima” Tarcísio com Trump e tenta i,Politico,Tradicional Mais Favorável,0.2331,0.3513,0.1182,147.38,135,9,0.3246
+2025,2025-08-06,Eduardo Bolsonaro admite que não volta ao Brasil por me,Politico,Tradicional Mais Favorável,0.2638,0.369,0.1052,161.81,219,9,0.2892
+2025,2025-08-06,Governo Lula prepara pacote de socorro a empresas afeta,Economico,Tradicional Mais Favorável,0.2216,0.3487,0.1272,157.25,188,9,0.2397
+2025,2025-08-12,"‘EUA pegaram pesado com o Brasil’, diz Arminio Fraga",Economico,Consenso de Sentimento,0.0654,0.3291,0.2637,172.48,313,9,0.2747
+2025,2025-08-12,"Em prisão domiciliar, Bolsonaro pede ao STF autorização",Politico,Tradicional Mais Favorável,0.1457,0.3302,0.1845,163.91,235,9,0.2485
+2025,2025-08-18,Trump contra o Brasil: risco de novas sanções em setemb,Economico,Tradicional Mais Favorável,0.323,0.3565,0.0334,110.03,132,8,0.2832
+2025,2025-08-24,Governo e STF avaliam que julgamento de Bolsonaro pode,Politico,Tradicional Mais Favorável,0.3131,0.3734,0.0603,118.87,196,8,0.2741
+2025,2025-08-24,"Ensandecido, Eduardo Bolsonaro chama Moraes de “fdp” e",Politico,Tradicional Mais Favorável,0.2201,0.3697,0.1496,154.77,173,9,0.3044
+2025,2025-08-30,Lindbergh celebra decisão de Moraes sobre Bolsonaro: Ce,Politico,Tradicional Mais Favorável,0.2398,0.3361,0.0963,169.36,282,9,0.2483
+2025,2025-08-30,Flávio Bolsonaro mostra prisão de suspeitos de roubar c,Politico,Tradicional Mais Favorável,0.2879,0.3317,0.0438,118.53,193,8,0.2745
+2025,2025-08-30,Eduardo Bolsonaro intensifica agenda em Washington dura,Politico,Tradicional Mais Favorável,0.2881,0.375,0.087,112.44,147,8,0.2754
+2025,2025-09-05,Proposta do PL por “anistia ampla” que beneficiaria Bol,Politico,Tradicional Mais Favorável,0.2312,0.3347,0.1035,185.28,480,9,0.2923
+2025,2025-09-05,Amoêdo critica proposta de anistia de Tarcísio e diz qu,Politico,Tradicional Mais Favorável,0.3608,0.3722,0.0114,108.99,126,8,0.3311
+2025,2025-09-11,Estratégia de Fux é abrir caminho para Bolsonaro tentar,Politico,Tradicional Mais Favorável,0.2265,0.3314,0.1049,193.42,630,9,0.2813
+2025,2025-09-11,INSS. Ex-ministro de Bolsonaro justifica fraude: Falta,Politico,Tradicional Mais Favorável,0.3537,0.3477,-0.006,110.37,134,8,0.2602
+2025,2025-09-11,Morte de Charlie Kirk expõe profunda divisão política n,Internacional,Tradicional Mais Favorável,0.3663,0.2887,-0.0776,116.45,127,8,0.3209
+2025,2025-09-17,Bolsonaro desiste de reverter inelegibilidade para avan,Politico,Tradicional Mais Favorável,0.316,0.3391,0.0231,132.19,355,8,0.3062
+2025,2025-09-17,Presidente da CCJ do Senado descarta avanço da PEC da B,Politico,Tradicional Mais Favorável,0.3089,0.3178,0.0089,115.82,171,8,0.257
+2025,2025-09-23,“É muito importante para nós termos uma relação civiliz,Politico,Tradicional Mais Favorável,0.1998,0.4574,0.2576,154.07,169,9,0.2975
+2025,2025-09-23,"Após denúncia da PGR, Gleisi cobra cassação de Eduardo",Politico,Tradicional Mais Favorável,0.2087,0.3636,0.1549,153.54,166,9,0.2808
+2025,2025-09-23,Trump anuncia encontro com Lula na semana que vem,Politico,Tradicional Mais Favorável,0.2855,0.4434,0.158,109.17,127,8,0.2971
+2025,2025-09-29,Trump pressiona Hamas a aceitar plano de paz em Gaza,Internacional,Tradicional Mais Favorável,0.2687,0.2825,0.0138,67.46,147,6,0.2594
+2025,2025-09-29,117 garrafas de bebidas adulteradas são apreendidas em,Social,Tradicional Mais Favorável,0.2045,0.1819,-0.0226,88.16,133,7,0.2122
+2025,2025-10-05,Paulo Figueiredo torce para que Trump se reúna com Lula,Politico,Tradicional Mais Favorável,0.1765,0.4309,0.2543,159.25,201,9,0.2637
+2025,2025-10-05,Brasil tem 14 casos confirmados de ingestão de metanol,Social,Tradicional Mais Favorável,0.2451,0.2448,-0.0003,110.2,133,8,0.2437
+2025,2025-10-23,Lula pode se reunir com Donald Trump na Malásia para re,Politico,Tradicional Mais Favorável,0.255,0.4331,0.1782,127.1,283,8,0.2462
+2025,2025-10-29,Governo federal critica operação no Rio: Matar pessoas,Politico,Tradicional Mais Favorável,0.2161,0.3532,0.1371,182.12,432,9,0.3687
+2025,2025-10-29,Brasil corre risco de desperdiçar potencial das terras,Economico,Tradicional Mais Favorável,0.1834,0.405,0.2216,153.72,167,9,0.2905
+2025,2025-11-04,“Narcoterrorismo” pode abrir brecha para ataques dos EU,Politico,Tradicional Mais Favorável,0.4254,0.3912,-0.0342,114.47,161,8,0.3728
+2025,2025-11-10,"‘Guerra da Papuda’ expõe disputa entre Moraes, Ibaneis",Politico,Tradicional Mais Favorável,0.3025,0.3685,0.066,112.74,149,8,0.2701
+2025,2025-11-22,Kakay: já havia os requisitos para a prisão preventiva,Politico,Tradicional Mais Favorável,0.2345,0.3514,0.117,188.86,541,9,0.2714
+2025,2025-11-22,"No Ceará, Michelle Bolsonaro chegará de jatinho a Brasi",Politico,Tradicional Mais Favorável,0.2842,0.3817,0.0975,136.17,424,8,0.2537
+2025,2025-11-22,Marçal afirma que direita é “refém de Bolsonaro”,Politico,Tradicional Mais Favorável,0.3091,0.3447,0.0356,164.54,240,9,0.3403
+2025,2025-12-04,Decisão de Gilmar Mendes deve travar 66 pedidos de impe,Politico,Tradicional Mais Favorável,0.218,0.3059,0.0879,151.69,156,9,0.2434
+2025,2025-12-05,Flávio diz que foi escolhido por Jair Bolsonaro como ca,Politico,Tradicional Mais Favorável,0.2085,0.2959,0.0874,109.86,131,8,0.2825
+2025,2025-12-10,Deputados aprovam projeto que reduz penas de condenados,Politico,Tradicional Mais Favorável,0.2904,0.2944,0.004,118.53,193,8,0.2533
+2025,2025-12-22,"Malu Gaspar, do Globo, diz que Alexandre Moraes procuro",Politico,Tradicional Mais Favorável,0.1781,0.3875,0.2094,149.51,145,9,0.28
+2025,2025-12-28,"Bolsonaro tem nova crise de soluços, diz boletim médico",Politico,Tradicional Mais Favorável,0.1325,0.3567,0.2242,145.33,126,9,0.2562

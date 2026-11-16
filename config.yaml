@@ -1,9 +1,9 @@
 geral:
   nome_projeto: "Quantificacao de Vies Editorial e Sensacionalismo na Midia Brasileira (2015-2025): Uma Abordagem Baseada em Processamento de Linguagem Natural e Modelagem em Grafos"
   autor: "Otavio Alves Lima"
-  banco_dados: "dados/jornalismo.db"
+  banco_dados: "banco_dados/base.db"
   diretorio_logs: "logs"
-  diretorio_relatorios: "relatorios"
+  diretorio_relatorios: "resultados"
   data_inicio: "2015-01-01"
   data_fim: "2025-12-31"
   anos_eleitorais: [2016, 2018, 2020, 2022, 2024]
@@ -451,17 +451,6 @@ filtros:
       - "indigena"
       - "quilombola"
       - "direitos humanos"
-    esportivo:
-      - "futebol"
-      - "copa do mundo"
-      - "olimpiadas"
-      - "olimpiada"
-      - "cbf"
-      - "libertadores"
-      - "brasileirao"
-      - "fifa"
-      - "selecao brasileira"
-      - "estadio"
     ambiental:
       - "meio ambiente"
       - "desmatamento"
@@ -562,6 +551,3 @@ classificacao_tematica:
     internacional:
       - "geopolítica global, diplomacia, relações exteriores, onu, g20 e brics"
       - "guerras, conflitos internacionais, tratados multilaterais e política externa dos estados unidos, rússia e china"
-    esportivo:
-      - "campeonato brasileiro de futebol, libertadores, copa do mundo e clubes esportivos"
-      - "jogos olímpicos, atletas, competições esportivas e seleções nacionais"

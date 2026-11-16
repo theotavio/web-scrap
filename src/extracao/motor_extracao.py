@@ -1,7 +1,6 @@
 import concurrent.futures
 import gc
 from typing import Any, Dict, Optional, Tuple
-from tqdm import tqdm
 from src.configuracao import obter_configuracao
 from src.registro import obter_logger
 from src.banco import BancoDados

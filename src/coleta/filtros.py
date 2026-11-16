@@ -78,10 +78,6 @@ class FiltroUrls:
         if any(ind in url_baixa for ind in indicadores_internacional):
             return "internacional"
 
-        indicadores_esporte = ["/esporte/", "/esportes/", "/futebol/", "/tabelas/", "/ge/"]
-        if any(ind in url_baixa for ind in indicadores_esporte):
-            return "esportivo"
-
         indicadores_ambiental = ["/meio-ambiente/", "/ambiente/", "/amazonia/", "/sustentabilidade/", "/clima/"]
         if any(ind in url_baixa for ind in indicadores_ambiental):
             return "ambiental"
@@ -109,11 +105,10 @@ class FiltroUrls:
                     pts += 1
             pontos_eixo[eixo] = pts
 
-        melhor_eixo = max(pontos_eixo, key=pontos_eixo.get)
-        if pontos_eixo[melhor_eixo] > 0:
-            if melhor_eixo == "esportivo" and tem_politica_forte:
-                return "politico"
-            return melhor_eixo
+        if pontos_eixo:
+            melhor_eixo = max(pontos_eixo, key=pontos_eixo.get)
+            if pontos_eixo[melhor_eixo] > 0:
+                return melhor_eixo
 
         if tem_politica_forte or any(w in conteudo for w in ["politica", "governo", "poder", "congresso", "senado", "stf", "camara"]):
             return "politico"
@@ -121,10 +116,6 @@ class FiltroUrls:
             return "economico"
         if any(w in conteudo for w in ["mundo", "internacional", "guerra", "exterior", "global"]):
             return "internacional"
-        if any(w in conteudo for w in ["esporte", "futebol", "copa", "atleta", "time"]):
-            if tem_politica_forte:
-                return "politico"
-            return "esportivo"
         if any(w in conteudo for w in ["ambiente", "amazonia", "pantanal", "clima", "natureza", "queimada"]):
             return "ambiental"
         if any(w in conteudo for w in ["saude", "educacao", "seguranca", "policia", "sus", "escola"]):

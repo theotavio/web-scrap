@@ -10,7 +10,7 @@ class BancoDados:
     def __init__(self, caminho_banco: Optional[str] = None):
         config = obter_configuracao()
         if caminho_banco is None:
-            caminho_banco = config.obter("geral.banco_dados", "dados/jornalismo.db")
+            caminho_banco = config.obter("geral.banco_dados", "banco_dados/base.db")
         self.caminho = Path(caminho_banco)
         self.caminho.parent.mkdir(parents=True, exist_ok=True)
         self.logger = obter_logger("banco")
@@ -601,7 +601,7 @@ class BancoDados:
               AND EXISTS (
                   SELECT 1 FROM urls_coletadas u 
                   WHERE u.id = materias.url_id 
-                    AND u.eixo_tematico IN ('politico', 'economico', 'internacional', 'esportivo', 'ambiental', 'social')
+                    AND u.eixo_tematico IN ('politico', 'economico', 'internacional', 'ambiental', 'social')
                     AND u.eixo_tematico != materias.eixo_tematico
               );
         """)
@@ -609,7 +609,7 @@ class BancoDados:
         cur.execute("""
             UPDATE materias
             SET eixo_tematico = 'politico'
-            WHERE (eixo_tematico = 'esportivo' OR eixo_tematico IS NULL)
+            WHERE eixo_tematico IS NULL
               AND (
                   url LIKE '%/politica/%' OR url LIKE '%/politica-brasil/%' OR 
                   url LIKE '%/congresso/%' OR url LIKE '%/poder/%' OR 
@@ -780,4 +780,40 @@ class BancoDados:
             "materias_por_veiculo": materias_por_veiculo,
             "urls_por_veiculo": urls_por_veiculo,
             "nlp_stats": nlp_stats,
+        }
+
+    def obter_estatisticas_rapidas(self) -> Dict[str, Any]:
+        con = self.obter_conexao()
+        cur = con.cursor()
+        cur.execute("SELECT veiculo_id, COUNT(*) FROM materias GROUP BY veiculo_id")
+        m_v_raw = dict(cur.fetchall())
+        tot_m = sum(m_v_raw.values())
+
+        cur.execute("SELECT veiculo_id, COUNT(*) FROM urls_coletadas GROUP BY veiculo_id")
+        u_v_raw = dict(cur.fetchall())
+        tot_u = sum(u_v_raw.values())
+
+        cur.execute("SELECT COUNT(*) FROM clusters_eventos")
+        tot_c = cur.fetchone()[0]
+
+        cur.execute("SELECT eixo_predominante, COUNT(*) FROM clusters_eventos GROUP BY eixo_predominante")
+        e_c = dict(cur.fetchall())
+
+        cur.execute("SELECT id, nome FROM veiculos ORDER BY id")
+        veics_nome = {r[0]: r[1] for r in cur.fetchall()}
+        con.close()
+
+        materias_por_veiculo = {}
+        urls_por_veiculo = {}
+        for vid, vnome in veics_nome.items():
+            materias_por_veiculo[vnome] = m_v_raw.get(vid, 0)
+            urls_por_veiculo[vnome] = u_v_raw.get(vid, 0)
+
+        return {
+            "total_urls": tot_u,
+            "total_materias": tot_m,
+            "total_clusters": tot_c,
+            "materias_por_eixo": e_c,
+            "materias_por_veiculo": materias_por_veiculo,
+            "urls_por_veiculo": urls_por_veiculo
         }

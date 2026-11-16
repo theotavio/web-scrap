@@ -51,10 +51,6 @@ class ClassificadorTematicoSemantico:
                 "internacional": [
                     "geopolítica global, diplomacia, relações exteriores, onu, g20 e brics",
                     "guerras, conflitos internacionais, tratados multilaterais e política externa dos estados unidos, rússia e china"
-                ],
-                "esportivo": [
-                    "campeonato brasileiro de futebol, libertadores, copa do mundo e clubes esportivos",
-                    "jogos olímpicos, atletas, competições esportivas e seleções nacionais"
                 ]
             }
 
@@ -141,11 +137,6 @@ class ClassificadorTematicoSemantico:
                 continue
 
             rotulo_predito = self.rotulos[indices_max[i]]
-            texto_completo = f"{m.get('titulo', '')} {m.get('corpo', '')[:400]}".lower()
-
-            if rotulo_predito == "esportivo" and any(tp in texto_completo for tp in termos_politicos):
-                rotulo_predito = "politico"
-
             resultados.append(rotulo_predito)
 
         return resultados

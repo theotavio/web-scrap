@@ -1,24 +1,6 @@
-# Ambientes Virtuais e Caches
 __pycache__/
-*.py[cod]
-*$py.class
 .venv/
-env/
-venv/
-
-# Dados SQLite e Binários
-dados/
-*.db
-*.sqlite
-*.sqlite3
-
-# Logs de Execução
+banco_dados/
 logs/
-*.log
-
-# Documentação Interna, Apresentação e Relatórios
-pre_projeto/
-relatorios/
-
-# Base Limpa e Exportações Zenodo/Mendeley
-base_limpa/
+projeto_final/
+modelos/*.onnx

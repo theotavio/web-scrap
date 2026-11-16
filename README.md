@@ -23,23 +23,19 @@
    - [3.3 Pergunta Secundária 2: Dinâmica Temporal e Ciclos Eleitorais](#33-pergunta-secundária-2-dinâmica-temporal-e-ciclos-eleitorais)
    - [3.4 Pergunta Secundária 3: Efeito Mudo e Silenciamento Seletivo Temático](#34-pergunta-secundária-3-efeito-mudo-e-silenciamento-seletivo-temático)
    - [3.5 Genealogia da Polarização: Quando e Como Começou no Brasil](#35-genealogia-da-polarização-quando-e-como-começou-no-brasil)
-4. [Pipeline de Produção de Cada Etapa](#4-pipeline-de-produção-de-cada-etapa)
-   - [Etapa 1: Coleta de URLs e Rastreamento Histórico](#etapa-1-coleta-de-urls-e-rastreamento-histórico)
-   - [Etapa 2: Extração Textual, Limpeza de Conteúdo e Bypass Anti-Paywall](#etapa-2-extração-textual-limpeza-de-conteúdo-e-bypass-anti-paywall)
-   - [Etapa 3: Processamento de Linguagem Natural Multidimensional (NLP)](#etapa-3-processamento-de-linguagem-natural-multidimensional-nlp)
-   - [Etapa 4: Agrupamento Espaço-Temporal de Eventos Factuais (Clustering)](#etapa-4-agrupamento-espaço-temporal-de-eventos-factuais-clustering)
-   - [Etapa 5: Modelagem de Redes Complexas e Grafos de Conhecimento](#etapa-5-modelagem-de-redes-complexas-e-grafos-de-conhecimento)
-   - [Etapa 6: Inferência Estatística e Testes de Hipótese](#etapa-6-inferência-estatística-e-testes-de-hipótese)
-   - [Etapa 7: Visualização Científica para o Artigo (PNG 300 DPI e SVG)](#etapa-7-visualização-científica-para-o-artigo-png-300-dpi-e-svg)
-   - [Etapa 8: Empacotamento de Ciência Aberta e Depósito no Zenodo](#etapa-8-empacotamento-de-ciência-aberta-e-depósito-no-zenodo)
+4. [Instalação do Ambiente e Execução via Interface Gráfica](#4-instalação-do-ambiente-e-execução-via-interface-gráfica)
+   - [4.1 Pré-requisitos do Sistema](#41-pré-requisitos-do-sistema)
+   - [4.2 Instalação das Dependências](#42-instalação-das-dependências)
+   - [4.3 Inicialização da Aplicação Desktop](#43-inicialização-da-aplicação-desktop)
+   - [4.4 Navegação e Ordem Metodológica do Pipeline](#44-navegação-e-ordem-metodológica-do-pipeline)
+   - [4.5 Recursos Operacionais da Interface](#45-recursos-operacionais-da-interface)
 5. [Figuras e Gráficos de Alto Impacto para o Artigo (`resultados/graficos/`)](#5-figuras-e-gráficos-de-alto-impacto-para-o-artigo-resultadosgraficos)
-6. [Modelos de Redes Complexas e Imagens (`resultados/`)](#6-modelos-de-redes-complexas-e-imagens-resultados)
-   - [6.1 Catálogo dos 4 Modelos de Grafos](#61-catálogo-dos-4-modelos-de-grafos)
-   - [6.2 Renderizações dos Grafos (PNG e SVG)](#62-renderizações-dos-grafos-png-e-svg)
-7. [Arquitetura de Pastas do Repositório](#7-arquitetura-de-pastas-do-repositório)
-8. [Repositórios de Ciência Aberta e Zenodo](#8-repositórios-de-ciência-aberta-e-zenodo)
-9. [Como Instalar o Ambiente](#9-como-instalar-o-ambiente)
-10. [Equipe de Pesquisa e Autoria](#10-equipe-de-pesquisa-e-autoria)
+6. [Modelos de Redes Complexas e Imagens (`resultados/grafos/`)](#6-modelos-de-redes-complexas-e-imagens-resultadosgrafos)
+   - [6.1 Catálogo dos 2 Modelos Oficiais de Grafos](#61-catálogo-dos-2-modelos-oficiais-de-grafos)
+   - [6.2 Estrutura Unificada de Arquivos e Imagens](#62-estrutura-unificada-de-arquivos-e-imagens)
+7. [Arquitetura de Pastas do Repositório (Apenas Pastas Versionadas)](#7-arquitetura-de-pastas-do-repositório-apenas-pastas-versionadas)
+8. [Repositórios de Ciência Aberta e Replicação](#8-repositórios-de-ciência-aberta-e-replicação)
+9. [Equipe de Pesquisa e Autoria](#9-equipe-de-pesquisa-e-autoria)
 
 ---
 
@@ -117,106 +113,93 @@ Para garantir estrita conformidade com os princípios éticos da pesquisa cient�
 
 ---
 
-## 4. Pipeline de Produção de Cada Etapa
+## 4. Instalação do Ambiente e Execução via Interface Gráfica
 
-A infraestrutura foi construída como um pipeline modular de 8 estágios reprodutíveis:
+Para executar a infraestrutura e reproduzir as análises, primeiro configure o ambiente virtual com as dependências do projeto e, em seguida, inicialize a aplicação desktop integrada.
 
+### 4.1 Pré-requisitos do Sistema
+- **Sistema Operacional:** Linux (Fedora 38+, Ubuntu 22.04+ ou distribuição equivalente).
+- **Python:** Versão 3.10 ou superior.
+- **SQLite:** Versão 3.35+ (com suporte nativo ao modo WAL e funções matemáticas).
+
+---
+
+### 4.2 Instalação das Dependências
+
+Clone o repositório, crie um ambiente virtual isolado e instale os pacotes determinísticos de produção:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
-[Etapa 1: Coleta CDX/Sitemaps] ──> [Etapa 2: Extração & Anti-Paywall] ──> [Etapa 3: NLP Multidimensional]
+
+---
+
+### 4.3 Inicialização da Aplicação Desktop
+
+Com o ambiente virtual ativado, inicialize a aplicação desktop em Flet:
+
+```bash
+python main.py
+```
+
+*(Alternativamente, `python main.py --gui` executa a mesma rotina de inicialização).*
+
+A interface foi projetada em **tema estritamente claro (Light Mode)**, com design limpo, tipografia profissional e paleta de cores corporativa baseada no design system Material 3. Não é mais necessário executar scripts fragmentados por linha de comando nem memorizar parâmetros de terminal para cada estágio: o usuário opera todo o pipeline científico interativamente dentro da aplicação.
+
+---
+
+### 4.4 Navegação e Ordem Metodológica do Pipeline
+
+O seletor principal de etapas organiza o fluxo de trabalho na ordem lógica e cronológica da metodologia científica:
+
+```text
+[1. Coleta de URLs] ──> [2. Extração & Paywall] ──> [3. Processamento NLP] ──> [4. Clustering de Eventos]
                                                                                      │
-[Etapa 6: Inferência Estatística] <── [Etapa 5: Grafos & Gephi] <── [Etapa 4: Clustering de Eventos]
-              │
-              ├──> [Etapa 7: Visualização Artigo (PNG 300 DPI e SVG)]
-              └──> [Etapa 8: Pacotes FAIR Zenodo (CSVs, ZIPs & Metadados)]
+[7. Figuras do Artigo] <── [6. Construção de Grafos] <── [5. Inferência Estatística] <┘
+                                       │
+                    [8. Executar Tudo (Pipeline Completo)]
 ```
 
-### Detalhamento dos Estágios de Produção:
+1. **1. Coleta de URLs e Rastreamento Histórico:**
+   - Descoberta e catalogação de matérias jornalísticas publicadas entre 2015 e 2025.
+   - *Parâmetros na Interface:* Limite de matérias por veículo, intervalo de anos (ex: `2015-2025` ou anos avulsos `2018, 2022`) e seleção de fonte (*Wayback Machine*, *Sitemaps XML* ou *Todas*).
+2. **2. Extração de Matérias e Bypass Anti-Paywall:**
+   - Download assíncrono do corpo textual integral, limpeza heurística (scripts, anúncios, menus) e validação de integridade por *hash* criptográfico SHA-256.
+3. **3. Processamento de Linguagem Natural (NLP):**
+   - Enriquecimento multidimensional das matérias:
+     - *Embeddings Semânticos:* Modelo `paraphrase-multilingual-MiniLM-L12-v2` (384 dimensões).
+     - *Sentimento Editorial:* Modelo RoBERTa multilíngue quantizado em ONNX (score contínuo $[-1.0, +1.0]$).
+     - *Sensacionalismo / Clickbait:* Modelo híbrido que quantifica pontuação expressiva (`!?`), deíticos, urgência cognitiva e taxa de caixa alta.
+4. **4. Agrupamento Espaço-Temporal de Eventos (Clustering):**
+   - Pareamento do mesmo fato factual cobrindo veículos concorrentes via algoritmo `HDBSCAN` com janela móvel deslizante de 5 dias calibrada pelo ciclo de atenção jornalística.
+5. **5. Análise Estatística e Perguntas de Pesquisa:**
+   - Computação formal da bateria de testes de hipótese (ANOVA One-Way, Kruskal-Wallis, teste $t$ de Welch, Mann-Whitney $U$, Qui-Quadrado $\chi^2$ e Razão de Segregação Geodésica).
+   - Renderização dos resultados diretamente na tela em cards visuais com ícones, métricas numéricas, $p$-valores e conclusões acadêmicas.
+6. **6. Construção de Grafos para o Gephi (GEXF):**
+   - Construção dos dois modelos oficiais de redes complexas: *Planisfério Cósmico da Polarização* (20.010 nós) e *Grafo Semântico de Palavras* (310 termos).
+   - Cálculo automático e gravação nos arquivos GEXF dos algoritmos de detecção de comunidades Louvain ($Q$), centralidade de intermediação (Betweenness / Fatos-Ponte), caminhos geodésicos de Dijkstra e busca em largura (BFS).
+7. **7. Geração de Figuras do Artigo (300 DPI):**
+   - Renderização das 10 figuras científicas de alto impacto do manuscrito e legendas oficiais dos grafos em PNG 300 DPI e SVG vetorial.
+   - O menu secundário permite escolher gerar todas as figuras de uma vez ou qualquer figura individual para inspeção rápida.
+8. **8. Executar Tudo (Pipeline Completo):**
+   - Execução sequencial automatizada de todas as etapas do início ao fim, ideal para replicação integral ou reprocessamento completo.
 
-#### Etapa 1: Coleta de URLs e Rastreamento Histórico
-- **Objetivo:** Identificar e catalogar os links históricos publicados pelos 10 veículos entre 2015 e 2025.
-- **Métodos & Tecnologias:** Consultas indexadas à API CDX do *Internet Archive / Wayback Machine* e raspagem concorrente de sitemaps XML históricos (`urllib3`, `BeautifulSoup`).
-- **Resiliência:** Detecção dinâmica de throttling HTTP 429/503, espera exponencial com *jitter*, rotação de user-agents e persistência transacional com status `pendente`.
-- **Comando de Execução:**
-  ```bash
-  python3 main.py --etapa coletar --ano-inicio 2015 --ano-fim 2025
-  # Opcional: filtrar por veículo ou limite específico
-  python3 main.py --etapa coletar --veiculo tradicional_1 --limite 50000
-  ```
+---
 
-#### Etapa 2: Extração Textual, Limpeza de Conteúdo e Bypass Anti-Paywall
-- **Objetivo:** Efetuar o download do conteúdo integral das matérias, extrair metadados estruturados e contornar barreiras de paywall.
-- **Métodos & Tecnologias:** Cascata anti-paywall baseada em múltiplos seletores heurísticos (`trafilatura`, `newspaper3k`, `lxml`), emulação de referrers de redes sociais e renderização de cabeçalhos de arquivo.
-- **Higienização:** Remoção sistemática de blocos de scripts, tags de rastreamento, anúncios, menus de navegação e publicidade nativa. Validação e deduplicação via cálculo de *hash* criptográfico SHA-256 do corpo textual.
-- **Comando de Execução:**
-  ```bash
-  python3 main.py --etapa extrair
-  # Reprocessamento de eventuais falhas de download
-  python3 main.py --etapa extrair --reprocessar-erros
-  ```
+### 4.5 Recursos Operacionais da Interface
 
-#### Etapa 3: Processamento de Linguagem Natural Multidimensional (NLP)
-- **Objetivo:** Enriquecer cada matéria jornalística com representações vetoriais densas, métricas de valência emocional, índice de sensacionalismo e entidades nomeadas.
-- **Métodos & Modelos:**
-  1. *Embeddings Semânticos:* Modelo `paraphrase-multilingual-MiniLM-L12-v2` quantizado em ONNX (vetores densos de 384 dimensões por matéria).
-  2. *Análise de Sentimento:* Modelo RoBERTa multilíngue (`pysentimiento`) quantizado em ONNX para cálculo de probabilidades de sentimento positivo, negativo e neutro, consolidado em score contínuo $[-1.0, +1.0]$.
-  3. *Sensacionalismo / Clickbait:* Modelo híbrido estatístico-léxico que mensura pontuação expressiva (`!?`), pronomes deícticos na manchete, termos de urgência cognitiva, superlativos e razão de caracteres em caixa alta.
-  4. *Extração de Entidades (NER):* Pipeline `spacy` com modelo `pt_core_news_lg` identificando e vinculando pessoas, organizações e locais.
-- **Comando de Execução:**
-  ```bash
-  python3 main.py --etapa nlp
-  # Ou execução seletiva por sub-módulo:
-  python3 main.py --etapa embeddings
-  python3 main.py --etapa sentimento
-  python3 main.py --etapa entidades
-  ```
-
-#### Etapa 4: Agrupamento Espaço-Temporal de Eventos Factuais (Clustering)
-- **Objetivo:** Identificar o mesmo acontecimento factual da realidade noticiado por múltiplos veículos concorrentes.
-- **Métodos & Algoritmos:** Agrupador temporal com janela móvel deslizante de 5 dias (calibrada pelo decaimento do ciclo de atenção jornalística). Aplicação do algoritmo `HDBSCAN` sobre a matriz de distância de cosseno dos embeddings com refinamento TF-IDF para geração de títulos sintéticos dos macro-eventos.
-- **Comando de Execução:**
-  ```bash
-  python3 main.py --etapa clusterizar
-  ```
-
-#### Etapa 5: Modelagem de Redes Complexas e Grafos de Conhecimento
-- **Objetivo:** Modelar as relações estruturais da imprensa nacional sob a ótica de redes bipartidas, projeções unipartidas e topologia semântica.
-- **Modelos Construídos:**
-  - *Modelo 1 (Cascata Hierárquica Multinível):* 20.010 nós e 82.227 arestas conectando veículos a arquipélagos temáticos da realidade.
-  - *Modelo 2 (Planisfério Cósmico de Polarização):* 20.010 nós espacializados por gravitação de polarização ForceAtlas2 contínua.
-  - *Modelo 3 (Grafo de Similaridade Editorial dos Veículos):* Rede projetada de 10 veículos com similaridade de cosseno e categorização intra/inter-blocos.
-  - *Modelo 4 (Grafo Semântico de Palavras e Conceitos):* Rede de coocorrência conceitual textual sem bolinhas (tipografia ponderada por PageRank e comunidades Louvain).
-- **Comando de Execução:**
-  ```bash
-  python3 main.py --etapa grafos
-  ```
-
-#### Etapa 6: Inferência Estatística e Testes de Hipótese
-- **Objetivo:** Executar testes estatísticos formais que respondem a todas as perguntas de pesquisa da investigação.
-- **Métodos Computacionais:** Teste ANOVA One-Way, teste Kruskal-Wallis, teste $t$ de Welch, teste Mann-Whitney $U$, teste Qui-Quadrado de Independência ($\chi^2$), $d$ de Cohen, $V$ de Cramér e análises de caminhos geodésicos em grafos via Dijkstra e BFS.
-- **Comando de Execução:**
-  ```bash
-  python3 main.py --etapa estatisticas
-  # Ou gerar o relatório consolidado em texto:
-  python3 main.py --etapa relatorio
-  ```
-
-#### Etapa 7: Visualização Científica para o Artigo (PNG 300 DPI e SVG)
-- **Objetivo:** Gerar todas as 10 figuras científicas do manuscrito e as renderizações dos grafos (PNG e SVG).
-- **Produtos Gerados:**
-  - 10 Figuras em PNG 300 DPI (`resultados/graficos/`).
-  - Grafos base e prontos em subpastas `png/` e `svg/` (`resultados/grafos_base/` e `resultados/grafos_prontos/`).
-- **Comando de Execução:**
-  ```bash
-  python3 src/visualizacao/gerador_graficos_artigo.py
-  ```
-
-#### Etapa 8: Empacotamento de Ciência Aberta e Depósito no Zenodo
-- **Objetivo:** Preparar os pacotes padronizados de replicação em conformidade com as diretrizes FAIR e esquemas de metadados DataCite / OpenAIRE.
-- **Produtos Gerados:** `dados_graficos_zenodo.zip` e `dados_grafos_zenodo.zip`, acompanhados de seus respectivos `zenodo_metadata.json` e codebooks metodológicos em `README_ZENODO.md`.
-- **Comando de Execução:**
-  ```bash
-  python3 base_dados_limpa/gerar_zenodo.py
-  ```
+- **Execução Multithread Responsiva:** Tarefas pesadas rodam em threads de segundo plano sem bloquear ou congelar a interface. Indicadores visuais de status informam em tempo real o tempo de execução e o estado da tarefa (*Pronto*, *Em execução*, *Concluído com sucesso* ou *Erro*).
+- **Console Integrado de Logs com Filtro por Etapa:**
+  - O terminal não é poluído; todas as mensagens e eventos de logging são direcionados para o painel de logs da interface.
+  - O usuário pode utilizar o dropdown de filtro de logs para visualizar apenas as mensagens de uma etapa específica (ex: somente logs de `grafos` ou `estatisticas`) ou a visão consolidada (`todas`).
+- **Suporte Nativo a Dados Externos (Ciência Aberta / Replicação):**
+  - A caixa de seleção *"Usar dados externos (para replicação científica)"* ativa um seletor de diretório (`FilePicker`) para apontar qualquer pasta local contendo os arquivos CSV ou pacotes ZIP, permitindo gerar figuras e grafos sem necessidade do banco central de 23 GB.
+- **Acesso Direto aos Arquivos Gerados:**
+  - Botões integrados na área de resultados permitem abrir instantaneamente as pastas no gerenciador de arquivos do sistema operacional:
+    - `Abrir Pasta de Gráficos (PNG)` &rarr; abre `resultados/graficos/`.
+    - `Abrir Pasta de Grafos (Arquivos e Imagens)` &rarr; abre `resultados/grafos/`.
 
 ---
 
@@ -239,120 +222,126 @@ Todas as figuras foram produzidas em **PNG de altíssima resolução (300 DPI)**
 
 ---
 
-## 6. Modelos de Redes Complexas e Imagens (`resultados/`)
+## 6. Modelos de Redes Complexas e Imagens (`resultados/grafos/`)
 
-### 6.1 Catálogo dos 4 Modelos de Grafos
-1. **Modelo 1 — Cascata Hierárquica Multinível (`grafo_cascata_hierarquica.gexf`):**
-   - 20.010 nós e 82.227 arestas ponderadas.
-   - Fluxo bipartido: veículos no topo, 6 arquipélagos temáticos da realidade na base.
-   - Cores temáticas padronizadas: Político (`#8B5CF6`), Econômico (`#EAB308`), Social (`#EC4899`), Meio Ambiente (`#10B981`), Internacional (`#06B6D4`), Esportivo (`#E11D48`).
-2. **Modelo 2 — Planisfério Cósmico de Polarização (`grafo_planisferio_polarizacao.gexf`):**
+### 6.1 Catálogo dos 2 Modelos Oficiais de Grafos
+1. **Modelo 1 — Planisfério Cósmico da Polarização (`grafo_planisferio_polarizacao.gexf`):**
    - 20.010 nós em coordenadas bidimensionais contínuas ForceAtlas2.
    - Posição governada pelo índice gravitacional de polarização $P \in [-1.0, +1.0]$.
    - Gradiente de três zonas: Polo Tradicional (`#1E3A8A`), Centro de Convergência (`#8B5CF6`) e Polo Digital (`#EA580C`).
-3. **Modelo 3 — Grafo de Similaridade Editorial entre Veículos (`grafo_similaridade_veiculos.gexf`):**
-   - 10 veículos de comunicação conectados por 45 arestas ponderadas por similaridade de cosseno ($0,1718$ a $0,7784$).
-   - Arestas categorizadas em Intra-Tradicional (azul), Intra-Digital (laranja) e Inter-Blocos (roxa tracejada).
-4. **Modelo 4 — Grafo Semântico de Palavras e Conceitos (`grafo_semantico_palavras.gexf`):**
-   - 310 termos-chave jornalísticos com tipografia direta ponderada por PageRank (sem círculos/bolinhas nos nós).
-   - Cores por comunidades de modularidade Louvain associadas aos grandes eixos discursivos.
+2. **Modelo 2 — Grafo Semântico de Palavras e Coocorrência (`grafo_semantico_palavras.gexf`):**
+   - 310 termos-chave jornalísticos com tipografia direta ponderada por PageRank e Betweenness (sem círculos/bolinhas nos nós).
+   - Cores por comunidades de modularidade Louvain associadas aos grandes eixos discursivos ($Q = 0,4018$).
 
-### 6.2 Renderizações dos Grafos (PNG e SVG)
-- **Grafos Base:**
-  - PNGs em `resultados/grafos_base/grafos_imagens/png/`
-  - SVGs em `resultados/grafos_base/grafos_imagens/svg/`
-- **Grafos Prontos para o Artigo:**
-  - PNGs 300 DPI em `resultados/grafos_prontos/grafos_imagens/png/`
-  - SVGs vetoriais em `resultados/grafos_prontos/grafos_imagens/svg/`
+### 6.2 Renderizações e Legendas dos Grafos (PNG e SVG)
+- **Estrutura Unificada (`resultados/grafos/`):**
+  - **Modelos e Dados (`resultados/grafos/arquivos/`):** Arquivos `.gexf` e `.gephi` para importação e manipulação no Gephi.
+  - **Imagens e Legendas (`resultados/grafos/imagens/`):** Todas as renderizações oficiais dos grafos (PNG e SVG) e suas respectivas legendas (`01_legenda_grafo_planisferio_polarizacao.*`, `02_legenda_grafo_semantico_palavras.*`), centralizadas sem subpastas adicionais.
 
 ---
 
-## 7. Arquitetura de Pastas do Repositório
+## 7. Arquitetura de Pastas do Repositório (Apenas Pastas Versionadas)
+
+Abaixo está a estrutura estrita de arquivos e pastas que compõem o repositório de código e que serão efetivamente versionadas no Git quando o autor ordenar (excluindo os dados brutos de 23 GB, logs voláteis, ambientes virtuais e pastas locais presentes no `.gitignore`):
 
 ```text
 web-scrap/
-├── config.yaml                              # Configurações globais centralizadas
-├── main.py                                  # Ponto de entrada CLI do pipeline de produção
-├── base_dados_global/                       # Armazenamento bruto e banco central
-│   ├── jornalismo.db                        # Banco SQLite WAL (23 GB, 3M matérias, 446k eventos)
-│   └── modelos/                             # Modelos quantizados ONNX (RoBERTa / MiniLM)
-├── base_dados_limpa/                        # Dados higienizados para replicação e Ciência Aberta
-│   ├── dados_graficos/                      # Dados usados na geração das figuras
-│   │   ├── csv/                             # Tabelas CSV tabuladas e documentadas
-│   │   └── zenodo/                          # Pacote Zenodo (dados_graficos_zenodo.zip, metadata, codebook)
-│   └── dados_grafos/                        # Dados usados na modelagem de redes complexas
-│       ├── csv/                             # Listas de nós, arestas e matrizes em CSV
-│       └── zenodo/                          # Pacote Zenodo (dados_grafos_zenodo.zip, metadata, codebook)
-├── resultados/                              # Produtos e entregas de visualização
-│   ├── graficos/                            # 10 Figuras PNG em 300 DPI prontas para o artigo
-│   ├── grafos_base/                         # Modelos de rede base
-│   │   ├── grafos_arquivo/                  # Arquivos .gexf e .gephi (Cascata, Planisfério, Semântico, Similaridade)
-│   │   └── grafos_imagens/                  # Renderizações dos grafos base
-│   │       ├── png/                         # Imagens em formato PNG
-│   │       └── svg/                         # Imagens vetoriais em formato SVG
-│   └── grafos_prontos/                      # Modelos de rede prontos para defesa e publicação
-│       ├── grafos_arquivo/                  # Arquivos .gexf prontos
-│       └── grafos_imagens/                  # Figuras renderizadas para o artigo
-│           ├── png/                         # Imagens PNG em alta resolução (300 DPI)
-│           └── svg/                         # Imagens vetoriais infinitas (SVG)
-├── projeto final/                           # Espaço reservado para o manuscrito final do artigo
-├── ideias/                                  # Cadernos metodológicos e tutoriais analíticos
-│   ├── 01_o_que_os_grafos_representam_e_uso_no_gephi.txt
-│   ├── 02_justificativa_clusterizacao_janela_5_dias.txt
-│   ├── 03_regua_de_ano_polaridade_e_betweenness.txt
-│   ├── 04_quando_e_como_comecou_a_polarizacao_no_brasil.txt
-│   ├── 05_guia_de_analise_e_interpretacao_dos_graficos_no_artigo.txt
-│   ├── 06_guia_de_analise_e_interpretacao_dos_grafos_no_artigo.txt
-│   ├── 07_tutorial_gephi_grafo_de_palavras_sem_bolinhas.txt
-│   └── 08_tutorial_gephi_grafo_similaridade_veiculos.txt
-└── src/                                     # Código-fonte modular (Zero comentários '#')
-    ├── banco.py                             # Camada de persistência SQLite WAL
-    ├── configuracao.py                      # Carregador de configurações
-    ├── registro.py                          # Sistema estruturado de logs
-    ├── coleta/                              # Motores de rastreamento de URLs
-    ├── extracao/                            # Motores de raspagem e anti-paywall
-    ├── nlp/                                 # Embeddings, sentimento e clickbait
-    ├── cluster/                             # Clusterização temporal HDBSCAN
-    ├── analise/                             # Testes estatísticos e inferência
-    ├── grafos/                              # Construtores de redes e grafos GEXF
-    └── visualizacao/                        # Geradores de figuras, grafos e relatórios
+├── .gitignore                               # Regras de exclusão do Git (banco de dados 23GB, logs, venv, rascunhos)
+├── config.yaml                              # Configurações globais centralizadas, limiares estatísticos e parâmetros
+├── main.py                                  # Ponto de entrada do sistema que inicializa a aplicação desktop
+├── requirements.txt                         # Especificação estrita de dependências Python para o ambiente
+├── README.md                                # Documentação técnica completa, metodologia e guia de operação
+├── modelos/                                 # Modelos ONNX e pesos quantizados para inferência local offline
+├── resultados/                              # Produtos e entregas científicas de visualização e replicação
+│   ├── graficos/                            # 10 Figuras científicas em PNG 300 DPI prontas para o manuscrito
+│   ├── dados_graficos/                      # Tabelas CSV tabuladas para replicação analítica direta
+│   └── grafos/                              # Estrutura unificada de redes complexas
+│       ├── arquivos/                        # Modelos GEXF para Gephi e projeto mestre nativo 'grafos.gephi'
+│       └── imagens/                         # Renderizações em alta resolução (PNG e SVG) e legendas oficiais
+└── src/                                     # Código-fonte modular do sistema (Estritamente zero comentários '#')
+    ├── __init__.py                          # Inicializador do pacote raiz
+    ├── anti_paywall.py                      # Heurísticas de contorno a barreiras de assinatura e paywalls dinâmicos
+    ├── banco.py                             # Camada de persistência relacional SQLite em modo WAL (thread-safe)
+    ├── configuracao.py                      # Carregador e validador singleton de configurações YAML
+    ├── interface.py                         # Interface gráfica desktop em Flet (tema claro, multithread, logs e cards)
+    ├── registro.py                          # Sistema centralizado de logs com despachante thread-safe para a interface
+    ├── robos.py                             # Utilitários de rede, rotação de headers e emulação de navegadores
+    ├── analise/                             # Módulo de inferência e testes estatísticos
+    │   ├── __init__.py                      # Inicializador do subpacote de análise
+    │   ├── estatistica.py                   # Funções matemáticas de suporte (ANOVA, Kruskal-Wallis, Mann-Whitney)
+    │   └── perguntas.py                     # Respondedor formal das 4 perguntas centrais do artigo acadêmico
+    ├── cluster/                             # Módulo de agrupamento espaço-temporal de eventos
+    │   ├── __init__.py                      # Inicializador do subpacote de clusterização
+    │   └── agrupador.py                     # Motor HDBSCAN com janela móvel de 5 dias sobre embeddings semânticos
+    ├── coleta/                              # Módulo de rastreamento e descoberta de URLs
+    │   ├── __init__.py                      # Inicializador do subpacote de coleta
+    │   ├── cdx.py                           # Cliente de consulta à API CDX do Wayback Machine (Internet Archive)
+    │   ├── filtros.py                       # Normalização canônica, sanitização e descarte de URLs estáticas
+    │   ├── motor_coleta.py                  # Orquestrador resiliente de coleta histórica por veículo e ano
+    │   └── sitemaps.py                      # Parser concorrente de sitemaps XML jornalísticos históricos
+    ├── extracao/                            # Módulo de raspagem textual e higienização
+    │   ├── __init__.py                      # Inicializador do subpacote de extração
+    │   ├── extrator.py                      # Extratores heurísticos de corpo textual e metadados de notícia
+    │   ├── limpador.py                      # Remoção de anúncios, publicidade nativa e scripts de rastreamento
+    │   └── motor_extracao.py                # Pipeline de download com validação por hash criptográfico SHA-256
+    ├── grafos/                              # Módulo de modelagem de redes complexas
+    │   ├── __init__.py                      # Inicializador do subpacote de grafos
+    │   └── construtor_grafo.py              # Construtor GEXF do Planisfério e Semântico (Louvain, BFS, Dijkstra, Betweenness)
+    ├── nlp/                                 # Módulo de processamento de linguagem natural
+    │   ├── __init__.py                      # Inicializador do subpacote de NLP
+    │   ├── atribuicao.py                    # Extração de autoria e agências noticiosas
+    │   ├── classificador_tematico.py        # Classificação discursiva nos 5 grandes eixos temáticos do estudo
+    │   ├── clickbait.py                     # Detecção híbrida estatística-léxica de sensacionalismo em manchetes
+    │   ├── embeddings.py                    # Vetorização semântica densa (Sentence-Transformers MiniLM 384d)
+    │   ├── entidades.py                     # Reconhecimento de entidades nomeadas (NER via spaCy)
+    │   ├── motor_nlp.py                     # Orquestrador em lote de pipelines de NLP
+    │   └── sentimento.py                    # Inferência de polaridade emocional via RoBERTa multilíngue
+    └── visualizacao/                        # Módulo de visualização científica
+        ├── __init__.py                      # Inicializador do subpacote de visualização
+        └── graficos.py                      # Renderização profissional das 10 figuras em 300 DPI e legendas dos grafos
 ```
 
----
+### Detalhamento das Responsabilidades de Cada Arquivo:
 
-## 8. Repositórios de Ciência Aberta e Zenodo
-
-Para assegurar a auditabilidade, reprodutibilidade e conformidade com os princípios FAIR (*Findable, Accessible, Interoperable, Reusable*), os dados do projeto foram estruturados em pacotes autônomos prontos para depósito no **Zenodo**:
-
-1. **Pacote de Redes Complexas (`base_dados_limpa/dados_grafos/zenodo/`):**
-   - Arquivo: `dados_grafos_zenodo.zip` contendo listas completas de nós, arestas e matrizes de adjacência.
-   - Metadados: `zenodo_metadata.json` em padrão OpenAIRE / DataCite.
-   - Documentação: `README_ZENODO.md` com codebook detalhado de cada coluna e dicionário de variáveis.
-2. **Pacote de Séries Temporais e Indicadores (`base_dados_limpa/dados_graficos/zenodo/`):**
-   - Arquivo: `dados_graficos_zenodo.zip` contendo todas as séries históricas, distribuições e matrizes.
-   - Metadados: `zenodo_metadata.json` com resumo metodológico.
-   - Documentação: `README_ZENODO.md` com codebook das variáveis analíticas.
-
----
-
-## 9. Como Instalar o Ambiente
-
-### 9.1 Pré-requisitos
-- Linux (Ubuntu 22.04+ ou Fedora 38+)
-- Python 3.10 ou superior
-- SQLite 3.35+ (com suporte a modo WAL e funções matemáticas)
-
-### 9.2 Instalação das Dependências
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-pip install matplotlib kaleido
-```
+| Arquivo / Módulo | Responsabilidade Técnica no Pipeline |
+| :--- | :--- |
+| `main.py` | Ponto de entrada que inicializa a aplicação desktop gráfica em Flet (`InterfaceFletApp`). |
+| `config.yaml` | Centraliza credenciais, URLs base, thresholds de similaridade de embeddings e esquemas de cores. |
+| `requirements.txt` | Lista determinística de bibliotecas Python necessárias para execução do pipeline. |
+| `.gitignore` | Protege o repositório contra arquivos pesados (excluindo `banco_dados/base.db` de 23 GB, `projeto_final/` e `.venv/`). |
+| `src/interface.py` | Controla toda a interface visual desktop: seleção das 8 etapas, logs dinâmicos filtrados por etapa, cards de teste de hipótese e botões de sistema. |
+| `src/banco.py` | Camada SQLite relacional operando em modo WAL com conexão thread-safe, índices analíticos e funções de salvamento estatístico. |
+| `src/registro.py` | Despacha mensagens de log em tempo real tanto para a UI do Flet quanto para os manipuladores internos. |
+| `src/anti_paywall.py` | Implementa seletores de contorno a muros de pagamento, headers de redes sociais e fallback de arquivamento. |
+| `src/robos.py` | Gerencia pool de conexões HTTP, rotação de User-Agents e regras de atraso com jitter contra bloqueios. |
+| `src/coleta/filtros.py` | Valida padrões regex de links de notícia e descarta arquivos de imagem, vídeo ou páginas estáticas. |
+| `src/coleta/motor_coleta.py` | Executa o rastreamento concorrente na API CDX do Wayback Machine e nos sitemaps históricos. |
+| `src/extracao/motor_extracao.py` | Realiza download, higienização do texto e gera a assinatura SHA-256 para evitar matérias duplicadas. |
+| `src/nlp/classificador_tematico.py` | Classifica matérias nos 5 macro-eixos discursivos (Político, Econômico, Social, Ambiental, Internacional). |
+| `src/nlp/sentimento.py` | Calcula valência emocional contínua $[-1, +1]$ e pontuação combinada de sensacionalismo/clickbait. |
+| `src/cluster/agrupador.py` | Aplica HDBSCAN com janela móvel de 5 dias para identificar matérias de veículos concorrentes cobrindo o mesmo fato. |
+| `src/analise/perguntas.py` | Executa ANOVA, Kruskal-Wallis, Mann-Whitney U, Qui-Quadrado e Razão de Segregação Geodésica. |
+| `src/grafos/construtor_grafo.py` | Gera os arquivos GEXF do Planisfério da Polarização e Grafo Semântico, calculando Louvain, BFS, Dijkstra e Betweenness. |
+| `src/visualizacao/graficos.py` | Produz as 10 figuras em alta resolução (300 DPI) para o artigo e renderiza as legendas oficiais em PNG e SVG. |
+| `resultados/graficos/` | Contém as figuras finais em PNG 300 DPI prontas para publicação (Figuras 01, 02, 03A, 04, 05A, 05B, 06A, 06B, 07). |
+| `resultados/grafos/arquivos/` | Contém os arquivos de rede `grafo_planisferio_polarizacao.gexf`, `grafo_semantico_palavras.gexf` e o projeto `grafos.gephi`. |
+| `resultados/grafos/imagens/` | Reúne as renderizações gráficas dos grafos e todas as legendas oficiais em PNG e SVG. |
+| `resultados/dados_graficos/` | Contém as tabelas CSV tabuladas para replicação analítica independente sem necessidade do banco SQLite. |
 
 ---
 
-## 10. Equipe de Pesquisa e Autoria
+## 8. Repositórios de Ciência Aberta e Replicação
+
+Para assegurar a total auditabilidade e reprodutibilidade científica sem exigir a transferência do banco central SQLite de 23 GB, o repositório disponibiliza diretamente os dados processados e normalizados em:
+
+1. **Séries Temporais e Matrizes Estatísticas (`resultados/dados_graficos/`):**
+   - Tabelas CSV contendo todas as variáveis agregadas, distribuições de densidade de sentimento, índices de clickbait e séries temporais mensais decenais (2015–2025).
+2. **Modelos de Redes Complexas (`resultados/grafos/arquivos/`):**
+   - Modelos GEXF e projeto Gephi contendo as matrizes de adjacência, coordenadas gravitacionais ForceAtlas2 e classes de modularidade de Louvain já computadas.
+
+---
+
+## 9. Equipe de Pesquisa e Autoria
 
 - **Otávio Alves Lima** — UFCI-MG (Pesquisador Principal)
 - **Pedro Francisco Sousa Silva** — UFCI-MG (Pesquisador Principal)

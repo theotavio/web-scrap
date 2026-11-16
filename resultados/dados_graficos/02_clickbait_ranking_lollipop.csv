@@ -1,0 +1,11 @@
+ranking_clickbait,veiculo,grupo_editorial,clickbait_medio,clickbait_mediana,percentil_75,percentil_90,desvio_padrao,total_materias,media_nacional_referencia,diferenca_para_media_nacional
+1,Tradicional 5,Tradicional,0.0651,0.029,0.1551,0.1778,0.0707,538120,0.0607,0.0044
+2,Tradicional 1,Tradicional,0.0629,0.0276,0.0885,0.1783,0.0713,206715,0.0607,0.0021
+3,Tradicional 3,Tradicional,0.0618,0.0209,0.1554,0.1705,0.0748,218287,0.0607,0.0011
+4,Digital 1,Digital Nativo,0.0613,0.0226,0.1551,0.1711,0.0724,354915,0.0607,0.0006
+5,Tradicional 2,Tradicional,0.0611,0.0218,0.1079,0.1735,0.0723,363186,0.0607,0.0004
+6,Digital 4,Digital Nativo,0.0596,0.0214,0.1536,0.172,0.071,469000,0.0607,-0.0011
+7,Tradicional 4,Tradicional,0.0595,0.0273,0.075,0.1726,0.0665,230739,0.0607,-0.0012
+8,Digital 2,Digital Nativo,0.0592,0.0235,0.1548,0.17,0.0667,111882,0.0607,-0.0016
+9,Digital 3,Digital Nativo,0.057,0.0277,0.0491,0.1711,0.0701,516940,0.0607,-0.0038
+10,Digital 5,Digital Nativo,0.0407,0.0153,0.0306,0.1586,0.0568,24249,0.0607,-0.02
