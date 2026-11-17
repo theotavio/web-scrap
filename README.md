@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+" />
   <img src="https://img.shields.io/badge/Base-3.03M%20Matérias-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="Base de 3 Milhões de Matérias" />
-  <img src="https://img.shields.io/badge/Eventos-446.649%20Clusters-4CAF50?style=for-the-badge" alt="446k Eventos Pareados" />
+  <img src="https://img.shields.io/badge/Eventos-422.731%20Clusters-4CAF50?style=for-the-badge" alt="422k Eventos Pareados" />
   <img src="https://img.shields.io/badge/spaCy-pt__core__news__lg-09A3D5?style=for-the-badge&logo=spacy&logoColor=white" alt="spaCy NER" />
   <img src="https://img.shields.io/badge/Transformers-MiniLM%20%7C%20RoBERTa-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face Transformers" />
   <img src="https://img.shields.io/badge/Gephi-GEXF%20%7C%20Redes%20Complexas-1F4E79?style=for-the-badge" alt="Modelagem em Grafos" />
@@ -58,7 +58,7 @@ Para garantir estrita conformidade com os princípios éticos da pesquisa cient�
 | **Total de URLs Coletadas** | **4.720.199** | Extraídas de índices CDX da *Wayback Machine* e sitemaps históricos |
 | **Total de Matérias Validadas** | **3.034.033** | Textos íntegros com limpeza de *boilerplate* e validação SHA-256 |
 | **Embeddings Vetoriais Gerados** | **3.034.033** | Vetores densos de 384 dimensões (*paraphrase-multilingual-MiniLM-L12-v2*) |
-| **Clusters de Eventos Factuais** | **446.649** | Macro-eventos pareados via HDBSCAN e janelas deslizantes de 5 dias |
+| **Clusters de Eventos Factuais** | **422.731** | Macro-eventos pareados via HDBSCAN e janelas deslizantes de 5 dias |
 | **Eventos com Cobertura Compartilhada** | **254.737** | Fatos cobertos simultaneamente por múltiplos veículos concorrentes |
 | **Nós nos Grafos Bipartidos** | **20.010** | 10 veículos de imprensa + 20.000 macro-eventos balanceados em 6 eixos |
 | **Arestas de Cobertura Ponderada** | **82.227** | Conexões ponderadas por volume de matérias e distâncias geodésicas |
